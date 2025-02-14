@@ -44,7 +44,7 @@ const ATokenIcon = forwardRef<SVGSVGElement, ATokenIconProps>(({ symbol, ...rest
             <stop offset="102.6%" stopColor="#FA43BD" />
           </linearGradient>
         </defs>
-        <circle cx="128" cy="128" r="120" fill="url(#spark-gradient)" strokeWidth="0" />
+        <circle cx="128" cy="128" r="120" stroke="url(#spark-gradient)" fill="none" strokeWidth="15" />
         <image x="25" y="25" href={imageHref} width="206" height="206" />
       </g>
     </svg>
