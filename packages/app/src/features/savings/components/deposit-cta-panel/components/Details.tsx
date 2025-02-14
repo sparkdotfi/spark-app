@@ -1,4 +1,3 @@
-import { getTokenImage } from '@/ui/assets'
 import { Link } from '@/ui/atoms/link/Link'
 import { IconStack } from '@/ui/molecules/icon-stack/IconStack'
 import { cva } from 'class-variance-authority'
@@ -12,15 +11,9 @@ export function Details({ description, entryTokens, savingsToken }: DetailsProps
   return (
     <div className="flex flex-col gap-4">
       <div className={tokensRouteVariants({ bg: savingsTokenToAccountType(savingsToken) })}>
-        <IconStack
-          paths={entryTokens.map((token) => getTokenImage(token.symbol))}
-          iconBorder={{ borderColorClass: 'border-[#1E3B33]' }}
-        />
+        <IconStack items={entryTokens} iconBorder={{ borderColorClass: 'border-[#1E3B33]' }} />
         <ChevronsRight className="icon-xs icon-primary-inverse" />
-        <IconStack
-          paths={[getTokenImage(savingsToken.symbol)]}
-          iconBorder={{ borderColorClass: 'border-transparent' }}
-        />
+        <IconStack items={[savingsToken]} iconBorder={{ borderColorClass: 'border-transparent' }} />
       </div>
       <div className="typography-body-3 flex max-w-[48ch] flex-col text-tertiary">
         {description.text}{' '}

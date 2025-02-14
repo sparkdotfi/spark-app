@@ -1,8 +1,10 @@
+import { Token } from '@/domain/types/Token'
+import { TokenIcon } from '@/ui/atoms/token-icon/TokenIcon'
 import { cn } from '@/ui/utils/style'
 import { cva } from 'class-variance-authority'
 
 interface IconStackProps {
-  paths: string[]
+  items: (string | Token)[]
   maxIcons?: number
   size?: 'base' | 'lg'
   stackingOrder?: 'first-on-top' | 'last-on-top'
@@ -11,34 +13,39 @@ interface IconStackProps {
 }
 
 export function IconStack({
-  paths: srcs,
+  items,
   maxIcons = Number.MAX_SAFE_INTEGER,
   size = 'base',
   stackingOrder = 'last-on-top',
   iconBorder,
   className,
 }: IconStackProps) {
-  if (maxIcons + 1 === srcs.length) {
+  if (maxIcons + 1 === items.length) {
     // let's make sure we show +2 minimum
-    maxIcons = srcs.length
+    maxIcons = items.length
   }
 
-  const slicedIcons = srcs.slice(0, maxIcons)
-  const omittedLength = srcs.length - slicedIcons.length
+  const slicedItems = items.slice(0, maxIcons)
+  const omittedLength = items.length - slicedItems.length
 
   return (
     <div className={cn(stackVariants({ size }), className)}>
-      {slicedIcons.map((src, index, srcs) => (
-        <img
-          key={index}
-          src={src}
-          className={cn(
+      {slicedItems.map((item, index, items) => {
+        const style = stackingOrder === 'first-on-top' ? { zIndex: items.length - index } : undefined
+        const commonProps = {
+          className: cn(
             iconVariants({ size, iconBorder: iconBorder !== undefined }),
             iconBorder ? iconBorder.borderColorClass : '',
-          )}
-          style={stackingOrder === 'first-on-top' ? { zIndex: srcs.length - index } : undefined}
-        />
-      ))}
+          ),
+          style,
+        }
+
+        return typeof item === 'string' ? (
+          <img src={item} key={index} {...commonProps} />
+        ) : (
+          <TokenIcon token={item} key={index} {...commonProps} />
+        )
+      })}
       {omittedLength > 0 && (
         <div
           className={cn(

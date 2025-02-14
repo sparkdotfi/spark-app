@@ -24,7 +24,7 @@ export function ConnectOrSandboxCTAPanel({
       data-testid={testIds.component.ConnectOrSandboxCTAPanel}
     >
       <h4 className="typography-heading-3 text-primary-inverse drop-shadow-xl md:mt-4">{header}</h4>
-      {iconPaths && <IconStack paths={iconPaths} size="lg" stackingOrder="first-on-top" />}
+      {iconPaths && <IconStack items={iconPaths} size="lg" stackingOrder="first-on-top" />}
       <ConnectOrSandboxCTAButtonGroup action={action} buttonText={buttonText} openSandboxModal={openSandboxModal} />
     </Panel>
   )
