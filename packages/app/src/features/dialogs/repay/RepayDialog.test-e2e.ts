@@ -349,15 +349,15 @@ test.describe('Repay dialog', () => {
     test('can change asset to aToken', async () => {
       await myPortfolioPage.clickRepayButtonAction('wstETH')
 
-      await repayDialog.selectAssetAction('awstETH')
-      await repayDialog.expectSelectedAsset('awstETH')
+      await repayDialog.selectAssetAction('spwstETH')
+      await repayDialog.expectSelectedAsset('spwstETH')
       await repayDialog.expectDialogHeader('Repay wstETH')
       await repayDialog.expectHealthFactorBeforeVisible()
     })
 
     test('has correct action plan for repaying erc-20 using aToken', async () => {
       const repay = {
-        asset: 'awstETH',
+        asset: 'spwstETH',
         amount: 5,
       } as const
 
@@ -370,7 +370,7 @@ test.describe('Repay dialog', () => {
 
     test('can repay erc-20 using aToken', async () => {
       const repay = {
-        asset: 'awstETH',
+        asset: 'spwstETH',
         amount: 5,
       } as const
 

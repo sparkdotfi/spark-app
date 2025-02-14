@@ -142,7 +142,7 @@ export function getMockReserve(overrides: Partial<Reserve> = {}): Reserve {
   return {
     token,
 
-    aToken: token.clone({ symbol: TokenSymbol('aWstETH') }),
+    aToken: token.clone({ symbol: TokenSymbol('spwstETH') }),
     variableDebtTokenAddress: CheckedAddress('0xd5c3E3B566a42A6110513Ac7670C1a86D76E13E6'),
 
     status: 'active',
