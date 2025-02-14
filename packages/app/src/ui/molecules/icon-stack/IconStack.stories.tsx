@@ -52,3 +52,10 @@ export const IconBorder: Story = {
     items: [tokens.DAI, tokens.ETH, tokens.USDC, tokens.USDT, tokens.GNO].map(({ symbol }) => getTokenImage(symbol)),
   },
 }
+
+export const WithATokens: Story = {
+  args: {
+    iconBorder: { borderColorClass: 'border-primary' },
+    items: [tokens.wstETH, tokens.wstETH.createAToken(tokens.wstETH.address)],
+  },
+}
