@@ -207,7 +207,7 @@ test.describe('Withdraw dialog', () => {
       await withdrawDialog.fillAmountAction(1)
       await withdrawDialog.expectHealthFactorVisible()
       await withdrawDialog.actionsContainer.expectActions([
-        { type: 'approve', asset: 'aWETH' },
+        { type: 'approve', asset: 'spWETH' },
         { type: 'withdraw', asset: 'ETH' },
       ])
     })
@@ -582,7 +582,7 @@ test.describe('Withdraw dialog', () => {
       await withdrawDialog.clickMaxAmountAction()
 
       await withdrawDialog.actionsContainer.expectActions([
-        { type: 'approve', asset: 'aWETH' },
+        { type: 'approve', asset: 'spWETH' },
         { type: 'withdraw', asset: 'ETH' },
       ])
 
