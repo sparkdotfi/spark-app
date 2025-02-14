@@ -1,5 +1,4 @@
 import { Token } from '@/domain/types/Token'
-import { getTokenImage } from '@/ui/assets'
 import SuccessIcon from '@/ui/assets/icons/success.svg?react'
 import WarningIcon from '@/ui/assets/icons/warning.svg?react'
 import { Button } from '@/ui/atoms/button/Button'
@@ -98,11 +97,10 @@ function Title({ children }: { children: ReactNode }) {
 
 function TitleTokens({ tokens }: { tokens: Token[] }) {
   const { actionHandlerState } = useActionRowContext()
-  const icons = tokens.map((token) => getTokenImage(token.symbol))
 
   return (
     <IconStack
-      paths={icons}
+      items={tokens}
       className={cn('shrink-0', actionHandlerState.status === 'success' && 'opacity-60')}
       stackingOrder="last-on-top"
     />

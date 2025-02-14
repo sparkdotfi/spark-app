@@ -9,10 +9,10 @@ describe(TokenSymbol.name, () => {
   })
 
   it('throws for an empty token symbol', () => {
-    expect(() => TokenSymbol('')).toThrow('Token symbol should be between 1 and 7 characters.')
+    expect(() => TokenSymbol('')).toThrow('Token symbol should be between 1 and 8 characters.')
   })
 
-  it('throws for a token symbol longer than 7 characters', () => {
-    expect(() => TokenSymbol('DAI-WETH')).toThrow('Token symbol should be between 1 and 7 characters.')
+  it('throws for a token symbol longer than 8 characters', () => {
+    expect(() => TokenSymbol('sDAI-WETH')).toThrow('Token symbol should be between 1 and 8 characters.')
   })
 })

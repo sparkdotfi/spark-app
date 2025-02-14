@@ -130,7 +130,7 @@ export class Token {
   public createAToken(address: CheckedAddress): Token {
     return this.clone({
       address,
-      symbol: TokenSymbol(`a${this.symbol}`),
+      symbol: TokenSymbol(`sp${this.symbol}`),
       isAToken: true,
     })
   }

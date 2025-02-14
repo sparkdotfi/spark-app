@@ -94,7 +94,7 @@ export function FarmTile({
           ) : (
             <>
               <div className="typography-label-3 mb-2 text-secondary">Tokens to deposit:</div>
-              <IconStack paths={entryTokenIcons} iconBorder={{ borderColorClass: 'border-base-white' }} />
+              <IconStack items={entryTokenIcons} iconBorder={{ borderColorClass: 'border-base-white' }} />
             </>
           )}
         </div>

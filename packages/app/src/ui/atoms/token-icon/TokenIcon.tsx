@@ -9,7 +9,7 @@ export interface TokenIconProps extends SVGProps<SVGSVGElement> {
 }
 export const TokenIcon = forwardRef<SVGSVGElement, TokenIconProps>(({ token, ...rest }, ref) => {
   if (token.isAToken) {
-    const symbol = TokenSymbol(token.symbol.slice(1))
+    const symbol = TokenSymbol(token.symbol.slice(2))
 
     return <ATokenIcon symbol={symbol} {...rest} ref={ref} />
   }
@@ -38,7 +38,13 @@ const ATokenIcon = forwardRef<SVGSVGElement, ATokenIconProps>(({ symbol, ...rest
   return (
     <svg ref={ref} viewBox="0 0 256 256" {...rest}>
       <g>
-        <circle cx="128" cy="128" r="120" fill="none" stroke="rgb(243, 151, 25)" strokeWidth="15" />
+        <defs>
+          <linearGradient id="spark-gradient">
+            <stop offset="-5.71%" stopColor="#FFCD4D" />
+            <stop offset="102.6%" stopColor="#FA43BD" />
+          </linearGradient>
+        </defs>
+        <circle cx="128" cy="128" r="120" stroke="url(#spark-gradient)" fill="none" strokeWidth="15" />
         <image x="25" y="25" href={imageHref} width="206" height="206" />
       </g>
     </svg>
