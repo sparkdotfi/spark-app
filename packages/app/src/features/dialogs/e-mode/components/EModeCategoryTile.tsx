@@ -31,7 +31,7 @@ export function EModeCategoryTile({ eModeCategory }: EModeCategoryTileProps) {
       <Badge variant={variant === 'active' ? 'success' : 'neutral'} appearance="soft" size="sm">
         {variant === 'active' ? 'Active' : 'Inactive'}
       </Badge>
-      <h4 className="typography-label-4 sm:typography-label-1">{eModeCategory.name}</h4>
+      <h4 className="typography-label-2">{eModeCategory.name}</h4>
       <IconStack items={iconPaths} maxIcons={4} />
     </button>
   )

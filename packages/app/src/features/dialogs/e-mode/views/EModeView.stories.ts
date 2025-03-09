@@ -29,6 +29,13 @@ const meta: Meta<typeof EModeView> = {
         isSelected: true,
         onSelect: () => {},
       },
+      'BTC Correlated': {
+        name: 'BTC Correlated',
+        tokens: [tokens.cbBTC, tokens.LBTC],
+        isActive: false,
+        isSelected: false,
+        onSelect: () => {},
+      },
       Stablecoins: {
         name: 'Stablecoins',
         tokens: [tokens.DAI, tokens.USDC, tokens.USDT],
@@ -90,6 +97,13 @@ export const ValidationIssue: Story = {
         isSelected: false,
         onSelect: () => {},
       },
+      'BTC Correlated': {
+        name: 'BTC Correlated',
+        tokens: [tokens.cbBTC, tokens.LBTC],
+        isActive: false,
+        isSelected: false,
+        onSelect: () => {},
+      },
       Stablecoins: {
         name: 'Stablecoins',
         tokens: [tokens.DAI, tokens.USDC, tokens.USDT],
@@ -129,6 +143,13 @@ export const RiskWarning: Story = {
         name: 'ETH Correlated',
         tokens: [tokens.ETH, tokens.rETH, tokens.wstETH],
         isActive: true,
+        isSelected: false,
+        onSelect: () => {},
+      },
+      'BTC Correlated': {
+        name: 'BTC Correlated',
+        tokens: [tokens.cbBTC, tokens.LBTC],
+        isActive: false,
         isSelected: false,
         onSelect: () => {},
       },

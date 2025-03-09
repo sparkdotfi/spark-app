@@ -77,7 +77,7 @@ export function makeMarketOverview({
       borrowed: reserve.totalDebt,
       available: reserve.availableLiquidity,
     },
-    ...(eModeCategoryId === 1 || eModeCategoryId === 2
+    ...(eModeCategoryId === 1 || eModeCategoryId === 2 || eModeCategoryId === 3
       ? {
           eMode: {
             maxLtv: reserve.eModeCategory!.ltv,

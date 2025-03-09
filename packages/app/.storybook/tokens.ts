@@ -165,4 +165,18 @@ export const tokens = {
     symbol: TokenSymbol('ABC'),
     unitPriceUsd: '0',
   }),
+  cbBTC: new Token({
+    address: CheckedAddress(zeroAddress),
+    decimals: 18,
+    name: 'Coinbase Wrapped BTC',
+    symbol: TokenSymbol('cbBTC'),
+    unitPriceUsd: '90000',
+  }),
+  LBTC: new Token({
+    address: CheckedAddress(zeroAddress),
+    decimals: 18,
+    name: 'Lombard Staked Bitcoin',
+    symbol: TokenSymbol('LBTC'),
+    unitPriceUsd: '90000',
+  }),
 }
