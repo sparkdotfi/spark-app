@@ -1,13 +1,14 @@
 import { Hash } from '@marsfoundation/common-universal'
-import { http, Address, Chain, Hex, createTestClient, numberToHex, publicActions, walletActions } from 'viem'
+import { http, Address, Hex, createTestClient, numberToHex, publicActions, walletActions } from 'viem'
 import { TestnetClient } from '../../TestnetClient.js'
+import { CreateClientFromUrlParamsInternal } from '../../TestnetFactory.js'
 import { extendWithTestnetHelpers } from '../extendWithTestnetHelpers.js'
 
-export function getTenderlyClient(rpcUrl: string, chain: Chain, forkChainId: number): TestnetClient {
+export function getTenderlyClient(args: CreateClientFromUrlParamsInternal): TestnetClient {
   return createTestClient({
-    chain: { ...chain, id: forkChainId },
+    chain: { ...args.originChain, id: args.forkChainId },
     mode: 'anvil',
-    transport: http(rpcUrl),
+    transport: http(args.rpcUrl),
     cacheTime: 0, // do not cache block numbers
   })
     .extend((c) => {
@@ -29,6 +30,8 @@ export function getTenderlyClient(rpcUrl: string, chain: Chain, forkChainId: num
             method: 'tenderly_setStorageAt',
             params: [addr.toString(), slot, value],
           } as any)
+
+          await args.onTransaction({ forkChainId: args.forkChainId })
         },
         async snapshot(): Promise<string> {
           return c.request({
@@ -69,5 +72,5 @@ export function getTenderlyClient(rpcUrl: string, chain: Chain, forkChainId: num
     })
     .extend(walletActions)
     .extend(publicActions)
-    .extend(extendWithTestnetHelpers)
+    .extend(extendWithTestnetHelpers(args))
 }

@@ -1,10 +1,15 @@
 import { assert } from '@marsfoundation/common-universal'
 import { HttpClient } from '@marsfoundation/common-universal/http-client'
 import { v4 as uuidv4 } from 'uuid'
-import { Chain, numberToHex } from 'viem'
+import { numberToHex } from 'viem'
 import { z } from 'zod'
 import { TestnetClient } from '../../TestnetClient.js'
-import { CreateNetworkArgs, TestnetCreateResult, TestnetFactory } from '../../TestnetFactory.js'
+import {
+  CreateClientFromUrlParams,
+  CreateNetworkParams,
+  TestnetCreateResult,
+  TestnetFactory,
+} from '../../TestnetFactory.js'
 import { getTenderlyClient } from './TenderlyClient.js'
 
 export class TenderlyTestnetFactory implements TestnetFactory {
@@ -13,7 +18,7 @@ export class TenderlyTestnetFactory implements TestnetFactory {
     private readonly httpClient: HttpClient,
   ) {}
 
-  async create(args: CreateNetworkArgs): Promise<TestnetCreateResult> {
+  async create(args: CreateNetworkParams): Promise<TestnetCreateResult> {
     const { id, displayName, originChain, forkChainId, blockNumber } = args
     const uniqueId = uuidv4()
 
@@ -48,7 +53,12 @@ export class TenderlyTestnetFactory implements TestnetFactory {
     const publicRpc = response.rpcs.find((rpc: any) => rpc.name === 'Public RPC')
     assert(adminRpc && publicRpc, 'Missing admin or public RPC')
 
-    const client = this.createClientFromUrl(adminRpc.url, originChain, forkChainId)
+    const client = this.createClientFromUrl({
+      rpcUrl: adminRpc.url,
+      originChain,
+      forkChainId,
+      onTransaction: args.onTransaction ?? (async () => {}),
+    })
     const legacyClient = client.extend((c) => ({
       async legacySetNextBlockTimestamp(timestamp: bigint) {
         await c.request({
@@ -63,16 +73,20 @@ export class TenderlyTestnetFactory implements TestnetFactory {
 
     await legacyClient.legacySetNextBlockTimestamp(nextBlockTimestamp)
 
+    // eslint-disable-next-line
+    const cleanup = async () => {}
+
     return {
       client,
       rpcUrl: adminRpc.url,
       publicRpcUrl: publicRpc.url,
-      cleanup: () => Promise.resolve(),
+      cleanup,
+      [Symbol.asyncDispose]: cleanup,
     }
   }
 
-  createClientFromUrl(rpcUrl: string, chain: Chain, forkChainId: number): TestnetClient {
-    return getTenderlyClient(rpcUrl, chain, forkChainId)
+  createClientFromUrl(args: CreateClientFromUrlParams): TestnetClient {
+    return getTenderlyClient({ ...args, onTransaction: args.onTransaction ?? (async () => {}) })
   }
 }
 
