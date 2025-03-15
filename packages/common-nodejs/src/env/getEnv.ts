@@ -39,11 +39,9 @@ export class Env {
     allowedValues: readonly [...T],
     fallback?: T[number],
   ): T[number] {
-    const value = this.optionalString(key)
+    const value = this.optionalStringOf(key, allowedValues)
+
     if (value !== undefined) {
-      if (!allowedValues.includes(value)) {
-        throw new Error(`Environment variable ${key} is not one of ${allowedValues.join(', ')}!`)
-      }
       return value
     }
 
@@ -52,6 +50,20 @@ export class Env {
     }
 
     throwMissingEnvVar(key)
+  }
+
+  optionalStringOf<T extends string[]>(key: string | string[], allowedValues: readonly [...T]): T[number] | undefined {
+    const value = this.optionalString(key)
+
+    if (value === undefined) {
+      return undefined
+    }
+
+    if (!allowedValues.includes(value)) {
+      throw new Error(`Environment variable ${key} is not one of ${allowedValues.join(', ')}!`)
+    }
+
+    return value
   }
 
   optionalString(key: string | string[]): string | undefined {
