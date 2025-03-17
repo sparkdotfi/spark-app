@@ -33,8 +33,6 @@
         if ("%VITE_ANALYTICS_PLAUSIBLE_ID%" !== "") {
           const script = document.createElement('script');
           script.src = "/plausible.js";
-          script.integrity = "sha384-vgQIZgpFBm/yXBAICfeXoY9gAQ+PMSvw3Jfxxghz61oZl1wGbTPlnTD2lnwqPm/8";
-          script.crossOrigin = "anonymous";
           script.defer = true;
           script.setAttribute("data-domain", "%VITE_ANALYTICS_PLAUSIBLE_ID%");
           document.head.appendChild(script);
