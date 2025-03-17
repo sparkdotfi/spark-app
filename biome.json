@@ -11,7 +11,8 @@
       "packages/app/__screenshots__",
       "packages/app/playwright-report",
       "packages/app/test-results",
-      "src/test/e2e/hars/**"
+      "src/test/e2e/hars/**",
+      "public/**"
     ]
   },
   "formatter": {
