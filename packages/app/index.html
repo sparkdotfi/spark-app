@@ -31,17 +31,17 @@
       content="Decentralized Finance, DeFi, lending, borrowing, stablecoins, Ethereum, assets, erc-20, smart contracts, open finance, trustless" />
     <script defer data-domain="%VITE_ANALYTICS_PLAUSIBLE_ID%" src="https://plausible.io/js/script.js"></script>
     <script>
-      const cookie3Options = {"siteId": '%VITE_ANALYTICS_COOKIE3_ID%',"additionalTracking":true,"cookielessEnabled":true};
-
-      window._paq = window._paq || [];
-      (function () {
-          var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-          g.async = true; g.src = '/cookie3.analytics.min.js';
-          if (cookie3Options.siteId !== '') {
-            s.parentNode.insertBefore(g, s);
-          }
-      })();
-  </script>
+      if ("%VITE_ANALYTICS_COOKIE3_ID%" !== "") {
+        const script = document.createElement('script');
+        script.src = "https://cdn.markfi.xyz/scripts/analytics/0.11.21/cookie3.analytics.min.js";
+        script.integrity = "sha384-wtYmYhbRlAqGwxc5Vb9GZVyp/Op3blmJICmXjRiJu2/TlPze5dHsmg2gglbH8viT";
+        script.crossOrigin = "anonymous";
+        script.async = true;
+        script.setAttribute("strategy", "lazyOnload");
+        script.setAttribute("site-id", "%VITE_ANALYTICS_COOKIE3_ID%");
+        document.head.appendChild(script);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
