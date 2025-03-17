@@ -29,7 +29,15 @@
     <link rel="image_src" href="https://app.spark.fi/spark-meta-logo.png">
     <meta name="keywords"
       content="Decentralized Finance, DeFi, lending, borrowing, stablecoins, Ethereum, assets, erc-20, smart contracts, open finance, trustless" />
-    <script defer data-domain="%VITE_ANALYTICS_PLAUSIBLE_ID%" src="https://plausible.io/js/script.js"></script>
+    <script>
+      if ("%VITE_ANALYTICS_PLAUSIBLE_ID%" !== "") {
+        const script = document.createElement('script');
+        script.src = "https://plausible.io/js/script.js";
+        script.integrity = "sha384-vgQIZgpFBm/yXBAICfeXoY9gAQ+PMSvw3Jfxxghz61oZl1wGbTPlnTD2lnwqPm/8";
+        script.defer = true;
+        script.setAttribute("data-domain", "%VITE_ANALYTICS_PLAUSIBLE_ID%");
+      }
+    </script>
     <script>
       if ("%VITE_ANALYTICS_COOKIE3_ID%" !== "") {
         const script = document.createElement('script');
