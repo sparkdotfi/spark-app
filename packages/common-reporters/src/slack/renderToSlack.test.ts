@@ -1,5 +1,6 @@
 import { expect } from 'earl'
 import { templating } from '../templating'
+import { ContentBlock } from '../types/contentBlock'
 import { applyFontStyle, renderToSlackString } from './renderToSlack'
 
 describe(renderToSlackString.name, () => {
@@ -11,21 +12,8 @@ describe(renderToSlackString.name, () => {
       templating.link('https://basescan.org', 'Link to tx explorer'),
     ]
 
-    expect(renderToSlackString(content)).toEqual(
-      `> Hello *World* !
-> <https://basescan.org|Link to tx explorer>`,
-    )
-  })
-
-  it('renders full report correctly', () => {
-    const content = [
-      templating.text('ALM Relayer (Safe) operation detected\n', { bold: true }),
-      templating.text('Transaction executed successfully on mainnet ✅'),
-    ]
-
-    expect(renderToSlackString(content)).toEqual(
-      '> *ALM Relayer (Safe) operation detected*\n' + '> Transaction executed successfully on mainnet ✅',
-    )
+    const lines = ['> Hello *World* !', '> <https://basescan.org|Link to tx explorer>']
+    expect(renderToSlackString(content)).toEqual(lines.join('\n'))
   })
 
   it('renders bold text with a newline correctly', () => {
@@ -41,171 +29,165 @@ describe(renderToSlackString.name, () => {
   })
 
   describe(applyFontStyle.name, () => {
-    it('renders bold string correctly', () => {
-      const block = {
-        type: 'text' as const,
-        content: 'bold text',
-        bold: true,
-      }
+    describe('bold text', () => {
+      it('renders correctly', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: 'bold text',
+          bold: true,
+        }
 
-      expect(applyFontStyle(block)).toEqual('*bold text*')
+        expect(applyFontStyle(block)).toEqual('*bold text*')
+      })
+
+      it('renders with newline', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: 'bold text\n',
+          bold: true,
+        }
+
+        expect(applyFontStyle(block)).toEqual('*bold text*\n')
+      })
+
+      it('renders with multiple newlines', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: 'bold text\nmore bold text\n',
+          bold: true,
+        }
+
+        expect(applyFontStyle(block)).toEqual('*bold text*\n*more bold text*\n')
+      })
+
+      it('renders with empty string and newline', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: '\n',
+          bold: true,
+        }
+
+        expect(applyFontStyle(block)).toEqual('')
+      })
+
+      it('ignores empty parts', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: ' \n ',
+          bold: true,
+        }
+
+        expect(applyFontStyle(block)).toEqual('')
+      })
     })
 
-    it('renders bold string with newline correctly', () => {
-      const content = 'bold text\n'
-      const block = {
-        type: 'text' as const,
-        content: content,
-        bold: true,
-      }
+    describe('italic text', () => {
+      it('renders correctly', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: 'italic text',
+          italic: true,
+        }
 
-      expect(applyFontStyle(block)).toEqual('*bold text*\n')
+        expect(applyFontStyle(block)).toEqual('_italic text_')
+      })
+
+      it('renders with newline', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: 'italic text\n',
+          italic: true,
+        }
+
+        expect(applyFontStyle(block)).toEqual('_italic text_\n')
+      })
+
+      it('renders with multiple newlines', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: 'italic text\nmore italic text\n',
+          italic: true,
+        }
+
+        expect(applyFontStyle(block)).toEqual('_italic text_\n_more italic text_\n')
+      })
+
+      it('renders with empty string and newline', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: '\n',
+          italic: true,
+        }
+
+        expect(applyFontStyle(block)).toEqual('')
+      })
+
+      it('ignores empty parts', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: ' \n ',
+          italic: true,
+        }
+
+        expect(applyFontStyle(block)).toEqual('')
+      })
     })
 
-    it('renders bold string with multiple newlines correctly', () => {
-      const content = 'bold text\nmore bold text\n'
-      const block = {
-        type: 'text' as const,
-        content,
-        bold: true,
-      }
+    describe('bold and italics text', () => {
+      it('renders correctly', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: 'bold and italic text',
+          bold: true,
+          italic: true,
+        }
 
-      expect(applyFontStyle(block)).toEqual('*bold text*\n*more bold text*\n')
-    })
+        expect(applyFontStyle(block)).toEqual('_*bold and italic text*_')
+      })
 
-    it('renders bold string with empty string and newline correctly', () => {
-      const content = '\n'
-      const block = {
-        type: 'text' as const,
-        content,
-        bold: true,
-      }
+      it('renders with newline', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: 'bold and italic text\n',
+          bold: true,
+          italic: true,
+        }
 
-      expect(applyFontStyle(block)).toEqual('')
-    })
+        expect(applyFontStyle(block)).toEqual('_*bold and italic text*_\n')
+      })
 
-    it('ignores empty parts', () => {
-      const content = ' \n '
-      const block = {
-        type: 'text' as const,
-        content,
-        bold: true,
-      }
+      it('renders with multiple newlines', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: 'bold and italic text\nmore bold and italic text\n',
+          bold: true,
+          italic: true,
+        }
 
-      expect(applyFontStyle(block)).toEqual('')
-    })
+        expect(applyFontStyle(block)).toEqual('_*bold and italic text*_\n_*more bold and italic text*_\n')
+      })
 
-    it('renders italic string correctly', () => {
-      const block = {
-        type: 'text' as const,
-        content: 'italic text',
-        italic: true,
-      }
+      it('renders with empty string and newline', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: '\n',
+          bold: true,
+          italic: true,
+        }
 
-      expect(applyFontStyle(block)).toEqual('_italic text_')
-    })
+        expect(applyFontStyle(block)).toEqual('')
+      })
 
-    it('renders italic string with newline correctly', () => {
-      const content = 'italic text\n'
-      const block = {
-        type: 'text' as const,
-        content: content,
-        italic: true,
-      }
+      it('ignores empty parts', () => {
+        const block: ContentBlock = {
+          type: 'text',
+          content: ' \n ',
+          bold: true,
+          italic: true,
+        }
 
-      expect(applyFontStyle(block)).toEqual('_italic text_\n')
-    })
-
-    it('renders italic string with multiple newlines correctly', () => {
-      const content = 'italic text\nmore italic text\n'
-      const block = {
-        type: 'text' as const,
-        content,
-        italic: true,
-      }
-
-      expect(applyFontStyle(block)).toEqual('_italic text_\n_more italic text_\n')
-    })
-
-    it('renders italic string with empty string and newline correctly', () => {
-      const content = '\n'
-      const block = {
-        type: 'text' as const,
-        content,
-        italic: true,
-      }
-
-      expect(applyFontStyle(block)).toEqual('')
-    })
-
-    it('ignores empty parts for italic text', () => {
-      const content = ' \n '
-      const block = {
-        type: 'text' as const,
-        content,
-        italic: true,
-      }
-
-      expect(applyFontStyle(block)).toEqual('')
-    })
-
-    it('renders bold and italic string correctly', () => {
-      const block = {
-        type: 'text' as const,
-        content: 'bold and italic text',
-        bold: true,
-        italic: true,
-      }
-
-      expect(applyFontStyle(block)).toEqual('_*bold and italic text*_')
-    })
-
-    it('renders bold and italic string with newline correctly', () => {
-      const content = 'bold and italic text\n'
-      const block = {
-        type: 'text' as const,
-        content: content,
-        bold: true,
-        italic: true,
-      }
-
-      expect(applyFontStyle(block)).toEqual('_*bold and italic text*_\n')
-    })
-
-    it('renders bold and italic string with multiple newlines correctly', () => {
-      const content = 'bold and italic text\nmore bold and italic text\n'
-      const block = {
-        type: 'text' as const,
-        content,
-        bold: true,
-        italic: true,
-      }
-
-      expect(applyFontStyle(block)).toEqual('_*bold and italic text*_\n_*more bold and italic text*_\n')
-    })
-
-    it('renders bold and italic string with empty string and newline correctly', () => {
-      const content = '\n'
-      const block = {
-        type: 'text' as const,
-        content,
-        bold: true,
-        italic: true,
-      }
-
-      expect(applyFontStyle(block)).toEqual('')
-    })
-
-    it('ignores empty parts for bold and italic text', () => {
-      const content = ' \n '
-      const block = {
-        type: 'text' as const,
-        content,
-        bold: true,
-        italic: true,
-      }
-
-      expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('')
+      })
     })
   })
 })
