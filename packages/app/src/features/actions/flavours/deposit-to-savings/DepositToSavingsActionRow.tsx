@@ -1,4 +1,4 @@
-import { trackCookie3ButtonClick } from '@/domain/analytics/cookie3'
+import { useCookie3 } from '@/domain/analytics/cookie3'
 import { ActionRow } from '@/features/actions/components/action-row/ActionRow'
 import { ActionRowBaseProps } from '@/features/actions/components/action-row/types'
 import { ArrowRightLeftIcon } from 'lucide-react'
@@ -12,8 +12,10 @@ export function DepositToSavingsActionRow({
   action: { savingsToken, token, value },
   ...props
 }: DepositToSavingsActionRowProps) {
+  const { trackButtonClick } = useCookie3()
+
   function beforeAction() {
-    trackCookie3ButtonClick('Savings_Deposit_Confirmation')
+    trackButtonClick('Savings_Deposit_Confirmation')
   }
 
   return (
