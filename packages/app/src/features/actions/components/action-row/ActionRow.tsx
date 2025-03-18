@@ -148,7 +148,7 @@ function ErrorWarning() {
   )
 }
 
-function Trigger({ children }: { children: ReactNode }) {
+function Trigger({ children, beforeAction }: { children: ReactNode; beforeAction?: () => void }) {
   const { actionHandlerState, onAction } = useActionRowContext()
 
   if (onAction === undefined) {
@@ -165,7 +165,15 @@ function Trigger({ children }: { children: ReactNode }) {
       <Button
         variant="primary"
         size="m"
-        onClick={onAction}
+        onClick={() => {
+          try {
+            beforeAction?.()
+          } catch (error) {
+            // ignore errors
+            console.error(error)
+          }
+          onAction()
+        }}
         loading={actionHandlerState.status === 'loading'}
         disabled={actionHandlerState.status === 'disabled'}
         className="w-full"

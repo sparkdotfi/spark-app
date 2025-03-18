@@ -1,3 +1,4 @@
+import { trackCookie3ButtonClick } from '@/domain/analytics/cookie3'
 import { ArrowUpFromLineIcon } from 'lucide-react'
 import { ActionRow } from '../../components/action-row/ActionRow'
 import { ActionRowBaseProps } from '../../components/action-row/types'
@@ -8,6 +9,10 @@ export interface BorrowActionRowProps extends ActionRowBaseProps {
 }
 
 export function BorrowActionRow({ action, ...props }: BorrowActionRowProps) {
+  function beforeAction() {
+    trackCookie3ButtonClick('Borrow_Borrow_Confirmation')
+  }
+
   return (
     <ActionRow {...props}>
       <ActionRow.Icon icon={ArrowUpFromLineIcon} />
@@ -21,7 +26,7 @@ export function BorrowActionRow({ action, ...props }: BorrowActionRowProps) {
 
       <ActionRow.ErrorWarning />
 
-      <ActionRow.Trigger>Borrow</ActionRow.Trigger>
+      <ActionRow.Trigger beforeAction={beforeAction}>Borrow</ActionRow.Trigger>
     </ActionRow>
   )
 }
