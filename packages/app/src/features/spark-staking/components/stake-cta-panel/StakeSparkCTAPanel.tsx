@@ -6,27 +6,28 @@ import { Link } from '@/ui/atoms/link/Link'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { links } from '@/ui/constants/links'
 import { cn } from '@/ui/utils/style'
-import { Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
 import { VariantProps, cva } from 'class-variance-authority'
 import { ExternalLinkIcon } from 'lucide-react'
 
-export interface StakeSparkCTAPanelProps {
-  apy: Percentage
-  isConnected: boolean
-  stake: () => void
-  connectWallet: () => void
-  tryInSandbox: () => void
-  className?: string
-}
+type StakeSparkActionProps =
+  | {
+      type: 'connected'
+      spkBalance: NormalizedUnitNumber
+      stake: () => void
+    }
+  | {
+      type: 'disconnected'
+      connectWallet: () => void
+      tryInSandbox: () => void
+    }
 
-export function StakeSparkCTAPanel({
-  apy,
-  isConnected,
-  stake,
-  connectWallet,
-  tryInSandbox,
-  className,
-}: StakeSparkCTAPanelProps) {
+export type StakeSparkCTAPanelProps = {
+  apy: Percentage
+  className?: string
+} & StakeSparkActionProps
+
+export function StakeSparkCTAPanel({ apy, className, ...actionsProps }: StakeSparkCTAPanelProps) {
   return (
     <Panel
       spacing="m"
@@ -56,7 +57,7 @@ export function StakeSparkCTAPanel({
         <span className="typography-heading-2 text-primary-inverse">{formatPercentage(apy, { skipSign: true })}</span>
         <span className="typography-heading-2 bg-gradient-spark-primary-2 bg-clip-text text-transparent">%</span>
       </div>
-      <Actions isConnected={isConnected} stake={stake} connectWallet={connectWallet} tryInSandbox={tryInSandbox} />
+      <Actions {...actionsProps} />
     </Panel>
   )
 }
@@ -96,29 +97,25 @@ function TokenBadge({ variant }: TokenBadgeProps) {
   )
 }
 
-export interface ActionsProps {
-  isConnected: boolean
-  stake: () => void
-  connectWallet: () => void
-  tryInSandbox: () => void
-}
-
-function Actions({ isConnected, stake, connectWallet, tryInSandbox }: ActionsProps) {
-  if (isConnected) {
+function Actions(props: StakeSparkActionProps) {
+  if (props.type === 'connected') {
     return (
-      <Button variant="primary" size="l" className="w-full" onClick={stake}>
+      <Button variant="primary" size="l" className="w-full" onClick={props.stake} disabled={props.spkBalance.isZero()}>
         Stake
       </Button>
     )
   }
-  return (
-    <div className="grid grid-cols-2 gap-4">
-      <Button variant="primary" size="l" onClick={connectWallet}>
-        Connect Wallet
-      </Button>
-      <Button variant="secondary" size="l" onClick={tryInSandbox}>
-        Try in Sandbox
-      </Button>
-    </div>
-  )
+
+  if (props.type === 'disconnected') {
+    return (
+      <div className="grid grid-cols-2 gap-4">
+        <Button variant="primary" size="l" onClick={props.connectWallet}>
+          Connect Wallet
+        </Button>
+        <Button variant="secondary" size="l" onClick={props.tryInSandbox}>
+          Try in Sandbox
+        </Button>
+      </div>
+    )
+  }
 }
