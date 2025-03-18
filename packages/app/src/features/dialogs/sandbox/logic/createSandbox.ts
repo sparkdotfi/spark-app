@@ -25,7 +25,7 @@ export async function createSandbox(opts: {
     rpcUrl: forkUrl,
     originChain: chainIdToChain[opts.originChainId] ?? raise('Only mainnet is supported as origin chain'),
     forkChainId: opts.forkChainId,
-    onTransaction: async () => {},
+    onBlock: async () => {},
   })
   await testnetClient.setBalance(opts.userAddress, parseEther(opts.mintBalances.etherAmt.toString()))
 

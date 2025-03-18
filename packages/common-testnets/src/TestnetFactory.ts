@@ -1,4 +1,4 @@
-import { Chain, Hash, TransactionReceipt } from 'viem'
+import { Chain } from 'viem'
 import { TestnetClient } from './TestnetClient.js'
 
 export interface TestnetCreateResult {
@@ -24,14 +24,14 @@ export interface CreateNetworkParams {
   originChain: Chain
   forkChainId: number
   blockNumber?: bigint
-  onTransaction?: OnTransactionHandler
+  onBlock?: OnBlockHandler /* @note: called only when interacting directly via TestnetClient  */
 }
 
 export interface CreateClientFromUrlParams {
   rpcUrl: string
   originChain: Chain
   forkChainId: number
-  onTransaction?: OnTransactionHandler
+  onBlock?: OnBlockHandler
 }
 
 /**
@@ -39,8 +39,6 @@ export interface CreateClientFromUrlParams {
  */
 export type CreateClientFromUrlParamsInternal = Required<CreateClientFromUrlParams>
 
-export type OnTransactionHandler = (ctx: {
+export type OnBlockHandler = (ctx: {
   forkChainId: number
-  receipt?: TransactionReceipt
-  txHash?: Hash
 }) => Promise<void>

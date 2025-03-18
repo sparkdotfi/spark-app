@@ -3,7 +3,7 @@ import { expect, mockFn } from 'earl'
 import { describe, it } from 'mocha'
 import { parseGwei } from 'viem'
 import { base } from 'viem/chains'
-import { OnTransactionHandler } from './TestnetFactory.js'
+import { OnBlockHandler } from './TestnetFactory.js'
 import { createTestnetFactoriesForE2ETests } from './test-utils/index.js'
 
 describe('TestnetClient', () => {
@@ -104,9 +104,9 @@ describe('TestnetClient', () => {
           expect(actualBlock).toEqual(startingBlock + 1n)
         })
 
-        it('calls post tx hook', async () => {
-          const onTransaction = mockFn<OnTransactionHandler>(async () => {})
-          await using testnet = await factory.create({ ...defaults, onTransaction })
+        it('calls onBlock hook', async () => {
+          const onTransaction = mockFn<OnBlockHandler>(async () => {})
+          await using testnet = await factory.create({ ...defaults, onBlock: onTransaction })
 
           const account = CheckedAddress.random()
           const storageSlot = Hash.random('slot')

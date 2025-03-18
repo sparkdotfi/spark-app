@@ -51,7 +51,7 @@ export class AnvilTestnetFactory implements TestnetFactory {
       rpcUrl,
       originChain,
       forkChainId,
-      onTransaction: args.onTransaction ?? (async () => {}),
+      onBlock: args.onBlock ?? (async () => {}),
     })
 
     const lastBlockTimestamp = (await client.getBlock()).timestamp
@@ -72,7 +72,7 @@ export class AnvilTestnetFactory implements TestnetFactory {
   }
 
   createClientFromUrl(args: CreateClientFromUrlParams): TestnetClient {
-    return getAnvilClient({ ...args, onTransaction: args.onTransaction ?? (async () => {}) })
+    return getAnvilClient({ ...args, onBlock: args.onBlock ?? (async () => {}) })
   }
 }
 

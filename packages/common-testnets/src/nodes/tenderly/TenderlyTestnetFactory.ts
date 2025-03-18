@@ -57,7 +57,7 @@ export class TenderlyTestnetFactory implements TestnetFactory {
       rpcUrl: adminRpc.url,
       originChain,
       forkChainId,
-      onTransaction: args.onTransaction ?? (async () => {}),
+      onBlock: args.onBlock ?? (async () => {}),
     })
     const legacyClient = client.extend((c) => ({
       async legacySetNextBlockTimestamp(timestamp: bigint) {
@@ -86,7 +86,7 @@ export class TenderlyTestnetFactory implements TestnetFactory {
   }
 
   createClientFromUrl(args: CreateClientFromUrlParams): TestnetClient {
-    return getTenderlyClient({ ...args, onTransaction: args.onTransaction ?? (async () => {}) })
+    return getTenderlyClient({ ...args, onBlock: args.onBlock ?? (async () => {}) })
   }
 }
 

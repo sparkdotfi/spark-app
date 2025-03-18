@@ -40,7 +40,7 @@ export function getAnvilClient(args: CreateClientFromUrlParamsInternal): Testnet
             method: 'anvil_mine',
             params: [numberToHex(1), numberToHex(1)],
           } as any)
-          await args.onTransaction({ forkChainId: args.forkChainId })
+          await args.onBlock({ forkChainId: args.forkChainId })
         },
         async snapshot(): Promise<string> {
           return c.request({

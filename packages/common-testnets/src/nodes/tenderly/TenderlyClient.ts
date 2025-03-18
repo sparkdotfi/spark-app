@@ -31,7 +31,7 @@ export function getTenderlyClient(args: CreateClientFromUrlParamsInternal): Test
             params: [addr.toString(), slot, value],
           } as any)
 
-          await args.onTransaction({ forkChainId: args.forkChainId })
+          await args.onBlock({ forkChainId: args.forkChainId })
         },
         async snapshot(): Promise<string> {
           return c.request({
