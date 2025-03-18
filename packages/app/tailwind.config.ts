@@ -300,7 +300,8 @@ export default {
       },
       backgroundImage: {
         // gradients
-        'gradient-spark-primary': 'linear-gradient(270.98deg, #FFCD4D -5.71%, #FA43BD 102.6%)',
+        'gradient-spark-primary-1': 'linear-gradient(270.98deg, #FFCD4D -5.71%, #FA43BD 102.6%)',
+        'gradient-spark-primary-2': 'linear-gradient(104.99deg, #FFC555 -21.89%, #FB4AB9 87.44%)',
         'gradient-spark-secondary': 'linear-gradient(104.99deg, #FFC555 -21.89%, #FB4AB9 87.44%)',
         'gradient-orange': 'linear-gradient(89.87deg, #FF895D 0.14%, #FFE6A4 50.03%, #FFFFFF 99.92%)',
         'gradient-purple': 'linear-gradient(90.22deg, #7A6BFF 0.12%, #BDDEFF 49.95%, #FFFFFF 99.78%)',

@@ -19,7 +19,7 @@ export function CookieBanner({ onAccept, onDecline, className }: CookieBannerPro
       )}
     >
       <div className="grid grid-cols-[auto_1fr] gap-4">
-        <div className="bg-gradient-spark-primary bg-clip-text text-transparent">
+        <div className="bg-gradient-spark-primary-1 bg-clip-text text-transparent">
           <Cookie className="icon-md" />
         </div>
         <div className="flex flex-col gap-1">

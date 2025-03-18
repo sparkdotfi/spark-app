@@ -7,7 +7,7 @@ import { VariantProps, cva } from 'class-variance-authority'
 const indicatorVariants = cva('h-full w-full flex-1 rounded-full transition-all', {
   variants: {
     variant: {
-      'in-progress': 'bg-gradient-spark-primary',
+      'in-progress': 'bg-gradient-spark-primary-1',
       finished: 'bg-fg-system-error-secondary',
     },
   },

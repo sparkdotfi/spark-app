@@ -22,7 +22,7 @@ export function SelectNetworkDialogView({ chains }: SelectNetworkDialogViewProps
               'cursor-pointer transition-all duration-300',
               !chain.selected && 'hover:border-brand-tertiary',
               chain.selected && [
-                'before:absolute before:inset-[-1px] before:z-[-2] before:rounded-[9px] before:bg-gradient-spark-primary',
+                'before:absolute before:inset-[-1px] before:z-[-2] before:rounded-[9px] before:bg-gradient-spark-primary-1',
                 'after:absolute after:inset-0 after:z-[-1] after:rounded-sm after:bg-primary',
                 'focus-visible:after:hidden focus-visible:before:hidden',
               ],
