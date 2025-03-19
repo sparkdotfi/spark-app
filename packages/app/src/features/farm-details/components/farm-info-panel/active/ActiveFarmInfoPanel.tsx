@@ -8,6 +8,7 @@ import { getTokenImage } from '@/ui/assets'
 import { Button } from '@/ui/atoms/button/Button'
 import { DelayedComponent } from '@/ui/atoms/delayed-component/DelayedComponent'
 import { Panel } from '@/ui/atoms/panel/Panel'
+import { GrowingReward } from '@/ui/molecules/growing-reward/GrowingReward'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
 import { assert, NormalizedUnitNumber } from '@marsfoundation/common-universal'
@@ -15,7 +16,6 @@ import { mainnet } from 'viem/chains'
 import { ApyTooltip } from '../../apy-tooltip/ApyTooltip'
 import { ChroniclePointsTooltip } from '../../chronicle-points-tooltip/ChroniclePointsTooltip'
 import { DetailsItem } from '../common/DetailsItem'
-import { GrowingReward } from './GrowingReward'
 import { RewardPointsSyncWarning } from './RewardPointsSyncWarning'
 
 export interface ActiveFarmInfoPanelProps {
@@ -85,6 +85,8 @@ export function ActiveFarmInfoPanel({
             rewardToken={farm.rewardToken}
             calculateReward={calculateReward}
             refreshIntervalInMs={refreshGrowingRewardIntervalInMs}
+            wholePartTextBgGradientClass="bg-gradient-farms-1"
+            fractionalPartTextColorClass="text-feature-farms-primary"
           />
           {isChroniclePointsFarm && <ChroniclePointsTooltip className="mt-2 md:mt-0" />}
         </div>
