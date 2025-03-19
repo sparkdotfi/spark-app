@@ -28,7 +28,7 @@ export class PagerDutyClient {
       data: {
         incident: {
           type: 'incident',
-          title: title,
+          title,
           body: {
             type: 'incident_body',
             details: description,
