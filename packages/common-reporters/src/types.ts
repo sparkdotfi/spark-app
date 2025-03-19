@@ -11,7 +11,7 @@ export type ContentBlock =
       text: string
     }
 
-export type Report = {
+export interface Report {
   title: string
   content: ContentBlock[]
 }
