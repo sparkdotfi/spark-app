@@ -1,5 +1,6 @@
 export * from './templating.js'
 export * from './types.js'
+export { ConsoleReporter } from './console/ConsoleReporter.js'
 export { PagerDutyClient } from './pagerduty/PagerDutyClient.js'
 export { PagerDutyReporter } from './pagerduty/PagerDutyReporter.js'
 export { SlackReporter } from './slack/SlackReporter.js'
