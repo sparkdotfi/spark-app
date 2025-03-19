@@ -19,6 +19,6 @@ export class SlackReporter implements IReporter {
   }
 
   private getContentBlocks(report: Report): ContentBlock[] {
-    return [...report.title, { type: 'text', content: '\n' }, ...report.content]
+    return [{ type: 'text', content: `${report.title}\n`, bold: true }, ...report.content]
   }
 }

@@ -12,7 +12,7 @@ export type ContentBlock =
     }
 
 export type Report = {
-  title: ContentBlock[]
+  title: string
   content: ContentBlock[]
 }
 

@@ -15,7 +15,7 @@ export class PagerDutyReporter implements IReporter {
 
     await this.pagerDutyClient.createIncident({
       serviceId: this.serviceId,
-      title: renderToPagerdutyString(report.title),
+      title: report.title,
       description,
       uniqueKey,
     })
