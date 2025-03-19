@@ -15,7 +15,7 @@ export class PagerDutyReporter implements IReporter {
 
     await this.pagerDutyClient.createIncident({
       serviceId: this.serviceId,
-      title: report.title,
+      title: report.title ?? `${description.slice(0, 20)}...`,
       description,
       uniqueKey,
     })
