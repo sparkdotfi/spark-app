@@ -1,0 +1,43 @@
+name: Release package (common-reporters)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/common-reporters/**"
+      - ".github/workflows/release-common-reporters.yml"
+
+jobs:
+  release:
+    strategy:
+      matrix:
+        node: [ "20" ]
+        os: [ ubuntu-latest ]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.14.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "pnpm"
+      - run: pnpm install
+
+      - run: pnpm build
+
+      - name: Set version and update workspace dependencies
+        run: |
+          cd packages/common-reporters
+          ../../.github/workflows/bump-versions.sh
+
+      - name: Publish to npm
+        uses: JS-DevTools/npm-publish@0f451a94170d1699fd50710966d48fb26194d939
+        with:
+          package: packages/common-reporters/package.json
+          token: ${{ secrets.NPM_TOKEN_PHOENIX_LABS_BOT }}
+          dry-run: false
+          tag: latest

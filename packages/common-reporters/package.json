@@ -1,0 +1,55 @@
+{
+  "name": "@marsfoundation/common-reporters",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sparkdotfi/spark-app.git",
+    "directory": "packages/common-reporters"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "@marsfoundation/local-spark-monorepo": "./src/index.ts",
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "@marsfoundation/local-spark-monorepo": "./src/index.ts",
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "lint": "eslint src",
+    "verify": "concurrently --names \"LINT,TEST,TYPECHECK,LINT-CUSTOM\" -c \"bgMagenta.bold,bgGreen.bold,bgBlue.bold,bgCyan.bold\" \"pnpm run lint\" \"pnpm run test --silent\" \"pnpm run typecheck\"",
+    "fix": "cd ../../ && pnpm run check:fix && cd - && pnpm run verify",
+    "test": "mocha src/**/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build": "pnpm run build:cjs && pnpm run build:esm",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm run clean && pnpm run build"
+  },
+  "devDependencies": {
+    "earl": "^1.3.0",
+    "mocha": "^10.8.2"
+  },
+  "dependencies": {
+    "@pagerduty/pdjs": "^2.2.4"
+  },
+  "peerDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@marsfoundation/common-universal": "workspace:^",
+    "zod": "^3.0"
+  }
+}
