@@ -42,8 +42,7 @@
   },
   "devDependencies": {
     "earl": "^1.3.0",
-    "mocha": "^10.8.2",
-    "tinyspy": "^4.0.0"
+    "mocha": "^10.8.2"
   },
   "dependencies": {
     "@pagerduty/pdjs": "^2.2.4"

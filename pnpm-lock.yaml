@@ -424,9 +424,6 @@ importers:
       mocha:
         specifier: ^10.8.2
         version: 10.8.2
-      tinyspy:
-        specifier: ^4.0.0
-        version: 4.0.0
 
   packages/common-testnets:
     dependencies:
@@ -8029,10 +8026,6 @@ packages:
 
   tinyspy@3.0.2:
     resolution: {integrity: sha512-n1cw8k1k0x4pgA2+9XrOkFydTerNcJ1zWCO5Nn9scWHTD+5tp8dghT2x1uduQePZTZgd3Tupf+x9BxJjeJi77Q==}
-    engines: {node: '>=14.0.0'}
-
-  tinyspy@4.0.0:
-    resolution: {integrity: sha512-cfaGNABIQGjWsqbj1snffI3KPwAFQfyj7mLqKQlosPgGcWKW4mXDO3/yo5+JqiL9EQkvInSot4qxbvbK2uOtRw==}
     engines: {node: '>=14.0.0'}
 
   tmpl@1.0.5:
@@ -18421,8 +18414,6 @@ snapshots:
   tinyspy@2.2.0: {}
 
   tinyspy@3.0.2: {}
-
-  tinyspy@4.0.0: {}
 
   tmpl@1.0.5:
     optional: true
