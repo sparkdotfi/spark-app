@@ -28,6 +28,17 @@ describe(ConsoleReporter.name, () => {
     expect(logger.warn).toHaveBeenOnlyCalledWith('some title\nsome description')
     expect(logger.info).not.toHaveBeenCalled()
   })
+
+  it('sends message without title', async () => {
+    const logger = getMockLogger()
+    const reporter = new ConsoleReporter(logger, 'info')
+
+    await reporter.report({
+      content: [templating.text('some description'), templating.text('additional description')],
+    })
+
+    expect(logger.info).toHaveBeenOnlyCalledWith('some description additional description')
+  })
 })
 
 function getMockLogger(): MockObject<Logger> {

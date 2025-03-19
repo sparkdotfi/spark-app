@@ -14,8 +14,8 @@ export class ConsoleReporter implements IReporter {
   }
 
   async report(report: Report): Promise<void> {
-    const content = renderToConsoleString([templating.text(`${report.title}\n`), ...report.content])
-    this.logger[this.logFunctionName](content)
+    const blocks = report.title ? [templating.text(`${report.title}\n`), ...report.content] : report.content
+    this.logger[this.logFunctionName](renderToConsoleString(blocks))
   }
 }
 

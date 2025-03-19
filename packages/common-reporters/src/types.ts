@@ -12,7 +12,7 @@ export type ContentBlock =
     }
 
 export interface Report {
-  title: string
+  title?: string
   content: ContentBlock[]
 }
 
