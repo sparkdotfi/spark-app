@@ -20,6 +20,9 @@ export class SlackReporter implements IReporter {
   }
 
   private getContentBlocks(report: Report): ContentBlock[] {
-    return report.title ? [templating.text(`${report.title}\n`, { bold: true }), ...report.content] : report.content
+    if (report.title) {
+      return [templating.text(`${report.title}\n`, { bold: true }), ...report.content]
+    }
+    return report.content
   }
 }
