@@ -45,6 +45,7 @@
     "mocha": "^10.8.2"
   },
   "dependencies": {
+    "@pagerduty/pdjs": "^2.2.4"
   },
   "peerDependencies": {
     "@types/mocha": "^10.0.10",

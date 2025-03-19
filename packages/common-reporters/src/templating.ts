@@ -1,4 +1,4 @@
-import { ContentBlock } from './types/contentBlock'
+import { ContentBlock } from './types.js'
 
 function text(content: string, extra?: { bold?: boolean }): ContentBlock {
   return { type: 'text', content, ...(extra ?? {}) }

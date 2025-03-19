@@ -1,7 +1,7 @@
 import { expect } from 'earl'
-import { templating } from '../templating'
-import { ContentBlock } from '../types/contentBlock'
-import { applyFontStyle, renderToSlackString } from './renderToSlack'
+import { templating } from '../templating.js'
+import { ContentBlock } from '../types.js'
+import { applyFontStyle, renderToSlackString } from './renderToSlack.js'
 
 describe(renderToSlackString.name, () => {
   it('renders content blocks', () => {

@@ -1,5 +1,5 @@
 import { assertNever } from '@marsfoundation/common-universal'
-import { ContentBlock } from '../types/contentBlock'
+import { ContentBlock } from '../types.js'
 
 export function renderToSlackString(node: ContentBlock[]): string {
   const text = node
@@ -34,7 +34,7 @@ export function applyFontStyle(block: Extract<ContentBlock, { type: 'text' }>): 
   return styledLines.join('')
 }
 
-export function applyLineFontStyle(line: string, bold: boolean = false, italic: boolean = false): string {
+export function applyLineFontStyle(line: string, bold = false, italic = false): string {
   let result = line
   if (bold) {
     result = applyBoldStyle(result)
