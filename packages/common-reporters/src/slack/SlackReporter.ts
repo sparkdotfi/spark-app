@@ -1,5 +1,6 @@
 import { HttpClient } from '@marsfoundation/common-universal/http-client'
 import { z } from 'zod'
+import { templating } from '../templating.js'
 import { ContentBlock, IReporter, Report } from '../types.js'
 import { renderToSlackString } from './renderToSlack.js'
 
@@ -19,6 +20,6 @@ export class SlackReporter implements IReporter {
   }
 
   private getContentBlocks(report: Report): ContentBlock[] {
-    return [{ type: 'text', content: `${report.title}\n`, bold: true }, ...report.content]
+    return [templating.text(`${report.title}\n`, { bold: true }), ...report.content]
   }
 }
