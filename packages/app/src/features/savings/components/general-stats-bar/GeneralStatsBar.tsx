@@ -34,7 +34,7 @@ export function GeneralStatsBar({ accountSavingsToken, generalStatsResult, psmSu
         <Value>{USD_MOCK_TOKEN.formatUSD(NormalizedUnitNumber(generalStatsResult.data.tvl), { compact: true })}</Value>
       </Stat>
       <Stat>
-        <Label>Users</Label>
+        <Label>Users:</Label>
         <Value>{formatUsersNumber(generalStatsResult.data.users)}</Value>
       </Stat>
       {liquidityCap && (

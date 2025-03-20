@@ -21,7 +21,7 @@ export function GeneralStatsBar({ generalStatsResult }: GeneralStatsBarProps) {
   return (
     <div className={cn('inline-flex divide-x divide-secondary rounded-[10px]', 'bg-primary/80 py-3 backdrop-blur-lg')}>
       <Stat>
-        <Label>Stakers</Label>
+        <Label>Stakers:</Label>
         <Value>{formatUsersNumber(generalStatsResult.data.stakers)}</Value>
       </Stat>
       <Stat>
