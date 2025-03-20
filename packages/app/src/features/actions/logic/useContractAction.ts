@@ -24,6 +24,7 @@ import { createSetUseAsCollateralActionConfig } from '../flavours/set-use-as-col
 import { createSetUserEModeActionConfig } from '../flavours/set-user-e-mode/logic/setUserEModeAction'
 import { createStakeSparkActionConfig } from '../flavours/stake-spark/logic/stakeSparkAction'
 import { createStakeActionConfig } from '../flavours/stake/logic/stakeAction'
+import { createUnstakeSparkActionConfig } from '../flavours/unstake-spark/logic/unstakeSparkAction'
 import { createUnstakeActionConfig } from '../flavours/unstake/logic/unstakeAction'
 import { createUpgradeActionConfig } from '../flavours/upgrade/logic/upgradeAction'
 import { createWithdrawFromSavingsActionConfig } from '../flavours/withdraw-from-savings/logic/withdrawFromSavingsAction'
@@ -172,6 +173,8 @@ export function actionToConfig(action: Action, context: ActionContext): ActionCo
       return createClaimSparkRewardsActionConfig(action, context)
     case 'stakeSpark':
       return createStakeSparkActionConfig(action, context)
+    case 'unstakeSpark':
+      return createUnstakeSparkActionConfig(action, context)
     case 'permit':
       return createEmptyActionConfig()
   }
