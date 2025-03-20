@@ -12,9 +12,17 @@ export interface GrowingRewardProps {
   rewardToken: Token
   calculateReward: (timestampInMs: number) => NormalizedUnitNumber
   refreshIntervalInMs: number | undefined
+  wholePartTextBgGradientClass: string
+  fractionalPartTextColorClass: string
 }
 
-export function GrowingReward({ rewardToken, calculateReward, refreshIntervalInMs }: GrowingRewardProps) {
+export function GrowingReward({
+  rewardToken,
+  calculateReward,
+  refreshIntervalInMs,
+  wholePartTextBgGradientClass,
+  fractionalPartTextColorClass,
+}: GrowingRewardProps) {
   const { timestampInMs } = useTimestamp({
     refreshIntervalInMs,
   })
@@ -30,20 +38,26 @@ export function GrowingReward({ rewardToken, calculateReward, refreshIntervalInM
         <div
           className={cn(
             'typography-heading-3 lg:typography-display-3 xl:typography-display-2 ',
-            'relative bg-gradient-farms-1 bg-clip-text text-transparent',
+            'relative bg-clip-text text-transparent',
+            wholePartTextBgGradientClass,
           )}
         >
           {getWholePart(currentReward)}
         </div>
         {precision > 0 && (
           <div className="relative">
-            <div className="typography-heading-4 text-feature-farms-primary [text-shadow:_0_1px_4px_rgb(0_0_0)]">
+            <div
+              className={cn(
+                'typography-heading-4 text-feature-farms-primary [text-shadow:_0_1px_4px_rgb(0_0_0)]',
+                fractionalPartTextColorClass,
+              )}
+            >
               {getFractionalPart(currentReward, precision)}
             </div>
           </div>
         )}
       </div>
-      {rewardToken.unitPriceUsd.gt(0) && (
+      {rewardToken.unitPriceUsd.gt(0) && !rewardToken.unitPriceUsd.eq(1) && (
         <div className="typography-label-2 col-start-2 ml-1.5 text-primary-inverse">
           &#8776;
           <span data-testid={testIds.farmDetails.activeFarmInfoPanel.rewardsUsd}>
