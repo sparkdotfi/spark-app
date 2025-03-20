@@ -162,7 +162,7 @@ function BorrowBar({ positionSummary }: BorrowBarProps) {
         <Tooltip>
           <TooltipTrigger asChild>
             <div
-              className="z-[1] rounded-sm bg-gradient-spark-primary"
+              className="z-[1] rounded-sm bg-gradient-spark-primary-1"
               style={{
                 width: `${borrow.percents.borrowed}%`,
               }}

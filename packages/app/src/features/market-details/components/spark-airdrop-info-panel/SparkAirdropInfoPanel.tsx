@@ -15,7 +15,7 @@ export function SparkAirdropInfoPanel({ variant, eligibleToken }: SparkAirdropIn
     <div
       className={cn(
         'relative isolate col-span-3 mt-3 flex flex-row items-center gap-3.5 overflow-hidden rounded-lg p-[15px]',
-        'before:-z-10 before:absolute before:inset-0 before:bg-gradient-spark-primary before:opacity-10',
+        'before:-z-10 before:absolute before:inset-0 before:bg-gradient-spark-primary-1 before:opacity-10',
         'sm:mt-10',
       )}
     >

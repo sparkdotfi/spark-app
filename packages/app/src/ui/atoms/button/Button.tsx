@@ -16,7 +16,7 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary: cn(
-          'before:-z-10 bg-gradient-spark-primary text-primary-inverse before:absolute',
+          'before:-z-10 bg-gradient-spark-primary-1 text-primary-inverse before:absolute',
           'focus-visible:before:bg-primary active:before:bg-neutral-800',
           'before:inset-0 before:transition-colors hover:before:bg-neutral-950 active:text-primary-inverse',
           'disabled:cursor-not-allowed disabled:bg-neutral-50 disabled:text-neutral-500 disabled:before:bg-neutral-50 disabled:before:bg-none',
