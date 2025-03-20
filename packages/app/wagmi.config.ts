@@ -3,6 +3,7 @@ import { etherscan } from '@wagmi/cli/plugins'
 import { arbitrum, base, gnosis, mainnet } from 'wagmi/chains'
 import { z } from 'zod'
 import 'dotenv/config'
+
 export default defineConfig({
   out: 'src/config/contracts-generated.ts',
   contracts: [],
@@ -153,8 +154,7 @@ export default defineConfig({
         {
           name: 'TestSparkStaking',
           address: {
-            // @todo: spark staking - Random address, replace with deployment when available
-            [mainnet.id]: '0x3a2F5d74BbDA6997C7D202cD6741C1C10F04b7a1',
+            [mainnet.id]: '0xA9147782Eb5732039b0Cf270e7B98f27b6ecd876',
           },
         },
       ],
