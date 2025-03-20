@@ -282,6 +282,16 @@ export function useCreateActions({
       case 'convertStables': {
         return createConvertStablesActions(objective, context)
       }
+
+      case 'stakeSpark': {
+        return [
+          {
+            type: 'stakeSpark',
+            spk: objective.spk,
+            amount: objective.amount,
+          },
+        ]
+      }
     }
   })
 }

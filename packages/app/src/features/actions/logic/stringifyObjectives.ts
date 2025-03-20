@@ -30,6 +30,7 @@ export function stringifyObjectivesToStableActions(objectives: Objective[]): str
         case 'upgrade':
         case 'downgrade':
         case 'unstake':
+        case 'stakeSpark':
           return [objective.type, objective.amount]
         case 'stake':
           return [objective.type, objective.token.address, objective.amount]
