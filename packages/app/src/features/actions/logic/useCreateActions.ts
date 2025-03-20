@@ -303,6 +303,18 @@ export function useCreateActions({
         }
         return [approveAction, stakeSparkAction]
       }
+
+      case 'unstakeSpark': {
+        return [
+          {
+            type: 'unstakeSpark',
+            spk: objective.spk,
+            amount: objective.amount,
+            accountActiveShares: objective.accountActiveShares,
+            unstakeAll: objective.unstakeAll,
+          },
+        ]
+      }
     }
   })
 }
