@@ -234,7 +234,6 @@ export function createDepositToSavingsActionConfig(
     },
 
     onSuccessfulAction: () => {
-      assert(context.walletType, 'Wallet type is required to track deposit to savings action')
       trackEvent(actionPath, {
         walletType: context.walletType,
         savingsToken: action.savingsToken.symbol,
