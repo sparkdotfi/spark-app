@@ -213,7 +213,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
       type: 'unstakeSpark',
       spk: tokens.SPK,
       amount: NormalizedUnitNumber(1_232.12),
-      shares: BaseUnitNumber(parseEther('1')),
+      accountActiveShares: BaseUnitNumber(parseEther('1')),
       unstakeAll: false,
     },
     state: { status: 'ready' },

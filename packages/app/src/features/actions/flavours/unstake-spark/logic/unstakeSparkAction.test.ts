@@ -15,7 +15,7 @@ const spk = getMockToken({ symbol: TokenSymbol('SPK') })
 const account = testAddresses.alice
 const chainId = mainnet.id
 const amount = NormalizedUnitNumber(1)
-const shares = BaseUnitNumber(parseEther('1'))
+const accountActiveShares = BaseUnitNumber(parseEther('1'))
 const vault = getContractAddress(testSparkStakingConfig.address, chainId)
 
 const hookRenderer = setupUseContractActionRenderer({
@@ -26,7 +26,7 @@ const hookRenderer = setupUseContractActionRenderer({
       type: 'unstakeSpark',
       spk,
       amount,
-      shares,
+      accountActiveShares,
       unstakeAll: false,
     },
     enabled: true,
@@ -67,7 +67,7 @@ describe(createUnstakeSparkActionConfig.name, () => {
           type: 'unstakeSpark',
           spk,
           amount,
-          shares,
+          accountActiveShares,
           unstakeAll: true,
         },
         enabled: true,
@@ -77,7 +77,7 @@ describe(createUnstakeSparkActionConfig.name, () => {
           to: vault,
           abi: testSparkStakingConfig.abi,
           functionName: 'redeem',
-          args: [account, toBigInt(shares)],
+          args: [account, toBigInt(accountActiveShares)],
           from: account,
           result: [1n, 1n],
         }),

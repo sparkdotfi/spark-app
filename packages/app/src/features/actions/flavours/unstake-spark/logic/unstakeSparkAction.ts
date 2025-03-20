@@ -11,14 +11,14 @@ export function createUnstakeSparkActionConfig(action: UnstakeSparkAction, conte
 
   return {
     getWriteConfig: () => {
-      const { spk, amount, shares, unstakeAll } = action
+      const { spk, amount, accountActiveShares, unstakeAll } = action
 
       if (unstakeAll) {
         return ensureConfigTypes({
           address: vault,
           abi: testSparkStakingConfig.abi,
           functionName: 'redeem',
-          args: [account, toBigInt(shares)],
+          args: [account, toBigInt(accountActiveShares)],
         })
       }
 

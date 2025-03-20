@@ -310,7 +310,7 @@ export function useCreateActions({
             type: 'unstakeSpark',
             spk: objective.spk,
             amount: objective.amount,
-            shares: objective.shares,
+            accountActiveShares: objective.accountActiveShares,
             unstakeAll: objective.unstakeAll,
           },
         ]

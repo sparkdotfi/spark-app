@@ -5,7 +5,7 @@ export interface UnstakeSparkObjective {
   type: 'unstakeSpark'
   spk: Token
   amount: NormalizedUnitNumber
-  shares: BaseUnitNumber
+  accountActiveShares: BaseUnitNumber
   unstakeAll: boolean
 }
 
@@ -13,6 +13,6 @@ export interface UnstakeSparkAction {
   type: 'unstakeSpark'
   spk: Token
   amount: NormalizedUnitNumber
-  shares: BaseUnitNumber
+  accountActiveShares: BaseUnitNumber
   unstakeAll: boolean
 }

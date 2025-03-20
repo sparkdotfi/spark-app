@@ -33,7 +33,7 @@ export function stringifyObjectivesToStableActions(objectives: Objective[]): str
         case 'stakeSpark':
           return [objective.type, objective.amount]
         case 'unstakeSpark':
-          return [objective.type, objective.amount, objective.shares, objective.unstakeAll]
+          return [objective.type, objective.amount, objective.accountActiveShares, objective.unstakeAll]
         case 'stake':
           return [objective.type, objective.token.address, objective.amount]
         case 'claimFarmRewards':
