@@ -22,6 +22,7 @@ import { createPsmConvertActionConfig } from '../flavours/psm-convert/logic/psmC
 import { createRepayActionConfig } from '../flavours/repay/logic/repayAction'
 import { createSetUseAsCollateralActionConfig } from '../flavours/set-use-as-collateral/logic/setUseAsCollateralAction'
 import { createSetUserEModeActionConfig } from '../flavours/set-user-e-mode/logic/setUserEModeAction'
+import { createStakeSparkActionConfig } from '../flavours/stake-spark/logic/stakeSparkAction'
 import { createStakeActionConfig } from '../flavours/stake/logic/stakeAction'
 import { createUnstakeActionConfig } from '../flavours/unstake/logic/unstakeAction'
 import { createUpgradeActionConfig } from '../flavours/upgrade/logic/upgradeAction'
@@ -169,6 +170,8 @@ export function actionToConfig(action: Action, context: ActionContext): ActionCo
       return createClaimFarmRewardsActionConfig(action, context)
     case 'claimSparkRewards':
       return createClaimSparkRewardsActionConfig(action, context)
+    case 'stakeSpark':
+      return createStakeSparkActionConfig(action, context)
     case 'permit':
       return createEmptyActionConfig()
   }

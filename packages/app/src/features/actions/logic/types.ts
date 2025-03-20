@@ -22,6 +22,7 @@ import { PsmConvertAction } from '../flavours/psm-convert/types'
 import { RepayAction, RepayObjective } from '../flavours/repay/types'
 import { SetUseAsCollateralAction, SetUseAsCollateralObjective } from '../flavours/set-use-as-collateral/types'
 import { SetUserEModeAction, SetUserEModeObjective } from '../flavours/set-user-e-mode/logic/types'
+import { StakeSparkAction, StakeSparkObjective } from '../flavours/stake-spark/types'
 import { StakeAction, StakeObjective } from '../flavours/stake/types'
 import { UnstakeAction, UnstakeObjective } from '../flavours/unstake/types'
 import { UpgradeAction, UpgradeObjective } from '../flavours/upgrade/types'
@@ -51,6 +52,7 @@ export type Objective =
   | ClaimFarmRewardsObjective
   | ConvertStablesObjective
   | ClaimSparkRewardsObjective
+  | StakeSparkObjective
 export type ObjectiveType = Objective['type']
 
 export type Action =
@@ -73,6 +75,7 @@ export type Action =
   | PsmConvertAction
   | ClaimFarmRewardsAction
   | ClaimSparkRewardsAction
+  | StakeSparkAction
 export type ActionType = Action['type']
 
 type BaseActionHandlerState<ErrorKind extends string> =

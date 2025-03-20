@@ -13,6 +13,7 @@ import { PsmConvertActionRow } from '../../flavours/psm-convert/PsmConvertAction
 import { RepayActionRow } from '../../flavours/repay/RepayActionRow'
 import { SetUseAsCollateralActionRow } from '../../flavours/set-use-as-collateral/SetUseAsCollateralActionRow'
 import { SetUserEModeActionRow } from '../../flavours/set-user-e-mode/SetUserEModeActionRow'
+import { StakeSparkActionRow } from '../../flavours/stake-spark/StakeSparkActionRow'
 import { StakeActionRow } from '../../flavours/stake/StakeActionRow'
 import { UnstakeActionRow } from '../../flavours/unstake/UnstakeActionRow'
 import { UpgradeActionRow } from '../../flavours/upgrade/UpgradeActionRow'
@@ -87,6 +88,8 @@ export function Actions({ actionHandlers, batchActionHandler, layout }: ActionsP
               return <ClaimFarmRewardsActionRow action={handler.action} {...props} />
             case 'claimSparkRewards':
               return <ClaimSparkRewardsActionRow action={handler.action} {...props} />
+            case 'stakeSpark':
+              return <StakeSparkActionRow action={handler.action} {...props} />
             default:
               assertNever(handler.action)
           }

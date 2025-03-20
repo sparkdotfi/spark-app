@@ -200,4 +200,13 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     state: { status: 'ready' },
     onAction: () => {},
   },
+  stakeSpark: {
+    action: {
+      type: 'stakeSpark',
+      spk: tokens.SPK,
+      amount: NormalizedUnitNumber(1_232.12),
+    },
+    state: { status: 'ready' },
+    onAction: () => {},
+  },
 }
