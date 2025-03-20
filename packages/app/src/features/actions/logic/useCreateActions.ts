@@ -1,4 +1,9 @@
-import { lendingPoolAddress, migrationActionsConfig, wethGatewayAddress } from '@/config/contracts-generated'
+import {
+  lendingPoolAddress,
+  migrationActionsConfig,
+  testSparkStakingConfig,
+  wethGatewayAddress,
+} from '@/config/contracts-generated'
 import { useChainConfigEntry } from '@/domain/hooks/useChainConfigEntry'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ActionsSettings } from '@/domain/state/actions-settings'
@@ -18,6 +23,7 @@ import { PermitAction } from '../flavours/permit/types'
 import { RepayAction } from '../flavours/repay/types'
 import { SetUseAsCollateralAction } from '../flavours/set-use-as-collateral/types'
 import { SetUserEModeAction } from '../flavours/set-user-e-mode/logic/types'
+import { StakeSparkAction } from '../flavours/stake-spark/types'
 import { createStakeActions } from '../flavours/stake/logic/createStakeActions'
 import { createUnstakeActions } from '../flavours/unstake/logic/createUnstakeActions'
 import { UpgradeAction } from '../flavours/upgrade/types'
@@ -284,13 +290,18 @@ export function useCreateActions({
       }
 
       case 'stakeSpark': {
-        return [
-          {
-            type: 'stakeSpark',
-            spk: objective.spk,
-            amount: objective.amount,
-          },
-        ]
+        const approveAction: ApproveAction = {
+          type: 'approve',
+          token: objective.spk,
+          spender: getContractAddress(testSparkStakingConfig.address, chainId),
+          value: objective.amount,
+        }
+        const stakeSparkAction: StakeSparkAction = {
+          type: 'stakeSpark',
+          spk: objective.spk,
+          amount: objective.amount,
+        }
+        return [approveAction, stakeSparkAction]
       }
     }
   })
