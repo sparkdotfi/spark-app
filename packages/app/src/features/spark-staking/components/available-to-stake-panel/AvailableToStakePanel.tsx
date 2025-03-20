@@ -5,9 +5,9 @@ import { LinkButton } from '@/ui/atoms/link-button/LinkButton'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { DataTable, DataTableColumnDefinitions } from '@/ui/molecules/data-table/DataTable'
 import { TokenCell } from '@/ui/molecules/data-table/components/TokenCell'
+import { ViewContractMoreDropdown } from '@/ui/molecules/view-contract-more-dropdown/ViewContractMoreDropdown'
 import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { useMemo } from 'react'
-import { MoreDropdown } from './MoreDropdown'
 
 export interface AvailableToStakeRow {
   token: Token
@@ -54,7 +54,7 @@ export function AvailableToStakePanel({
               <Button variant="secondary" size="s" disabled={balance.eq(0)} onClick={openStakeDialog}>
                 Stake
               </Button>
-              <MoreDropdown blockExplorerLink={blockExplorerLink} />
+              <ViewContractMoreDropdown blockExplorerLink={blockExplorerLink} />
             </div>
           )
         },

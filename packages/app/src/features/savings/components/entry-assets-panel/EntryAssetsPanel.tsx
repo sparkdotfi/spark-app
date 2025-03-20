@@ -4,11 +4,11 @@ import { Button } from '@/ui/atoms/button/Button'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { DataTable, DataTableColumnDefinitions } from '@/ui/molecules/data-table/DataTable'
 import { TokenCell } from '@/ui/molecules/data-table/components/TokenCell'
+import { ViewContractMoreDropdown } from '@/ui/molecules/view-contract-more-dropdown/ViewContractMoreDropdown'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
 import { useMemo } from 'react'
 import { SavingsAccountSupportedStablecoin } from '../../logic/useSavings'
-import { MoreDropdown } from './components/MoreDropdown'
 
 export interface EntryAssetsPanelProps {
   assets: SavingsAccountSupportedStablecoin[]
@@ -48,7 +48,7 @@ export function EntryAssetsPanel({
               <Button variant="secondary" size="s" disabled={balance.eq(0)} onClick={() => openDepositDialog(token)}>
                 Deposit
               </Button>
-              <MoreDropdown blockExplorerLink={blockExplorerLink} />
+              <ViewContractMoreDropdown blockExplorerLink={blockExplorerLink} />
             </div>
           )
         },

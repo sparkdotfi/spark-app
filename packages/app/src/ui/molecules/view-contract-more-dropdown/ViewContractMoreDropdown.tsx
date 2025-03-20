@@ -11,12 +11,12 @@ import { LinkDecorator } from '@/ui/atoms/link-decorator/LinkDecorator'
 import { testIds } from '@/ui/utils/testIds'
 import { MoreVerticalIcon } from 'lucide-react'
 
-export interface MoreDropdownProps {
+export interface ViewContractMoreDropdownProps {
   blockExplorerLink: string | undefined
   disabled?: boolean
 }
 
-export function MoreDropdown({ blockExplorerLink, disabled }: MoreDropdownProps) {
+export function ViewContractMoreDropdown({ blockExplorerLink, disabled }: ViewContractMoreDropdownProps) {
   return (
     <DropdownWrapper disabled={disabled}>
       {blockExplorerLink && (
