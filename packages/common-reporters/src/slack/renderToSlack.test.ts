@@ -28,6 +28,17 @@ describe(renderToSlackString.name, () => {
     expect(renderToSlackString(content)).toEqual('> *bold text*\n' + '> *more bold text*\n' + '> text')
   })
 
+  it('joins different blocks with space', () => {
+    const content = [
+      templating.text('before link'),
+      templating.link('https://google.com', 'click link'),
+      templating.text('after link', { bold: true }),
+    ]
+
+    const lines = ['> before link <https://google.com|click link> *after link*']
+    expect(renderToSlackString(content)).toEqual(lines.join('\n'))
+  })
+
   it('renders empty new lines correctly', () => {
     const content = [
       templating.text('First'),
