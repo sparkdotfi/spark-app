@@ -1,5 +1,4 @@
 import { WithClassname } from '@sb/decorators'
-import { getHoveredStory } from '@sb/utils'
 import { Meta, StoryObj } from '@storybook/react'
 
 import { within } from '@storybook/test'
@@ -24,5 +23,3 @@ type Story = StoryObj<typeof ViewContractMoreDropdown>
 export const Default: Story = {
   name: 'Default',
 }
-
-export const Hovered = getHoveredStory(Default, 'button')
