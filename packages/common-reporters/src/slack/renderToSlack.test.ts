@@ -35,8 +35,7 @@ describe(renderToSlackString.name, () => {
       templating.text('after link', { bold: true }),
     ]
 
-    const lines = ['> before link <https://google.com|click link> *after link*']
-    expect(renderToSlackString(content)).toEqual(lines.join('\n'))
+    expect(renderToSlackString(content)).toEqual('> before link <https://google.com|click link> *after link*')
   })
 
   it('renders empty new lines correctly', () => {
