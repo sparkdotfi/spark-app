@@ -94,5 +94,7 @@ describe(createUnstakeSparkActionConfig.name, () => {
     await waitFor(() => {
       expect(result.current.state.status).toBe('success')
     })
+
+    // @todo: spark staking - test for query invalidations when applicable
   })
 })

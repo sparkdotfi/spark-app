@@ -59,6 +59,7 @@ describe(createStakeSparkActionConfig.name, () => {
 
     await expect(queryInvalidationManager).toHaveReceivedInvalidationCall(
       getBalancesQueryKeyPrefix({ account, chainId }),
+      // @todo: spark staking - add missing keys after new queries implemented
     )
     await expect(queryInvalidationManager).toHaveReceivedInvalidationCall(
       allowanceQueryKey({
