@@ -67,7 +67,7 @@ describe(renderToSlackString.name, () => {
           bold: true,
         }
 
-        expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('\n')
       })
 
       it('ignores empty parts', () => {
@@ -77,7 +77,7 @@ describe(renderToSlackString.name, () => {
           bold: true,
         }
 
-        expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('\n')
       })
     })
 
@@ -119,7 +119,7 @@ describe(renderToSlackString.name, () => {
           italic: true,
         }
 
-        expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('\n')
       })
 
       it('ignores empty parts', () => {
@@ -129,7 +129,7 @@ describe(renderToSlackString.name, () => {
           italic: true,
         }
 
-        expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('\n')
       })
     })
 
@@ -175,7 +175,7 @@ describe(renderToSlackString.name, () => {
           italic: true,
         }
 
-        expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('\n')
       })
 
       it('ignores empty parts', () => {
@@ -186,7 +186,7 @@ describe(renderToSlackString.name, () => {
           italic: true,
         }
 
-        expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('\n')
       })
     })
   })
