@@ -46,6 +46,8 @@ function isIgnoredMessage(error: Error): boolean {
     'nonce too high',
     'nonce too low',
     'method has not been authorized by the user',
+    'already pending for origin https://app.spark.fi',
+    'Signing aborted by user',
 
     // Allowance errors
     '"approve" reverted',
@@ -67,6 +69,7 @@ function isIgnoredMessage(error: Error): boolean {
 
     // Other
     'non-configurable data property on the proxy target',
+    'setting getter-only property "ethereum"',
   ]
 
   return ignoredMessages.some((message) => error.message?.toLowerCase().includes(message.toLowerCase()))

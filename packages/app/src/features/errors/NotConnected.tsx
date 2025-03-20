@@ -15,7 +15,7 @@ export function NotConnected({ fullScreen }: { fullScreen?: boolean }) {
 
   return (
     <ErrorLayout fullScreen={fullScreen}>
-      <div className="typography-heading-3">This page is available ony for connected users</div>
+      <div className="typography-heading-3">This page is available only for connected users</div>
       <Button onClick={openConnectModal}>Connect wallet</Button>
     </ErrorLayout>
   )
