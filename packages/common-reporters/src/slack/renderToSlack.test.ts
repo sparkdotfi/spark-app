@@ -28,6 +28,34 @@ describe(renderToSlackString.name, () => {
     expect(renderToSlackString(content)).toEqual('> *bold text*\n' + '> *more bold text*\n' + '> text')
   })
 
+  it('renders empty new lines correctly', () => {
+    const content = [
+      templating.text('First'),
+      templating.text('line'),
+      templating.text('\n'),
+      templating.text('\n'),
+      templating.text('Third line'),
+      templating.text('\n'),
+      templating.text('Fourth line'),
+    ]
+
+    const lines = ['> First line', '> ', '> Third line', '> Fourth line']
+    expect(renderToSlackString(content)).toEqual(lines.join('\n'))
+  })
+
+  it('renders new lines in correct order', () => {
+    const content = [
+      templating.text('First'),
+      templating.text('line'),
+      templating.text('\nSecond line,'),
+      templating.text('still second line\n'),
+      templating.text('Third line'),
+    ]
+
+    const lines = ['> First line', '> Second line, still second line', '> Third line']
+    expect(renderToSlackString(content)).toEqual(lines.join('\n'))
+  })
+
   describe(applyFontStyle.name, () => {
     describe('bold text', () => {
       it('renders correctly', () => {

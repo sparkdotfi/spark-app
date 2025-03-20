@@ -17,7 +17,7 @@ export function renderToSlackString(node: ContentBlock[]): string {
 
   // we add block quotes to make the text more readable and aligned
   const blockQuotes = text.split('\n').map((line) => {
-    return `> ${line.trimStart()}`
+    return `> ${line.trim()}`
   })
 
   return blockQuotes.join('\n')
