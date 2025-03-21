@@ -28,12 +28,10 @@ export function extendWithTestnetHelpers(creationArgs: CreateClientFromUrlParams
         const receipt = await c.waitForTransactionReceipt({
           hash: txHash,
         })
+        await creationArgs.onBlock({ forkChainId: creationArgs.forkChainId })
 
         const summaryText = args.functionName ? `${args.functionName} -- ${txHash}` : txHash
-
         assert(receipt.status === 'success', `Transaction failed: ${summaryText}`)
-
-        await creationArgs.onBlock({ forkChainId: creationArgs.forkChainId })
 
         return receipt
       },
@@ -43,10 +41,9 @@ export function extendWithTestnetHelpers(creationArgs: CreateClientFromUrlParams
         const receipt = await c.waitForTransactionReceipt({
           hash: txHash,
         })
+        await creationArgs.onBlock({ forkChainId: creationArgs.forkChainId })
 
         assert(receipt.status === 'success', `Transaction failed: ${txHash}`)
-
-        await creationArgs.onBlock({ forkChainId: creationArgs.forkChainId })
 
         return receipt
       },
