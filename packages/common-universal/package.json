@@ -5,7 +5,7 @@
     "node": ">=18.0.0"
   },
   "type": "module",
-  "main": "./dist/cjs/index.js",
+  "main": "./dist/esm/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
   "repository": {
@@ -15,52 +15,24 @@
   },
   "exports": {
     ".": {
-      "import": {
-        "@marsfoundation/local-spark-monorepo": "./src/index.ts",
-        "types": "./dist/types/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "@marsfoundation/local-spark-monorepo": "./src/index.ts",
-        "types": "./dist/types/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      }
+      "@marsfoundation/local-spark-monorepo": "./src/index.ts",
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/esm/index.js"
     },
     "./http-client": {
-      "import": {
-        "@marsfoundation/local-spark-monorepo": "./src/httpClient/index.ts",
-        "types": "./dist/types/httpClient/index.d.ts",
-        "default": "./dist/esm/httpClient/index.js"
-      },
-      "require": {
-        "@marsfoundation/local-spark-monorepo": "./src/httpClient/index.ts",
-        "types": "./dist/types/httpClient/index.d.ts",
-        "default": "./dist/cjs/httpClient/index.js"
-      }
+      "@marsfoundation/local-spark-monorepo": "./src/httpClient/index.ts",
+      "types": "./dist/types/httpClient/index.d.ts",
+      "default": "./dist/esm/httpClient/index.js"
     },
     "./logger": {
-      "import": {
-        "@marsfoundation/local-spark-monorepo": "./src/logger/index.ts",
-        "types": "./dist/types/logger/index.d.ts",
-        "default": "./dist/esm/logger/index.js"
-      },
-      "require": {
-        "@marsfoundation/local-spark-monorepo": "./src/logger/index.ts",
-        "types": "./dist/types/logger/index.d.ts",
-        "default": "./dist/cjs/logger/index.js"
-      }
+      "@marsfoundation/local-spark-monorepo": "./src/logger/index.ts",
+      "types": "./dist/types/logger/index.d.ts",
+      "default": "./dist/esm/logger/index.js"
     },
     "./tracer": {
-      "import": {
-        "@marsfoundation/local-spark-monorepo": "./src/tracer/index.ts",
-        "types": "./dist/types/tracer/index.d.ts",
-        "default": "./dist/esm/tracer/index.js"
-      },
-      "require": {
-        "@marsfoundation/local-spark-monorepo": "./src/tracer/index.ts",
-        "types": "./dist/types/tracer/index.d.ts",
-        "default": "./dist/cjs/tracer/index.js"
-      }
+      "@marsfoundation/local-spark-monorepo": "./src/tracer/index.ts",
+      "types": "./dist/types/tracer/index.d.ts",
+      "default": "./dist/esm/tracer/index.js"
     }
   },
   "typesVersions": {
@@ -77,9 +49,7 @@
     "fix": "cd ../../ && pnpm run check:fix && cd - && pnpm run verify",
     "test": "mocha src/**/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "build": "pnpm run build:cjs && pnpm run build:esm",
+    "build": "tsc -p tsconfig.esm.json",
     "clean": "rm -rf dist",
     "prepublishOnly": "pnpm run clean && pnpm run build"
   },
