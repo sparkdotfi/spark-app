@@ -1,14 +1,15 @@
 import { assert, Hash } from '@marsfoundation/common-universal'
-import { http, Address, Chain, Hex, createTestClient, numberToHex, publicActions, walletActions } from 'viem'
+import { http, Address, Hex, createTestClient, numberToHex, publicActions, walletActions } from 'viem'
 import { dealActions } from 'viem-deal'
 import { TestnetClient } from '../../TestnetClient.js'
+import { CreateClientFromUrlParamsInternal } from '../../TestnetFactory.js'
 import { extendWithTestnetHelpers } from '../extendWithTestnetHelpers.js'
 
-export function getAnvilClient(rpc: string, chain: Chain, forkChainId: number): TestnetClient {
+export function getAnvilClient(args: CreateClientFromUrlParamsInternal): TestnetClient {
   return createTestClient({
-    chain: { ...chain, id: forkChainId },
+    chain: { ...args.originChain, id: args.forkChainId },
     mode: 'anvil',
-    transport: http(rpc),
+    transport: http(args.rpcUrl),
     cacheTime: 0, // do not cache block numbers
   })
     .extend(publicActions)
@@ -54,7 +55,7 @@ export function getAnvilClient(rpc: string, chain: Chain, forkChainId: number): 
         async mineBlocks(blocks: bigint) {
           await c.request({
             method: 'anvil_mine',
-            params: [numberToHex(blocks), '0x1'],
+            params: [numberToHex(blocks), numberToHex(1)],
           })
         },
         async setNextBlockTimestamp(timestamp: bigint) {
@@ -78,5 +79,5 @@ export function getAnvilClient(rpc: string, chain: Chain, forkChainId: number): 
       }
     })
     .extend(walletActions)
-    .extend(extendWithTestnetHelpers)
+    .extend(extendWithTestnetHelpers(args))
 }

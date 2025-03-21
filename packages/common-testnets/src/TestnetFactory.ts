@@ -13,14 +13,31 @@ export interface TestnetCreateResult {
  * steps that ensure compatibility with different client implementations.
  */
 export interface TestnetFactory {
-  create(network: CreateNetworkArgs): Promise<TestnetCreateResult>
-  createClientFromUrl(rpcUrl: string, chain: Chain, forkChainId: number): TestnetClient
+  create(args: CreateNetworkParams): Promise<TestnetCreateResult>
+  createClientFromUrl(args: CreateClientFromUrlParams): TestnetClient
 }
 
-export interface CreateNetworkArgs {
+export interface CreateNetworkParams {
   id: string
   displayName?: string
   originChain: Chain
   forkChainId: number
   blockNumber?: bigint
+  onBlock?: OnBlockHandler /* @note: called only when interacting directly via TestnetClient  */
 }
+
+export interface CreateClientFromUrlParams {
+  rpcUrl: string
+  originChain: Chain
+  forkChainId: number
+  onBlock?: OnBlockHandler
+}
+
+/**
+ * @internal
+ */
+export type CreateClientFromUrlParamsInternal = Required<CreateClientFromUrlParams>
+
+export type OnBlockHandler = (ctx: {
+  forkChainId: number
+}) => Promise<void>

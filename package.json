@@ -10,8 +10,8 @@
   "scripts": {
     "dev": "pnpm run --filter './packages/app' dev",
     "storybook": "pnpm run --filter './packages/app' storybook",
-    "check": "biome check .",
-    "check:fix": "biome check --write --unsafe .",
+    "check": "biome check --config-path ./biome.strict.json .",
+    "check:fix": "biome check --config-path ./biome.strict.json --write --unsafe .",
     "build": "pnpm run --aggregate-output --reporter append-only --filter './packages/**' build",
     "verify": "pnpm run --parallel --aggregate-output --reporter append-only --filter './packages/**' verify",
     "typecheck": "pnpm run --parallel --aggregate-output --reporter append-only --filter './packages/**' typecheck",

@@ -55,7 +55,7 @@
   },
   "peerDependencies": {
     "bignumber.js": "^9.1.2",
-    "remeda": "^2.10.0",
+    "remeda": "^2.0.0",
     "viem": "^2.0.0",
     "zod": "^3.0"
   },

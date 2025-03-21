@@ -72,6 +72,45 @@ describe(Env.name, () => {
     })
   })
 
+  describe(Env.prototype.optionalStringOf.name, () => {
+    it('returns the env variable', () => {
+      const env = new Env({ TEST_A: 'foo' })
+      const result = env.optionalStringOf('TEST_A', ['foo', 'bar'])
+
+      expect(result).toEqual('foo')
+    })
+
+    it('returns undefined if variable is not present', () => {
+      const env = new Env({})
+      const result = env.optionalStringOf('TEST_A', ['foo', 'bar'])
+
+      expect(result).toEqual(undefined)
+    })
+
+    it('works with const arrays', () => {
+      const env = new Env({ TEST_A: 'zar' })
+      const options = ['foo', 'bar', 'zar'] as const
+
+      const result = env.optionalStringOf('TEST_A', options)
+      expect(result).toEqual('zar')
+    })
+
+    it('throws if variable is is not one of the expected values', () => {
+      const env = new Env({ TEST_A: 'zar' })
+
+      expect(() => env.optionalStringOf('TEST_A', ['foo', 'bar'])).toThrow(
+        'Environment variable TEST_A is not one of foo, bar',
+      )
+    })
+
+    it.skip('[TYPE LEVEL] returns correct types', () => {
+      const env = new Env({ TEST_A: 'foo' })
+      const result = env.optionalStringOf('TEST_A', ['foo', 'bar'])
+
+      type _t1 = Expect<Equal<typeof result, 'foo' | 'bar' | undefined>>
+    })
+  })
+
   describe(Env.prototype.integer.name, () => {
     it('returns the environment variable as integer', () => {
       const env = new Env({ TEST_A: '-420' })

@@ -21,11 +21,12 @@ export async function createSandbox(opts: {
     forkChainId: opts.forkChainId,
     apiUrl: `${apiUrl}/sandbox/create`,
   })
-  const testnetClient = getTenderlyClient(
-    forkUrl,
-    chainIdToChain[opts.originChainId] ?? raise('Only mainnet is supported as origin chain'),
-    opts.forkChainId,
-  )
+  const testnetClient = getTenderlyClient({
+    rpcUrl: forkUrl,
+    originChain: chainIdToChain[opts.originChainId] ?? raise('Only mainnet is supported as origin chain'),
+    forkChainId: opts.forkChainId,
+    onBlock: async () => {},
+  })
   await testnetClient.setBalance(opts.userAddress, parseEther(opts.mintBalances.etherAmt.toString()))
 
   await Promise.all(
