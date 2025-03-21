@@ -26,6 +26,7 @@ import chevronDown from './chevron-down.svg'
 import circleInfo from './circle-info.svg'
 import closeFilled from './close-filled.svg'
 import close from './close.svg'
+import cowSwap from './cow-swap.svg'
 import down from './down.svg'
 import downgrade from './downgrade.svg'
 import equal from './equal.svg'
@@ -126,6 +127,7 @@ export const assets = {
   success,
   wallet,
   link,
+  cowSwap,
   threeDots,
   arrowRight,
   warning,
