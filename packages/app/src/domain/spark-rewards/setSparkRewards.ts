@@ -1,4 +1,4 @@
-import { sparkRewardsConfig } from '@/config/contracts-generated'
+import { testSparkRewardsConfig } from '@/config/contracts-generated'
 import { TestnetClient } from '@marsfoundation/common-testnets'
 import { BaseUnitNumber, CheckedAddress, Hex, toBigInt } from '@marsfoundation/common-universal'
 import { StandardMerkleTree } from '@openzeppelin/merkle-tree'
@@ -41,18 +41,18 @@ export async function setSparkRewards({
   await testnetClient.assertSendTransaction({
     account: '0x4b340357aadd38403e5c8e64368fd502ed38df6a',
     data: encodeFunctionData({
-      abi: sparkRewardsConfig.abi,
+      abi: testSparkRewardsConfig.abi,
       functionName: 'setMerkleRoot',
       args: [merkleRoot],
     }),
-    to: sparkRewardsConfig.address[mainnet.id],
+    to: testSparkRewardsConfig.address[mainnet.id],
     chain: null,
   })
   await afterTx?.()
 
   const wallet = await testnetClient.readContract({
-    address: sparkRewardsConfig.address[mainnet.id],
-    abi: sparkRewardsConfig.abi,
+    address: testSparkRewardsConfig.address[mainnet.id],
+    abi: testSparkRewardsConfig.abi,
     functionName: 'wallet',
   })
 
@@ -67,7 +67,7 @@ export async function setSparkRewards({
       data: encodeFunctionData({
         abi: erc20Abi,
         functionName: 'approve',
-        args: [sparkRewardsConfig.address[mainnet.id], cumulativeAmountBigInt],
+        args: [testSparkRewardsConfig.address[mainnet.id], cumulativeAmountBigInt],
       }),
       to: token,
       chain: null,

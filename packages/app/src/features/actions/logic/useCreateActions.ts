@@ -276,6 +276,7 @@ export function useCreateActions({
         return [
           {
             type: 'claimSparkRewards',
+            source: objective.source,
             token: objective.token,
             epoch: objective.epoch,
             cumulativeAmount: objective.cumulativeAmount,

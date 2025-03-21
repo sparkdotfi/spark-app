@@ -190,6 +190,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
   claimSparkRewards: {
     action: {
       type: 'claimSparkRewards',
+      source: 'campaigns',
       token: tokens.USDS,
       epoch: 1,
       cumulativeAmount: NormalizedUnitNumber(1),

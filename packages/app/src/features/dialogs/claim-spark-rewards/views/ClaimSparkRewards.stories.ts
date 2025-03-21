@@ -31,6 +31,7 @@ const meta: Meta<typeof ClaimSparkRewardsView> = {
     objectives: [
       {
         type: 'claimSparkRewards',
+        source: 'campaigns',
         token: tokens.RED,
         epoch: 1,
         cumulativeAmount: NormalizedUnitNumber(1000),
@@ -39,6 +40,7 @@ const meta: Meta<typeof ClaimSparkRewardsView> = {
       },
       {
         type: 'claimSparkRewards',
+        source: 'campaigns',
         token: tokens.USDS,
         epoch: 1,
         cumulativeAmount: NormalizedUnitNumber(250),

@@ -1,5 +1,5 @@
 import { spark2ApiUrl } from '@/config/consts'
-import { sparkRewardsAbi, sparkRewardsAddress } from '@/config/contracts-generated'
+import { testSparkRewardsAbi, testSparkRewardsAddress } from '@/config/contracts-generated'
 import { setSparkRewards } from '@/domain/spark-rewards/setSparkRewards'
 import { TOKENS_ON_FORK } from '@/test/e2e/constants'
 import { randomHexId } from '@/utils/random'
@@ -146,8 +146,8 @@ export async function setupSparkRewards({
   })
 
   const mainnetMerkleRoot = await readContract(wagmiConfig, {
-    address: sparkRewardsAddress[mainnet.id],
-    abi: sparkRewardsAbi,
+    address: testSparkRewardsAddress[mainnet.id],
+    abi: testSparkRewardsAbi,
     functionName: 'merkleRoot',
     args: [],
     chainId: mainnet.id,

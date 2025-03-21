@@ -152,9 +152,15 @@ export default defineConfig({
           },
         },
         {
-          name: 'SparkRewards',
+          name: 'TestSparkRewards',
           address: {
             [mainnet.id]: '0xaf76856f788519704a9411839614e144fed52d8a',
+          },
+        },
+        {
+          name: 'TestStakingRewards',
+          address: {
+            [mainnet.id]: '0xc0E655333D10bf7A4eaBBec72046F67bBC33CB33',
           },
         },
         {
