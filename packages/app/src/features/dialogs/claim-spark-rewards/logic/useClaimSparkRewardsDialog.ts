@@ -30,6 +30,7 @@ export function useClaimSparkRewardsDialog({
   )
   const objectives: ClaimSparkRewardsObjective[] = filteredRewards.map((reward) => ({
     type: 'claimSparkRewards',
+    source: 'campaigns',
     token: reward.token,
     epoch: reward.epoch,
     cumulativeAmount: reward.cumulativeAmount,
