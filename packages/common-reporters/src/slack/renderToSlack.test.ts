@@ -1,15 +1,15 @@
 import { expect } from 'earl'
-import { templating } from '../templating.js'
+import { templating as t } from '../templating.js'
 import { ContentBlock } from '../types.js'
 import { applyFontStyle, renderToSlackString } from './renderToSlack.js'
 
 describe(renderToSlackString.name, () => {
   it('renders content blocks', () => {
     const content = [
-      templating.text('Hello'),
-      templating.text('World', { bold: true }),
-      templating.text('!\n'),
-      templating.link('https://basescan.org', 'Link to tx explorer'),
+      t.text('Hello'),
+      t.text('World', { bold: true }),
+      t.text('!\n'),
+      t.link('https://basescan.org', 'Link to tx explorer'),
     ]
 
     const lines = ['> Hello *World* !', '> <https://basescan.org|Link to tx explorer>']
@@ -17,22 +17,22 @@ describe(renderToSlackString.name, () => {
   })
 
   it('renders bold text with a newline correctly', () => {
-    const content = [templating.text('Highlighted text\n', { bold: true }), templating.text('text')]
+    const content = [t.text('Highlighted text\n', { bold: true }), t.text('text')]
 
     expect(renderToSlackString(content)).toEqual('> *Highlighted text*\n' + '> text')
   })
 
   it('renders bold text with multiple newlines correctly', () => {
-    const content = [templating.text('bold text\nmore bold text\n', { bold: true }), templating.text('text')]
+    const content = [t.text('bold text\nmore bold text\n', { bold: true }), t.text('text')]
 
     expect(renderToSlackString(content)).toEqual('> *bold text*\n' + '> *more bold text*\n' + '> text')
   })
 
   it('joins different blocks with space', () => {
     const content = [
-      templating.text('before link'),
-      templating.link('https://google.com', 'click link'),
-      templating.text('after link', { bold: true }),
+      t.text('before link'),
+      t.link('https://google.com', 'click link'),
+      t.text('after link', { bold: true }),
     ]
 
     expect(renderToSlackString(content)).toEqual('> before link <https://google.com|click link> *after link*')
@@ -40,13 +40,13 @@ describe(renderToSlackString.name, () => {
 
   it('renders empty new lines correctly', () => {
     const content = [
-      templating.text('First'),
-      templating.text('line'),
-      templating.text('\n'),
-      templating.text('\n'),
-      templating.text('Third line'),
-      templating.text('\n'),
-      templating.text('Fourth line'),
+      t.text('First'),
+      t.text('line'),
+      t.text('\n'),
+      t.text('\n'),
+      t.text('Third line'),
+      t.text('\n'),
+      t.text('Fourth line'),
     ]
 
     const lines = ['> First line', '> ', '> Third line', '> Fourth line']
@@ -55,11 +55,11 @@ describe(renderToSlackString.name, () => {
 
   it('renders new lines in correct order', () => {
     const content = [
-      templating.text('First'),
-      templating.text('line'),
-      templating.text('\nSecond line,'),
-      templating.text('still second line\n'),
-      templating.text('Third line'),
+      t.text('First'),
+      t.text('line'),
+      t.text('\nSecond line,'),
+      t.text('still second line\n'),
+      t.text('Third line'),
     ]
 
     const lines = ['> First line', '> Second line, still second line', '> Third line']

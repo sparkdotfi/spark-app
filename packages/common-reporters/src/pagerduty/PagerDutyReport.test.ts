@@ -1,6 +1,6 @@
 import { Hash } from '@marsfoundation/common-universal'
 import { MockObject, expect, mockFn, mockObject } from 'earl'
-import { templating } from '../templating.js'
+import { templating as t } from '../templating.js'
 import { PagerDutyClient } from './PagerDutyClient.js'
 import { PagerDutyReporter } from './PagerDutyReporter.js'
 
@@ -8,7 +8,7 @@ describe(PagerDutyReporter.name, () => {
   it('sends report', async () => {
     const pdClient = getMockPagerDutyClient()
     const reporter = new PagerDutyReporter(pdClient, 'service')
-    const content = [templating.text('some content')]
+    const content = [t.text('some content')]
     const expectedHash = Hash.fromText('some content')
 
     await reporter.report({
@@ -27,11 +27,7 @@ describe(PagerDutyReporter.name, () => {
   it('uses description for title if not provided', async () => {
     const pdClient = getMockPagerDutyClient()
     const reporter = new PagerDutyReporter(pdClient, 'service')
-    const content = [
-      templating.text('really long title'),
-      templating.text('with multiple parts'),
-      templating.link('href', 'and some link'),
-    ]
+    const content = [t.text('really long title'), t.text('with multiple parts'), t.link('href', 'and some link')]
     const expectedDescription = 'really long title with multiple parts [href] and some link>'
 
     await reporter.report({ content })

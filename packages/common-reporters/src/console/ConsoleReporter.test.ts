@@ -1,6 +1,6 @@
 import { Logger } from '@marsfoundation/common-universal/logger'
 import { MockObject, expect, mockFn, mockObject } from 'earl'
-import { templating } from '../templating.js'
+import { templating as t } from '../templating.js'
 import { ConsoleReporter } from './ConsoleReporter.js'
 
 describe(ConsoleReporter.name, () => {
@@ -10,7 +10,7 @@ describe(ConsoleReporter.name, () => {
 
     await reporter.report({
       title: 'some title',
-      content: [templating.text('some description'), templating.text('additional description')],
+      content: [t.text('some description'), t.text('additional description')],
     })
 
     expect(logger.info).toHaveBeenOnlyCalledWith('some title\nsome description additional description')
@@ -22,7 +22,7 @@ describe(ConsoleReporter.name, () => {
 
     await reporter.report({
       title: 'some title',
-      content: [templating.text('some description')],
+      content: [t.text('some description')],
     })
 
     expect(logger.warn).toHaveBeenOnlyCalledWith('some title\nsome description')
@@ -34,7 +34,7 @@ describe(ConsoleReporter.name, () => {
     const reporter = new ConsoleReporter(logger, 'info')
 
     await reporter.report({
-      content: [templating.text('some description'), templating.text('additional description')],
+      content: [t.text('some description'), t.text('additional description')],
     })
 
     expect(logger.info).toHaveBeenOnlyCalledWith('some description additional description')

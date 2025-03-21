@@ -1,6 +1,6 @@
 import { HttpClient } from '@marsfoundation/common-universal/http-client'
 import { MockObject, expect, mockFn, mockObject } from 'earl'
-import { templating } from '../templating.js'
+import { templating as t } from '../templating.js'
 import { SlackReporter } from './SlackReporter.js'
 
 describe(SlackReporter.name, () => {
@@ -10,7 +10,7 @@ describe(SlackReporter.name, () => {
 
     await reporter.report({
       title: 'some title',
-      content: [templating.text('some description'), templating.text('additional description')],
+      content: [t.text('some description'), t.text('additional description')],
     })
 
     expect(httpClient.post).toHaveBeenOnlyCalledWith(
@@ -27,7 +27,7 @@ describe(SlackReporter.name, () => {
     const reporter = new SlackReporter({ apiUrl: 'url' }, httpClient)
 
     await reporter.report({
-      content: [templating.text('some description'), templating.text('additional description')],
+      content: [t.text('some description'), t.text('additional description')],
     })
 
     expect(httpClient.post).toHaveBeenOnlyCalledWith(
