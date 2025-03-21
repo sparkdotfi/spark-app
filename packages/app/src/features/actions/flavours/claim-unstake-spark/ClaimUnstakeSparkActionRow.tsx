@@ -7,7 +7,7 @@ export interface ClaimUnstakeSparkActionRowProps extends ActionRowBaseProps {
   action: ClaimUnstakeSparkAction
 }
 
-export function ClaimUnstakeSparkActionRow({ action: { spk }, ...props }: ClaimUnstakeSparkActionRowProps) {
+export function ClaimUnstakeSparkActionRow({ action: { spk, amount }, ...props }: ClaimUnstakeSparkActionRowProps) {
   return (
     <ActionRow {...props}>
       <ActionRow.Icon icon={ArrowUpToLineIcon} />
@@ -16,6 +16,8 @@ export function ClaimUnstakeSparkActionRow({ action: { spk }, ...props }: ClaimU
         <ActionRow.Title.Tokens tokens={[spk]} />
         Claim {spk.symbol}
       </ActionRow.Title>
+
+      <ActionRow.Amount token={spk} amount={amount} />
 
       <ActionRow.ErrorWarning />
 

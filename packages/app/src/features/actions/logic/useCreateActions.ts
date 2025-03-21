@@ -321,6 +321,7 @@ export function useCreateActions({
         return [
           {
             spk: objective.spk,
+            amount: objective.amount,
             type: 'claimUnstakeSpark',
             epochs: objective.epochs,
           },

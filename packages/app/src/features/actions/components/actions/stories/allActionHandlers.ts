@@ -224,6 +224,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     action: {
       type: 'claimUnstakeSpark',
       spk: tokens.SPK,
+      amount: NormalizedUnitNumber(1_232.12),
       epochs: [1, 2],
     },
     state: { status: 'ready' },

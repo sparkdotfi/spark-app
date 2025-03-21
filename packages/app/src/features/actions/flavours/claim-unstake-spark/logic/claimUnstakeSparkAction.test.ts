@@ -4,6 +4,7 @@ import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { getMockToken, testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
+import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { waitFor } from '@testing-library/react'
 import { mainnet } from 'viem/chains'
 import { describe, test } from 'vitest'
@@ -13,6 +14,7 @@ const account = testAddresses.alice
 const chainId = mainnet.id
 const vault = getContractAddress(testSparkStakingConfig.address, chainId)
 const spk = getMockToken({ symbol: TokenSymbol('SPK') })
+const amount = NormalizedUnitNumber(100)
 
 const hookRenderer = setupUseContractActionRenderer({
   account,
@@ -20,6 +22,7 @@ const hookRenderer = setupUseContractActionRenderer({
   args: {
     action: {
       spk,
+      amount,
       type: 'claimUnstakeSpark',
       epochs: [1, 2],
     },
