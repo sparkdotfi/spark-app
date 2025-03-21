@@ -165,6 +165,28 @@ type SimplifiedPsmConvertAction = {
   outToken: string
 }
 
+type SimplifiedSetUserEModeAction = {
+  type: 'setUserEMode'
+  eModeCategoryId: number
+}
+
+type SimplifiedMakerStableToSavingsAction = BaseAction & {
+  type: 'depositToSavings'
+  savingsAsset: string
+}
+
+type SimplifiedStakeSparkAction = {
+  type: 'stakeSpark'
+  spk: string
+  amount: string
+}
+
+type SimplifiedUnstakeSparkAction = {
+  type: 'unstakeSpark'
+  spk: string
+  amount: string
+}
+
 type SimplifiedGenericAction = BaseAction & {
   type: Exclude<
     ActionType,
@@ -177,17 +199,9 @@ type SimplifiedGenericAction = BaseAction & {
     | 'stake'
     | 'unstake'
     | 'psmConvert'
+    | 'stakeSpark'
+    | 'unstakeSpark'
   >
-}
-
-type SimplifiedSetUserEModeAction = {
-  type: 'setUserEMode'
-  eModeCategoryId: number
-}
-
-type SimplifiedMakerStableToSavingsAction = BaseAction & {
-  type: 'depositToSavings'
-  savingsAsset: string
 }
 
 type SimplifiedAction =
@@ -200,6 +214,8 @@ type SimplifiedAction =
   | SimplifiedStakeAction
   | SimplifiedUnstakeAction
   | SimplifiedPsmConvertAction
+  | SimplifiedStakeSparkAction
+  | SimplifiedUnstakeSparkAction
 
 function actionToTitle(action: SimplifiedAction): string {
   switch (action.type) {
@@ -243,6 +259,10 @@ function actionToTitle(action: SimplifiedAction): string {
       return 'Claim rewards'
     case 'psmConvert':
       return `Convert ${action.inToken} to ${action.outToken}`
+    case 'stakeSpark':
+      return `Stake ${action.spk}`
+    case 'unstakeSpark':
+      return `Unstake ${action.spk}`
   }
 }
 

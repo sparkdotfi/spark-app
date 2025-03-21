@@ -151,6 +151,12 @@ export default defineConfig({
             [mainnet.id]: '0xaf76856f788519704a9411839614e144fed52d8a',
           },
         },
+        {
+          name: 'TestSparkStaking',
+          address: {
+            [mainnet.id]: '0xA9147782Eb5732039b0Cf270e7B98f27b6ecd876',
+          },
+        },
       ],
     }),
     etherscan({

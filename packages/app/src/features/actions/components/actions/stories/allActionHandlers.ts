@@ -1,11 +1,10 @@
-import { tokens } from '@sb/tokens'
-import { zeroAddress } from 'viem'
-
 import { ActionHandler, ActionType } from '@/features/actions/logic/types'
 import { getMockReserve } from '@/test/integration/constants'
-import { Hex, NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { BaseUnitNumber, Hex, NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { CheckedAddress } from '@marsfoundation/common-universal'
+import { tokens } from '@sb/tokens'
 import { times } from 'remeda'
+import { parseEther, zeroAddress } from 'viem'
 
 export const allActionHandlers: Record<ActionType, ActionHandler> = {
   approve: {
@@ -196,6 +195,26 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
       cumulativeAmount: NormalizedUnitNumber(1),
       merkleRoot: Hex.random(),
       merkleProof: times(7, () => Hex.random()),
+    },
+    state: { status: 'ready' },
+    onAction: () => {},
+  },
+  stakeSpark: {
+    action: {
+      type: 'stakeSpark',
+      spk: tokens.SPK,
+      amount: NormalizedUnitNumber(1_232.12),
+    },
+    state: { status: 'ready' },
+    onAction: () => {},
+  },
+  unstakeSpark: {
+    action: {
+      type: 'unstakeSpark',
+      spk: tokens.SPK,
+      amount: NormalizedUnitNumber(1_232.12),
+      accountActiveShares: BaseUnitNumber(parseEther('1')),
+      unstakeAll: false,
     },
     state: { status: 'ready' },
     onAction: () => {},
