@@ -82,6 +82,7 @@ const yieldingFixedData: YieldingFixedOracleInfo = {
   baseAssetSymbol: TokenSymbol('ETH'),
   providedBy: ['chainlink'],
   ratio: NormalizedUnitNumber(2.137),
+  ratioSourceOracle: CheckedAddress(tokens.weETH.address),
   price: NormalizedUnitNumber(4776.34),
   token: tokens.weETH,
   chainId: 1,
