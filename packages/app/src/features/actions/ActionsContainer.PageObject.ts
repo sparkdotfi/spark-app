@@ -187,6 +187,11 @@ type SimplifiedUnstakeSparkAction = {
   amount: string
 }
 
+type SimplifiedClaimUnstakeSparkAction = {
+  type: 'claimUnstakeSpark'
+  spk: string
+}
+
 type SimplifiedGenericAction = BaseAction & {
   type: Exclude<
     ActionType,
@@ -201,6 +206,7 @@ type SimplifiedGenericAction = BaseAction & {
     | 'psmConvert'
     | 'stakeSpark'
     | 'unstakeSpark'
+    | 'claimUnstakeSpark'
   >
 }
 
@@ -216,6 +222,7 @@ type SimplifiedAction =
   | SimplifiedPsmConvertAction
   | SimplifiedStakeSparkAction
   | SimplifiedUnstakeSparkAction
+  | SimplifiedClaimUnstakeSparkAction
 
 function actionToTitle(action: SimplifiedAction): string {
   switch (action.type) {
@@ -263,6 +270,8 @@ function actionToTitle(action: SimplifiedAction): string {
       return `Stake ${action.spk}`
     case 'unstakeSpark':
       return `Unstake ${action.spk}`
+    case 'claimUnstakeSpark':
+      return `Claim ${action.spk}`
   }
 }
 

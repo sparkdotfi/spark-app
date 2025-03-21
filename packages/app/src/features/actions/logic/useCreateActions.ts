@@ -316,6 +316,16 @@ export function useCreateActions({
           },
         ]
       }
+
+      case 'claimUnstakeSpark': {
+        return [
+          {
+            spk: objective.spk,
+            type: 'claimUnstakeSpark',
+            epochs: objective.epochs,
+          },
+        ]
+      }
     }
   })
 }
