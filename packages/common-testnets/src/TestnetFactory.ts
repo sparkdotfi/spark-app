@@ -6,7 +6,6 @@ export interface TestnetCreateResult {
   rpcUrl: string
   publicRpcUrl?: string // url that it's safe to leak as "cheat" methods like setting balances are disabled. Not all testnets supports this so it's optional
   cleanup: () => Promise<void>
-  [Symbol.asyncDispose](): Promise<void>
 }
 /**
  * The created testnet will have a small, though known beforehand, difference in both the final block number

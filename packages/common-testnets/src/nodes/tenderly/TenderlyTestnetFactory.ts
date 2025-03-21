@@ -81,7 +81,6 @@ export class TenderlyTestnetFactory implements TestnetFactory {
       rpcUrl: adminRpc.url,
       publicRpcUrl: publicRpc.url,
       cleanup,
-      [Symbol.asyncDispose]: cleanup,
     }
   }
 

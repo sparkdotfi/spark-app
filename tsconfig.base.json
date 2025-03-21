@@ -8,7 +8,6 @@
     "useDefineForClassFields": true,
     "strict": true,
     "skipLibCheck": true,
-    "noUncheckedIndexedAccess": true,
-    "lib": ["esnext.disposable", "DOM"]
+    "noUncheckedIndexedAccess": true
   }
 }

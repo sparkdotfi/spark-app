@@ -67,7 +67,6 @@ export class AnvilTestnetFactory implements TestnetFactory {
       client,
       rpcUrl,
       cleanup,
-      [Symbol.asyncDispose]: cleanup,
     }
   }
 
