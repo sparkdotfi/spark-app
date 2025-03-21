@@ -11,7 +11,7 @@ export function TimeLeftCell({ timeLeft, targetDate, mobileViewOptions }: TimeLe
   if (mobileViewOptions?.isMobileView) {
     return (
       <div className="flex flex-row items-center justify-between">
-        <div className="typography-label-4 w-full text-secondary">{mobileViewOptions.rowTitle}</div>
+        <div className="typography-label-4 text-secondary">{mobileViewOptions.rowTitle}</div>
         <TimeLeft timeLeft={timeLeft} targetDate={targetDate} />
       </div>
     )
@@ -30,11 +30,9 @@ function TimeLeft({ timeLeft, targetDate }: TimeLeftCellProps) {
   }
 
   return (
-    <div className="flex flex-col">
-      <div className="typography-label-2 flex w-full flex-row justify-end text-primary">{formatTimeLeft(timeLeft)}</div>
-      <div className="flex w-full flex-row justify-end">
-        <div className="typography-body-4 text-secondary">{formatTargetDate(targetDate)}</div>
-      </div>
+    <div className="flex flex-col items-end">
+      <div className="typography-label-2 text-primary">{formatTimeLeft(timeLeft)}</div>
+      <div className="typography-body-4 text-secondary">{formatTargetDate(targetDate)}</div>
     </div>
   )
 }
