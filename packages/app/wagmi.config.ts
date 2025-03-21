@@ -146,9 +146,21 @@ export default defineConfig({
           },
         },
         {
-          name: 'SparkRewards',
+          name: 'ChronicleAggorEthUsd',
+          address: {
+            [mainnet.id]: '0x2750e4CB635aF1FCCFB10C0eA54B5b5bfC2759b6',
+          },
+        },
+        {
+          name: 'TestSparkRewards',
           address: {
             [mainnet.id]: '0xaf76856f788519704a9411839614e144fed52d8a',
+          },
+        },
+        {
+          name: 'TestStakingRewards',
+          address: {
+            [mainnet.id]: '0xc0E655333D10bf7A4eaBBec72046F67bBC33CB33',
           },
         },
         {

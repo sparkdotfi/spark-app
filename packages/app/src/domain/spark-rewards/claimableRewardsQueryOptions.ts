@@ -1,5 +1,5 @@
 import { spark2ApiUrl } from '@/config/consts'
-import { sparkRewardsConfig } from '@/config/contracts-generated'
+import { testSparkRewardsConfig } from '@/config/contracts-generated'
 import { BaseUnitNumber, Hex, NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { QueryKey, queryOptions, skipToken } from '@tanstack/react-query'
 import { Address, erc20Abi } from 'viem'
@@ -69,10 +69,10 @@ async function fetchChainRewards(
     return []
   }
 
-  const sparkRewardsAddress = getContractAddress(sparkRewardsConfig.address, chainId)
+  const sparkRewardsAddress = getContractAddress(testSparkRewardsConfig.address, chainId)
   const expectedMerkleRoot = await readContract(wagmiConfig, {
     address: sparkRewardsAddress,
-    abi: sparkRewardsConfig.abi,
+    abi: testSparkRewardsConfig.abi,
     functionName: 'merkleRoot',
     chainId,
   })
@@ -109,7 +109,7 @@ async function fetchChainRewards(
         }),
         readContract(wagmiConfig, {
           address: sparkRewardsAddress,
-          abi: sparkRewardsConfig.abi,
+          abi: testSparkRewardsConfig.abi,
           functionName: 'cumulativeClaimed',
           args: [account, token_address, BigInt(epoch)],
           chainId,

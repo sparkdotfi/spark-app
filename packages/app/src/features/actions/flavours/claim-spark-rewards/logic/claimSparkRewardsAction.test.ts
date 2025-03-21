@@ -1,4 +1,4 @@
-import { sparkRewardsConfig } from '@/config/contracts-generated'
+import { testSparkRewardsConfig, testStakingRewardsConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
 import { getMockToken, testAddresses } from '@/test/integration/constants'
@@ -25,6 +25,7 @@ const hookRenderer = setupUseContractActionRenderer({
   args: {
     action: {
       type: 'claimSparkRewards',
+      source: 'campaigns',
       epoch,
       token,
       cumulativeAmount,
@@ -36,13 +37,62 @@ const hookRenderer = setupUseContractActionRenderer({
 })
 
 describe(createClaimSparkRewardsActionConfig.name, () => {
-  test('claims spark rewards', async () => {
+  test('claims spark rewards from campaigns', async () => {
     const { result, queryInvalidationManager } = hookRenderer({
       extraHandlers: [
         handlers.contractCall({
-          to: getContractAddress(sparkRewardsConfig.address, chainId),
+          to: getContractAddress(testSparkRewardsConfig.address, chainId),
           from: account,
-          abi: sparkRewardsConfig.abi,
+          abi: testSparkRewardsConfig.abi,
+          functionName: 'claim',
+          args: [
+            BigInt(epoch),
+            account,
+            token.address,
+            toBigInt(token.toBaseUnit(cumulativeAmount)),
+            merkleRoot,
+            merkleProof,
+          ],
+          result: toBigInt(token.toBaseUnit(cumulativeAmount)),
+        }),
+        handlers.mineTransaction(),
+      ],
+    })
+
+    await waitFor(() => {
+      expect(result.current.state.status).toBe('ready')
+    })
+
+    result.current.onAction()
+
+    await waitFor(() => {
+      expect(result.current.state.status).toBe('success')
+    })
+
+    await expect(queryInvalidationManager).toHaveReceivedInvalidationCall(
+      getBalancesQueryKeyPrefix({ chainId, account }),
+    )
+  })
+
+  test('claims spark rewards from staking', async () => {
+    const { result, queryInvalidationManager } = hookRenderer({
+      args: {
+        action: {
+          type: 'claimSparkRewards',
+          source: 'spark-staking',
+          epoch,
+          token,
+          cumulativeAmount,
+          merkleRoot,
+          merkleProof,
+        },
+        enabled: true,
+      },
+      extraHandlers: [
+        handlers.contractCall({
+          to: getContractAddress(testStakingRewardsConfig.address, chainId),
+          from: account,
+          abi: testStakingRewardsConfig.abi,
           functionName: 'claim',
           args: [
             BigInt(epoch),

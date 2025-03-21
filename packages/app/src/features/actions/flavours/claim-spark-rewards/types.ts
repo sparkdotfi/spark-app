@@ -3,6 +3,7 @@ import { Hex, NormalizedUnitNumber } from '@marsfoundation/common-universal'
 
 export interface ClaimSparkRewardsObjective {
   type: 'claimSparkRewards'
+  source: 'campaigns' | 'spark-staking'
   token: Token
   epoch: number
   cumulativeAmount: NormalizedUnitNumber
@@ -12,6 +13,7 @@ export interface ClaimSparkRewardsObjective {
 
 export interface ClaimSparkRewardsAction {
   type: 'claimSparkRewards'
+  source: 'campaigns' | 'spark-staking'
   token: Token
   epoch: number
   cumulativeAmount: NormalizedUnitNumber
