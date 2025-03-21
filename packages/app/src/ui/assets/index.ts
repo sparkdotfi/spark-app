@@ -82,11 +82,13 @@ import cle from './tokens/cle.svg'
 import dai from './tokens/dai.svg'
 import eth from './tokens/eth.svg'
 import eure from './tokens/eure.svg'
+import ezeth from './tokens/ezeth.svg'
 import gno from './tokens/gno.svg'
 import lbtc from './tokens/lbtc.svg'
 import mkr from './tokens/mkr.svg'
 import red from './tokens/red.svg'
 import reth from './tokens/reth.svg'
+import rseth from './tokens/rseth.svg'
 import sdai from './tokens/sdai.svg'
 import sky from './tokens/sky.svg'
 import spk from './tokens/spk.svg'
@@ -184,11 +186,13 @@ export const assets = {
     dai,
     eth,
     eure,
+    ezeth,
     gno,
     mkr,
     sky,
     usds,
     reth,
+    rseth,
     sdai,
     susds,
     steth,
@@ -321,4 +325,6 @@ const tokenColors: Record<TokenSymbol, `${number} ${number} ${number}`> = {
   [TokenSymbol('SPK')]: '358 54 99',
   [TokenSymbol('LBTC')]: '58 114 107',
   [TokenSymbol('tBTC')]: '29 34 41',
+  [TokenSymbol('ezETH')]: '196 255 97',
+  [TokenSymbol('rsETH')]: '7 90 90',
 }

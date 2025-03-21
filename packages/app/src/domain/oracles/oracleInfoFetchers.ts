@@ -1,7 +1,12 @@
 import {
+  ezethAbi,
+  ezethOracleAbi,
+  ezethTvlsSourceAbi,
   rethBaseAssetOracleAbi,
   rethOracleAbi,
   rethRatioAbi,
+  rsethOracleAbi,
+  rsethRatioSourceAbi,
   sdaiBaseAssetOracleGnosisAbi,
   sdaiOracleGnosisAbi,
   sdaiRatioGnosisAbi,
@@ -12,7 +17,8 @@ import {
   wstethOracleMainnetAbi,
   wstethRatioMainnetAbi,
 } from '@/config/abis/yieldingTokensRatioAbi'
-import { toBigInt } from '@marsfoundation/common-universal'
+import { chronicleAggorEthUsdAbi } from '@/config/contracts-generated'
+import { assert, toBigInt } from '@marsfoundation/common-universal'
 import { CheckedAddress } from '@marsfoundation/common-universal'
 import { BaseUnitNumber, NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { gnosis, mainnet } from 'viem/chains'
@@ -27,6 +33,7 @@ export interface OracleInfoFetcherParams {
 
 export interface OracleInfoFetcherResult {
   ratio: NormalizedUnitNumber
+  ratioSourceOracle: CheckedAddress
   baseAssetOracle: CheckedAddress
   baseAssetPrice: NormalizedUnitNumber
 }
@@ -80,6 +87,7 @@ export async function fetchWstethOracleInfoMainnet({
 
   return {
     ratio: reserve.token.fromBaseUnit(BaseUnitNumber(ratio)),
+    ratioSourceOracle: CheckedAddress(steth),
     baseAssetOracle: CheckedAddress(baseAssetOracle),
     baseAssetPrice: NormalizedUnitNumber(BaseUnitNumber(baseAssetPrice).shiftedBy(-baseAssetPriceDecimals)),
   }
@@ -132,6 +140,7 @@ export async function fetchSdaiOracleInfoGnosis({
 
   return {
     ratio: reserve.token.fromBaseUnit(BaseUnitNumber(ratio)),
+    ratioSourceOracle: CheckedAddress(sdaiAddress),
     baseAssetOracle: CheckedAddress(baseAssetOracle),
     baseAssetPrice: NormalizedUnitNumber(BaseUnitNumber(baseAssetPrice).shiftedBy(-baseAssetPriceDecimals)),
   }
@@ -186,6 +195,7 @@ export async function fetchRethOracleInfo({
 
   return {
     ratio: reserve.token.fromBaseUnit(BaseUnitNumber(ratio)),
+    ratioSourceOracle: CheckedAddress(reth),
     baseAssetOracle: CheckedAddress(baseAssetOracle),
     baseAssetPrice: NormalizedUnitNumber(BaseUnitNumber(baseAssetPrice).shiftedBy(-baseAssetPriceDecimals)),
   }
@@ -240,7 +250,131 @@ export async function fetchWeethOracleInfo({
 
   return {
     ratio: reserve.token.fromBaseUnit(BaseUnitNumber(ratio)),
+    ratioSourceOracle: CheckedAddress(weeth),
     baseAssetOracle: CheckedAddress(baseAssetOracle),
     baseAssetPrice: NormalizedUnitNumber(BaseUnitNumber(baseAssetPrice).shiftedBy(-baseAssetPriceDecimals)),
+  }
+}
+
+export async function fetchEzethOracleInfo({
+  reserve,
+  wagmiConfig,
+}: OracleInfoFetcherParams): Promise<OracleInfoFetcherResult> {
+  const [ezethTvlsSource, ethPriceSource, ezeth] = await Promise.all([
+    readContract(wagmiConfig, {
+      abi: ezethOracleAbi,
+      address: reserve.priceOracle,
+      functionName: 'oracle',
+      args: [],
+      chainId: mainnet.id,
+    }),
+    readContract(wagmiConfig, {
+      abi: ezethOracleAbi,
+      address: reserve.priceOracle,
+      functionName: 'ethSource',
+      args: [],
+      chainId: mainnet.id,
+    }),
+    readContract(wagmiConfig, {
+      abi: ezethOracleAbi,
+      address: reserve.priceOracle,
+      functionName: 'ezETH',
+      args: [],
+      chainId: mainnet.id,
+    }),
+  ])
+
+  const [[, , tvl], ezethTotalSupply, ethPrice, ethPriceDecimals] = await Promise.all([
+    readContract(wagmiConfig, {
+      abi: ezethTvlsSourceAbi,
+      address: ezethTvlsSource,
+      functionName: 'calculateTVLs',
+      args: [],
+      chainId: mainnet.id,
+    }),
+    readContract(wagmiConfig, {
+      abi: ezethAbi,
+      address: ezeth,
+      functionName: 'totalSupply',
+      args: [],
+      chainId: mainnet.id,
+    }),
+    readContract(wagmiConfig, {
+      abi: chronicleAggorEthUsdAbi,
+      address: ethPriceSource,
+      functionName: 'latestAnswer',
+      args: [],
+      chainId: mainnet.id,
+    }),
+    readContract(wagmiConfig, {
+      abi: chronicleAggorEthUsdAbi,
+      address: ethPriceSource,
+      functionName: 'decimals',
+      args: [],
+      chainId: mainnet.id,
+    }),
+  ])
+
+  assert(ezethTotalSupply > 0n, 'ezethTotalSupply should be greater than 0')
+  const ratio = (tvl * BigInt(10 ** reserve.token.decimals)) / ezethTotalSupply
+
+  return {
+    ratio: reserve.token.fromBaseUnit(BaseUnitNumber(ratio)),
+    ratioSourceOracle: CheckedAddress(ezethTvlsSource),
+    baseAssetOracle: CheckedAddress(ethPriceSource),
+    baseAssetPrice: BaseUnitNumber.toNormalizedUnit(BaseUnitNumber(ethPrice), ethPriceDecimals),
+  }
+}
+
+export async function fetchRsethOracleInfo({
+  reserve,
+  wagmiConfig,
+}: OracleInfoFetcherParams): Promise<OracleInfoFetcherResult> {
+  const [rsethRatioSource, ethPriceSource] = await Promise.all([
+    readContract(wagmiConfig, {
+      abi: rsethOracleAbi,
+      address: reserve.priceOracle,
+      functionName: 'oracle',
+      args: [],
+      chainId: mainnet.id,
+    }),
+    readContract(wagmiConfig, {
+      abi: rsethOracleAbi,
+      address: reserve.priceOracle,
+      functionName: 'ethSource',
+      args: [],
+      chainId: mainnet.id,
+    }),
+  ])
+
+  const [ratio, ethPrice, ethPriceDecimals] = await Promise.all([
+    readContract(wagmiConfig, {
+      abi: rsethRatioSourceAbi,
+      address: rsethRatioSource,
+      functionName: 'rsETHPrice',
+      args: [],
+      chainId: mainnet.id,
+    }),
+    readContract(wagmiConfig, {
+      abi: chronicleAggorEthUsdAbi,
+      address: ethPriceSource,
+      functionName: 'latestAnswer',
+      args: [],
+      chainId: mainnet.id,
+    }),
+    readContract(wagmiConfig, {
+      abi: chronicleAggorEthUsdAbi,
+      address: ethPriceSource,
+      functionName: 'decimals',
+      args: [],
+      chainId: mainnet.id,
+    }),
+  ])
+
+  return {
+    ratio: reserve.token.fromBaseUnit(BaseUnitNumber(ratio)),
+    ratioSourceOracle: CheckedAddress(rsethRatioSource),
+    baseAssetOracle: CheckedAddress(ethPriceSource),
+    baseAssetPrice: BaseUnitNumber.toNormalizedUnit(BaseUnitNumber(ethPrice), ethPriceDecimals),
   }
 }

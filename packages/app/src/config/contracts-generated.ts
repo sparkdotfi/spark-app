@@ -513,6 +513,156 @@ export const chainlogConfig = {
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ChronicleAggorEthUsd
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2750e4CB635aF1FCCFB10C0eA54B5b5bfC2759b6)
+ */
+export const chronicleAggorEthUsdAbi = [
+  { type: 'error', inputs: [], name: 'CanNotPickMedianOfEmptyArray' },
+  {
+    type: 'error',
+    inputs: [{ name: 'consumer', internalType: 'address', type: 'address' }],
+    name: 'UnathorisedDataConsumer',
+  },
+  { type: 'error', inputs: [], name: 'UnsupportedFunction' },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'chainlink',
+    outputs: [
+      {
+        name: '',
+        internalType: 'contract AggregatorV3Interface',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'consumer', internalType: 'address', type: 'address' }],
+    name: 'checkAuthorisedDataConsumer',
+    outputs: [],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'chronicle',
+    outputs: [{ name: '', internalType: 'contract IChronicle', type: 'address' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'decimals',
+    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'description',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getAgeThreshold',
+    outputs: [{ name: '', internalType: 'uint32', type: 'uint32' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getAggregatedOracleValue',
+    outputs: [
+      { name: 'value', internalType: 'uint256', type: 'uint256' },
+      { name: 'goodOraclesCount', internalType: 'uint8', type: 'uint8' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'uint80', type: 'uint80' }],
+    name: 'getRoundData',
+    outputs: [
+      { name: '', internalType: 'uint80', type: 'uint80' },
+      { name: '', internalType: 'int256', type: 'int256' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
+      { name: '', internalType: 'uint80', type: 'uint80' },
+    ],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'latestAnswer',
+    outputs: [{ name: '', internalType: 'int256', type: 'int256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'latestRound',
+    outputs: [{ name: '', internalType: 'uint80', type: 'uint80' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'latestRoundData',
+    outputs: [
+      { name: 'roundId', internalType: 'uint80', type: 'uint80' },
+      { name: 'answer', internalType: 'int256', type: 'int256' },
+      { name: 'startedAt', internalType: 'uint256', type: 'uint256' },
+      { name: 'updatedAt', internalType: 'uint256', type: 'uint256' },
+      { name: 'answeredInRound', internalType: 'uint80', type: 'uint80' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'redstone',
+    outputs: [
+      {
+        name: '',
+        internalType: 'contract AggregatorV3Interface',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'version',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'pure',
+  },
+] as const
+
+/**
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2750e4CB635aF1FCCFB10C0eA54B5b5bfC2759b6)
+ */
+export const chronicleAggorEthUsdAddress = {
+  1: '0x2750e4CB635aF1FCCFB10C0eA54B5b5bfC2759b6',
+} as const
+
+/**
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2750e4CB635aF1FCCFB10C0eA54B5b5bfC2759b6)
+ */
+export const chronicleAggorEthUsdConfig = {
+  address: chronicleAggorEthUsdAddress,
+  abi: chronicleAggorEthUsdAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Collector
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
