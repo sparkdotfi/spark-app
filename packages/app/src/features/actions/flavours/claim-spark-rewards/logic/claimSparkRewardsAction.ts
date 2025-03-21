@@ -1,4 +1,4 @@
-import { sparkRewardsConfig } from '@/config/contracts-generated'
+import { testSparkRewardsConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { claimableRewardsQueryKey } from '@/domain/spark-rewards/claimableRewardsQueryOptions'
@@ -12,14 +12,14 @@ export function createClaimSparkRewardsActionConfig(
   context: ActionContext,
 ): ActionConfig {
   const { account, chainId } = context
-  const sparkRewardsAddress = getContractAddress(sparkRewardsConfig.address, chainId)
+  const sparkRewardsAddress = getContractAddress(testSparkRewardsConfig.address, chainId)
   const { epoch, token, cumulativeAmount, merkleRoot, merkleProof } = action
 
   return {
     getWriteConfig: () => {
       return ensureConfigTypes({
         address: sparkRewardsAddress,
-        abi: sparkRewardsConfig.abi,
+        abi: testSparkRewardsConfig.abi,
         functionName: 'claim',
         args: [
           BigInt(epoch),

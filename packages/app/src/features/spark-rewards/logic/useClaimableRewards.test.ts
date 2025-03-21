@@ -1,5 +1,5 @@
 import { spark2ApiUrl } from '@/config/consts'
-import { sparkRewardsConfig } from '@/config/contracts-generated'
+import { testSparkRewardsConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
@@ -23,7 +23,7 @@ const rewardToken = new Token({
   decimals: 18,
   unitPriceUsd: '0',
 })
-const sparkRewardsAddress = getContractAddress(sparkRewardsConfig.address, chainId)
+const sparkRewardsAddress = getContractAddress(testSparkRewardsConfig.address, chainId)
 const merkleRoot = Hex.random()
 
 const chainIdCall = handlers.chainIdCall({ chainId })
@@ -70,7 +70,7 @@ describe(useClaimableRewards.name, () => {
       handlers: [
         handlers.contractCall({
           to: sparkRewardsAddress,
-          abi: sparkRewardsConfig.abi,
+          abi: testSparkRewardsConfig.abi,
           functionName: 'merkleRoot',
           result: merkleRoot,
         }),
@@ -94,7 +94,7 @@ describe(useClaimableRewards.name, () => {
         }),
         handlers.contractCall({
           to: sparkRewardsAddress,
-          abi: sparkRewardsConfig.abi,
+          abi: testSparkRewardsConfig.abi,
           functionName: 'cumulativeClaimed',
           args: [account, rewardToken.address, 1n],
           result: toBigInt(rewardToken.toBaseUnit(preClaimed)),

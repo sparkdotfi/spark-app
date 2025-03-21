@@ -4230,13 +4230,13 @@ export const savingsXDaiAdapterConfig = {
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// SparkRewards
+// TestSparkRewards
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xaf76856f788519704a9411839614e144fed52d8a)
  */
-export const sparkRewardsAbi = [
+export const testSparkRewardsAbi = [
   {
     type: 'constructor',
     inputs: [{ name: 'admin', internalType: 'address', type: 'address' }],
@@ -4549,16 +4549,16 @@ export const sparkRewardsAbi = [
 /**
  * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xaf76856f788519704a9411839614e144fed52d8a)
  */
-export const sparkRewardsAddress = {
+export const testSparkRewardsAddress = {
   1: '0xAf76856f788519704a9411839614e144FEd52d8a',
 } as const
 
 /**
  * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xaf76856f788519704a9411839614e144fed52d8a)
  */
-export const sparkRewardsConfig = {
-  address: sparkRewardsAddress,
-  abi: sparkRewardsAbi,
+export const testSparkRewardsConfig = {
+  address: testSparkRewardsAddress,
+  abi: testSparkRewardsAbi,
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

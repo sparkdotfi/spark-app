@@ -1,4 +1,4 @@
-import { sparkRewardsConfig } from '@/config/contracts-generated'
+import { testSparkRewardsConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
 import { getMockToken, testAddresses } from '@/test/integration/constants'
@@ -40,9 +40,9 @@ describe(createClaimSparkRewardsActionConfig.name, () => {
     const { result, queryInvalidationManager } = hookRenderer({
       extraHandlers: [
         handlers.contractCall({
-          to: getContractAddress(sparkRewardsConfig.address, chainId),
+          to: getContractAddress(testSparkRewardsConfig.address, chainId),
           from: account,
-          abi: sparkRewardsConfig.abi,
+          abi: testSparkRewardsConfig.abi,
           functionName: 'claim',
           args: [
             BigInt(epoch),
