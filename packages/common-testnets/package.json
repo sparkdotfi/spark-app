@@ -28,7 +28,7 @@
     "test": "true",
     "test-e2e": "mocha \"src/**/*.test.ts\"",
     "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.esm.json",
+    "build": "tsc -p tsconfig.json",
     "clean": "rm -rf dist",
     "prepublishOnly": "pnpm run clean && pnpm run build"
   },
