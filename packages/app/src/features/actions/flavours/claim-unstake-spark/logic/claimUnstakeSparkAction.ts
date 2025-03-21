@@ -1,6 +1,7 @@
 import { testSparkStakingAddress, testSparkStakingConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
+import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
 import { ClaimUnstakeSparkAction } from '../types'
 
@@ -24,9 +25,7 @@ export function createClaimUnstakeSparkActionConfig(
     },
 
     invalidates: () => {
-      return [
-        // @todo: spark staking - add related query keys after they are implemented
-      ]
+      return [getBalancesQueryKeyPrefix({ account, chainId })]
     },
   }
 }
