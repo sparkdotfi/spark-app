@@ -34,13 +34,6 @@ export function getAnvilClient(args: CreateClientFromUrlParamsInternal): Testnet
             method: 'anvil_setStorageAt',
             params: [addr.toString(), slot, value],
           } as any)
-
-          // @note: tenderly always mines a new block so be consistent, anvil does too
-          await c.request({
-            method: 'anvil_mine',
-            params: [numberToHex(1), numberToHex(1)],
-          } as any)
-          await args.onBlock({ forkChainId: args.forkChainId })
         },
         async snapshot(): Promise<string> {
           return c.request({
