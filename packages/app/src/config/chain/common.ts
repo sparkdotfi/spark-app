@@ -9,4 +9,5 @@ export const commonTokenSymbolToReplacedName = {
   [TokenSymbol('WETH')]: { name: 'Ethereum', symbol: TokenSymbol('ETH') },
   [TokenSymbol('weETH')]: { name: 'Ether.fi Staked ETH', symbol: TokenSymbol('weETH') },
   [TokenSymbol('tBTC')]: { name: 'Threshold BTC', symbol: TokenSymbol('tBTC') },
+  [TokenSymbol('rsETH')]: { name: 'Kelp DAO Restaked ETH', symbol: TokenSymbol('rsETH') },
 }
