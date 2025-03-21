@@ -1,5 +1,5 @@
-import { deepmerge } from 'deepmerge-ts'
 import { DeepPartial } from 'react-hook-form'
+import { mergeDeep } from 'remeda'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
@@ -73,7 +73,7 @@ export const storeImplementation = persist<StoreState, [], [], PersistedState>(
         sandbox: unPersistSandboxSlice(persistedState).sandbox,
       })
 
-      return deepmerge(currentState, processedPersistedState) as StoreState
+      return mergeDeep(currentState, processedPersistedState) as StoreState
     },
   },
 )
