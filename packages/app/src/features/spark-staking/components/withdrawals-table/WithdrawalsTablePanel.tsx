@@ -2,10 +2,10 @@ import { Token } from '@/domain/types/Token'
 import { Button } from '@/ui/atoms/button/Button'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { AmountCell } from '@/ui/molecules/data-table/components/AmountCell'
+import { TokenCell } from '@/ui/molecules/data-table/components/TokenCell'
 import { ResponsiveDataTable } from '@/ui/organisms/responsive-data-table/ResponsiveDataTable'
 import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { TimeLeftCell } from './TimeLeftCell'
-import { TokenCell } from '@/ui/molecules/data-table/components/TokenCell'
 
 export interface WithdrawalsTableRow {
   token: Token
