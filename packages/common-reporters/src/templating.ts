@@ -11,4 +11,5 @@ function link(href: string, text: string): ContentBlock {
 export const templating = {
   text,
   link,
+  newLine: text('\n'),
 }

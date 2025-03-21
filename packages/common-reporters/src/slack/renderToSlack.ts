@@ -17,7 +17,7 @@ export function renderToSlackString(node: ContentBlock[]): string {
 
   // we add block quotes to make the text more readable and aligned
   const blockQuotes = text.split('\n').map((line) => {
-    return `> ${line.trimStart()}`
+    return `> ${line.trim()}`
   })
 
   return blockQuotes.join('\n')
@@ -28,10 +28,15 @@ export function applyFontStyle(block: Extract<ContentBlock, { type: 'text' }>): 
   if (lines.length === 1) {
     return applyLineFontStyle(block.content, block.bold, block.italic)
   }
-  const styledLines = lines
-    .filter((line) => line.trim().length > 0)
-    .map((line) => `${applyLineFontStyle(line, block.bold, block.italic)}\n`)
-  return styledLines.join('')
+  return lines
+    .map((line) => {
+      const trimmedLine = line.trim()
+      if (trimmedLine.length === 0) {
+        return trimmedLine
+      }
+      return applyLineFontStyle(trimmedLine, block.bold, block.italic)
+    })
+    .join('\n')
 }
 
 export function applyLineFontStyle(line: string, bold = false, italic = false): string {

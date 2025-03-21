@@ -1,15 +1,15 @@
 import { expect } from 'earl'
-import { templating } from '../templating.js'
+import { templating as t } from '../templating.js'
 import { ContentBlock } from '../types.js'
 import { applyFontStyle, renderToSlackString } from './renderToSlack.js'
 
 describe(renderToSlackString.name, () => {
   it('renders content blocks', () => {
     const content = [
-      templating.text('Hello'),
-      templating.text('World', { bold: true }),
-      templating.text('!\n'),
-      templating.link('https://basescan.org', 'Link to tx explorer'),
+      t.text('Hello'),
+      t.text('World', { bold: true }),
+      t.text('!\n'),
+      t.link('https://basescan.org', 'Link to tx explorer'),
     ]
 
     const lines = ['> Hello *World* !', '> <https://basescan.org|Link to tx explorer>']
@@ -17,15 +17,53 @@ describe(renderToSlackString.name, () => {
   })
 
   it('renders bold text with a newline correctly', () => {
-    const content = [templating.text('Highlighted text\n', { bold: true }), templating.text('text')]
+    const content = [t.text('Highlighted text\n', { bold: true }), t.text('text')]
 
     expect(renderToSlackString(content)).toEqual('> *Highlighted text*\n' + '> text')
   })
 
   it('renders bold text with multiple newlines correctly', () => {
-    const content = [templating.text('bold text\nmore bold text\n', { bold: true }), templating.text('text')]
+    const content = [t.text('bold text\nmore bold text\n', { bold: true }), t.text('text')]
 
     expect(renderToSlackString(content)).toEqual('> *bold text*\n' + '> *more bold text*\n' + '> text')
+  })
+
+  it('joins different blocks with space', () => {
+    const content = [
+      t.text('before link'),
+      t.link('https://google.com', 'click link'),
+      t.text('after link', { bold: true }),
+    ]
+
+    expect(renderToSlackString(content)).toEqual('> before link <https://google.com|click link> *after link*')
+  })
+
+  it('renders empty new lines correctly', () => {
+    const content = [
+      t.text('First'),
+      t.text('line'),
+      t.text('\n'),
+      t.text('\n'),
+      t.text('Third line'),
+      t.text('\n'),
+      t.text('Fourth line'),
+    ]
+
+    const lines = ['> First line', '> ', '> Third line', '> Fourth line']
+    expect(renderToSlackString(content)).toEqual(lines.join('\n'))
+  })
+
+  it('renders new lines in correct order', () => {
+    const content = [
+      t.text('First'),
+      t.text('line'),
+      t.text('\nSecond line,'),
+      t.text('still second line\n'),
+      t.text('Third line'),
+    ]
+
+    const lines = ['> First line', '> Second line, still second line', '> Third line']
+    expect(renderToSlackString(content)).toEqual(lines.join('\n'))
   })
 
   describe(applyFontStyle.name, () => {
@@ -67,7 +105,7 @@ describe(renderToSlackString.name, () => {
           bold: true,
         }
 
-        expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('\n')
       })
 
       it('ignores empty parts', () => {
@@ -77,7 +115,7 @@ describe(renderToSlackString.name, () => {
           bold: true,
         }
 
-        expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('\n')
       })
     })
 
@@ -119,7 +157,7 @@ describe(renderToSlackString.name, () => {
           italic: true,
         }
 
-        expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('\n')
       })
 
       it('ignores empty parts', () => {
@@ -129,7 +167,7 @@ describe(renderToSlackString.name, () => {
           italic: true,
         }
 
-        expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('\n')
       })
     })
 
@@ -175,7 +213,7 @@ describe(renderToSlackString.name, () => {
           italic: true,
         }
 
-        expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('\n')
       })
 
       it('ignores empty parts', () => {
@@ -186,7 +224,7 @@ describe(renderToSlackString.name, () => {
           italic: true,
         }
 
-        expect(applyFontStyle(block)).toEqual('')
+        expect(applyFontStyle(block)).toEqual('\n')
       })
     })
   })
