@@ -3,14 +3,14 @@ import { Button } from '@/ui/atoms/button/Button'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { AmountCell } from '@/ui/molecules/data-table/components/AmountCell'
 import { ResponsiveDataTable } from '@/ui/organisms/responsive-data-table/ResponsiveDataTable'
-import { NormalizedUnitNumber, UnixTime } from '@marsfoundation/common-universal'
-import { StakingTokenCell } from './StakingTokenCell'
+import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { TimeLeftCell } from './TimeLeftCell'
+import { TokenCell } from '@/ui/molecules/data-table/components/TokenCell'
 
 export interface WithdrawalsTableRow {
   token: Token
   amount: NormalizedUnitNumber
-  timeToClaim: UnixTime
+  timeToClaim: number // can't be UnixTime because it's a bigint
   claimableAt: Date
   action: () => void
   actionName: string
@@ -24,14 +24,14 @@ export interface WithdrawalsTablePanelProps {
 export function WithdrawalsTablePanel({ rows }: WithdrawalsTablePanelProps) {
   return (
     <Panel spacing="m" className="flex flex-col gap-6">
-      <h3 className="typography-heading-5 flex items-baseline gap-1">Withdrawals</h3>
+      <h3 className="typography-heading-5 flex items-baseline gap-1">Unstakes</h3>
       <ResponsiveDataTable
         gridTemplateColumnsClassName="grid-cols-[1fr_minmax(auto,140px)_minmax(auto,140px)_140px]"
         data={rows}
         columnDefinition={{
           token: {
-            header: 'Reward',
-            renderCell: ({ token }) => <StakingTokenCell token={token} />,
+            header: 'Token',
+            renderCell: ({ token }) => <TokenCell token={token} />,
           },
           timeLeft: {
             header: 'Time left',

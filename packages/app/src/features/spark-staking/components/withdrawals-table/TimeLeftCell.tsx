@@ -2,7 +2,7 @@ import { MobileViewOptions } from '@/ui/molecules/data-table/types'
 import { UnixTime } from '@marsfoundation/common-universal'
 
 export interface TimeLeftCellProps {
-  timeLeft: UnixTime
+  timeLeft: number // can't be UnixTime because it's a bigint
   targetDate: Date
   mobileViewOptions?: MobileViewOptions
 }
@@ -21,7 +21,7 @@ export function TimeLeftCell({ timeLeft, targetDate, mobileViewOptions }: TimeLe
 }
 
 function TimeLeft({ timeLeft, targetDate }: TimeLeftCellProps) {
-  if (timeLeft === 0n) {
+  if (timeLeft === 0) {
     return (
       <div className="flex flex-col">
         <div className="typography-label-2 flex w-full flex-row justify-end text-primary">-</div>
@@ -31,7 +31,7 @@ function TimeLeft({ timeLeft, targetDate }: TimeLeftCellProps) {
 
   return (
     <div className="flex flex-col items-end">
-      <div className="typography-label-2 text-primary">{formatTimeLeft(timeLeft)}</div>
+      <div className="typography-label-2 text-primary">{formatTimeLeft(UnixTime(timeLeft))}</div>
       <div className="typography-body-4 text-secondary">{formatTargetDate(targetDate)}</div>
     </div>
   )

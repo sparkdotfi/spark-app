@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber, UnixTime, raise } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, raise } from '@marsfoundation/common-universal'
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
@@ -15,7 +15,7 @@ const meta: Meta<typeof WithdrawalsTablePanel> = {
       {
         token: tokens.SPK,
         amount: NormalizedUnitNumber(78.8456),
-        timeToClaim: UnixTime(703412),
+        timeToClaim: 703412,
         claimableAt: new Date('2025-04-04T12:34:35.000Z'),
         action: () => {},
         actionName: 'Claim',
@@ -24,7 +24,7 @@ const meta: Meta<typeof WithdrawalsTablePanel> = {
       {
         token: tokens.SPK,
         amount: NormalizedUnitNumber(123.4323),
-        timeToClaim: UnixTime(0),
+        timeToClaim: 0,
         claimableAt: new Date('2025-03-21T12:34:35.000Z'),
         action: () => {},
         actionName: 'Claim',
