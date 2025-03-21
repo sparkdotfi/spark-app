@@ -146,6 +146,12 @@ export default defineConfig({
           },
         },
         {
+          name: 'ChronicleAggorEthUsd',
+          address: {
+            [mainnet.id]: '0x2750e4CB635aF1FCCFB10C0eA54B5b5bfC2759b6',
+          },
+        },
+        {
           name: 'SparkRewards',
           address: {
             [mainnet.id]: '0xaf76856f788519704a9411839614e144fed52d8a',

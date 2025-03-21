@@ -20,6 +20,7 @@ export interface MarketPriceOracleInfo extends OracleInfoBase {
 export interface YieldingFixedOracleInfo extends OracleInfoBase {
   type: 'yielding-fixed'
   ratio: NormalizedUnitNumber
+  ratioSourceOracle: CheckedAddress
   baseAssetOracle: CheckedAddress
   baseAssetPrice: NormalizedUnitNumber
   baseAssetSymbol: TokenSymbol

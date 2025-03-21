@@ -1,5 +1,7 @@
 import {
+  fetchEzethOracleInfo,
   fetchRethOracleInfo,
+  fetchRsethOracleInfo,
   fetchWeethOracleInfo,
   fetchWstethOracleInfoMainnet,
 } from '@/domain/oracles/oracleInfoFetchers'
@@ -177,6 +179,18 @@ export const mainnetConfig: ChainConfigEntry = {
         type: 'underlying-asset',
         asset: 'BTC',
         providedBy: ['chainlink', 'chronicle', 'redstone'],
+      },
+      [TokenSymbol('ezETH')]: {
+        type: 'yielding-fixed',
+        baseAssetSymbol: TokenSymbol('WETH'),
+        providedBy: ['chainlink', 'chronicle', 'redstone'],
+        oracleFetcher: fetchEzethOracleInfo,
+      },
+      [TokenSymbol('rsETH')]: {
+        type: 'yielding-fixed',
+        baseAssetSymbol: TokenSymbol('WETH'),
+        providedBy: ['chainlink', 'chronicle', 'redstone'],
+        oracleFetcher: fetchRsethOracleInfo,
       },
     },
   },

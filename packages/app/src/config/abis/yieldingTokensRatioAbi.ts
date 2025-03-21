@@ -176,3 +176,80 @@ export const sdaiBaseAssetOracleGnosisAbi = [
     type: 'function',
   },
 ] as const
+
+// ezeth
+export const ezethOracleAbi = [
+  {
+    inputs: [],
+    name: 'ethSource',
+    outputs: [{ internalType: 'contract IPriceSource', name: '', type: 'address' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'ezETH',
+    outputs: [{ internalType: 'contract IEZETH', name: '', type: 'address' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'oracle',
+    outputs: [{ internalType: 'contract IEZETHExchangeRateOracle', name: '', type: 'address' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+] as const
+
+export const ezethTvlsSourceAbi = [
+  {
+    inputs: [],
+    name: 'calculateTVLs',
+    outputs: [
+      { internalType: 'uint256[][]', name: '', type: 'uint256[][]' },
+      { internalType: 'uint256[]', name: '', type: 'uint256[]' },
+      { internalType: 'uint256', name: '', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+] as const
+
+export const ezethAbi = [
+  {
+    inputs: [],
+    name: 'totalSupply',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+] as const
+
+// rseth
+export const rsethOracleAbi = [
+  {
+    inputs: [],
+    name: 'ethSource',
+    outputs: [{ internalType: 'contract IPriceSource', name: '', type: 'address' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'oracle',
+    outputs: [{ internalType: 'contract IKelpDAORestakedEthOracle', name: '', type: 'address' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+] as const
+
+export const rsethRatioSourceAbi = [
+  {
+    inputs: [],
+    name: 'rsETHPrice',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+] as const

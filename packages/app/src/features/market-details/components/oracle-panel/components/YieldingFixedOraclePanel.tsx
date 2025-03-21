@@ -17,6 +17,7 @@ export function YieldingFixedOraclePanel({
   price,
   priceOracleAddress,
   ratio,
+  ratioSourceOracle,
   baseAssetOracle,
   baseAssetSymbol,
   baseAssetPrice,
@@ -78,7 +79,7 @@ export function YieldingFixedOraclePanel({
             <InfoTile.Value className="w-full">
               <BlockExplorerAddressLink
                 className="typography-label-2"
-                address={token.address}
+                address={ratioSourceOracle}
                 chainId={chainId}
                 data-testid={oracleTestIds.yieldingFixed.ratioContract}
               />
