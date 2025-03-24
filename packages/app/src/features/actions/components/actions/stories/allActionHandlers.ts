@@ -209,9 +209,9 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     state: { status: 'ready' },
     onAction: () => {},
   },
-  unstakeSpark: {
+  unstakeSpk: {
     action: {
-      type: 'unstakeSpark',
+      type: 'unstakeSpk',
       spk: tokens.SPK,
       amount: NormalizedUnitNumber(1_232.12),
       accountActiveShares: BaseUnitNumber(parseEther('1')),

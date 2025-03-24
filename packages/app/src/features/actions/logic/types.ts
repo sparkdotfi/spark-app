@@ -25,7 +25,7 @@ import { SetUseAsCollateralAction, SetUseAsCollateralObjective } from '../flavou
 import { SetUserEModeAction, SetUserEModeObjective } from '../flavours/set-user-e-mode/logic/types'
 import { StakeSpkAction, StakeSpkObjective } from '../flavours/stake-spk/types'
 import { StakeAction, StakeObjective } from '../flavours/stake/types'
-import { UnstakeSparkAction, UnstakeSparkObjective } from '../flavours/unstake-spark/types'
+import { UnstakeSpkAction, UnstakeSpkObjective } from '../flavours/unstake-spk/types'
 import { UnstakeAction, UnstakeObjective } from '../flavours/unstake/types'
 import { UpgradeAction, UpgradeObjective } from '../flavours/upgrade/types'
 import { WithdrawFromSavingsAction, WithdrawFromSavingsObjective } from '../flavours/withdraw-from-savings/types'
@@ -55,7 +55,7 @@ export type Objective =
   | ConvertStablesObjective
   | ClaimSparkRewardsObjective
   | StakeSpkObjective
-  | UnstakeSparkObjective
+  | UnstakeSpkObjective
   | ClaimUnstakeSparkObjective
 export type ObjectiveType = Objective['type']
 
@@ -80,7 +80,7 @@ export type Action =
   | ClaimFarmRewardsAction
   | ClaimSparkRewardsAction
   | StakeSpkAction
-  | UnstakeSparkAction
+  | UnstakeSpkAction
   | ClaimUnstakeSparkAction
 export type ActionType = Action['type']
 

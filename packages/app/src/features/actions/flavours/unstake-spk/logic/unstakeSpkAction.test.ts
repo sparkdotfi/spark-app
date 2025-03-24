@@ -9,7 +9,7 @@ import { waitFor } from '@testing-library/react'
 import { parseEther } from 'viem'
 import { mainnet } from 'viem/chains'
 import { describe, test } from 'vitest'
-import { createUnstakeSparkActionConfig } from './unstakeSparkAction'
+import { createUnstakeSpkActionConfig } from './unstakeSpkAction'
 
 const spk = getMockToken({ symbol: TokenSymbol('SPK') })
 const account = testAddresses.alice
@@ -23,7 +23,7 @@ const hookRenderer = setupUseContractActionRenderer({
   handlers: [handlers.chainIdCall({ chainId }), handlers.balanceCall({ balance: 0n, address: account })],
   args: {
     action: {
-      type: 'unstakeSpark',
+      type: 'unstakeSpk',
       spk,
       amount,
       accountActiveShares,
@@ -33,8 +33,8 @@ const hookRenderer = setupUseContractActionRenderer({
   },
 })
 
-describe(createUnstakeSparkActionConfig.name, () => {
-  test('unstakes spark', async () => {
+describe(createUnstakeSpkActionConfig.name, () => {
+  test('unstakes spark token', async () => {
     const { result } = hookRenderer({
       extraHandlers: [
         handlers.contractCall({
@@ -60,11 +60,11 @@ describe(createUnstakeSparkActionConfig.name, () => {
     })
   })
 
-  test('unstakes all spark', async () => {
+  test('unstakes all spark tokens', async () => {
     const { result } = hookRenderer({
       args: {
         action: {
-          type: 'unstakeSpark',
+          type: 'unstakeSpk',
           spk,
           amount,
           accountActiveShares,

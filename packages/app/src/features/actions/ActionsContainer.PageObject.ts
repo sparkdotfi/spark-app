@@ -181,8 +181,8 @@ type SimplifiedStakeSpkAction = {
   amount: string
 }
 
-type SimplifiedUnstakeSparkAction = {
-  type: 'unstakeSpark'
+type SimplifiedUnstakeSpkAction = {
+  type: 'unstakeSpk'
   spk: string
   amount: string
 }
@@ -205,7 +205,7 @@ type SimplifiedGenericAction = BaseAction & {
     | 'unstake'
     | 'psmConvert'
     | 'stakeSpk'
-    | 'unstakeSpark'
+    | 'unstakeSpk'
     | 'claimUnstakeSpark'
   >
 }
@@ -221,7 +221,7 @@ type SimplifiedAction =
   | SimplifiedUnstakeAction
   | SimplifiedPsmConvertAction
   | SimplifiedStakeSpkAction
-  | SimplifiedUnstakeSparkAction
+  | SimplifiedUnstakeSpkAction
   | SimplifiedClaimUnstakeSparkAction
 
 function actionToTitle(action: SimplifiedAction): string {
@@ -268,7 +268,7 @@ function actionToTitle(action: SimplifiedAction): string {
       return `Convert ${action.inToken} to ${action.outToken}`
     case 'stakeSpk':
       return `Stake ${action.spk}`
-    case 'unstakeSpark':
+    case 'unstakeSpk':
       return `Unstake ${action.spk}`
     case 'claimUnstakeSpark':
       return `Claim ${action.spk}`

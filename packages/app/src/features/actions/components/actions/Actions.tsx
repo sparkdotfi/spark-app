@@ -16,7 +16,7 @@ import { SetUseAsCollateralActionRow } from '../../flavours/set-use-as-collatera
 import { SetUserEModeActionRow } from '../../flavours/set-user-e-mode/SetUserEModeActionRow'
 import { StakeSpkActionRow } from '../../flavours/stake-spk/StakeSpkActionRow'
 import { StakeActionRow } from '../../flavours/stake/StakeActionRow'
-import { UnstakeSparkActionRow } from '../../flavours/unstake-spark/UnstakeSparkActionRow'
+import { UnstakeSpkActionRow } from '../../flavours/unstake-spk/UnstakeSpkActionRow'
 import { UnstakeActionRow } from '../../flavours/unstake/UnstakeActionRow'
 import { UpgradeActionRow } from '../../flavours/upgrade/UpgradeActionRow'
 import { WithdrawFromSavingsActionRow } from '../../flavours/withdraw-from-savings/WithdrawFromSavingsActionRow'
@@ -92,8 +92,8 @@ export function Actions({ actionHandlers, batchActionHandler, layout }: ActionsP
               return <ClaimSparkRewardsActionRow action={handler.action} {...props} />
             case 'stakeSpk':
               return <StakeSpkActionRow action={handler.action} {...props} />
-            case 'unstakeSpark':
-              return <UnstakeSparkActionRow action={handler.action} {...props} />
+            case 'unstakeSpk':
+              return <UnstakeSpkActionRow action={handler.action} {...props} />
             case 'claimUnstakeSpark':
               return <ClaimUnstakeSparkActionRow action={handler.action} {...props} />
             default:

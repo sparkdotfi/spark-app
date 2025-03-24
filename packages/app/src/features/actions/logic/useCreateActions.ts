@@ -305,10 +305,10 @@ export function useCreateActions({
         return [approveAction, stakeSparkAction]
       }
 
-      case 'unstakeSpark': {
+      case 'unstakeSpk': {
         return [
           {
-            type: 'unstakeSpark',
+            type: 'unstakeSpk',
             spk: objective.spk,
             amount: objective.amount,
             accountActiveShares: objective.accountActiveShares,

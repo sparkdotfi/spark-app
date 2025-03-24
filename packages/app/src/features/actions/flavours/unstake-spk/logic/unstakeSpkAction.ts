@@ -3,9 +3,9 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
 import { toBigInt } from '@marsfoundation/common-universal'
-import { UnstakeSparkAction } from '../types'
+import { UnstakeSpkAction } from '../types'
 
-export function createUnstakeSparkActionConfig(action: UnstakeSparkAction, context: ActionContext): ActionConfig {
+export function createUnstakeSpkActionConfig(action: UnstakeSpkAction, context: ActionContext): ActionConfig {
   const { account, chainId } = context
   const vault = getContractAddress(testSpkStakingAddress, chainId)
 
