@@ -1,4 +1,4 @@
-import { testSparkStakingAddress, testSparkStakingConfig } from '@/config/contracts-generated'
+import { testSpkStakingAddress, testSpkStakingConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
@@ -7,7 +7,7 @@ import { UnstakeSparkAction } from '../types'
 
 export function createUnstakeSparkActionConfig(action: UnstakeSparkAction, context: ActionContext): ActionConfig {
   const { account, chainId } = context
-  const vault = getContractAddress(testSparkStakingAddress, chainId)
+  const vault = getContractAddress(testSpkStakingAddress, chainId)
 
   return {
     getWriteConfig: () => {
@@ -16,7 +16,7 @@ export function createUnstakeSparkActionConfig(action: UnstakeSparkAction, conte
       if (unstakeAll) {
         return ensureConfigTypes({
           address: vault,
-          abi: testSparkStakingConfig.abi,
+          abi: testSpkStakingConfig.abi,
           functionName: 'redeem',
           args: [account, toBigInt(accountActiveShares)],
         })
@@ -24,7 +24,7 @@ export function createUnstakeSparkActionConfig(action: UnstakeSparkAction, conte
 
       return ensureConfigTypes({
         address: vault,
-        abi: testSparkStakingConfig.abi,
+        abi: testSpkStakingConfig.abi,
         functionName: 'withdraw',
         args: [account, toBigInt(spk.toBaseUnit(amount))],
       })

@@ -200,9 +200,9 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     state: { status: 'ready' },
     onAction: () => {},
   },
-  stakeSpark: {
+  stakeSpk: {
     action: {
-      type: 'stakeSpark',
+      type: 'stakeSpk',
       spk: tokens.SPK,
       amount: NormalizedUnitNumber(1_232.12),
     },

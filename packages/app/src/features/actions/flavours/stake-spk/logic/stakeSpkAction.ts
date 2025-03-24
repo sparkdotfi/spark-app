@@ -1,15 +1,15 @@
-import { testSparkStakingAddress, testSparkStakingConfig } from '@/config/contracts-generated'
+import { testSpkStakingAddress, testSpkStakingConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
 import { toBigInt } from '@marsfoundation/common-universal'
 import { allowanceQueryKey } from '../../approve/logic/query'
-import { StakeSparkAction } from '../types'
+import { StakeSpkAction } from '../types'
 
-export function createStakeSparkActionConfig(action: StakeSparkAction, context: ActionContext): ActionConfig {
+export function createStakeSpkActionConfig(action: StakeSpkAction, context: ActionContext): ActionConfig {
   const { account, chainId } = context
-  const vault = getContractAddress(testSparkStakingAddress, chainId)
+  const vault = getContractAddress(testSpkStakingAddress, chainId)
 
   return {
     getWriteConfig: () => {
@@ -18,7 +18,7 @@ export function createStakeSparkActionConfig(action: StakeSparkAction, context: 
 
       return ensureConfigTypes({
         address: vault,
-        abi: testSparkStakingConfig.abi,
+        abi: testSpkStakingConfig.abi,
         functionName: 'deposit',
         args: [account, amount],
       })

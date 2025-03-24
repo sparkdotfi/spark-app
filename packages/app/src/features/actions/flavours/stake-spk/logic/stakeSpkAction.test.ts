@@ -1,4 +1,4 @@
-import { testSparkStakingConfig } from '@/config/contracts-generated'
+import { testSpkStakingConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
@@ -10,20 +10,20 @@ import { waitFor } from '@testing-library/react'
 import { mainnet } from 'viem/chains'
 import { describe, test } from 'vitest'
 import { allowanceQueryKey } from '../../approve/logic/query'
-import { createStakeSparkActionConfig } from './stakeSparkAction'
+import { createStakeSpkActionConfig } from './stakeSpkAction'
 
 const spk = getMockToken({ symbol: TokenSymbol('SPK') })
 const account = testAddresses.alice
 const chainId = mainnet.id
 const amount = NormalizedUnitNumber(1)
-const vault = getContractAddress(testSparkStakingConfig.address, chainId)
+const vault = getContractAddress(testSpkStakingConfig.address, chainId)
 
 const hookRenderer = setupUseContractActionRenderer({
   account,
   handlers: [handlers.chainIdCall({ chainId }), handlers.balanceCall({ balance: 0n, address: account })],
   args: {
     action: {
-      type: 'stakeSpark',
+      type: 'stakeSpk',
       spk,
       amount,
     },
@@ -31,13 +31,13 @@ const hookRenderer = setupUseContractActionRenderer({
   },
 })
 
-describe(createStakeSparkActionConfig.name, () => {
-  test('stakes spark', async () => {
+describe(createStakeSpkActionConfig.name, () => {
+  test('stakes spark token', async () => {
     const { result, queryInvalidationManager } = hookRenderer({
       extraHandlers: [
         handlers.contractCall({
           to: vault,
-          abi: testSparkStakingConfig.abi,
+          abi: testSpkStakingConfig.abi,
           functionName: 'deposit',
           args: [account, toBigInt(spk.toBaseUnit(amount))],
           from: account,

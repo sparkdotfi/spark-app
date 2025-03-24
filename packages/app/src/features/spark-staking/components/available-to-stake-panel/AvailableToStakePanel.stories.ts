@@ -6,7 +6,7 @@ import { withRouter } from 'storybook-addon-remix-react-router'
 import { AvailableToStakePanel } from './AvailableToStakePanel'
 
 const meta: Meta<typeof AvailableToStakePanel> = {
-  title: 'Features/SparkStaking/Components/AvailableToStakePanel',
+  title: 'Features/SpkStaking/Components/AvailableToStakePanel',
   decorators: [withRouter()],
   component: AvailableToStakePanel,
 }

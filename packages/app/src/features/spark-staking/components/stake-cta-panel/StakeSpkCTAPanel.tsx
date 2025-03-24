@@ -10,7 +10,7 @@ import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-univers
 import { VariantProps, cva } from 'class-variance-authority'
 import { ExternalLinkIcon } from 'lucide-react'
 
-type StakeSparkActionProps =
+type StakeSpkActionProps =
   | {
       type: 'connected'
       spkBalance: NormalizedUnitNumber
@@ -22,12 +22,12 @@ type StakeSparkActionProps =
       tryInSandbox: () => void
     }
 
-export type StakeSparkCTAPanelProps = {
+export type StakeSpkCTAPanelProps = {
   apy: Percentage
   className?: string
-} & StakeSparkActionProps
+} & StakeSpkActionProps
 
-export function StakeSparkCTAPanel({ apy, className, ...actionsProps }: StakeSparkCTAPanelProps) {
+export function StakeSpkCTAPanel({ apy, className, ...actionsProps }: StakeSpkCTAPanelProps) {
   return (
     <Panel
       spacing="m"
@@ -47,7 +47,7 @@ export function StakeSparkCTAPanel({ apy, className, ...actionsProps }: StakeSpa
         <div className="typography-body-3 max-w-[48ch] text-tertiary">
           Deposit Spark Token listed below and start staking SPK to earn USDS rewards. Withdrawal delay up to 2 weeks.{' '}
           {/* @todo: spark staking - replace with proper docs link */}
-          <Link to={links.docs.sparkStaking} className="inline-flex items-center gap-1" external>
+          <Link to={links.docs.spkStaking} className="inline-flex items-center gap-1" external>
             Learn more <ExternalLinkIcon className="icon-xxs text-farms-600" />
           </Link>
         </div>
@@ -97,7 +97,7 @@ function TokenBadge({ variant }: TokenBadgeProps) {
   )
 }
 
-function Actions(props: StakeSparkActionProps) {
+function Actions(props: StakeSpkActionProps) {
   if (props.type === 'connected') {
     return (
       <Button variant="primary" size="l" className="w-full" onClick={props.stake} disabled={props.spkBalance.isZero()}>

@@ -3,20 +3,20 @@ import { WithClassname } from '@sb/decorators'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import type { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
-import { StakeSparkCTAPanel, StakeSparkCTAPanelProps } from './StakeSparkCTAPanel'
+import { StakeSpkCTAPanel, StakeSpkCTAPanelProps } from './StakeSpkCTAPanel'
 
-const meta: Meta<typeof StakeSparkCTAPanel> = {
-  title: 'Features/SparkStaking/Components/StakeSparkCTAPanel',
-  component: StakeSparkCTAPanel,
+const meta: Meta<typeof StakeSpkCTAPanel> = {
+  title: 'Features/SpkStaking/Components/StakeSpkCTAPanel',
+  component: StakeSpkCTAPanel,
   decorators: [withRouter(), WithClassname('max-w-7xl grid lg:grid-cols-2')],
   args: {
     apy: Percentage(0.12),
   },
 }
 export default meta
-type Story = StoryObj<typeof StakeSparkCTAPanel>
+type Story = StoryObj<typeof StakeSpkCTAPanel>
 
-export const Desktop: StoryObj<StakeSparkCTAPanelProps & { type: 'connected' }> = {
+export const Desktop: StoryObj<StakeSpkCTAPanelProps & { type: 'connected' }> = {
   args: {
     type: 'connected',
     stake: () => {},

@@ -1,4 +1,4 @@
-import { testSparkStakingAddress, testSparkStakingConfig } from '@/config/contracts-generated'
+import { testSpkStakingAddress, testSpkStakingConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
@@ -10,7 +10,7 @@ export function createClaimUnstakeSparkActionConfig(
   context: ActionContext,
 ): ActionConfig {
   const { account, chainId } = context
-  const vault = getContractAddress(testSparkStakingAddress, chainId)
+  const vault = getContractAddress(testSpkStakingAddress, chainId)
 
   return {
     getWriteConfig: () => {
@@ -18,7 +18,7 @@ export function createClaimUnstakeSparkActionConfig(
 
       return ensureConfigTypes({
         address: vault,
-        abi: testSparkStakingConfig.abi,
+        abi: testSpkStakingConfig.abi,
         functionName: 'claimBatch',
         args: [account, epochs.map(BigInt)],
       })

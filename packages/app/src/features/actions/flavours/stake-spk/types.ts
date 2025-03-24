@@ -1,14 +1,14 @@
 import { Token } from '@/domain/types/Token'
 import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 
-export interface StakeSparkObjective {
-  type: 'stakeSpark'
+export interface StakeSpkObjective {
+  type: 'stakeSpk'
   spk: Token
   amount: NormalizedUnitNumber
 }
 
-export interface StakeSparkAction {
-  type: 'stakeSpark'
+export interface StakeSpkAction {
+  type: 'stakeSpk'
   spk: Token
   amount: NormalizedUnitNumber
 }

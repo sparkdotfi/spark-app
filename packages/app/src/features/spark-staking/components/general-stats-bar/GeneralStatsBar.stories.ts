@@ -6,7 +6,7 @@ import { withRouter } from 'storybook-addon-remix-react-router'
 import { GeneralStatsBar } from './GeneralStatsBar'
 
 const meta: Meta<typeof GeneralStatsBar> = {
-  title: 'Features/SparkStaking/Components/GeneralStatsBar',
+  title: 'Features/SpkStaking/Components/GeneralStatsBar',
   component: GeneralStatsBar,
   decorators: [withRouter(), WithTooltipProvider()],
   args: {

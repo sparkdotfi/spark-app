@@ -23,7 +23,7 @@ import { PsmConvertAction } from '../flavours/psm-convert/types'
 import { RepayAction, RepayObjective } from '../flavours/repay/types'
 import { SetUseAsCollateralAction, SetUseAsCollateralObjective } from '../flavours/set-use-as-collateral/types'
 import { SetUserEModeAction, SetUserEModeObjective } from '../flavours/set-user-e-mode/logic/types'
-import { StakeSparkAction, StakeSparkObjective } from '../flavours/stake-spark/types'
+import { StakeSpkAction, StakeSpkObjective } from '../flavours/stake-spk/types'
 import { StakeAction, StakeObjective } from '../flavours/stake/types'
 import { UnstakeSparkAction, UnstakeSparkObjective } from '../flavours/unstake-spark/types'
 import { UnstakeAction, UnstakeObjective } from '../flavours/unstake/types'
@@ -54,7 +54,7 @@ export type Objective =
   | ClaimFarmRewardsObjective
   | ConvertStablesObjective
   | ClaimSparkRewardsObjective
-  | StakeSparkObjective
+  | StakeSpkObjective
   | UnstakeSparkObjective
   | ClaimUnstakeSparkObjective
 export type ObjectiveType = Objective['type']
@@ -79,7 +79,7 @@ export type Action =
   | PsmConvertAction
   | ClaimFarmRewardsAction
   | ClaimSparkRewardsAction
-  | StakeSparkAction
+  | StakeSpkAction
   | UnstakeSparkAction
   | ClaimUnstakeSparkAction
 export type ActionType = Action['type']

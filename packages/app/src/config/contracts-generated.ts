@@ -4562,13 +4562,13 @@ export const testSparkRewardsConfig = {
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// TestSparkStaking
+// TestSpkStaking
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xDd649AdaB2e67cAdC2EC29d75ABe73f3Df08065c)
  */
-export const testSparkStakingAbi = [
+export const testSpkStakingAbi = [
   {
     type: 'constructor',
     inputs: [
@@ -5511,16 +5511,16 @@ export const testSparkStakingAbi = [
 /**
  * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xDd649AdaB2e67cAdC2EC29d75ABe73f3Df08065c)
  */
-export const testSparkStakingAddress = {
+export const testSpkStakingAddress = {
   1: '0xDd649AdaB2e67cAdC2EC29d75ABe73f3Df08065c',
 } as const
 
 /**
  * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xDd649AdaB2e67cAdC2EC29d75ABe73f3Df08065c)
  */
-export const testSparkStakingConfig = {
-  address: testSparkStakingAddress,
-  abi: testSparkStakingAbi,
+export const testSpkStakingConfig = {
+  address: testSpkStakingAddress,
+  abi: testSpkStakingAbi,
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -7,7 +7,7 @@ import { userEvent, within } from '@storybook/test'
 import { WithdrawalsTablePanel } from './WithdrawalsTablePanel'
 
 const meta: Meta<typeof WithdrawalsTablePanel> = {
-  title: 'Features/SparkStaking/Components/WithdrawalsTablePanel',
+  title: 'Features/SpkStaking/Components/WithdrawalsTablePanel',
   decorators: [WithTooltipProvider(), WithClassname('max-w-4xl')],
   component: WithdrawalsTablePanel,
   args: {

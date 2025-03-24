@@ -1,13 +1,13 @@
 import { ActionRow } from '@/features/actions/components/action-row/ActionRow'
 import { ActionRowBaseProps } from '@/features/actions/components/action-row/types'
 import { ArrowDownToLineIcon } from 'lucide-react'
-import { StakeSparkAction } from './types'
+import { StakeSpkAction } from './types'
 
-export interface StakeSparkActionRowProps extends ActionRowBaseProps {
-  action: StakeSparkAction
+export interface StakeSpkActionRowProps extends ActionRowBaseProps {
+  action: StakeSpkAction
 }
 
-export function StakeSparkActionRow({ action: { spk, amount }, ...props }: StakeSparkActionRowProps) {
+export function StakeSpkActionRow({ action: { spk, amount }, ...props }: StakeSpkActionRowProps) {
   return (
     <ActionRow {...props}>
       <ActionRow.Icon icon={ArrowDownToLineIcon} />

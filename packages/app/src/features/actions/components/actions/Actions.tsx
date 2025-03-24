@@ -14,7 +14,7 @@ import { PsmConvertActionRow } from '../../flavours/psm-convert/PsmConvertAction
 import { RepayActionRow } from '../../flavours/repay/RepayActionRow'
 import { SetUseAsCollateralActionRow } from '../../flavours/set-use-as-collateral/SetUseAsCollateralActionRow'
 import { SetUserEModeActionRow } from '../../flavours/set-user-e-mode/SetUserEModeActionRow'
-import { StakeSparkActionRow } from '../../flavours/stake-spark/StakeSparkActionRow'
+import { StakeSpkActionRow } from '../../flavours/stake-spk/StakeSpkActionRow'
 import { StakeActionRow } from '../../flavours/stake/StakeActionRow'
 import { UnstakeSparkActionRow } from '../../flavours/unstake-spark/UnstakeSparkActionRow'
 import { UnstakeActionRow } from '../../flavours/unstake/UnstakeActionRow'
@@ -90,8 +90,8 @@ export function Actions({ actionHandlers, batchActionHandler, layout }: ActionsP
               return <ClaimFarmRewardsActionRow action={handler.action} {...props} />
             case 'claimSparkRewards':
               return <ClaimSparkRewardsActionRow action={handler.action} {...props} />
-            case 'stakeSpark':
-              return <StakeSparkActionRow action={handler.action} {...props} />
+            case 'stakeSpk':
+              return <StakeSpkActionRow action={handler.action} {...props} />
             case 'unstakeSpark':
               return <UnstakeSparkActionRow action={handler.action} {...props} />
             case 'claimUnstakeSpark':

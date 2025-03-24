@@ -7,7 +7,7 @@ import { withRouter } from 'storybook-addon-remix-react-router'
 import { StakingRewardsPanel, StakingRewardsPanelProps } from './StakingRewardsPanel'
 
 const meta: Meta<typeof StakingRewardsPanel> = {
-  title: 'Features/SparkStaking/Components/StakingRewardsPanel',
+  title: 'Features/SpkStaking/Components/StakingRewardsPanel',
   component: StakingRewardsPanel,
   decorators: [withRouter(), WithClassname('max-w-7xl grid lg:grid-cols-2'), WithTooltipProvider()],
   args: {

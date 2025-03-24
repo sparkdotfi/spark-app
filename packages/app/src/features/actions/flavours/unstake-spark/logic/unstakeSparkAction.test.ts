@@ -1,4 +1,4 @@
-import { testSparkStakingConfig } from '@/config/contracts-generated'
+import { testSpkStakingConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { getMockToken, testAddresses } from '@/test/integration/constants'
@@ -16,7 +16,7 @@ const account = testAddresses.alice
 const chainId = mainnet.id
 const amount = NormalizedUnitNumber(1)
 const accountActiveShares = BaseUnitNumber(parseEther('1'))
-const vault = getContractAddress(testSparkStakingConfig.address, chainId)
+const vault = getContractAddress(testSpkStakingConfig.address, chainId)
 
 const hookRenderer = setupUseContractActionRenderer({
   account,
@@ -39,7 +39,7 @@ describe(createUnstakeSparkActionConfig.name, () => {
       extraHandlers: [
         handlers.contractCall({
           to: vault,
-          abi: testSparkStakingConfig.abi,
+          abi: testSpkStakingConfig.abi,
           functionName: 'withdraw',
           args: [account, toBigInt(spk.toBaseUnit(amount))],
           from: account,
@@ -75,7 +75,7 @@ describe(createUnstakeSparkActionConfig.name, () => {
       extraHandlers: [
         handlers.contractCall({
           to: vault,
-          abi: testSparkStakingConfig.abi,
+          abi: testSpkStakingConfig.abi,
           functionName: 'redeem',
           args: [account, toBigInt(accountActiveShares)],
           from: account,

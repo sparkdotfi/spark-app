@@ -1,4 +1,4 @@
-import { testSparkStakingConfig } from '@/config/contracts-generated'
+import { testSpkStakingConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { getMockToken, testAddresses } from '@/test/integration/constants'
@@ -12,7 +12,7 @@ import { createClaimUnstakeSparkActionConfig } from './claimUnstakeSparkAction'
 
 const account = testAddresses.alice
 const chainId = mainnet.id
-const vault = getContractAddress(testSparkStakingConfig.address, chainId)
+const vault = getContractAddress(testSpkStakingConfig.address, chainId)
 const spk = getMockToken({ symbol: TokenSymbol('SPK') })
 const amount = NormalizedUnitNumber(100)
 
@@ -36,7 +36,7 @@ describe(createClaimUnstakeSparkActionConfig.name, () => {
       extraHandlers: [
         handlers.contractCall({
           to: vault,
-          abi: testSparkStakingConfig.abi,
+          abi: testSpkStakingConfig.abi,
           functionName: 'claimBatch',
           args: [account, [1n, 2n]],
           from: account,
