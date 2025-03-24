@@ -24,11 +24,12 @@ export function useSelectNetworkDialog({ closeDialog }: UseSelectNetworkDialogPa
 
   const chains: Chain[] = supportedChains.map((chain) => {
     const config = getChainConfigEntry(chain.id)
+    const supportedPages = getSupportedPages(config, chain.id)
 
     return {
       name: config.meta.name,
       logo: config.meta.logo,
-      supportedPages: formatSupportedPages(getSupportedPages(config)),
+      supportedPages: formatSupportedPages(supportedPages),
       selected: chain.id === currentChainId,
       isInSwitchingProcess: isPending && variables === chain.id,
       onSelect: () => {
@@ -62,4 +63,5 @@ const pageGroupToName: Record<PathGroup, string> = {
   savings: 'Savings',
   farms: 'Farms',
   sparkRewards: 'Rewards',
+  sparkToken: 'Spark Token',
 }

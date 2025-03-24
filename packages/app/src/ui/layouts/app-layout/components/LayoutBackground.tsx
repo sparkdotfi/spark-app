@@ -23,6 +23,11 @@ const pageGradients = {
     via: '#609AFE',
     to: '#FFFFFF',
   },
+  sparkToken: {
+    from: '#FA43BD',
+    via: '#FFA930',
+    to: '#FFFFFF',
+  },
 }
 
 export function LayoutBackground() {

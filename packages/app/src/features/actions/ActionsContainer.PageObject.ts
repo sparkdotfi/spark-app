@@ -175,20 +175,20 @@ type SimplifiedMakerStableToSavingsAction = BaseAction & {
   savingsAsset: string
 }
 
-type SimplifiedStakeSparkAction = {
-  type: 'stakeSpark'
+type SimplifiedStakeSpkAction = {
+  type: 'stakeSpk'
   spk: string
   amount: string
 }
 
-type SimplifiedUnstakeSparkAction = {
-  type: 'unstakeSpark'
+type SimplifiedUnstakeSpkAction = {
+  type: 'unstakeSpk'
   spk: string
   amount: string
 }
 
-type SimplifiedClaimUnstakeSparkAction = {
-  type: 'claimUnstakeSpark'
+type SimplifiedFinalizeSpkUnstakeAction = {
+  type: 'finalizeSpkUnstake'
   spk: string
 }
 
@@ -204,9 +204,9 @@ type SimplifiedGenericAction = BaseAction & {
     | 'stake'
     | 'unstake'
     | 'psmConvert'
-    | 'stakeSpark'
-    | 'unstakeSpark'
-    | 'claimUnstakeSpark'
+    | 'stakeSpk'
+    | 'unstakeSpk'
+    | 'finalizeSpkUnstake'
   >
 }
 
@@ -220,9 +220,9 @@ type SimplifiedAction =
   | SimplifiedStakeAction
   | SimplifiedUnstakeAction
   | SimplifiedPsmConvertAction
-  | SimplifiedStakeSparkAction
-  | SimplifiedUnstakeSparkAction
-  | SimplifiedClaimUnstakeSparkAction
+  | SimplifiedStakeSpkAction
+  | SimplifiedUnstakeSpkAction
+  | SimplifiedFinalizeSpkUnstakeAction
 
 function actionToTitle(action: SimplifiedAction): string {
   switch (action.type) {
@@ -266,11 +266,11 @@ function actionToTitle(action: SimplifiedAction): string {
       return 'Claim rewards'
     case 'psmConvert':
       return `Convert ${action.inToken} to ${action.outToken}`
-    case 'stakeSpark':
+    case 'stakeSpk':
       return `Stake ${action.spk}`
-    case 'unstakeSpark':
+    case 'unstakeSpk':
       return `Unstake ${action.spk}`
-    case 'claimUnstakeSpark':
+    case 'finalizeSpkUnstake':
       return `Claim ${action.spk}`
   }
 }

@@ -164,7 +164,7 @@ export default defineConfig({
           },
         },
         {
-          name: 'TestSparkStaking',
+          name: 'TestSpkStaking',
           address: {
             [mainnet.id]: '0xA9147782Eb5732039b0Cf270e7B98f27b6ecd876',
           },

@@ -14,7 +14,7 @@ export interface UsePageChainIdResult {
 export function usePageChainId(): UsePageChainIdResult {
   const chainId = useChainId()
   const location = useLocation()
-  const supportedPages = getSupportedPages(getChainConfigEntry(chainId))
+  const supportedPages = getSupportedPages(getChainConfigEntry(chainId), chainId)
 
   const currentPage = Object.entries(paths).find(([_, path]) => matchPath(path, location.pathname))?.[0] as Path
   const pageName = pageNamesMap[currentPage]
@@ -45,4 +45,5 @@ const pageNamesMap: Record<Path, string> = {
   farms: 'Farms',
   farmDetails: 'Farm',
   sparkRewards: 'Rewards',
+  spkStaking: 'SPK Staking',
 }

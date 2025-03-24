@@ -30,9 +30,9 @@ export function stringifyObjectivesToStableActions(objectives: Objective[]): str
         case 'upgrade':
         case 'downgrade':
         case 'unstake':
-        case 'stakeSpark':
+        case 'stakeSpk':
           return [objective.type, objective.amount]
-        case 'unstakeSpark':
+        case 'unstakeSpk':
           return [objective.type, objective.amount, objective.accountActiveShares, objective.unstakeAll]
         case 'stake':
           return [objective.type, objective.token.address, objective.amount]
@@ -49,7 +49,7 @@ export function stringifyObjectivesToStableActions(objectives: Objective[]): str
           ]
         case 'convertStables':
           return [objective.type, objective.inToken.symbol, objective.outToken.symbol, objective.amount]
-        case 'claimUnstakeSpark':
+        case 'finalizeSpkUnstake':
           return [objective.type, objective.spk.symbol, objective.epochs]
         default:
           assertNever(objective)

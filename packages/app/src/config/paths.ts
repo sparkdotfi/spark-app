@@ -1,3 +1,4 @@
+import { mainnet } from 'viem/chains'
 import { ChainConfigEntry } from './chain/types'
 
 export const paths = {
@@ -9,6 +10,7 @@ export const paths = {
   marketDetails: '/markets/:chainId/:asset',
   farmDetails: '/farms/:chainId/:address',
   sparkRewards: '/rewards',
+  spkStaking: '/spk/staking',
 } as const
 
 export type Path = keyof typeof paths
@@ -18,15 +20,17 @@ export const pathGroups = {
   savings: ['savings'],
   farms: ['farms', 'farmDetails'],
   sparkRewards: ['sparkRewards'],
-} satisfies Record<'borrow' | 'savings' | 'farms' | 'sparkRewards', Path[]>
+  sparkToken: ['spkStaking'],
+} satisfies Record<'borrow' | 'savings' | 'farms' | 'sparkRewards' | 'sparkToken', Path[]>
 
 export type PathGroup = keyof typeof pathGroups
 
-export function getSupportedPages(chainConfigEntry: ChainConfigEntry): Path[] {
+export function getSupportedPages(chainConfigEntry: ChainConfigEntry, chainId: number): Path[] {
   return [
     ...(chainConfigEntry.markets ? pathGroups.borrow : []),
     ...(chainConfigEntry.savings ? pathGroups.savings : []),
     ...(chainConfigEntry.farms ? pathGroups.farms : []),
     ...(import.meta.env.VITE_DEV_SPARK_REWARDS === '1' ? pathGroups.sparkRewards : []),
+    ...(import.meta.env.VITE_DEV_SPARK_TOKEN === '1' && chainId === mainnet.id ? pathGroups.sparkToken : []),
   ]
 }
