@@ -16,19 +16,7 @@ export interface AvailableToStakeRow {
   openStakeDialog: () => void
 }
 
-export interface AvailableToStakePanelProps {
-  token: Token
-  balance: NormalizedUnitNumber
-  blockExplorerLink: string
-  openStakeDialog: () => void
-}
-
-export function AvailableToStakePanel({
-  token,
-  balance,
-  blockExplorerLink,
-  openStakeDialog,
-}: AvailableToStakePanelProps) {
+export function AvailableToStakePanel({ token, balance, blockExplorerLink, openStakeDialog }: AvailableToStakeRow) {
   const rows: AvailableToStakeRow[] = [{ token, balance, blockExplorerLink, openStakeDialog }]
 
   const columnDef: DataTableColumnDefinitions<AvailableToStakeRow> = useMemo(
