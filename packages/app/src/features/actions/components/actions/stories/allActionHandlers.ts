@@ -220,4 +220,14 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     state: { status: 'ready' },
     onAction: () => {},
   },
+  claimUnstakeSpark: {
+    action: {
+      type: 'claimUnstakeSpark',
+      spk: tokens.SPK,
+      amount: NormalizedUnitNumber(1_232.12),
+      epochs: [1, 2],
+    },
+    state: { status: 'ready' },
+    onAction: () => {},
+  },
 }
