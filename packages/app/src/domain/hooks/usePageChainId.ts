@@ -1,3 +1,4 @@
+import { getChainConfigEntry } from '@/config/chain'
 import { Path, getSupportedPages, pathGroups, paths } from '@/config/paths'
 import { matchPath, useLocation } from 'react-router-dom'
 import { mainnet } from 'viem/chains'
@@ -13,7 +14,7 @@ export interface UsePageChainIdResult {
 export function usePageChainId(): UsePageChainIdResult {
   const chainId = useChainId()
   const location = useLocation()
-  const supportedPages = getSupportedPages(chainId)
+  const supportedPages = getSupportedPages(getChainConfigEntry(chainId), chainId)
 
   const currentPage = Object.entries(paths).find(([_, path]) => matchPath(path, location.pathname))?.[0] as Path
   const pageName = pageNamesMap[currentPage]

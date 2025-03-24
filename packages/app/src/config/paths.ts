@@ -1,5 +1,5 @@
 import { mainnet } from 'viem/chains'
-import { getChainConfigEntry } from './chain'
+import { ChainConfigEntry } from './chain/types'
 
 export const paths = {
   easyBorrow: '/borrow',
@@ -25,8 +25,7 @@ export const pathGroups = {
 
 export type PathGroup = keyof typeof pathGroups
 
-export function getSupportedPages(chainId: number): Path[] {
-  const chainConfigEntry = getChainConfigEntry(chainId)
+export function getSupportedPages(chainConfigEntry: ChainConfigEntry, chainId: number): Path[] {
   return [
     ...(chainConfigEntry.markets ? pathGroups.borrow : []),
     ...(chainConfigEntry.savings ? pathGroups.savings : []),

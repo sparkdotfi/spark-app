@@ -32,7 +32,7 @@ export function createUnstakeSpkActionConfig(action: UnstakeSpkAction, context: 
 
     invalidates: () => {
       return [
-        // @todo: spark staking - add related query keys after they are implemented
+        // @todo: spk staking - add related query keys after they are implemented
       ]
     },
   }

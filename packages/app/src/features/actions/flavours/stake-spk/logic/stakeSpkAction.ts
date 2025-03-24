@@ -28,7 +28,7 @@ export function createStakeSpkActionConfig(action: StakeSpkAction, context: Acti
       return [
         allowanceQueryKey({ token: action.spk.address, spender: vault, account, chainId }),
         getBalancesQueryKeyPrefix({ account, chainId }),
-        // @todo: spark staking - add related query keys after they are implemented
+        // @todo: spk staking - add related query keys after they are implemented
       ]
     },
   }

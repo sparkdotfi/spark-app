@@ -95,6 +95,6 @@ describe(createUnstakeSpkActionConfig.name, () => {
       expect(result.current.state.status).toBe('success')
     })
 
-    // @todo: spark staking - test for query invalidations when applicable
+    // @todo: spk staking - test for query invalidations when applicable
   })
 })

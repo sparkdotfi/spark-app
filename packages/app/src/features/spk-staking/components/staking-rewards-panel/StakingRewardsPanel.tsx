@@ -46,7 +46,7 @@ export function StakingRewardsPanel({
     >
       <div className="flex w-full flex-row items-center justify-between">
         <div className="typography-heading-4 flex items-baseline gap-1 text-primary-inverse">
-          {/* @todo: spark staking - ask for a tooltip text */}
+          {/* @todo: spk staking - ask for a tooltip text */}
           My Rewards <Info className="icon-secondary">Staking rewards panel tooltip text</Info>
         </div>
         <div className="grid grid-cols-[80px_80px] gap-1">
