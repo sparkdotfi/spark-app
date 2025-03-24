@@ -90,7 +90,7 @@ const mockChartData = [
 ]
 
 const meta: Meta<typeof ChartsPanel> = {
-  title: 'Features/SparkStaking/Components/ChartsPanel',
+  title: 'Features/SpkStaking/Components/ChartsPanel',
   component: ChartsPanel,
   decorators: [WithTooltipProvider()],
   args: {
