@@ -14,12 +14,12 @@
     "./env": {
       "@marsfoundation/local-spark-monorepo": "./src/env/index.ts",
       "types": "./dist/types/env/index.d.ts",
-      "default": "./dist/esm/env/index.js"
+      "default": "./dist/env/index.js"
     },
     "./wagmi": {
       "@marsfoundation/local-spark-monorepo": "./src/wagmi/index.ts",
       "types": "./dist/types/wagmi/index.d.ts",
-      "default": "./dist/esm/wagmi/index.js"
+      "default": "./dist/wagmi/index.js"
     }
   },
   "typesVersions": {

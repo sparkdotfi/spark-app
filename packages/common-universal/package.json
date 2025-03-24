@@ -5,8 +5,8 @@
     "node": ">=18.0.0"
   },
   "type": "module",
-  "main": "./dist/esm/index.js",
-  "module": "./dist/esm/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "repository": {
     "type": "git",
@@ -17,22 +17,22 @@
     ".": {
       "@marsfoundation/local-spark-monorepo": "./src/index.ts",
       "types": "./dist/types/index.d.ts",
-      "default": "./dist/esm/index.js"
+      "default": "./dist/index.js"
     },
     "./http-client": {
       "@marsfoundation/local-spark-monorepo": "./src/httpClient/index.ts",
       "types": "./dist/types/httpClient/index.d.ts",
-      "default": "./dist/esm/httpClient/index.js"
+      "default": "./dist/httpClient/index.js"
     },
     "./logger": {
       "@marsfoundation/local-spark-monorepo": "./src/logger/index.ts",
       "types": "./dist/types/logger/index.d.ts",
-      "default": "./dist/esm/logger/index.js"
+      "default": "./dist/logger/index.js"
     },
     "./tracer": {
       "@marsfoundation/local-spark-monorepo": "./src/tracer/index.ts",
       "types": "./dist/types/tracer/index.d.ts",
-      "default": "./dist/esm/tracer/index.js"
+      "default": "./dist/tracer/index.js"
     }
   },
   "typesVersions": {
