@@ -49,7 +49,7 @@ export function stringifyObjectivesToStableActions(objectives: Objective[]): str
           ]
         case 'convertStables':
           return [objective.type, objective.inToken.symbol, objective.outToken.symbol, objective.amount]
-        case 'claimUnstakeSpark':
+        case 'finalizeSpkUnstake':
           return [objective.type, objective.spk.symbol, objective.epochs]
         default:
           assertNever(objective)

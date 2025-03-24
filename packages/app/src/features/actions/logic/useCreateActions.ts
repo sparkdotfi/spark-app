@@ -317,12 +317,12 @@ export function useCreateActions({
         ]
       }
 
-      case 'claimUnstakeSpark': {
+      case 'finalizeSpkUnstake': {
         return [
           {
             spk: objective.spk,
             amount: objective.amount,
-            type: 'claimUnstakeSpark',
+            type: 'finalizeSpkUnstake',
             epochs: objective.epochs,
           },
         ]

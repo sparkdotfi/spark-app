@@ -1,13 +1,13 @@
 import { ActionRow } from '@/features/actions/components/action-row/ActionRow'
 import { ActionRowBaseProps } from '@/features/actions/components/action-row/types'
 import { ArrowUpToLineIcon } from 'lucide-react'
-import { ClaimUnstakeSparkAction } from './types'
+import { FinalizeSpkUnstakeAction } from './types'
 
-export interface ClaimUnstakeSparkActionRowProps extends ActionRowBaseProps {
-  action: ClaimUnstakeSparkAction
+export interface FinalizeSpkUnstakeActionRowProps extends ActionRowBaseProps {
+  action: FinalizeSpkUnstakeAction
 }
 
-export function ClaimUnstakeSparkActionRow({ action: { spk, amount }, ...props }: ClaimUnstakeSparkActionRowProps) {
+export function FinalizeSpkUnstakeActionRow({ action: { spk, amount }, ...props }: FinalizeSpkUnstakeActionRowProps) {
   return (
     <ActionRow {...props}>
       <ActionRow.Icon icon={ArrowUpToLineIcon} />

@@ -5,10 +5,10 @@ import { BorrowActionRow } from '../../flavours/borrow/BorrowActionRow'
 import { ClaimFarmRewardsActionRow } from '../../flavours/claim-farm-rewards/ClaimFarmRewardsActionRow'
 import { ClaimMarketRewardsActionRow } from '../../flavours/claim-market-rewards/ClaimMarketRewardsActionRow'
 import { ClaimSparkRewardsActionRow } from '../../flavours/claim-spark-rewards/ClaimSparkRewardsActionRow'
-import { ClaimUnstakeSparkActionRow } from '../../flavours/claim-unstake-spark/ClaimUnstakeSparkActionRow'
 import { DepositToSavingsActionRow } from '../../flavours/deposit-to-savings/DepositToSavingsActionRow'
 import { DepositActionRow } from '../../flavours/deposit/DepositActionRow'
 import { DowngradeActionRow } from '../../flavours/downgrade/DowngradeActionRow'
+import { FinalizeSpkUnstakeActionRow } from '../../flavours/finalize-spk-unstake/FinalizeSpkUnstakeActionRow'
 import { PermitActionRow } from '../../flavours/permit/PermitActionRow'
 import { PsmConvertActionRow } from '../../flavours/psm-convert/PsmConvertActionRow'
 import { RepayActionRow } from '../../flavours/repay/RepayActionRow'
@@ -94,8 +94,8 @@ export function Actions({ actionHandlers, batchActionHandler, layout }: ActionsP
               return <StakeSpkActionRow action={handler.action} {...props} />
             case 'unstakeSpk':
               return <UnstakeSpkActionRow action={handler.action} {...props} />
-            case 'claimUnstakeSpark':
-              return <ClaimUnstakeSparkActionRow action={handler.action} {...props} />
+            case 'finalizeSpkUnstake':
+              return <FinalizeSpkUnstakeActionRow action={handler.action} {...props} />
             default:
               assertNever(handler.action)
           }

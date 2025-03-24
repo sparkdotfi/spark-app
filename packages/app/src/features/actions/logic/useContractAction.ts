@@ -15,10 +15,10 @@ import { createBorrowActionConfig } from '../flavours/borrow/logic/borrowAction'
 import { createClaimFarmRewardsActionConfig } from '../flavours/claim-farm-rewards/logic/claimFarmRewardsAction'
 import { createClaimMarketRewardsActionConfig } from '../flavours/claim-market-rewards/logic/claimMarketRewardsAction'
 import { createClaimSparkRewardsActionConfig } from '../flavours/claim-spark-rewards/logic/claimSparkRewardsAction'
-import { createClaimUnstakeSparkActionConfig } from '../flavours/claim-unstake-spark/logic/claimUnstakeSparkAction'
 import { createDepositToSavingsActionConfig } from '../flavours/deposit-to-savings/logic/depositToSavingsAction'
 import { createDepositActionConfig } from '../flavours/deposit/logic/depositAction'
 import { createDowngradeActionConfig } from '../flavours/downgrade/logic/downgradeAction'
+import { createFinalizeSpkUnstakeActionConfig } from '../flavours/finalize-spk-unstake/logic/finalizeSpkUnstakeAction'
 import { createPsmConvertActionConfig } from '../flavours/psm-convert/logic/psmConvertAction'
 import { createRepayActionConfig } from '../flavours/repay/logic/repayAction'
 import { createSetUseAsCollateralActionConfig } from '../flavours/set-use-as-collateral/logic/setUseAsCollateralAction'
@@ -176,8 +176,8 @@ export function actionToConfig(action: Action, context: ActionContext): ActionCo
       return createStakeSpkActionConfig(action, context)
     case 'unstakeSpk':
       return createUnstakeSpkActionConfig(action, context)
-    case 'claimUnstakeSpark':
-      return createClaimUnstakeSparkActionConfig(action, context)
+    case 'finalizeSpkUnstake':
+      return createFinalizeSpkUnstakeActionConfig(action, context)
     case 'permit':
       return createEmptyActionConfig()
   }

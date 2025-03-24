@@ -13,11 +13,11 @@ import { BorrowAction, BorrowObjective } from '../flavours/borrow/types'
 import { ClaimFarmRewardsAction, ClaimFarmRewardsObjective } from '../flavours/claim-farm-rewards/types'
 import { ClaimMarketRewardsAction, ClaimMarketRewardsObjective } from '../flavours/claim-market-rewards/types'
 import { ClaimSparkRewardsAction, ClaimSparkRewardsObjective } from '../flavours/claim-spark-rewards/types'
-import { ClaimUnstakeSparkAction, ClaimUnstakeSparkObjective } from '../flavours/claim-unstake-spark/types'
 import { ConvertStablesObjective } from '../flavours/convert-stables/types'
 import { DepositToSavingsAction, DepositToSavingsObjective } from '../flavours/deposit-to-savings/types'
 import { DepositAction, DepositObjective } from '../flavours/deposit/types'
 import { DowngradeAction, DowngradeObjective } from '../flavours/downgrade/types'
+import { FinalizeSpkUnstakeAction, FinalizeSpkUnstakeObjective } from '../flavours/finalize-spk-unstake/types'
 import { PermitAction } from '../flavours/permit/types'
 import { PsmConvertAction } from '../flavours/psm-convert/types'
 import { RepayAction, RepayObjective } from '../flavours/repay/types'
@@ -56,7 +56,7 @@ export type Objective =
   | ClaimSparkRewardsObjective
   | StakeSpkObjective
   | UnstakeSpkObjective
-  | ClaimUnstakeSparkObjective
+  | FinalizeSpkUnstakeObjective
 export type ObjectiveType = Objective['type']
 
 export type Action =
@@ -81,7 +81,7 @@ export type Action =
   | ClaimSparkRewardsAction
   | StakeSpkAction
   | UnstakeSpkAction
-  | ClaimUnstakeSparkAction
+  | FinalizeSpkUnstakeAction
 export type ActionType = Action['type']
 
 type BaseActionHandlerState<ErrorKind extends string> =

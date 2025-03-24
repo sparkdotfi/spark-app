@@ -3,10 +3,10 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
-import { ClaimUnstakeSparkAction } from '../types'
+import { FinalizeSpkUnstakeAction } from '../types'
 
-export function createClaimUnstakeSparkActionConfig(
-  action: ClaimUnstakeSparkAction,
+export function createFinalizeSpkUnstakeActionConfig(
+  action: FinalizeSpkUnstakeAction,
   context: ActionContext,
 ): ActionConfig {
   const { account, chainId } = context

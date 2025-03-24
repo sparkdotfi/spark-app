@@ -8,7 +8,7 @@ import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { waitFor } from '@testing-library/react'
 import { mainnet } from 'viem/chains'
 import { describe, test } from 'vitest'
-import { createClaimUnstakeSparkActionConfig } from './claimUnstakeSparkAction'
+import { createFinalizeSpkUnstakeActionConfig } from './finalizeSpkUnstakeAction'
 
 const account = testAddresses.alice
 const chainId = mainnet.id
@@ -23,15 +23,15 @@ const hookRenderer = setupUseContractActionRenderer({
     action: {
       spk,
       amount,
-      type: 'claimUnstakeSpark',
+      type: 'finalizeSpkUnstake',
       epochs: [1, 2],
     },
     enabled: true,
   },
 })
 
-describe(createClaimUnstakeSparkActionConfig.name, () => {
-  test('claims spark unstake', async () => {
+describe(createFinalizeSpkUnstakeActionConfig.name, () => {
+  test('finalizes spark token unstake', async () => {
     const { result } = hookRenderer({
       extraHandlers: [
         handlers.contractCall({
