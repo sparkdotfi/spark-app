@@ -85,7 +85,7 @@ function Chart({
   }
 
   return (
-    <div className="relative">
+    <div className="relative isolate">
       <svg width={width} height={height} className="absolute inset-0 z-[-2]">
         <Group left={margins.left} top={margins.top}>
           <GridRows
