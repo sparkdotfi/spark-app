@@ -3,6 +3,7 @@ import { ChartTooltipContent } from '@/ui/charts/ChartTooltipContent'
 import { colors as colorsPreset } from '@/ui/charts/colors'
 import { Margins, defaultMargins } from '@/ui/charts/defaults'
 import { formatPercentageTick, formatTooltipDate, getVerticalDomainWithPadding } from '@/ui/charts/utils'
+import { cn } from '@/ui/utils/style'
 import { Percentage } from '@marsfoundation/common-universal'
 import { AxisBottom, AxisLeft } from '@visx/axis'
 import { curveCardinal } from '@visx/curve'
@@ -15,16 +16,11 @@ import { AreaClosed, Bar, Line, LinePath } from '@visx/shape'
 import { TooltipWithBounds, withTooltip } from '@visx/tooltip'
 import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip'
 import { extent, max, min } from 'd3-array'
-import { Fragment, MouseEvent, TouchEvent } from 'react'
+import { Fragment, MouseEvent, TouchEvent, useId } from 'react'
 
 export interface ChartDataPoint {
   date: Date
-  apr: Percentage
-}
-
-export const colors = {
-  ...colorsPreset,
-  primary: '#FA43BD',
+  apy: Percentage
 }
 
 export interface ChartProps {
@@ -34,6 +30,8 @@ export interface ChartProps {
   xAxisNumTicks?: number
   yAxisNumTicks?: number
   data: ChartDataPoint[]
+  primaryColor: string
+  lineColorClassName?: string
 }
 
 function Chart({
@@ -46,8 +44,14 @@ function Chart({
   hideTooltip,
   tooltipData,
   tooltipLeft = 0,
-  data,
+  data: _data,
+  primaryColor,
+  lineColorClassName,
 }: ChartProps & WithTooltipProvidedProps<ChartDataPoint>) {
+  const componentId = useId()
+
+  const data = _data.sort((a, b) => a.date.getTime() - b.date.getTime())
+
   const innerWidth = width - margins.left - margins.right
   const innerHeight = height - margins.top - margins.bottom
 
@@ -65,54 +69,101 @@ function Chart({
     const point = localPoint(event) || { x: 0 }
     const x = point.x - margins.left
     const domainX = xValueScale.invert(x)
+
     const lastSmallerElement =
       data.reduce(
         (prev, curr) => (curr.date.getTime() < domainX.getTime() ? curr : prev),
         null as ChartDataPoint | null,
       ) || data[0]
-    showTooltip({
-      tooltipData: lastSmallerElement,
-      tooltipLeft: x,
-    })
+
+    if (lastSmallerElement) {
+      showTooltip({
+        tooltipData: lastSmallerElement,
+        tooltipLeft: xValueScale(lastSmallerElement.date),
+      })
+    }
   }
 
   return (
-    <div>
-      <svg width={width} height={height}>
+    <div className="relative">
+      <svg width={width} height={height} className="absolute inset-0 z-[-2]">
         <Group left={margins.left} top={margins.top}>
           <GridRows
             scale={yValueScale}
             width={innerWidth}
             strokeDasharray="3"
-            stroke={colors.backgroundLine}
+            stroke={colorsPreset.backgroundLine}
             strokeWidth={1}
             pointerEvents="none"
             numTicks={yAxisNumTicks}
           />
+        </Group>
+      </svg>
+      {lineColorClassName && (
+        <>
+          <div
+            className={cn('pointer-events-none absolute z-[-1]', lineColorClassName)}
+            style={{
+              maskImage: `url(#line-mask-${componentId})`,
+              left: margins.left,
+              top: margins.top,
+              width: innerWidth,
+              height: innerHeight,
+            }}
+          />
+          <div
+            className={cn('pointer-events-none absolute z-[-1]', lineColorClassName)}
+            style={{
+              maskImage: `url(#circle-mask-${componentId})`,
+              left: margins.left,
+              top: margins.top,
+              width: innerWidth,
+              height: innerHeight,
+            }}
+          />
+        </>
+      )}
+      <svg width={width} height={height}>
+        <Group left={margins.left} top={margins.top}>
+          {lineColorClassName ? (
+            <defs>
+              <mask id={`line-mask-${componentId}`}>
+                <LinePath
+                  stroke="white"
+                  strokeWidth={2}
+                  data={data}
+                  x={(data) => xValueScale(data.date)}
+                  y={(data) => yValueScale(data.apy.toNumber())}
+                  curve={curveCardinal}
+                />
+              </mask>
+            </defs>
+          ) : (
+            <LinePath
+              stroke={primaryColor}
+              strokeWidth={2}
+              data={data}
+              x={(data) => xValueScale(data.date)}
+              y={(data) => yValueScale(data.apy.toNumber())}
+              curve={curveCardinal}
+            />
+          )}
 
           <LinearGradient
-            id="area-gradient"
-            from={colors.primary}
-            to={colors.primary}
+            id={`area-gradient-${componentId}`}
+            from={primaryColor}
+            to={primaryColor}
             fromOpacity={0.5}
             toOpacity={0}
-          />
-          <LinePath
-            stroke={colors.primary}
-            strokeWidth={2}
-            data={data}
-            x={(data) => xValueScale(data.date)}
-            y={(data) => yValueScale(data.apr.toNumber())}
-            curve={curveCardinal}
           />
           <AreaClosed
             strokeWidth={2}
             data={data}
             x={(data) => xValueScale(data.date)}
-            y={(data) => yValueScale(data.apr.toNumber())}
+            y={(data) => yValueScale(data.apy.toNumber())}
             yScale={yValueScale}
             curve={curveCardinal}
-            fill="url(#area-gradient)"
+            fill={`url(#area-gradient-${componentId})`}
           />
 
           <AxisBottom
@@ -121,7 +172,7 @@ function Chart({
             strokeWidth={0}
             numTicks={xAxisNumTicks}
             tickLabelProps={() => ({
-              fill: colors.axisTickLabel,
+              fill: colorsPreset.axisTickLabel,
               fontSize: 10,
               textAnchor: 'middle',
               dy: 4,
@@ -135,7 +186,7 @@ function Chart({
             numTicks={yAxisNumTicks}
             tickFormat={formatPercentageTick}
             tickLabelProps={() => ({
-              fill: colors.axisTickLabel,
+              fill: colorsPreset.axisTickLabel,
               fontSize: 10,
               dx: -margins.left + 10,
               dy: 3,
@@ -157,25 +208,39 @@ function Chart({
               <Line
                 from={{ x: tooltipLeft, y: 0 }}
                 to={{ x: tooltipLeft, y: innerHeight }}
-                stroke={colors.tooltipLine}
+                stroke={colorsPreset.tooltipLine}
                 strokeWidth={2}
                 pointerEvents="none"
                 strokeDasharray="3"
               />
               <Fragment>
+                {lineColorClassName ? (
+                  <defs>
+                    <mask id={`circle-mask-${componentId}`}>
+                      <circle
+                        cx={tooltipLeft}
+                        cy={yValueScale(tooltipData.apy.toNumber())}
+                        r={8}
+                        fill="white"
+                        pointerEvents="none"
+                      />
+                    </mask>
+                  </defs>
+                ) : (
+                  <circle
+                    cx={tooltipLeft}
+                    cy={yValueScale(tooltipData.apy.toNumber())}
+                    r={8}
+                    fill={primaryColor}
+                    pointerEvents="none"
+                  />
+                )}
                 <circle
                   cx={tooltipLeft}
-                  cy={yValueScale(tooltipData.apr.toNumber())}
-                  r={8}
-                  fill={colors.primary}
-                  pointerEvents="none"
-                />
-                <circle
-                  cx={tooltipLeft}
-                  cy={yValueScale(tooltipData.apr.toNumber())}
+                  cy={yValueScale(tooltipData.apy.toNumber())}
                   r={4}
-                  fill={colors.dot}
-                  stroke={colors.dotStroke}
+                  fill={colorsPreset.dot}
+                  stroke={colorsPreset.dotStroke}
                   strokeWidth={3}
                   pointerEvents="none"
                 />
@@ -187,30 +252,36 @@ function Chart({
 
       {tooltipData && (
         <TooltipWithBounds top={20} left={tooltipLeft + 40} unstyled applyPositionStyle className="pointer-events-none">
-          <TooltipContent data={tooltipData} />
+          <TooltipContent data={tooltipData} primaryColor={primaryColor} lineColorClassName={lineColorClassName} />
         </TooltipWithBounds>
       )}
     </div>
   )
 }
 
-function TooltipContent({ data }: { data: ChartDataPoint }) {
+function TooltipContent({
+  data,
+  primaryColor,
+  lineColorClassName,
+}: { data: ChartDataPoint; primaryColor: string; lineColorClassName?: string }) {
+  const valueProps = lineColorClassName ? { dotClassName: lineColorClassName } : { dotColor: primaryColor }
+
   return (
     <ChartTooltipContent>
       <ChartTooltipContent.Date>{formatTooltipDate(data.date)}</ChartTooltipContent.Date>
-      <ChartTooltipContent.Value dotColor={colors.primary}>
-        APY: {formatPercentage(data.apr, { minimumFractionDigits: 0 })}
+      <ChartTooltipContent.Value {...valueProps}>
+        APY: {formatPercentage(data.apy, { minimumFractionDigits: 0 })}
       </ChartTooltipContent.Value>
     </ChartTooltipContent>
   )
 }
 
 function calculateAprDomain(data: ChartDataPoint[]): ContinuousDomain {
-  const minApr = min(data, (d) => d.apr.toNumber()) || 0
-  const maxApr = max(data, (d) => d.apr.toNumber()) || 0
+  const minApr = min(data, (d) => d.apy.toNumber()) || 0
+  const maxApr = max(data, (d) => d.apy.toNumber()) || 0
 
   return getVerticalDomainWithPadding(minApr, maxApr)
 }
 
 const ChartWithTooltip = withTooltip<ChartProps, ChartDataPoint>(Chart)
-export { ChartWithTooltip as RewardsChart }
+export { ChartWithTooltip as ApyChart }
