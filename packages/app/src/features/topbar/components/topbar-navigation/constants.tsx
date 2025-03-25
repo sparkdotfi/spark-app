@@ -13,4 +13,8 @@ export const LINKS_DATA = {
     label: 'Borrow',
     icon: <img src={assets.page.borrow} alt="Borrow icon" className="h-5 w-5" />,
   },
+  sparkToken: {
+    label: 'SPK Token',
+    icon: <img src={assets.token.spk} alt="Spark token icon" className="h-5 w-5" />,
+  },
 }

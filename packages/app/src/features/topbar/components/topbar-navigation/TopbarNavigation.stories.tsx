@@ -22,6 +22,8 @@ const args = {
     },
   ],
   isBorrowSubLinkActive: false,
+  isSparkTokenSubLinkActive: false,
+  spkStakingApy: Percentage(0.173),
   blockedPages: [],
   savingsConverter: {
     data: {
@@ -75,19 +77,17 @@ export const MarketsPage: Story = {
   },
 }
 
-export const SavingsDropdownOpenPage: Story = {
+export const SparkTokenPage: Story = {
+  args: {
+    ...args,
+    isSparkTokenSubLinkActive: true,
+  },
   parameters: {
     reactRouter: reactRouterParameters({
       routing: {
-        path: paths.savings,
+        path: paths.spkStaking,
       },
     }),
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement.ownerDocument.body)
-    const button = await canvas.findByRole('button', { name: /Borrow/i })
-
-    await userEvent.click(button)
   },
 }
 
@@ -106,6 +106,26 @@ export const MarketsDropdownOpenPage: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement.ownerDocument.body)
     const button = await canvas.findByRole('button', { name: /Borrow/i })
+
+    await userEvent.click(button)
+  },
+}
+
+export const SparkTokenDropdownOpenPage: Story = {
+  args: {
+    ...args,
+    isSparkTokenSubLinkActive: true,
+  },
+  parameters: {
+    reactRouter: reactRouterParameters({
+      routing: {
+        path: paths.spkStaking,
+      },
+    }),
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement.ownerDocument.body)
+    const button = await canvas.findByRole('button', { name: /SPK Token/i })
 
     await userEvent.click(button)
   },

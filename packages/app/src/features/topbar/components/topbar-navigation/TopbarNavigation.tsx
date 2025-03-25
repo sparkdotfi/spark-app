@@ -1,4 +1,5 @@
 import { Path, paths } from '@/config/paths'
+import { formatPercentage } from '@/domain/common/format'
 import { SavingsAPYBadge } from '@/features/savings/components/navbar-item/SavingsAPYBadge'
 import { SavingsConverterQueryResults } from '@/features/topbar/types'
 import {
@@ -8,10 +9,12 @@ import {
   DropdownMenuTrigger,
 } from '@/ui/atoms/dropdown/DropdownMenu'
 import { cn } from '@/ui/utils/style'
+import { Percentage } from '@marsfoundation/common-universal'
 import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { TopbarButton } from './TopbarButton'
+import { SparkTokenNavLinkContent } from './components/SparkTokenNavLinkContent'
 import { LINKS_DATA } from './constants'
 
 export interface TopbarNavigationInfo {
@@ -21,24 +24,30 @@ export interface TopbarNavigationInfo {
 
 export interface TopbarNavigationProps {
   savingsConverter: SavingsConverterQueryResults | undefined
+  spkStakingApy: Percentage | undefined
   blockedPages: Path[]
-  borrowSubLinks: Array<{
+  borrowSubLinks: {
     to: string
     label: string
-  }>
+  }[]
   isBorrowSubLinkActive: boolean
+  isSparkTokenSubLinkActive: boolean
 }
 
 export function TopbarNavigation({
   savingsConverter,
+  spkStakingApy,
   blockedPages,
   borrowSubLinks,
   isBorrowSubLinkActive,
+  isSparkTokenSubLinkActive,
 }: TopbarNavigationProps) {
-  const [linksDropdownOpen, setLinksDropdownOpen] = useState(false)
+  const [borrowDropdownOpen, setBorrowDropdownOpen] = useState(false)
+  const [sparkTokenDropdownOpen, setSparkTokenDropdownOpen] = useState(false)
 
   function handleNavigate() {
-    setLinksDropdownOpen(false)
+    setBorrowDropdownOpen(false)
+    setSparkTokenDropdownOpen(false)
   }
 
   return (
@@ -61,17 +70,17 @@ export function TopbarNavigation({
         />
       )}
 
-      <DropdownMenu open={linksDropdownOpen} onOpenChange={setLinksDropdownOpen}>
+      <DropdownMenu open={borrowDropdownOpen} onOpenChange={setBorrowDropdownOpen}>
         <DropdownMenuTrigger asChild>
           <TopbarButton
             label={LINKS_DATA.borrow.label}
             type="borrow"
             prefixIcon={LINKS_DATA.borrow.icon}
             postfixSlot={
-              <ChevronDown className={cn('transition-transform duration-300', linksDropdownOpen && 'rotate-180')} />
+              <ChevronDown className={cn('transition-transform duration-300', borrowDropdownOpen && 'rotate-180')} />
             }
             active={isBorrowSubLinkActive}
-            highlighted={linksDropdownOpen}
+            highlighted={borrowDropdownOpen}
           />
         </DropdownMenuTrigger>
 
@@ -102,6 +111,47 @@ export function TopbarNavigation({
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
+
+      {import.meta.env.VITE_DEV_SPARK_TOKEN === '1' && (
+        <DropdownMenu open={sparkTokenDropdownOpen} onOpenChange={setSparkTokenDropdownOpen}>
+          <DropdownMenuTrigger asChild>
+            <TopbarButton
+              label={LINKS_DATA.sparkToken.label}
+              type="sparkToken"
+              prefixIcon={LINKS_DATA.sparkToken.icon}
+              postfixSlot={
+                <ChevronDown
+                  className={cn('transition-transform duration-300', sparkTokenDropdownOpen && 'rotate-180')}
+                />
+              }
+              active={isSparkTokenSubLinkActive}
+              highlighted={sparkTokenDropdownOpen}
+            />
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent className="w-72 shadow-2xl" align="start">
+            <DropdownMenuItem
+              key={paths.spkStaking}
+              asChild
+              className="cursor-pointer rounded-none border-b border-b-primary p-0 first:rounded-t-xs last:rounded-b-xs last:border-none"
+            >
+              <NavLink to={paths.spkStaking} onClick={handleNavigate}>
+                {({ isActive }) => (
+                  <SparkTokenNavLinkContent isActive={isActive}>
+                    <div className="flex flex-col gap-2">
+                      <div className="typography-label-2 text-primary">Staking</div>
+                      <div className="typography-body-4 text-secondary">Deposit SPK and earn USDS rewards.</div>
+                    </div>
+                    <div className="typography-label-3 rounded-full bg-gradient-spark-primary-2 px-1.5 py-0.5 text-primary-inverse">
+                      {formatPercentage(spkStakingApy)}
+                    </div>
+                  </SparkTokenNavLinkContent>
+                )}
+              </NavLink>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )}
 
       <TopbarButton to={paths.farms} type="farms" label={LINKS_DATA.farms.label} prefixIcon={LINKS_DATA.farms.icon} />
     </div>

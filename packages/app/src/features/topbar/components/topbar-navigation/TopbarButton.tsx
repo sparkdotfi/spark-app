@@ -25,6 +25,10 @@ const buttonVariants = cva(
           'hover:border-page-borrow/40 active:border-page-borrow',
           'hover:shadow-page-borrow/15 focus-visible:ring-page-borrow',
         ),
+        sparkToken: cn(
+          'hover:border-page-spark-token/40 active:border-page-spark-token',
+          'hover:shadow-page-spark-token/15 focus-visible:ring-page-spark-token',
+        ),
       },
       isActive: {
         false: '',
@@ -37,10 +41,12 @@ const buttonVariants = cva(
       { type: 'savings', isHighlighted: true, class: 'border-page-savings/40 shadow-page-savings/15' },
       { type: 'farms', isHighlighted: true, class: 'border-page-farms/40 shadow-page-farms/15' },
       { type: 'borrow', isHighlighted: true, class: 'border-page-borrow/40 shadow-page-borrow/15' },
+      { type: 'sparkToken', isHighlighted: true, class: 'border-page-spark-token/40 shadow-page-spark-token/15' },
       // @note overrides didn't work without important flag
       { type: 'savings', isActive: true, class: '!border-page-savings' },
       { type: 'farms', isActive: true, class: '!border-page-farms' },
       { type: 'borrow', isActive: true, class: '!border-page-borrow' },
+      { type: 'sparkToken', isActive: true, class: '!border-page-spark-token' },
     ],
     defaultVariants: {
       isActive: false,

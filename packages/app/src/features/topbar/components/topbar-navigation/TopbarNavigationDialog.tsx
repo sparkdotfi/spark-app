@@ -1,4 +1,5 @@
 import { paths } from '@/config/paths'
+import { formatPercentage } from '@/domain/common/format'
 import { SavingsAPYBadge } from '@/features/savings/components/navbar-item/SavingsAPYBadge'
 import { assets } from '@/ui/assets'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/atoms/accordion/Accordion'
@@ -11,13 +12,16 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { TopbarButton } from './TopbarButton'
 import { TopbarNavigationProps } from './TopbarNavigation'
+import { SparkTokenNavLinkContent } from './components/SparkTokenNavLinkContent'
 import { LINKS_DATA } from './constants'
 
 export function TopbarNavigationDialog({
   savingsConverter,
+  spkStakingApy,
   blockedPages,
   borrowSubLinks,
   isBorrowSubLinkActive,
+  isSparkTokenSubLinkActive,
 }: TopbarNavigationProps) {
   const [dialogOpen, setDialogOpen] = useState(false)
 
@@ -88,6 +92,38 @@ export function TopbarNavigationDialog({
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+
+        <div className="border-primary border-t" />
+
+        {import.meta.env.VITE_DEV_SPARK_TOKEN === '1' && (
+          <Accordion type="single" collapsible defaultValue={isSparkTokenSubLinkActive ? 'nav-accordion' : ''}>
+            <AccordionItem value="nav-accordion">
+              <AccordionTrigger className="w-full p-0 pr-5" role="none">
+                <TopbarButton
+                  label={LINKS_DATA.sparkToken.label}
+                  type="sparkToken"
+                  prefixIcon={LINKS_DATA.sparkToken.icon}
+                  active={isSparkTokenSubLinkActive}
+                  className="w-full"
+                />
+              </AccordionTrigger>
+              <AccordionContent className="flex flex-col gap-2 px-12">
+                <NavLink to={paths.spkStaking}>
+                  {({ isActive }) => (
+                    <MenuItem onClick={closeDialog} className="overflow-hidden border border-primary text-secondary">
+                      <SparkTokenNavLinkContent isActive={isActive}>
+                        <div className="typography-label-2 text-primary">Staking</div>
+                        <div className="typography-label-3 rounded-full bg-gradient-spark-primary-2 px-1.5 py-0.5 text-primary-inverse">
+                          {formatPercentage(spkStakingApy)}
+                        </div>
+                      </SparkTokenNavLinkContent>
+                    </MenuItem>
+                  )}
+                </NavLink>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        )}
 
         <div className="border-primary border-t" />
 
