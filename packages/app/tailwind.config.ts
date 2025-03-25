@@ -260,6 +260,7 @@ export default {
           savings: 'rgb(var(--page-savings))',
           borrow: 'rgb(var(--page-borrow))',
           farms: 'rgb(var(--page-farms))',
+          'spark-token': 'rgb(var(--page-spark-token))',
         },
         fg: {
           primary: {

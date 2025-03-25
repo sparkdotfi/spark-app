@@ -81,7 +81,9 @@ const args = {
       },
     ],
     isBorrowSubLinkActive: false,
+    isSparkTokenSubLinkActive: false,
     blockedPages: [],
+    spkStakingApy: Percentage(0.173),
     savingsConverter: {
       data: {
         apy: Percentage(0.05),
