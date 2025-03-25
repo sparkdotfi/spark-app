@@ -12,28 +12,14 @@
   },
   "exports": {
     "./env": {
-      "import": {
-        "@marsfoundation/local-spark-monorepo": "./src/env/index.ts",
-        "types": "./dist/types/env/index.d.ts",
-        "default": "./dist/esm/env/index.js"
-      },
-      "require": {
-        "@marsfoundation/local-spark-monorepo": "./src/env/index.ts",
-        "types": "./dist/types/env/index.d.ts",
-        "default": "./dist/cjs/env/index.js"
-      }
+      "@marsfoundation/local-spark-monorepo": "./src/env/index.ts",
+      "types": "./dist/types/env/index.d.ts",
+      "default": "./dist/env/index.js"
     },
     "./wagmi": {
-      "import": {
-        "@marsfoundation/local-spark-monorepo": "./src/wagmi/index.ts",
-        "types": "./dist/types/wagmi/index.d.ts",
-        "default": "./dist/esm/wagmi/index.js"
-      },
-      "require": {
-        "@marsfoundation/local-spark-monorepo": "./src/wagmi/index.ts",
-        "types": "./dist/types/wagmi/index.d.ts",
-        "default": "./dist/cjs/wagmi/index.js"
-      }
+      "@marsfoundation/local-spark-monorepo": "./src/wagmi/index.ts",
+      "types": "./dist/types/wagmi/index.d.ts",
+      "default": "./dist/wagmi/index.js"
     }
   },
   "typesVersions": {
@@ -49,9 +35,7 @@
     "fix": "cd ../../ && pnpm run check:fix && cd - && pnpm run verify",
     "test": "mocha src/**/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "build": "pnpm run build:cjs && pnpm run build:esm",
+    "build": "tsc -p tsconfig.json",
     "clean": "rm -rf dist",
     "prepublishOnly": "pnpm run clean && pnpm run build"
   },

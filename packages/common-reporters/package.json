@@ -5,8 +5,7 @@
     "node": ">=18.0.0"
   },
   "type": "module",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "repository": {
     "type": "git",
@@ -15,16 +14,9 @@
   },
   "exports": {
     ".": {
-      "import": {
-        "@marsfoundation/local-spark-monorepo": "./src/index.ts",
-        "types": "./dist/types/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "@marsfoundation/local-spark-monorepo": "./src/index.ts",
-        "types": "./dist/types/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      }
+      "@marsfoundation/local-spark-monorepo": "./src/index.ts",
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "files": ["dist"],
@@ -34,9 +26,7 @@
     "fix": "cd ../../ && pnpm run check:fix && cd - && pnpm run verify",
     "test": "mocha src/**/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "build": "pnpm run build:cjs && pnpm run build:esm",
+    "build": "tsc -p tsconfig.json",
     "clean": "rm -rf dist",
     "prepublishOnly": "pnpm run clean && pnpm run build"
   },
