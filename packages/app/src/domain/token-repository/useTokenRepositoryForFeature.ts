@@ -32,6 +32,8 @@ export function useTokenRepositoryForFeature(
         return chainConfig.farms
       case 'sparkRewards':
         return undefined
+      case 'sparkToken':
+        return undefined
       default:
         assertNever(featureGroup)
     }

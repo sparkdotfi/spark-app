@@ -5,18 +5,18 @@ import { BorrowActionRow } from '../../flavours/borrow/BorrowActionRow'
 import { ClaimFarmRewardsActionRow } from '../../flavours/claim-farm-rewards/ClaimFarmRewardsActionRow'
 import { ClaimMarketRewardsActionRow } from '../../flavours/claim-market-rewards/ClaimMarketRewardsActionRow'
 import { ClaimSparkRewardsActionRow } from '../../flavours/claim-spark-rewards/ClaimSparkRewardsActionRow'
-import { ClaimUnstakeSparkActionRow } from '../../flavours/claim-unstake-spark/ClaimUnstakeSparkActionRow'
 import { DepositToSavingsActionRow } from '../../flavours/deposit-to-savings/DepositToSavingsActionRow'
 import { DepositActionRow } from '../../flavours/deposit/DepositActionRow'
 import { DowngradeActionRow } from '../../flavours/downgrade/DowngradeActionRow'
+import { FinalizeSpkUnstakeActionRow } from '../../flavours/finalize-spk-unstake/FinalizeSpkUnstakeActionRow'
 import { PermitActionRow } from '../../flavours/permit/PermitActionRow'
 import { PsmConvertActionRow } from '../../flavours/psm-convert/PsmConvertActionRow'
 import { RepayActionRow } from '../../flavours/repay/RepayActionRow'
 import { SetUseAsCollateralActionRow } from '../../flavours/set-use-as-collateral/SetUseAsCollateralActionRow'
 import { SetUserEModeActionRow } from '../../flavours/set-user-e-mode/SetUserEModeActionRow'
-import { StakeSparkActionRow } from '../../flavours/stake-spark/StakeSparkActionRow'
+import { StakeSpkActionRow } from '../../flavours/stake-spk/StakeSpkActionRow'
 import { StakeActionRow } from '../../flavours/stake/StakeActionRow'
-import { UnstakeSparkActionRow } from '../../flavours/unstake-spark/UnstakeSparkActionRow'
+import { UnstakeSpkActionRow } from '../../flavours/unstake-spk/UnstakeSpkActionRow'
 import { UnstakeActionRow } from '../../flavours/unstake/UnstakeActionRow'
 import { UpgradeActionRow } from '../../flavours/upgrade/UpgradeActionRow'
 import { WithdrawFromSavingsActionRow } from '../../flavours/withdraw-from-savings/WithdrawFromSavingsActionRow'
@@ -90,12 +90,12 @@ export function Actions({ actionHandlers, batchActionHandler, layout }: ActionsP
               return <ClaimFarmRewardsActionRow action={handler.action} {...props} />
             case 'claimSparkRewards':
               return <ClaimSparkRewardsActionRow action={handler.action} {...props} />
-            case 'stakeSpark':
-              return <StakeSparkActionRow action={handler.action} {...props} />
-            case 'unstakeSpark':
-              return <UnstakeSparkActionRow action={handler.action} {...props} />
-            case 'claimUnstakeSpark':
-              return <ClaimUnstakeSparkActionRow action={handler.action} {...props} />
+            case 'stakeSpk':
+              return <StakeSpkActionRow action={handler.action} {...props} />
+            case 'unstakeSpk':
+              return <UnstakeSpkActionRow action={handler.action} {...props} />
+            case 'finalizeSpkUnstake':
+              return <FinalizeSpkUnstakeActionRow action={handler.action} {...props} />
             default:
               assertNever(handler.action)
           }

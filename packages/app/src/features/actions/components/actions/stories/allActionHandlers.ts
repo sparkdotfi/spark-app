@@ -200,18 +200,18 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     state: { status: 'ready' },
     onAction: () => {},
   },
-  stakeSpark: {
+  stakeSpk: {
     action: {
-      type: 'stakeSpark',
+      type: 'stakeSpk',
       spk: tokens.SPK,
       amount: NormalizedUnitNumber(1_232.12),
     },
     state: { status: 'ready' },
     onAction: () => {},
   },
-  unstakeSpark: {
+  unstakeSpk: {
     action: {
-      type: 'unstakeSpark',
+      type: 'unstakeSpk',
       spk: tokens.SPK,
       amount: NormalizedUnitNumber(1_232.12),
       accountActiveShares: BaseUnitNumber(parseEther('1')),
@@ -220,9 +220,9 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     state: { status: 'ready' },
     onAction: () => {},
   },
-  claimUnstakeSpark: {
+  finalizeSpkUnstake: {
     action: {
-      type: 'claimUnstakeSpark',
+      type: 'finalizeSpkUnstake',
       spk: tokens.SPK,
       amount: NormalizedUnitNumber(1_232.12),
       epochs: [1, 2],

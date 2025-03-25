@@ -13,19 +13,19 @@ import { BorrowAction, BorrowObjective } from '../flavours/borrow/types'
 import { ClaimFarmRewardsAction, ClaimFarmRewardsObjective } from '../flavours/claim-farm-rewards/types'
 import { ClaimMarketRewardsAction, ClaimMarketRewardsObjective } from '../flavours/claim-market-rewards/types'
 import { ClaimSparkRewardsAction, ClaimSparkRewardsObjective } from '../flavours/claim-spark-rewards/types'
-import { ClaimUnstakeSparkAction, ClaimUnstakeSparkObjective } from '../flavours/claim-unstake-spark/types'
 import { ConvertStablesObjective } from '../flavours/convert-stables/types'
 import { DepositToSavingsAction, DepositToSavingsObjective } from '../flavours/deposit-to-savings/types'
 import { DepositAction, DepositObjective } from '../flavours/deposit/types'
 import { DowngradeAction, DowngradeObjective } from '../flavours/downgrade/types'
+import { FinalizeSpkUnstakeAction, FinalizeSpkUnstakeObjective } from '../flavours/finalize-spk-unstake/types'
 import { PermitAction } from '../flavours/permit/types'
 import { PsmConvertAction } from '../flavours/psm-convert/types'
 import { RepayAction, RepayObjective } from '../flavours/repay/types'
 import { SetUseAsCollateralAction, SetUseAsCollateralObjective } from '../flavours/set-use-as-collateral/types'
 import { SetUserEModeAction, SetUserEModeObjective } from '../flavours/set-user-e-mode/logic/types'
-import { StakeSparkAction, StakeSparkObjective } from '../flavours/stake-spark/types'
+import { StakeSpkAction, StakeSpkObjective } from '../flavours/stake-spk/types'
 import { StakeAction, StakeObjective } from '../flavours/stake/types'
-import { UnstakeSparkAction, UnstakeSparkObjective } from '../flavours/unstake-spark/types'
+import { UnstakeSpkAction, UnstakeSpkObjective } from '../flavours/unstake-spk/types'
 import { UnstakeAction, UnstakeObjective } from '../flavours/unstake/types'
 import { UpgradeAction, UpgradeObjective } from '../flavours/upgrade/types'
 import { WithdrawFromSavingsAction, WithdrawFromSavingsObjective } from '../flavours/withdraw-from-savings/types'
@@ -54,9 +54,9 @@ export type Objective =
   | ClaimFarmRewardsObjective
   | ConvertStablesObjective
   | ClaimSparkRewardsObjective
-  | StakeSparkObjective
-  | UnstakeSparkObjective
-  | ClaimUnstakeSparkObjective
+  | StakeSpkObjective
+  | UnstakeSpkObjective
+  | FinalizeSpkUnstakeObjective
 export type ObjectiveType = Objective['type']
 
 export type Action =
@@ -79,9 +79,9 @@ export type Action =
   | PsmConvertAction
   | ClaimFarmRewardsAction
   | ClaimSparkRewardsAction
-  | StakeSparkAction
-  | UnstakeSparkAction
-  | ClaimUnstakeSparkAction
+  | StakeSpkAction
+  | UnstakeSpkAction
+  | FinalizeSpkUnstakeAction
 export type ActionType = Action['type']
 
 type BaseActionHandlerState<ErrorKind extends string> =

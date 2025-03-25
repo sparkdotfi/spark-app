@@ -51,7 +51,7 @@ const historicDataResponseSchema = z
   .transform((value) =>
     value.results.map((result) => ({
       date: result.date,
-      apr: result.apr,
-      totalStaked: result.total_staked,
+      apy: result.apr,
+      tvl: result.total_staked,
     })),
   )

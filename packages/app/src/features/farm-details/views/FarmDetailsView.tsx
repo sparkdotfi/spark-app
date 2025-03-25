@@ -2,13 +2,13 @@ import { TokenWithBalance } from '@/domain/common/types'
 import { Farm } from '@/domain/farms/types'
 import { Token } from '@/domain/types/Token'
 import { getTokenImage } from '@/ui/assets'
+import { ApyChart } from '@/ui/charts/apy-chart/ApyChart'
 import { ChartTabsPanel, createChartTab } from '@/ui/charts/components/ChartTabsPanel'
+import { TvlChart } from '@/ui/charts/tvl-chart/TvlChart'
 import { PageLayout } from '@/ui/layouts/PageLayout'
 import { ConnectOrSandboxCTAPanel } from '@/ui/organisms/connect-or-sandbox-cta-panel/ConnectOrSandboxCTAPanel'
 import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { BackNav } from '../components/back-nav/BackNav'
-import { RewardsChart } from '../components/chart/rewards/RewardsChart'
-import { TvlChart } from '../components/chart/tvl/TvlChart'
 import { ActiveFarmInfoPanel } from '../components/farm-info-panel/active/ActiveFarmInfoPanel'
 import { InactiveFarmInfoPanel } from '../components/farm-info-panel/inactive/InactiveFarmInfoPanel'
 import { Header } from '../components/header/Header'
@@ -93,10 +93,10 @@ export function FarmDetailsView({
                     createChartTab({
                       id: 'rewards',
                       label: 'Rewards over time',
-                      component: RewardsChart,
+                      component: ApyChart,
                       isError: chartDetails.farmHistory.isError,
                       isPending: chartDetails.farmHistory.isLoading,
-                      props: { data: chartDetails.farmHistory.data ?? [] },
+                      props: { data: chartDetails.farmHistory.data ?? [], primaryColor: '#FA43BD' },
                       availableTimeframes: chartDetails.availableTimeframes,
                       selectedTimeframe: chartDetails.timeframe,
                       setSelectedTimeframe: chartDetails.onTimeframeChange,
@@ -109,7 +109,7 @@ export function FarmDetailsView({
                 component: TvlChart,
                 isError: chartDetails.farmHistory.isError,
                 isPending: chartDetails.farmHistory.isLoading,
-                props: { data: chartDetails.farmHistory.data ?? [] },
+                props: { data: chartDetails.farmHistory.data ?? [], primaryColor: '#FA43BD' },
                 availableTimeframes: chartDetails.availableTimeframes,
                 selectedTimeframe: chartDetails.timeframe,
                 setSelectedTimeframe: chartDetails.onTimeframeChange,
