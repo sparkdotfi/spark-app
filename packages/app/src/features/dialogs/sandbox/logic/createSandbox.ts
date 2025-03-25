@@ -2,8 +2,8 @@ import { apiUrl } from '@/config/consts'
 import { AppConfig } from '@/config/feature-flags'
 import { trackEvent } from '@/domain/analytics/mixpanel'
 import { createTenderlyFork } from '@/domain/sandbox/createTenderlyFork'
+import { getTenderlyClient } from '@/features/dialogs/sandbox/tenderly/TenderlyClient'
 import { CheckedAddress, UnixTime, raise } from '@marsfoundation/common-universal'
-import { getTenderlyClient } from 'node_modules/@marsfoundation/common-testnets/src/nodes/tenderly/TenderlyClient'
 import { Address, Chain, parseEther, parseUnits } from 'viem'
 import { Config } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
@@ -25,7 +25,6 @@ export async function createSandbox(opts: {
     rpcUrl: forkUrl,
     originChain: chainIdToChain[opts.originChainId] ?? raise('Only mainnet is supported as origin chain'),
     forkChainId: opts.forkChainId,
-    onBlock: async () => {},
   })
   await testnetClient.setBalance(opts.userAddress, parseEther(opts.mintBalances.etherAmt.toString()))
 
