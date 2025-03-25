@@ -78,5 +78,6 @@ export const baseConfig: ChainConfigEntry = {
     psmStables: [usdc.symbol, usds.symbol],
   },
   farms: undefined,
+  sparkToken: undefined,
   definedTokens: [usds, usdc, susds, susdc],
 }

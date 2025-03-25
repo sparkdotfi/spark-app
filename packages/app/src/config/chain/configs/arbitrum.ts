@@ -81,5 +81,6 @@ export const arbitrumConfig: ChainConfigEntry = {
     ],
     psmStables: [usds.symbol, usdc.symbol],
   },
+  sparkToken: undefined,
   definedTokens: [usdc, usds, susds, susdc],
 }

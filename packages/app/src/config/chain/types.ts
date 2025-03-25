@@ -119,6 +119,11 @@ export interface FarmsConfig {
   configs: FarmConfig[]
 }
 
+export interface SparkTokenConfig {
+  spkSymbol: TokenSymbol
+  usdsSymbol: TokenSymbol
+}
+
 export interface ChainConfigEntry {
   originChainId: SupportedChainId
   daiSymbol: TokenSymbol | undefined
@@ -132,6 +137,7 @@ export interface ChainConfigEntry {
   markets: MarketsConfig | undefined
   savings: SavingsConfig | undefined
   farms: FarmsConfig | undefined
+  sparkToken: SparkTokenConfig | undefined
   definedTokens: TokenConfig[]
 }
 
