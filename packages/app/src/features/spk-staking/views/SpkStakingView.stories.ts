@@ -92,3 +92,5 @@ export const Active: Story = {
     },
   },
 }
+export const ActiveMobile = getMobileStory(Active)
+export const ActiveTablet = getTabletStory(Active)
