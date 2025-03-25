@@ -64,6 +64,10 @@ const TOKENS_ON_MAINNET = {
     address: '0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf',
     decimals: 8,
   },
+  LBTC: {
+    address: '0x8236a87084f8B84306f72007F36F2618A5634494',
+    decimals: 8,
+  },
 } as const
 
 export const TOKENS_ON_FORK = {

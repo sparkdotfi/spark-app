@@ -142,6 +142,118 @@ test.describe('E-Mode dialog', () => {
     })
   })
 
+  test.describe('BTC correlated assets borrowed', () => {
+    let eModeDialog: EModeDialogPageObject
+    let borrowDialog: DialogPageObject
+    let myPortfolioPage: MyPortfolioPageObject
+
+    test.beforeEach(async ({ page }) => {
+      const testContext = await setup(page, {
+        blockchain: {
+          chain: mainnet,
+          blockNumber: 22121000n, // btc e-mode category available
+        },
+        initialPage: 'easyBorrow',
+        account: {
+          type: 'connected-random',
+          assetBalances: { ETH: 1, LBTC: 100 },
+        },
+      })
+
+      eModeDialog = new EModeDialogPageObject(testContext)
+      borrowDialog = new DialogPageObject({
+        testContext,
+        header: /Borrow/,
+      })
+      myPortfolioPage = new MyPortfolioPageObject(testContext)
+
+      const borrowPage = new BorrowPageObject(testContext)
+      await borrowPage.depositWithoutBorrowActions({ assetsToDeposit: { LBTC: 20 } })
+      await myPortfolioPage.goToMyPortfolioAction()
+
+      await myPortfolioPage.clickBorrowButtonAction('cbBTC')
+      await borrowDialog.fillAmountAction(8)
+      await borrowDialog.actionsContainer.acceptAllActionsAction(1)
+      await borrowDialog.viewInMyPortfolioAction()
+    })
+
+    test('can switch from no e-mode to btc correlated', async () => {
+      await myPortfolioPage.clickEModeButtonAction()
+      await eModeDialog.expectEModeCategoryTileStatus('No E-Mode', 'Active')
+      await eModeDialog.expectEModeCategoryTileStatus('BTC Correlated', 'Inactive')
+      await eModeDialog.expectEModeTransactionOverview({
+        variant: 'e-mode-no-change',
+        availableAssets: {
+          assets: 'All assets',
+        },
+        hf: '1.75',
+        maxLtv: '65.00%',
+      })
+
+      await eModeDialog.clickEModeCategoryTileAction('BTC Correlated')
+      await eModeDialog.actionsContainer.expectActions([{ type: 'setUserEMode', eModeCategoryId: 1 }])
+      await eModeDialog.expectEModeTransactionOverview({
+        variant: 'e-mode-change',
+        availableAssets: {
+          category: 'BTC Correlated',
+          assets: 'cbBTC, LBTC',
+        },
+        hf: {
+          before: '1.75',
+          after: '2.25',
+        },
+        maxLtv: {
+          before: '65.00%',
+          after: '85.00%',
+        },
+      })
+
+      await eModeDialog.actionsContainer.acceptAllActionsAction(1)
+      await eModeDialog.expectEModeSuccessPage('BTC Correlated')
+      await eModeDialog.viewInMyPortfolioAction()
+      await myPortfolioPage.expectEModeBadgeText('BTC Correlated')
+    })
+
+    test('cannot switch from btc correlated to stablecoins', async () => {
+      await myPortfolioPage.clickEModeButtonAction()
+      await eModeDialog.clickEModeCategoryTileAction('Stablecoins')
+      await eModeDialog.expectAlertMessage(
+        setUserEModeValidationIssueToMessage['borrowed-assets-emode-category-mismatch'],
+      )
+      await eModeDialog.actionsContainer.expectDisabledActions([{ type: 'setUserEMode', eModeCategoryId: 2 }])
+    })
+
+    test('can enter btc correlated e-mode and switch back to no e-mode', async () => {
+      await myPortfolioPage.clickEModeButtonAction()
+      await eModeDialog.setEModeAction('BTC Correlated')
+      await myPortfolioPage.expectEModeBadgeText('BTC Correlated')
+      await myPortfolioPage.clickEModeButtonAction()
+
+      await eModeDialog.expectEModeCategoryTileStatus('BTC Correlated', 'Active')
+      await eModeDialog.expectEModeCategoryTileStatus('No E-Mode', 'Inactive')
+      await eModeDialog.clickEModeCategoryTileAction('No E-Mode')
+
+      await eModeDialog.expectEModeTransactionOverview({
+        variant: 'e-mode-change',
+        availableAssets: {
+          assets: 'All assets',
+        },
+        hf: {
+          before: '2.25',
+          after: '1.75',
+        },
+        maxLtv: {
+          before: '85.00%',
+          after: '65.00%',
+        },
+      })
+      await eModeDialog.actionsContainer.acceptAllActionsAction(1)
+      await eModeDialog.expectEModeSuccessPage('No E-Mode')
+      await eModeDialog.viewInMyPortfolioAction()
+      await myPortfolioPage.expectEModeBadgeText('E-Mode Off')
+    })
+  })
+
   test.describe('Stablecoins borrowed', () => {
     let eModeDialog: EModeDialogPageObject
     let borrowDialog: DialogPageObject
