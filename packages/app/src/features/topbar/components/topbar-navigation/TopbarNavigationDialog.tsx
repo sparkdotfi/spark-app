@@ -110,7 +110,10 @@ export function TopbarNavigationDialog({
               <AccordionContent className="flex flex-col gap-2 px-12">
                 <NavLink to={paths.spkStaking}>
                   {({ isActive }) => (
-                    <MenuItem onClick={closeDialog} className="overflow-hidden border border-primary text-secondary">
+                    <MenuItem
+                      onClick={closeDialog}
+                      className="overflow-hidden border border-primary p-0 text-secondary"
+                    >
                       <SparkTokenNavLinkContent isActive={isActive}>
                         <div className="typography-label-2 text-primary">Staking</div>
                         <div className="typography-label-3 rounded-full bg-gradient-spark-primary-2 px-1.5 py-0.5 text-primary-inverse">

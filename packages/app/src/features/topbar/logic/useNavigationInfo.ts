@@ -1,7 +1,7 @@
 import { getChainConfigEntry } from '@/config/chain'
 import { paths } from '@/config/paths'
 import { useBlockedPages } from '@/features/compliance/logic/useBlockedPages'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { matchPath, useLocation } from 'react-router-dom'
 import { TopbarNavigationProps } from '../components/topbar-navigation/TopbarNavigation'
 import { useSavingsConverter } from './useSavingsConverter'

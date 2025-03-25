@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/ui/atoms/dropdown/DropdownMenu'
 import { cn } from '@/ui/utils/style'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'

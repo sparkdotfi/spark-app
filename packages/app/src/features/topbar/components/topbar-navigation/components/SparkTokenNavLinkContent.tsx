@@ -9,7 +9,7 @@ export function SparkTokenNavLinkContent({ isActive, children }: SparkTokenNavLi
   return (
     <div
       className={cn(
-        'relative flex w-full gap-2 text-secondary hover:text-primary sm:p-6',
+        'relative flex w-full gap-2 p-4 text-secondary hover:text-primary sm:p-6',
         'items-center sm:grid sm:grid-cols-[1fr_auto] sm:gap-8',
         isActive && 'text-primary',
       )}
