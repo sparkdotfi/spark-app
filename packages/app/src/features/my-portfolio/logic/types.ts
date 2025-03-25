@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 
 import { TokenWithValue } from '@/domain/common/types'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export interface PositionSummary {
   collaterals: TokenWithValue[]

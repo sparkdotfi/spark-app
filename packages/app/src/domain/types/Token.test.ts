@@ -3,8 +3,8 @@ import { zeroAddress } from 'viem'
 
 import { testAddresses } from '@/test/integration/constants'
 
-import { CheckedAddress } from '@marsfoundation/common-universal'
-import { BaseUnitNumber, NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { Token } from './Token'
 import { TokenSymbol } from './TokenSymbol'
 

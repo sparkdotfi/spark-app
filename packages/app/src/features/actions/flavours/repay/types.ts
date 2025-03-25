@@ -1,5 +1,5 @@
 import { Reserve } from '@/domain/market-info/marketInfo'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export interface RepayObjective {
   type: 'repay'

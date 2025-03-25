@@ -1,5 +1,5 @@
 import { USD_MOCK_TOKEN } from '@/domain/types/Token'
-import { NormalizedUnitNumber, assertNever } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, assertNever } from '@sparkdotfi/common-universal'
 import { Timeframe } from './defaults'
 
 export function formatTooltipDate(date: Date): string {

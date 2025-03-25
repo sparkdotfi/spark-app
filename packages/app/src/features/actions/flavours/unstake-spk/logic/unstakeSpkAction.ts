@@ -2,7 +2,7 @@ import { testSpkStakingAddress, testSpkStakingConfig } from '@/config/contracts-
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
-import { toBigInt } from '@marsfoundation/common-universal'
+import { toBigInt } from '@sparkdotfi/common-universal'
 import { UnstakeSpkAction } from '../types'
 
 export function createUnstakeSpkActionConfig(action: UnstakeSpkAction, context: ActionContext): ActionConfig {

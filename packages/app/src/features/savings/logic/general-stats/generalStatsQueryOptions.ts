@@ -2,7 +2,7 @@ import { infoSkyApiUrl } from '@/config/consts'
 import { normalizedUnitNumberSchema } from '@/domain/common/validation'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { queryOptions } from '@tanstack/react-query'
 import { z } from 'zod'
 

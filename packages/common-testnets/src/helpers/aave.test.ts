@@ -1,4 +1,4 @@
-import { BaseUnitNumber, CheckedAddress } from '@marsfoundation/common-universal'
+import { BaseUnitNumber, CheckedAddress } from '@sparkdotfi/common-universal'
 import { expect } from 'earl'
 import { isAddressEqual, parseEther } from 'viem'
 import { mainnet } from 'viem/chains'

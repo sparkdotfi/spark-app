@@ -2,7 +2,7 @@ import { MarketSparkRewards } from '@/domain/spark-rewards/types'
 import { getTokenColor, getTokenImage } from '@/ui/assets'
 import { assets } from '@/ui/assets'
 import { Info } from '@/ui/molecules/info/Info'
-import { Percentage, raise } from '@marsfoundation/common-universal'
+import { Percentage, raise } from '@sparkdotfi/common-universal'
 
 export interface SparkRewardsBadgeProps {
   sparkRewards: MarketSparkRewards[]

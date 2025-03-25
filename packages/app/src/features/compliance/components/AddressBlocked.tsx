@@ -1,5 +1,5 @@
 import { Button } from '@/ui/atoms/button/Button'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { Banner } from './Banner'
 
 export interface AddressBlockedProps {

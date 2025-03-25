@@ -34,7 +34,7 @@ describe.skip('[Type-Level] Opaque type helper', () => {
   })
 })
 
-// we copy-pasted opaque type helper again to simulate Opaque type created from another instance of the same package (@marsfoundation/common-universal)
+// we copy-pasted opaque type helper again to simulate Opaque type created from another instance of the same package (@sparkdotfi/common-universal)
 type StringLiteral<Type> = Type extends string ? (string extends Type ? never : Type) : never
 type WithOpaque<Token extends string> = {
   readonly __TAG__: Token

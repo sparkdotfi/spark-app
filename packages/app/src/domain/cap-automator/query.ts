@@ -1,5 +1,5 @@
 import { capAutomatorConfig } from '@/config/contracts-generated'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { queryOptions } from '@tanstack/react-query'
 import { Config } from 'wagmi'
 import { readContract } from 'wagmi/actions'

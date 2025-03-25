@@ -1,7 +1,7 @@
 import { formatUserSummary } from '@aave/math-utils'
-import { assert, CheckedAddress } from '@marsfoundation/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
-import { bigNumberify } from '@marsfoundation/common-universal'
+import { assert, CheckedAddress } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { bigNumberify } from '@sparkdotfi/common-universal'
 import { AaveBaseCurrency, AaveFormattedReserve, AaveUserSummary, RawAaveUserReserve } from './aave-data-layer/query'
 import type {
   IsolatedBorrowingState,

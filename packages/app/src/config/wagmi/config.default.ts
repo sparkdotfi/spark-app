@@ -1,6 +1,6 @@
 import { SandboxNetwork } from '@/domain/state/sandbox'
-import { raise } from '@marsfoundation/common-universal'
 import { getDefaultConfig } from '@rainbow-me/rainbowkit'
+import { raise } from '@sparkdotfi/common-universal'
 import { Chain } from 'viem'
 import { gnosis, mainnet } from 'viem/chains'
 import { Config } from 'wagmi'

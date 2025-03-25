@@ -1,6 +1,6 @@
-import { bigNumberify } from '@marsfoundation/common-universal'
+import { bigNumberify } from '@sparkdotfi/common-universal'
 
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { healthFactorToLtv } from './math'
 
 describe(healthFactorToLtv.name, () => {

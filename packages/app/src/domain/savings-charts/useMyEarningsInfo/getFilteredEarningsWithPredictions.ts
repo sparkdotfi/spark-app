@@ -1,6 +1,6 @@
 import { SavingsConverter } from '@/domain/savings-converters/types'
 import { filterDataByTimeframe } from '@/ui/charts/utils'
-import { NormalizedUnitNumber, assertNever } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, assertNever } from '@sparkdotfi/common-universal'
 import { calculatePredictions } from './calculatePredictions'
 import { MyEarningsTimeframe } from './common'
 import { MyEarningsInfoItem } from './types'

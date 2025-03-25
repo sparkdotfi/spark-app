@@ -1,5 +1,5 @@
 import { trackUserAddress } from '@/domain/analytics/mixpanel'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { useEffect } from 'react'
 import { useAccount } from 'wagmi'
 

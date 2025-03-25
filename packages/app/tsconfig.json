@@ -16,7 +16,7 @@
       "@/*": ["./src/*"],
       "@sb/*": [".storybook/*"]
     },
-    "customConditions": ["@marsfoundation/local-spark-monorepo"]
+    "customConditions": ["@sparkdotfi/local-spark-monorepo"]
   },
   "include": ["src", ".storybook"],
   "references": [{ "path": "./tsconfig.node.json" }],

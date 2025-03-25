@@ -3,7 +3,7 @@ import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { TokenIcon } from '@/ui/atoms/token-icon/TokenIcon'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { cva } from 'class-variance-authority'
 import { ShortAccountDefinition } from '../../logic/useSavings'
 

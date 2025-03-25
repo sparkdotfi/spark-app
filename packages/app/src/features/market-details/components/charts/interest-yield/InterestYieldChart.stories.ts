@@ -1,8 +1,8 @@
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { bigNumberify } from '@marsfoundation/common-universal'
-import { Percentage } from '@marsfoundation/common-universal'
+import { bigNumberify } from '@sparkdotfi/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 import { InterestYieldChart } from './InterestYieldChart'
 

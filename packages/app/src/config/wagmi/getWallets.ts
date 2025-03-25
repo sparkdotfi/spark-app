@@ -1,6 +1,6 @@
-import { assert } from '@marsfoundation/common-universal'
 import { WalletList, getDefaultWallets } from '@rainbow-me/rainbowkit'
 import { okxWallet, safeWallet } from '@rainbow-me/rainbowkit/wallets'
+import { assert } from '@sparkdotfi/common-universal'
 
 export function getWallets(): WalletList {
   const popularWalletsGroup = getDefaultWallets().wallets[0]

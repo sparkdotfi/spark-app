@@ -1,5 +1,5 @@
 import { Token } from '@/domain/types/Token'
-import { Hex, NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { Hex, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export interface ClaimSparkRewardsObjective {
   type: 'claimSparkRewards'

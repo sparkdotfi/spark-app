@@ -3,7 +3,7 @@ import { tokens } from '@sb/tokens'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { ApyWithRewardsCell } from './ApyWithRewardsCell'

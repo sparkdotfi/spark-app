@@ -8,7 +8,7 @@ import {
   PLAYWRIGHT_WALLET_FORK_URL_KEY,
   PLAYWRIGHT_WALLET_PRIVATE_KEY_KEY,
 } from '@/config/wagmi/e2e-consts'
-import { TestnetClient } from '@marsfoundation/common-testnets'
+import { TestnetClient } from '@sparkdotfi/common-testnets'
 import { zeroAddress } from 'viem'
 import { arbitrum, base, mainnet } from 'viem/chains'
 import { InjectableWallet } from './setup'

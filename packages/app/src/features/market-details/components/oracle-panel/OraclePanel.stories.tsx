@@ -3,10 +3,10 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import { MarketPriceOracleInfo, YieldingFixedOracleInfo } from '@/domain/oracles/types'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
-import { CheckedAddress } from '@marsfoundation/common-universal'
 import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { OraclePanel } from './OraclePanel'
 

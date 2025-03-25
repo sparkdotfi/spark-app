@@ -1,5 +1,5 @@
-import { assert } from '@marsfoundation/common-universal'
-import { HttpClient } from '@marsfoundation/common-universal/http-client'
+import { assert } from '@sparkdotfi/common-universal'
+import { HttpClient } from '@sparkdotfi/common-universal/http-client'
 import { v4 as uuidv4 } from 'uuid'
 import { numberToHex } from 'viem'
 import { z } from 'zod'

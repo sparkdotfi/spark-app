@@ -1,6 +1,6 @@
 import { paths } from '@/config/paths'
-import { Percentage } from '@marsfoundation/common-universal'
 import { WithClassname } from '@sb/decorators'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { userEvent, within } from '@storybook/test'
 import { reactRouterParameters, withRouter } from 'storybook-addon-remix-react-router'

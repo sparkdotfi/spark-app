@@ -1,4 +1,4 @@
-import { raise } from '@marsfoundation/common-universal'
+import { raise } from '@sparkdotfi/common-universal'
 import { getChainConfigEntry } from '..'
 import { NativeAssetInfo } from '../types'
 

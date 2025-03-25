@@ -1,6 +1,6 @@
 import { RewardPointsSyncStatus } from '@/features/farm-details/types'
 import { Alert } from '@/ui/molecules/alert/Alert'
-import { assertNever } from '@marsfoundation/common-universal'
+import { assertNever } from '@sparkdotfi/common-universal'
 
 export interface RewardPointsSyncWarningProps {
   status: RewardPointsSyncStatus

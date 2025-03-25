@@ -7,7 +7,7 @@ import { baseSusdsSavingsRateQueryOptions } from '@/domain/savings-charts/saving
 import { ssrAuthOracleConverterQueryOptions } from '@/domain/savings-converters/ssrAuthOracleConverter'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { assets } from '@/ui/assets'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { base } from 'viem/chains'
 import { USDC_ACCOUNT_ENABLED } from '../flags'
 import { ChainConfigEntry } from '../types'

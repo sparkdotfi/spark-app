@@ -1,4 +1,4 @@
-import { assertNever } from '@marsfoundation/common-universal'
+import { assertNever } from '@sparkdotfi/common-universal'
 import { useQueryClient } from '@tanstack/react-query'
 import { Action, ActionContext, BatchActionHandler, BatchActionHandlerState } from './types'
 import { BatchWriteStatus, useBatchWrite } from './useBatchWrite'

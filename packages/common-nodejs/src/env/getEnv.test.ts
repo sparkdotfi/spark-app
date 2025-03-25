@@ -1,6 +1,6 @@
 import { expect } from 'earl'
 
-import { Equal, Expect } from '@marsfoundation/common-universal'
+import { Equal, Expect } from '@sparkdotfi/common-universal'
 import { Env } from './getEnv.js'
 
 describe(Env.name, () => {

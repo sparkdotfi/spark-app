@@ -1,5 +1,5 @@
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { arbitrum, base, gnosis, mainnet } from 'viem/chains'
 import { AssetsGroup } from './types'
 

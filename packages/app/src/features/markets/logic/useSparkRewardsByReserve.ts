@@ -2,7 +2,7 @@ import { transformSimplifiedQueryResult } from '@/domain/common/query'
 import { Reserve } from '@/domain/market-info/marketInfo'
 import { assignMarketSparkRewards } from '@/domain/spark-rewards/assignMarketSparkRewards'
 import { useOngoingCampaignsQuery } from '@/domain/spark-rewards/useOngoingCampaignsQuery'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { MarketSparkRewards } from '../../../domain/spark-rewards/types'
 
 export interface UseSparkRewardsByReserveParams {

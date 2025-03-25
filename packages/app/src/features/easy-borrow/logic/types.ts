@@ -1,6 +1,6 @@
 import { TokenWithValue } from '@/domain/common/types'
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export type PageState = 'form' | 'confirmation' | 'success'
 export interface PageStatus {

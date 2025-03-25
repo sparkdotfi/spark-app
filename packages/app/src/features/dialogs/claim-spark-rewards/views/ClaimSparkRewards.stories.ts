@@ -4,7 +4,7 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 import { encodeFunctionResult, zeroAddress } from 'viem'
 
-import { Hex, NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { Hex, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 import { incentiveControllerAbi } from '@/config/abis/incentiveControllerAbi'
 import { mainnet } from 'viem/chains'

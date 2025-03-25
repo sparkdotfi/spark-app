@@ -1,6 +1,6 @@
 import { Token } from '@/domain/types/Token'
 import { TokenAmount } from '@/ui/molecules/token-amount/TokenAmount'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { MoveRightIcon } from 'lucide-react'
 
 export interface TransactionOverviewTokenAmountChangeProps {

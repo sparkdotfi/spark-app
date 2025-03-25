@@ -7,7 +7,7 @@ import { ChartTabsPanel, createChartTab } from '@/ui/charts/components/ChartTabs
 import { TvlChart } from '@/ui/charts/tvl-chart/TvlChart'
 import { PageLayout } from '@/ui/layouts/PageLayout'
 import { ConnectOrSandboxCTAPanel } from '@/ui/organisms/connect-or-sandbox-cta-panel/ConnectOrSandboxCTAPanel'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { BackNav } from '../components/back-nav/BackNav'
 import { ActiveFarmInfoPanel } from '../components/farm-info-panel/active/ActiveFarmInfoPanel'
 import { InactiveFarmInfoPanel } from '../components/farm-info-panel/inactive/InactiveFarmInfoPanel'

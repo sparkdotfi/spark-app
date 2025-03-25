@@ -1,5 +1,5 @@
 import { wethGatewayAddress } from '@/config/contracts-generated'
-import { assert, CheckedAddress } from '@marsfoundation/common-universal'
+import { assert, CheckedAddress } from '@sparkdotfi/common-universal'
 import { Address, zeroAddress } from 'viem'
 import { gnosis } from 'viem/chains'
 

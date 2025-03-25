@@ -11,7 +11,7 @@ import {
 import { depositValidationIssueToMessage, validateDeposit } from '@/domain/market-validators/validateDeposit'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { MarketWalletInfo } from '@/domain/wallet/useMarketWalletInfo'
-import { NormalizedUnitNumber, parseBigNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, parseBigNumber } from '@sparkdotfi/common-universal'
 import { z } from 'zod'
 import { ExistingPosition } from '../types'
 import { mapFormTokensToReserves } from './mapFormTokensToReserves'

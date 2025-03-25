@@ -1,5 +1,5 @@
 import { TransferFromUserValidationIssue } from '@/features/dialogs/common/logic/transfer-from-user/validation'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export type DepositToSavingsValidationIssue = TransferFromUserValidationIssue | 'exceeds-psm3-balance'
 

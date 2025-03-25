@@ -1,4 +1,4 @@
-import { CheckedAddress, Hex } from '@marsfoundation/common-universal'
+import { CheckedAddress, Hex } from '@sparkdotfi/common-universal'
 import { expect } from 'earl'
 import { describe, it } from 'mocha'
 import { parseGwei } from 'viem'

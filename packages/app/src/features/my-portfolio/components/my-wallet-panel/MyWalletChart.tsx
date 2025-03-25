@@ -4,7 +4,7 @@ import { getTokenColor, getTokenImage } from '@/ui/assets'
 import { getArcs, getSeparators } from '@/ui/utils/chart-math'
 import { getRandomColor } from '@/ui/utils/get-random-color'
 import { cn } from '@/ui/utils/style'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useState } from 'react'
 
 export interface MyWalletChartProps {

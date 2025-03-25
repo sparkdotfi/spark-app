@@ -1,7 +1,7 @@
 import { describe, test } from 'vitest'
 
-import { bigNumberify } from '@marsfoundation/common-universal'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { bigNumberify } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 import { PotSavingsConverter } from './PotSavingsConverter'
 

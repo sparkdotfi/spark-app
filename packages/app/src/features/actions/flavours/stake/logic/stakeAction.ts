@@ -5,7 +5,7 @@ import { getFarmsBlockchainDetailsQueryKey } from '@/domain/farms/farmBlockchain
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
-import { toBigInt } from '@marsfoundation/common-universal'
+import { toBigInt } from '@sparkdotfi/common-universal'
 import { allowanceQueryKey } from '../../approve/logic/query'
 import { StakeAction } from '../types'
 

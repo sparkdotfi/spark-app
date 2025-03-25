@@ -18,9 +18,9 @@ import {
   wstethRatioMainnetAbi,
 } from '@/config/abis/yieldingTokensRatioAbi'
 import { chronicleAggorEthUsdAbi } from '@/config/contracts-generated'
-import { assert, toBigInt } from '@marsfoundation/common-universal'
-import { CheckedAddress } from '@marsfoundation/common-universal'
-import { BaseUnitNumber, NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { assert, toBigInt } from '@sparkdotfi/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { gnosis, mainnet } from 'viem/chains'
 import { Config } from 'wagmi'
 import { readContract } from 'wagmi/actions'

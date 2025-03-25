@@ -1,4 +1,4 @@
-import { assert } from '@marsfoundation/common-universal'
+import { assert } from '@sparkdotfi/common-universal'
 import { TestnetClient, TestnetClientHelperActions } from '../TestnetClient.js'
 import { CreateClientFromUrlParamsInternal } from '../TestnetFactory.js'
 

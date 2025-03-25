@@ -6,7 +6,7 @@ import { Info } from '@/ui/molecules/info/Info'
 import { getRandomColor } from '@/ui/utils/get-random-color'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { getPositionFormattedValue, getTicks } from '../../logic/position'
 import { PositionSummary } from '../../logic/types'
 

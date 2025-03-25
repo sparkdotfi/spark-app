@@ -14,8 +14,8 @@ import { Link } from '@/ui/atoms/link/Link'
 import { Skeleton } from '@/ui/atoms/skeleton/Skeleton'
 import { links } from '@/ui/constants/links'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { DropdownMenuGroup } from '@radix-ui/react-dropdown-menu'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { ExternalLinkIcon, LibraryIcon } from 'lucide-react'
 
 export interface TopbarAirdropDropdownProps {

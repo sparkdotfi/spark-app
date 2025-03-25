@@ -2,8 +2,8 @@ import { WithClassname } from '@sb/decorators'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
 import { tokens } from '@sb/tokens'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import { MarketOverviewChart } from './MarketOverviewChart'
 
 const meta: Meta<typeof MarketOverviewChart> = {

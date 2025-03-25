@@ -1,5 +1,5 @@
 import { setSparkRewards } from '@/domain/spark-rewards/setSparkRewards'
-import { CheckedAddress, NormalizedUnitNumber, raise } from '@marsfoundation/common-universal'
+import { CheckedAddress, NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
 import { mainnet } from 'viem/chains'
 import { TOKENS_ON_FORK } from './constants'
 import { TestContext } from './setup'

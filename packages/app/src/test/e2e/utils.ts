@@ -1,8 +1,8 @@
 import { USD_MOCK_TOKEN } from '@/domain/types/Token'
-import { TestnetClient } from '@marsfoundation/common-testnets'
-import { bigNumberify } from '@marsfoundation/common-universal'
-import { BaseUnitNumber, NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { Locator } from '@playwright/test'
+import { TestnetClient } from '@sparkdotfi/common-testnets'
+import { bigNumberify } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { Address, erc20Abi, weiUnits } from 'viem'
 import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts'
 

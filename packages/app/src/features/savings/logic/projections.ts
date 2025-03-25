@@ -1,5 +1,5 @@
 import { SavingsConverter } from '@/domain/savings-converters/types'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 const SECONDS_PER_DAY = 24 * 60 * 60
 

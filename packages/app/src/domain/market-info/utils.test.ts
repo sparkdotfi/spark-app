@@ -1,6 +1,6 @@
 import { getMockReserve, getMockUserPosition, testAddresses } from '@/test/integration/constants'
 
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { Token } from '../types/Token'
 import { TokenSymbol } from '../types/TokenSymbol'
 import { determineSiloBorrowingState } from './utils'

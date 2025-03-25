@@ -1,4 +1,4 @@
-import { Hash } from '@marsfoundation/common-universal'
+import { Hash } from '@sparkdotfi/common-universal'
 import {
   Abi,
   Address,

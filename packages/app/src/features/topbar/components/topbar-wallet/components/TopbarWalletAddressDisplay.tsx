@@ -1,6 +1,6 @@
 import { Address } from '@/ui/atoms/address/Address'
 import { CopyButton } from '@/ui/molecules/copy-button/CopyButton'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 
 interface TopbarWalletAddressDisplayProps {
   walletIcon: string

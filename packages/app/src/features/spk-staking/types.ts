@@ -1,6 +1,6 @@
 import { SimplifiedQueryResult } from '@/domain/common/query'
 import { Timeframe } from '@/ui/charts/defaults'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import { UseQueryResult } from '@tanstack/react-query'
 import { StakeSpkCTAPanelProps } from './components/stake-cta-panel/StakeSpkCTAPanel'
 import { StakingRewardsPanelProps } from './components/staking-rewards-panel/StakingRewardsPanel'

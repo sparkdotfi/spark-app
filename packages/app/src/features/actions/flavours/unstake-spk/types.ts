@@ -1,5 +1,5 @@
 import { Token } from '@/domain/types/Token'
-import { BaseUnitNumber, NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { BaseUnitNumber, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export interface UnstakeSpkObjective {
   type: 'unstakeSpk'

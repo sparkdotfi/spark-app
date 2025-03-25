@@ -1,7 +1,7 @@
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { WithClassname } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { ClaimTransactionOverview } from './ClaimTransactionOverview'
 

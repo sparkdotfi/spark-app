@@ -1,5 +1,5 @@
 import { testAddresses } from '@/test/integration/constants'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { zeroAddress } from 'viem'
 import { gnosis, mainnet } from 'viem/chains'
 import { sanityCheckTx } from './sanityChecks'

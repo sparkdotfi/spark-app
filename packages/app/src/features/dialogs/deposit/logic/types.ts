@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 import { CollateralType } from './collateralization'
 

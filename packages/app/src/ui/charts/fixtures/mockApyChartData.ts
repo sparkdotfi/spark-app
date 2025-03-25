@@ -1,4 +1,4 @@
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 export const mockApyChartData = [
   { apy: Percentage('0.04'), date: new Date('2024-07-01') },

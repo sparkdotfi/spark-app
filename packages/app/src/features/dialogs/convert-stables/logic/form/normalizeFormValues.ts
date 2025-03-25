@@ -1,5 +1,5 @@
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { NormalizedConvertStablesFormValues } from '../../types'
 import type { ConvertStablesFormSchema } from './schema'
 

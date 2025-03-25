@@ -1,5 +1,5 @@
 import { daiLikeReserve, testAddresses, wethLikeReserve } from '@/test/integration/constants'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { zeroAddress } from 'viem'
 import { assertWithdraw } from './assertWithdraw'
 

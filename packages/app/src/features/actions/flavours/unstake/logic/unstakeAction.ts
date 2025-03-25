@@ -4,7 +4,7 @@ import { getFarmsBlockchainDetailsQueryKey } from '@/domain/farms/farmBlockchain
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
-import { toBigInt } from '@marsfoundation/common-universal'
+import { toBigInt } from '@sparkdotfi/common-universal'
 import { UnstakeAction } from '../types'
 
 export function createUnstakeActionConfig(action: UnstakeAction, context: ActionContext): ActionConfig {

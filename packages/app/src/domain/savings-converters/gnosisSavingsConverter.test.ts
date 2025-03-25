@@ -1,6 +1,6 @@
 import { describe, test } from 'vitest'
 
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { GnosisSavingsConverter } from './gnosisSavingsConverter'
 

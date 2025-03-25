@@ -1,4 +1,4 @@
-import { assert, CheckedAddress, Hash } from '@marsfoundation/common-universal'
+import { assert, CheckedAddress, Hash } from '@sparkdotfi/common-universal'
 import { encodeAbiParameters, keccak256, toHex } from 'viem'
 import { TestnetClient } from '../TestnetClient.js'
 

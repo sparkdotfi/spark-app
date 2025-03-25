@@ -1,5 +1,5 @@
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 export type AccountType = 'susds' | 'susdc' | 'sdai'
 

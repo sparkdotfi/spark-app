@@ -1,5 +1,5 @@
 import { getChainConfigEntry } from '@/config/chain'
-import { NormalizedUnitNumber, assertNever } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, assertNever } from '@sparkdotfi/common-universal'
 import { queryOptions } from '@tanstack/react-query'
 import { Config } from 'wagmi'
 import { MarketInfo, Reserve } from '../market-info/marketInfo'

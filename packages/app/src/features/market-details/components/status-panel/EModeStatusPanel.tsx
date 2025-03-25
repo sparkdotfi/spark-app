@@ -7,7 +7,7 @@ import { InfoTile } from '@/features/market-details/components/info-tile/InfoTil
 import { Link } from '@/ui/atoms/link/Link'
 import { links } from '@/ui/constants/links'
 import { EModeBadge } from '@/ui/molecules/e-mode-badge/EModeBadge'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { MoveDownIcon, MoveUpIcon } from 'lucide-react'
 import { Header } from './components/Header'
 import { InfoTilesGrid } from './components/InfoTilesGrid'

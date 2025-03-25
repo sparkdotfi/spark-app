@@ -1,5 +1,5 @@
 import { testTokens } from '@/test/integration/constants'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { describe, expect, test } from 'vitest'
 import { formatMaxAmountInForPsm3 } from './formatMaxAmountInForPsm3'
 

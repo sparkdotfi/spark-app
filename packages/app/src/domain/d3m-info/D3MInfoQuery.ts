@@ -6,9 +6,9 @@ import { multicall } from 'wagmi/actions'
 import { iamAutoLineAbi, iamAutoLineAddress, vatAbi, vatAddress } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { fromRad, fromWad } from '@/utils/math'
-import { bigNumberify } from '@marsfoundation/common-universal'
+import { bigNumberify } from '@sparkdotfi/common-universal'
 
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { getIsChainSupported } from './getIsChainSupported'
 import { D3MInfo } from './types'
 

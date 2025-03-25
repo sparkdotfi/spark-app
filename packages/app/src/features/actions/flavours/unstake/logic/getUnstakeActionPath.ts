@@ -1,7 +1,7 @@
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { raise } from '@marsfoundation/common-universal'
+import { raise } from '@sparkdotfi/common-universal'
 
 export type UnstakeActionPath = 'farm-to-usds' | 'farm-to-usds-to-usdc' | 'farm-to-usds-to-dai'
 

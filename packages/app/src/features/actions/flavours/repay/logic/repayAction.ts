@@ -6,7 +6,7 @@ import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { aaveDataLayerQueryKey } from '@/domain/market-info/aave-data-layer/query'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
 import { allowanceQueryKey } from '@/features/actions/flavours/approve/logic/query'
-import { CheckedAddress, UnixTime, toBigInt } from '@marsfoundation/common-universal'
+import { CheckedAddress, UnixTime, toBigInt } from '@sparkdotfi/common-universal'
 import { ActionConfig, ActionContext } from '../../../logic/types'
 import { RepayAction } from '../types'
 

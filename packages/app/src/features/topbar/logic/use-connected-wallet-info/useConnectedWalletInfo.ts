@@ -1,7 +1,7 @@
 import { useBlockExplorerAddressLink } from '@/domain/hooks/useBlockExplorerAddressLink'
 import { EnsName } from '@/domain/types/EnsName'
 import { assets } from '@/ui/assets'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { Connector, useEnsAvatar, useEnsName } from 'wagmi'
 import { TopbarWalletProps } from '../../components/topbar-wallet/TopbarWallet'
 import { getWalletIcon } from './getWalletIcon'

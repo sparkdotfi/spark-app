@@ -1,4 +1,4 @@
-import { HttpClient } from '@marsfoundation/common-universal/http-client'
+import { HttpClient } from '@sparkdotfi/common-universal/http-client'
 import { z } from 'zod'
 import { templating } from '../templating.js'
 import { ContentBlock, IReporter, Report } from '../types.js'

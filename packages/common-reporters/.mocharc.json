@@ -2,6 +2,6 @@
   "$schema": "https://json.schemastore.org/mocharc",
   "extension": ["ts"],
   "require": "dotenv/config",
-  "node-option": ["import=tsx", "conditions=@marsfoundation/local-spark-monorepo"],
+  "node-option": ["import=tsx", "conditions=@sparkdotfi/local-spark-monorepo"],
   "timeout": 60000
 }

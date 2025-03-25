@@ -9,9 +9,9 @@ import {
 } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { fromWad } from '@/utils/math'
-import { bigNumberify } from '@marsfoundation/common-universal'
+import { bigNumberify } from '@sparkdotfi/common-universal'
 
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { SavingsConverter, SavingsConverterQueryOptions, SavingsConverterQueryParams } from './types'
 

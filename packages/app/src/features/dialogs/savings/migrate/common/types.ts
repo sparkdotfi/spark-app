@@ -1,5 +1,5 @@
 import { TxOverviewRouteItem } from '@/features/dialogs/common/types'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { TxOverviewResult } from '../../common/types'
 
 export interface TxOverview {

@@ -1,7 +1,7 @@
 import { OracleFeedProvider } from '@/config/chain/types'
 import { assets } from '@/ui/assets'
 import { testIds } from '@/ui/utils/testIds'
-import { raise } from '@marsfoundation/common-universal'
+import { raise } from '@sparkdotfi/common-universal'
 
 interface ProvidersListProps {
   providers: OracleFeedProvider[]

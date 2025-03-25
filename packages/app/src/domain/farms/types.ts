@@ -1,6 +1,6 @@
 import { AssetsGroup, FarmConfig } from '@/config/chain/types'
-import { CheckedAddress } from '@marsfoundation/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Token } from '../types/Token'
 
 export interface FarmApiDetails {

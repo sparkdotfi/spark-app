@@ -1,4 +1,4 @@
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 export interface SavingsRateInfoItem {
   date: Date

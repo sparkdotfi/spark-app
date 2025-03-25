@@ -2,7 +2,7 @@ import { SavingsAccountRepository } from '@/domain/savings-converters/types'
 import { OpenDialogFunction } from '@/domain/state/dialogs'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { upgradeDialogConfig } from '@/features/dialogs/savings/migrate/upgrade/UpgradeDialog'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { determineApyImprovement } from './determineApyImprovement'
 
 export interface UseMigrationInfoParams {

@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import { describe, expect, test } from 'vitest'
 import { validateWithdraw } from './validateWithdraw'
 

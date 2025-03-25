@@ -16,7 +16,7 @@ import { ChartTooltipContent } from '@/ui/charts/ChartTooltipContent'
 import { colors as colorsPreset } from '@/ui/charts/colors'
 import { Margins, POINT_RADIUS, defaultMargins } from '@/ui/charts/defaults'
 import { formatTooltipDate, formatUSDTicks, getVerticalDomainWithPadding } from '@/ui/charts/utils'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export interface ChartDataPoint {
   balance: NormalizedUnitNumber

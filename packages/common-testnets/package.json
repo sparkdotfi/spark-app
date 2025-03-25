@@ -1,5 +1,5 @@
 {
-  "name": "@marsfoundation/common-testnets",
+  "name": "@sparkdotfi/common-testnets",
   "version": "0.0.1",
   "engines": {
     "node": ">=18.0.0"
@@ -15,7 +15,7 @@
   },
   "exports": {
     ".": {
-      "@marsfoundation/local-spark-monorepo": "./src/index.ts",
+      "@sparkdotfi/local-spark-monorepo": "./src/index.ts",
       "types": "./dist/types/index.d.ts",
       "default": "./dist/index.js"
     }
@@ -47,8 +47,8 @@
   },
   "peerDependencies": {
     "viem": "^2.0.0",
-    "@marsfoundation/common-nodejs": "workspace:^",
-    "@marsfoundation/common-universal": "workspace:^",
+    "@sparkdotfi/common-nodejs": "workspace:^",
+    "@sparkdotfi/common-universal": "workspace:^",
     "zod": "^3.0"
   }
 }

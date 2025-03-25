@@ -1,4 +1,4 @@
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { isAddress, zeroAddress } from 'viem'
 
 export type ReceiverValidationIssue =

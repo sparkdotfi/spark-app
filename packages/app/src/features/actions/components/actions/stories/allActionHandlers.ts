@@ -1,8 +1,8 @@
 import { ActionHandler, ActionType } from '@/features/actions/logic/types'
 import { getMockReserve } from '@/test/integration/constants'
-import { BaseUnitNumber, Hex, NormalizedUnitNumber } from '@marsfoundation/common-universal'
-import { CheckedAddress } from '@marsfoundation/common-universal'
 import { tokens } from '@sb/tokens'
+import { BaseUnitNumber, Hex, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { times } from 'remeda'
 import { parseEther, zeroAddress } from 'viem'
 

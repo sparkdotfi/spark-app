@@ -1,4 +1,4 @@
-import { CheckedAddress, raise } from '@marsfoundation/common-universal'
+import { CheckedAddress, raise } from '@sparkdotfi/common-universal'
 import { Address } from 'viem'
 import { useStore } from '../state'
 import { getOriginChainId, useOriginChainId } from './useOriginChainId'

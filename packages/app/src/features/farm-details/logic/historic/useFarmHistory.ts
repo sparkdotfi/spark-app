@@ -1,7 +1,7 @@
 import { getChainConfigEntry } from '@/config/chain'
 import { Timeframe } from '@/ui/charts/defaults'
 import { useFilterChartDataByTimeframe } from '@/ui/charts/logic/useFilterDataByTimeframe'
-import { CheckedAddress, raise } from '@marsfoundation/common-universal'
+import { CheckedAddress, raise } from '@sparkdotfi/common-universal'
 import { UseQueryResult, useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { farmHistoricDataQueryOptions } from './query'

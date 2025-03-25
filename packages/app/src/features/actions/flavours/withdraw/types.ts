@@ -1,6 +1,6 @@
 import { Reserve } from '@/domain/market-info/marketInfo'
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export interface WithdrawObjective {
   type: 'withdraw'

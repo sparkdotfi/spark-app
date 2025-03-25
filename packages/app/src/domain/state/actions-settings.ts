@@ -3,7 +3,7 @@ import { StateCreator } from 'zustand'
 
 import { tryOrDefault } from '@/utils/tryOrDefault'
 
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { type StoreState } from '.'
 
 export interface ActionsSettings {

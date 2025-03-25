@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 
-import { bigNumberify, parseBigNumber } from '@marsfoundation/common-universal'
+import { bigNumberify, parseBigNumber } from '@sparkdotfi/common-universal'
 
 describe(bigNumberify.name, () => {
   it('throws for non-numeric string', () => {

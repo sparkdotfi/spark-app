@@ -1,4 +1,4 @@
-import { assert } from '@marsfoundation/common-universal'
+import { assert } from '@sparkdotfi/common-universal'
 import {
   http,
   Address,
@@ -29,7 +29,7 @@ type TestnetActions = {
 
 export type TestnetClient = PublicActions & WalletClient & TestnetActions
 
-// Simplified version of @marsfoundation/common-testnets, as importing it would increase bundle size
+// Simplified version of @sparkdotfi/common-testnets, as importing it would increase bundle size
 export function getTenderlyClient(params: TenderlyClientParams): TestnetClient {
   return createClient({
     chain: { ...params.originChain, id: params.forkChainId },

@@ -1,6 +1,6 @@
 import { cn } from '@/ui/utils/style'
-import { assert } from '@marsfoundation/common-universal'
 import { Slot } from '@radix-ui/react-slot'
+import { assert } from '@sparkdotfi/common-universal'
 import { type VariantProps, cva } from 'class-variance-authority'
 import * as React from 'react'
 import { Loader } from '../loader/Loader'

@@ -1,6 +1,6 @@
 import { spark2ApiUrl } from '@/config/consts'
 import { testSparkRewardsConfig } from '@/config/contracts-generated'
-import { BaseUnitNumber, Hex, NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { BaseUnitNumber, Hex, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { QueryKey, queryOptions, skipToken } from '@tanstack/react-query'
 import { Address, erc20Abi } from 'viem'
 import { mainnet } from 'viem/chains'

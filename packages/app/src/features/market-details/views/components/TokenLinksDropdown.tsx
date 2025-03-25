@@ -12,7 +12,7 @@ import {
 import { IconButton } from '@/ui/atoms/icon-button/IconButton'
 import { Link } from '@/ui/atoms/link/Link'
 import { TokenIcon } from '@/ui/atoms/token-icon/TokenIcon'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { MoreVerticalIcon } from 'lucide-react'
 import { PropsWithChildren, ReactNode } from 'react'
 

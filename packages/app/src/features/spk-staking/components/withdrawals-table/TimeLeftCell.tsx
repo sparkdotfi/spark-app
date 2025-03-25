@@ -1,5 +1,5 @@
 import { MobileViewOptions } from '@/ui/molecules/data-table/types'
-import { UnixTime } from '@marsfoundation/common-universal'
+import { UnixTime } from '@sparkdotfi/common-universal'
 
 export interface TimeLeftCellProps {
   timeLeft: number // can't be UnixTime because it's a bigint

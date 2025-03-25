@@ -1,4 +1,4 @@
-import { assert, BaseUnitNumber, CheckedAddress, NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { assert, BaseUnitNumber, CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { zeroAddress } from 'viem'
 import { findSignificantPrecision } from '../common/format'

@@ -1,5 +1,5 @@
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import approve from './actions/approve.svg'
 import borrow from './actions/borrow.svg'
 import deposit from './actions/deposit.svg'

@@ -1,4 +1,4 @@
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { useQuery } from '@tanstack/react-query'
 import { useAccount } from 'wagmi'
 import { TopbarAirdropProps } from '../../components/topbar-airdrop/TopbarAirdrop'

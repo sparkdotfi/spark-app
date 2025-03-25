@@ -3,7 +3,7 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { claimableRewardsQueryKey } from '@/domain/spark-rewards/claimableRewardsQueryOptions'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
-import { toBigInt } from '@marsfoundation/common-universal'
+import { toBigInt } from '@sparkdotfi/common-universal'
 import { ActionConfig, ActionContext } from '../../../logic/types'
 import { ClaimSparkRewardsAction } from '../types'
 

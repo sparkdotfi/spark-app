@@ -3,7 +3,7 @@ import {
   ValidateBalanceArgs,
   validateTransferFromUser,
 } from '@/features/dialogs/common/logic/transfer-from-user/validation'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { z } from 'zod'
 import { ConvertStablesFormSchema } from './schema'
 

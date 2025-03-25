@@ -1,7 +1,7 @@
 import { SimplifiedQueryResult, transformSimplifiedQueryResult } from '@/domain/common/query'
 import { useClaimableRewardsQuery } from '@/domain/spark-rewards/useClaimableRewardsQuery'
 import { Token } from '@/domain/types/Token'
-import { Hex, NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { Hex, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useChainId } from 'wagmi'
 
 export type UseClaimableRewardsResult = SimplifiedQueryResult<ClaimableReward[]>

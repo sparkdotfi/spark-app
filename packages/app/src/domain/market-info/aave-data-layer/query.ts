@@ -11,7 +11,7 @@ import {
   uiPoolDataProviderAddress,
 } from '@/config/contracts-generated'
 
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { queryOptions } from '@tanstack/react-query'
 import { getContractAddress } from '../../hooks/useContractAddress'
 

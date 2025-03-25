@@ -5,7 +5,7 @@ import { links } from '@/ui/constants/links'
 import { Info } from '@/ui/molecules/info/Info'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 interface DebtCeilingProgressProps {
   debt: NormalizedUnitNumber

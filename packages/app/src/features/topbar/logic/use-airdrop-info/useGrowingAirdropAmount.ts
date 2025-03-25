@@ -1,5 +1,5 @@
 import { useTimestamp } from '@/utils/useTimestamp'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { Airdrop } from '../../components/topbar-airdrop/TopbarAirdrop'
 import { adjustTokenReward } from './utils/adjustTokenReward'
 

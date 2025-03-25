@@ -1,6 +1,6 @@
 import { D3MInfo } from '@/domain/d3m-info/types'
 import { daiLikeReserve, getMockMarketInfo, getMockReserve, wethLikeReserve } from '@/test/integration/constants'
-import { NormalizedUnitNumber, bigNumberify } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, bigNumberify } from '@sparkdotfi/common-universal'
 import { aggregateStats } from './aggregate-stats'
 
 describe('aggregateStats', () => {

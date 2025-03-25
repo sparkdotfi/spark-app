@@ -6,7 +6,7 @@ import { Panel } from '@/ui/atoms/panel/Panel'
 import { DataTable, DataTableColumnDefinitions } from '@/ui/molecules/data-table/DataTable'
 import { TokenCell } from '@/ui/molecules/data-table/components/TokenCell'
 import { ViewContractMoreDropdown } from '@/ui/molecules/view-contract-more-dropdown/ViewContractMoreDropdown'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useMemo } from 'react'
 
 export interface AvailableToStakeRow {

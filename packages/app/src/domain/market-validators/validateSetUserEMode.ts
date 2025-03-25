@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber, Percentage, raise } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage, raise } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { MarketInfo } from '../market-info/marketInfo'
 

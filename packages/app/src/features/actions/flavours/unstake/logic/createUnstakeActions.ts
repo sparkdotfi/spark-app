@@ -1,7 +1,7 @@
 import { migrationActionsConfig, usdsPsmWrapperConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { Action, ActionContext } from '@/features/actions/logic/types'
-import { assert, assertNever, raise } from '@marsfoundation/common-universal'
+import { assert, assertNever, raise } from '@sparkdotfi/common-universal'
 import { ApproveAction } from '../../approve/types'
 import { DowngradeAction } from '../../downgrade/types'
 import { PsmConvertAction } from '../../psm-convert/types'

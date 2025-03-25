@@ -6,7 +6,7 @@ import {
 } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { Action, ActionContext } from '@/features/actions/logic/types'
-import { assert, CheckedAddress, assertNever } from '@marsfoundation/common-universal'
+import { assert, CheckedAddress, assertNever } from '@sparkdotfi/common-universal'
 import { ApproveAction } from '../../approve/types'
 import { ConvertStablesObjective } from '../types'
 import { getConvertStablesActionPath } from './getConvertStablesActionPath'

@@ -1,5 +1,5 @@
 {
-  "name": "@marsfoundation/common-universal",
+  "name": "@sparkdotfi/common-universal",
   "version": "0.0.1",
   "engines": {
     "node": ">=18.0.0"
@@ -15,22 +15,22 @@
   },
   "exports": {
     ".": {
-      "@marsfoundation/local-spark-monorepo": "./src/index.ts",
+      "@sparkdotfi/local-spark-monorepo": "./src/index.ts",
       "types": "./dist/types/index.d.ts",
       "default": "./dist/index.js"
     },
     "./http-client": {
-      "@marsfoundation/local-spark-monorepo": "./src/httpClient/index.ts",
+      "@sparkdotfi/local-spark-monorepo": "./src/httpClient/index.ts",
       "types": "./dist/types/httpClient/index.d.ts",
       "default": "./dist/httpClient/index.js"
     },
     "./logger": {
-      "@marsfoundation/local-spark-monorepo": "./src/logger/index.ts",
+      "@sparkdotfi/local-spark-monorepo": "./src/logger/index.ts",
       "types": "./dist/types/logger/index.d.ts",
       "default": "./dist/logger/index.js"
     },
     "./tracer": {
-      "@marsfoundation/local-spark-monorepo": "./src/tracer/index.ts",
+      "@sparkdotfi/local-spark-monorepo": "./src/tracer/index.ts",
       "types": "./dist/types/tracer/index.d.ts",
       "default": "./dist/tracer/index.js"
     }

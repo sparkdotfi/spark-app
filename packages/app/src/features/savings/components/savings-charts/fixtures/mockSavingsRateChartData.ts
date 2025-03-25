@@ -1,4 +1,4 @@
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 export const mockSsrChartData = [
   { rate: Percentage('0.0625'), date: new Date('2024-09-30T20:39:13.285423') },

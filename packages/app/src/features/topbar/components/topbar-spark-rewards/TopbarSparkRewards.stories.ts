@@ -1,7 +1,7 @@
 import { WithTooltipProvider } from '@sb/decorators'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { TopbarSparkRewards } from './TopbarSparkRewards'
 

@@ -1,4 +1,4 @@
-import { HttpClient } from '@marsfoundation/common-universal/http-client'
+import { HttpClient } from '@sparkdotfi/common-universal/http-client'
 import { MockObject, expect, mockFn, mockObject } from 'earl'
 import { templating as t } from '../templating.js'
 import { SlackReporter } from './SlackReporter.js'

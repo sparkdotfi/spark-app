@@ -1,5 +1,5 @@
 import { getChainConfigEntry } from '@/config/chain'
-import { assert } from '@marsfoundation/common-universal'
+import { assert } from '@sparkdotfi/common-universal'
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query'
 import { useCallback } from 'react'
 import { useAccount, useConfig } from 'wagmi'

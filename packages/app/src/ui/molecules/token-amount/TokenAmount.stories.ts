@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { tokens } from '@sb/tokens'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { TokenAmount } from './TokenAmount'
 
 const meta: Meta<typeof TokenAmount> = {

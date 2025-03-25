@@ -1,4 +1,4 @@
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { expect } from 'earl'
 import { mainnet } from 'viem/chains'
 import { TestnetClient } from '../TestnetClient.js'

@@ -1,6 +1,6 @@
 import { USD_MOCK_TOKEN } from '@/domain/types/Token'
 import { cn } from '@/ui/utils/style'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 interface SummaryTileProps {
   title: string

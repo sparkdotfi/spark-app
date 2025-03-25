@@ -1,5 +1,5 @@
 {
-  "name": "@marsfoundation/common-reporters",
+  "name": "@sparkdotfi/common-reporters",
   "version": "0.0.1",
   "engines": {
     "node": ">=18.0.0"
@@ -14,7 +14,7 @@
   },
   "exports": {
     ".": {
-      "@marsfoundation/local-spark-monorepo": "./src/index.ts",
+      "@sparkdotfi/local-spark-monorepo": "./src/index.ts",
       "types": "./dist/types/index.d.ts",
       "default": "./dist/index.js"
     }
@@ -39,7 +39,7 @@
   },
   "peerDependencies": {
     "@types/mocha": "^10.0.10",
-    "@marsfoundation/common-universal": "workspace:^",
+    "@sparkdotfi/common-universal": "workspace:^",
     "zod": "^3.0"
   }
 }

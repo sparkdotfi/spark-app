@@ -1,8 +1,8 @@
 import { describe } from 'vitest'
 
-import { bigNumberify } from '@marsfoundation/common-universal'
+import { bigNumberify } from '@sparkdotfi/common-universal'
 
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import { findSignificantPrecision, formFormat, formatHealthFactor, formatPercentage } from './format'
 
 describe(formatPercentage.name, () => {

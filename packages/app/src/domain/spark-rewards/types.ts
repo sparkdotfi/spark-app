@@ -1,4 +1,4 @@
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { TokenSymbol } from '../types/TokenSymbol'
 
 export interface MarketSparkRewards {

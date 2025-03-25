@@ -46,7 +46,7 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.3.2
         version: 3.3.2(react-hook-form@7.48.2(react@18.2.0))
-      '@marsfoundation/common-universal':
+      '@sparkdotfi/common-universal':
         specifier: workspace:^
         version: link:../common-universal
       '@openzeppelin/merkle-tree':
@@ -206,10 +206,10 @@ importers:
       '@chromatic-com/storybook':
         specifier: ^3.2.3
         version: 3.2.3(react@18.2.0)(storybook@8.4.7(bufferutil@4.0.9)(prettier@3.3.3)(utf-8-validate@5.0.10))
-      '@marsfoundation/common-nodejs':
+      '@sparkdotfi/common-nodejs':
         specifier: workspace:^
         version: link:../common-nodejs
-      '@marsfoundation/common-testnets':
+      '@sparkdotfi/common-testnets':
         specifier: workspace:^
         version: link:../common-testnets
       '@playwright/test':
@@ -362,7 +362,7 @@ importers:
 
   packages/common-nodejs:
     dependencies:
-      '@marsfoundation/common-universal':
+      '@sparkdotfi/common-universal':
         specifier: workspace:^
         version: link:../common-universal
       dotenv:
@@ -393,7 +393,7 @@ importers:
 
   packages/common-reporters:
     dependencies:
-      '@marsfoundation/common-universal':
+      '@sparkdotfi/common-universal':
         specifier: workspace:^
         version: link:../common-universal
       '@pagerduty/pdjs':
@@ -415,10 +415,10 @@ importers:
 
   packages/common-testnets:
     dependencies:
-      '@marsfoundation/common-nodejs':
+      '@sparkdotfi/common-nodejs':
         specifier: workspace:^
         version: link:../common-nodejs
-      '@marsfoundation/common-universal':
+      '@sparkdotfi/common-universal':
         specifier: workspace:^
         version: link:../common-universal
       '@viem/anvil':

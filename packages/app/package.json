@@ -1,5 +1,5 @@
 {
-  "name": "@marsfoundation/app",
+  "name": "@sparkdotfi/app",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -26,7 +26,7 @@
   "dependencies": {
     "@aave/math-utils": "^1.20.0",
     "@hookform/resolvers": "^3.3.2",
-    "@marsfoundation/common-universal": "workspace:^",
+    "@sparkdotfi/common-universal": "workspace:^",
     "@openzeppelin/merkle-tree": "^1.0.8",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-collapsible": "^1.0.3",
@@ -81,8 +81,8 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",
-    "@marsfoundation/common-nodejs": "workspace:^",
-    "@marsfoundation/common-testnets": "workspace:^",
+    "@sparkdotfi/common-nodejs": "workspace:^",
+    "@sparkdotfi/common-testnets": "workspace:^",
     "@playwright/test": "^1.47.2",
     "@sentry/vite-plugin": "^2.16.1",
     "@storybook/addon-essentials": "^8.4.7",

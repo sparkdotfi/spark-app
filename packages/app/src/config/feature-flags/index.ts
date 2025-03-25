@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 import { Address } from 'viem'
 import { getDefaultAppConfig } from './appConfig.default'

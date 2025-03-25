@@ -5,7 +5,7 @@ import { MarketInfo, Reserve } from '@/domain/market-info/marketInfo'
 import { getValidateBorrowArgs, validateBorrow } from '@/domain/market-validators/validateBorrow'
 import { MarketWalletInfo } from '@/domain/wallet/useMarketWalletInfo'
 import { applyTransformers } from '@/utils/applyTransformers'
-import { assert, NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { assert, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { WalletOverview } from '../types'
 
 export interface MakeWalletOverviewParams {

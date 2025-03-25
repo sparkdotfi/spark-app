@@ -1,7 +1,7 @@
 import { getChainConfigEntry } from '@/config/chain'
 import { TokenConfig } from '@/config/chain/types'
 import { pathGroups } from '@/config/paths'
-import { assertNever } from '@marsfoundation/common-universal'
+import { assertNever } from '@sparkdotfi/common-universal'
 import { useChainId } from 'wagmi'
 import { TokenRepository } from './TokenRepository'
 import { useTokenRepository } from './useTokenRepository'

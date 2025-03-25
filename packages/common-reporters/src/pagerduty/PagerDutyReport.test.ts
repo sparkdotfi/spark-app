@@ -1,4 +1,4 @@
-import { Hash } from '@marsfoundation/common-universal'
+import { Hash } from '@sparkdotfi/common-universal'
 import { MockObject, expect, mockFn, mockObject } from 'earl'
 import { templating as t } from '../templating.js'
 import { PagerDutyClient } from './PagerDutyClient.js'

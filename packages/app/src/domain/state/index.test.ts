@@ -4,7 +4,7 @@ import { create } from 'zustand'
 import { ZUSTAND_APP_STORE_LOCAL_STORAGE_KEY } from '@/config/consts'
 import { makeFunctionsComparisonStable } from '@/test/integration/object-utils'
 
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { StoreState, storeImplementation } from '.'
 
 describe(storeImplementation.name, () => {

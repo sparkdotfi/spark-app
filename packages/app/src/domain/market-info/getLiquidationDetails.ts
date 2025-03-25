@@ -2,7 +2,7 @@ import { getChainConfigEntry } from '@/config/chain'
 import { TokenWithValue } from '@/domain/common/types'
 import { MarketInfo } from '@/domain/market-info/marketInfo'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber, Percentage, raise } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage, raise } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { eModeCategoryIdToName } from '../e-mode/constants'
 

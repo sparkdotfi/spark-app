@@ -1,4 +1,4 @@
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { Plugin } from '@wagmi/cli'
 import { expect } from 'earl'
 import { zeroAddress } from 'viem'

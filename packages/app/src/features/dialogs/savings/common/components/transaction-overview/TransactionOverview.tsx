@@ -1,7 +1,7 @@
 import { Token } from '@/domain/types/Token'
 import { TransactionOverview } from '@/ui/organisms/transaction-overview/TransactionOverview'
 import { testIds } from '@/ui/utils/testIds'
-import { assert } from '@marsfoundation/common-universal'
+import { assert } from '@sparkdotfi/common-universal'
 import { SavingsDialogTxOverview } from '../../types'
 import { TransactionOverviewPlaceholder } from './components/TransactionOverviewPlaceholder'
 

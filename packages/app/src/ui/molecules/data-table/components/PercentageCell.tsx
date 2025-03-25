@@ -1,5 +1,5 @@
 import { formatPercentage } from '@/domain/common/format'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 import { MobileViewOptions } from '../types'
 

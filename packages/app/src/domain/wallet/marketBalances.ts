@@ -9,8 +9,8 @@ import {
   walletBalanceProviderConfig,
 } from '@/config/contracts-generated'
 
-import { CheckedAddress } from '@marsfoundation/common-universal'
-import { BaseUnitNumber } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber } from '@sparkdotfi/common-universal'
 import { getContractAddress } from '../hooks/useContractAddress'
 import { getBalancesQueryKeyPrefix } from './getBalancesQueryKeyPrefix'
 
