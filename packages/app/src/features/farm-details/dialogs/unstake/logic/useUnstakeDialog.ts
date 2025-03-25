@@ -10,7 +10,7 @@ import { FormFieldsForDialog, PageState, PageStatus } from '@/features/dialogs/c
 import { calculateReward } from '@/features/farm-details/logic/calculateReward'
 import { useTimestamp } from '@/utils/useTimestamp'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { assert, NormalizedUnitNumber, raise } from '@marsfoundation/common-universal'
+import { assert, NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
 import { useEffect, useState } from 'react'
 import { UseFormReturn, useForm } from 'react-hook-form'
 import { useChainId } from 'wagmi'

@@ -1,5 +1,5 @@
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber, toBigInt } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 
 export interface FormatMinAmountOutForPsm3Params {

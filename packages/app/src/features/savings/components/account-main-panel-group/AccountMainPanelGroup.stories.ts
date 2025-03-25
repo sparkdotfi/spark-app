@@ -1,8 +1,8 @@
 import { links } from '@/ui/constants/links'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import type { Meta, StoryObj } from '@storybook/react'
 import { AccountMainPanelGroup } from './AccountMainPanelGroup'
 

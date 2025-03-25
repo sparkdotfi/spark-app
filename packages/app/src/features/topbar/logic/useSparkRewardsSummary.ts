@@ -1,6 +1,6 @@
 import { transformSimplifiedQueryResult } from '@/domain/common/query'
 import { useClaimableRewardsQuery } from '@/domain/spark-rewards/useClaimableRewardsQuery'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { SparkRewardsSummary } from '../types'
 
 export function useSparkRewardsSummary(): SparkRewardsSummary {

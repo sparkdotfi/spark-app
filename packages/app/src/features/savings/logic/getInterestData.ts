@@ -1,7 +1,7 @@
 import { TokenWithBalance } from '@/domain/common/types'
 import { SavingsConverter } from '@/domain/savings-converters/types'
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { AccountSparkRewardsSummary } from '../types'
 import { STEP_IN_MS, SavingsOverview, makeSavingsOverview } from './makeSavingsOverview'
 import { calculateOneYearProjection } from './projections'

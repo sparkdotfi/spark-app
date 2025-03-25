@@ -4,7 +4,7 @@ import { formatPercentage } from '@/domain/common/format'
 import { BasePageObject } from '@/test/e2e/BasePageObject'
 import { TestContext } from '@/test/e2e/setup'
 import { testIds } from '@/ui/utils/testIds'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { ActionType } from './logic/types'
 
 export class ActionsPageObject extends BasePageObject {

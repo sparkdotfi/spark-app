@@ -1,7 +1,7 @@
 import { EnsName } from '@/domain/types/EnsName'
 import { assets } from '@/ui/assets'
-import { CheckedAddress } from '@marsfoundation/common-universal'
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { userEvent, within } from '@storybook/test'
 import { withRouter } from 'storybook-addon-remix-react-router'

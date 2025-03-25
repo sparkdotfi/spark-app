@@ -1,6 +1,6 @@
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
-import { toBigInt } from '@marsfoundation/common-universal'
+import { toBigInt } from '@sparkdotfi/common-universal'
 import { queryOptions } from '@tanstack/react-query'
 import { ApproveAction } from '../types'
 import { normalizeErc20AbiForToken } from './normalizeErc20Abi'

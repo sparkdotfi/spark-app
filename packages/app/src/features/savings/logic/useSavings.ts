@@ -17,7 +17,7 @@ import { convertStablesDialogConfig } from '@/features/dialogs/convert-stables/C
 import { savingsDepositDialogConfig } from '@/features/dialogs/savings/deposit/SavingsDepositDialog'
 import { savingsWithdrawDialogConfig } from '@/features/dialogs/savings/withdraw/SavingsWithdrawDialog'
 import { useTimestamp } from '@/utils/useTimestamp'
-import { NormalizedUnitNumber, Percentage, raise } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage, raise } from '@sparkdotfi/common-universal'
 import { useCallback, useState } from 'react'
 import { AccountMetadata, AccountSparkRewardsSummary, PsmSupplier } from '../types'
 import { getAccountMetadata } from '../utils/getAccountMetadata'

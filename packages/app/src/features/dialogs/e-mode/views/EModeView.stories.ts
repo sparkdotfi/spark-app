@@ -5,7 +5,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import BigNumber from 'bignumber.js'
 import { withRouter } from 'storybook-addon-remix-react-router'
 
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 import { EModeView } from './EModeView'
 

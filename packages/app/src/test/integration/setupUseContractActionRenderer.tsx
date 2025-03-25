@@ -1,6 +1,6 @@
 import { Action } from '@/features/actions/logic/types'
 import { UseContractActionParams, useContractAction } from '@/features/actions/logic/useContractAction'
-import { raise } from '@marsfoundation/common-universal'
+import { raise } from '@sparkdotfi/common-universal'
 import { useMemo } from 'react'
 import { TransactionReceipt } from 'viem'
 import { useAccount, useChainId, useConfig } from 'wagmi'

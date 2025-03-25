@@ -1,6 +1,6 @@
-import { Percentage } from '@marsfoundation/common-universal'
 import { WithTooltipProvider } from '@sb/decorators'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
+import { Percentage } from '@sparkdotfi/common-universal'
 import type { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { DaiLegacyAccountBanner } from './DaiLegacyAccountBanner'

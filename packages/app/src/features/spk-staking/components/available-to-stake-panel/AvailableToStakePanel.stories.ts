@@ -1,6 +1,6 @@
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import type { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { AvailableToStakePanel } from './AvailableToStakePanel'

@@ -1,7 +1,7 @@
 import { testSparkRewardsConfig } from '@/config/contracts-generated'
 import { TestnetClient } from '@/features/dialogs/sandbox/tenderly/TenderlyClient.ts'
-import { BaseUnitNumber, CheckedAddress, Hex, toBigInt } from '@marsfoundation/common-universal'
 import { StandardMerkleTree } from '@openzeppelin/merkle-tree'
+import { BaseUnitNumber, CheckedAddress, Hex, toBigInt } from '@sparkdotfi/common-universal'
 import { Hash, encodeFunctionData, erc20Abi } from 'viem'
 import { mainnet } from 'viem/chains'
 

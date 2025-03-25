@@ -2,7 +2,7 @@ import { WithTooltipProvider } from '@sb/decorators'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { UpgradeSavingsBanner } from './UpgradeSavingsBanner'
 

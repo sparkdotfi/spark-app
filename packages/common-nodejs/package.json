@@ -1,5 +1,5 @@
 {
-  "name": "@marsfoundation/common-nodejs",
+  "name": "@sparkdotfi/common-nodejs",
   "version": "0.0.1",
   "engines": {
     "node": ">=18.0.0"
@@ -12,12 +12,12 @@
   },
   "exports": {
     "./env": {
-      "@marsfoundation/local-spark-monorepo": "./src/env/index.ts",
+      "@sparkdotfi/local-spark-monorepo": "./src/env/index.ts",
       "types": "./dist/types/env/index.d.ts",
       "default": "./dist/env/index.js"
     },
     "./wagmi": {
-      "@marsfoundation/local-spark-monorepo": "./src/wagmi/index.ts",
+      "@sparkdotfi/local-spark-monorepo": "./src/wagmi/index.ts",
       "types": "./dist/types/wagmi/index.d.ts",
       "default": "./dist/wagmi/index.js"
     }
@@ -52,6 +52,6 @@
     "uuid": "^11.0.3"
   },
   "peerDependencies": {
-    "@marsfoundation/common-universal": "workspace:^"
+    "@sparkdotfi/common-universal": "workspace:^"
   }
 }

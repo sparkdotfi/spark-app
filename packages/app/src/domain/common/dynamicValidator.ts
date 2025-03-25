@@ -1,4 +1,4 @@
-import { Opaque } from '@marsfoundation/common-universal'
+import { Opaque } from '@sparkdotfi/common-universal'
 import { QueryKey } from '@tanstack/react-query'
 import { z } from 'zod'
 

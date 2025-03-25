@@ -3,7 +3,7 @@ import { BigNumber } from 'bignumber.js'
 import { TokenWithValue } from '@/domain/common/types'
 import { MarketInfo, UserPosition } from '@/domain/market-info/marketInfo'
 import { USD_MOCK_TOKEN } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { times } from 'remeda'
 
 import { PositionSummary } from './types'

@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export const mockTvlChartData = [
   { tvl: NormalizedUnitNumber('20034.43'), date: new Date('2024-07-16') },

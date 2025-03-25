@@ -1,6 +1,6 @@
 import { calculateGemConversionFactor } from '@/features/actions/utils/savings'
-import { BaseUnitNumber, toBigInt } from '@marsfoundation/common-universal'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { BaseUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 
 export interface CalculateGemMinAmountOutParams {

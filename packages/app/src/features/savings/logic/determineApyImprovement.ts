@@ -1,5 +1,5 @@
 import { SavingsConverter } from '@/domain/savings-converters/types'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 export interface DetermineApyImprovementParams {
   savingsUsdsConverter: SavingsConverter | null

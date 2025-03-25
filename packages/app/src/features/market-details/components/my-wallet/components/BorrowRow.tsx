@@ -1,5 +1,5 @@
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 import { BorrowEligibilityStatus } from '@/domain/market-info/reserve-status'
 import { ActionRow } from './ActionRow'

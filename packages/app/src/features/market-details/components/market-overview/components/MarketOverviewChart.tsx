@@ -2,7 +2,7 @@ import { formatPercentage } from '@/domain/common/format'
 import { Token } from '@/domain/types/Token'
 import { getArcs, getSeparators } from '@/ui/utils/chart-math'
 import { cn } from '@/ui/utils/style'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 
 interface MarketOverviewChartProps {
   data: { value: number; color: string }[]

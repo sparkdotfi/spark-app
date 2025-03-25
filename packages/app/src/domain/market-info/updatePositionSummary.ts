@@ -11,10 +11,10 @@ import {
 } from '@/domain/market-info/marketInfo'
 import { getCompoundedScaledBalance, getScaledBalance } from '@/domain/market-info/math'
 import { mergeUserPositionIntoRawUserReserve, recalculateUserSummary } from '@/domain/market-info/utils'
-import { bigNumberify } from '@marsfoundation/common-universal'
+import { bigNumberify } from '@sparkdotfi/common-universal'
 
-import { CheckedAddress } from '@marsfoundation/common-universal'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { ReserveWithValue } from '../common/types'
 
 export interface ReserveWithUseAsCollateralFlag {

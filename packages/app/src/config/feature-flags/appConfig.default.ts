@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { mainnet } from 'viem/chains'
 import { AppConfig } from '.'
 import { clientEnv } from './clientEnv'

@@ -12,8 +12,8 @@ import {
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { zeroAddress } from 'viem'
 
 export const testAddresses = {

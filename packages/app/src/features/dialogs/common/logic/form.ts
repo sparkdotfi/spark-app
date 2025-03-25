@@ -5,7 +5,7 @@ import { MarketInfo, Reserve, UserPosition } from '@/domain/market-info/marketIn
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { useDebounce } from '@/utils/useDebounce'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export const AssetInputSchema = z.object({
   symbol: z.string().transform(TokenSymbol),

@@ -1,7 +1,7 @@
 import { D3MInfo } from '@/domain/d3m-info/types'
 import { MarketInfo } from '@/domain/market-info/marketInfo'
-import { bigNumberify } from '@marsfoundation/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { bigNumberify } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 
 export interface MarketStats {

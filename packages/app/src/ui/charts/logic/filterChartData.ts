@@ -1,4 +1,4 @@
-import { assertNever } from '@marsfoundation/common-universal'
+import { assertNever } from '@sparkdotfi/common-universal'
 import { sort } from 'd3-array'
 import { Timeframe } from '../defaults'
 

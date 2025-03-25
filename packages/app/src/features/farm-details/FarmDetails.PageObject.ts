@@ -2,8 +2,8 @@ import { BasePageObject } from '@/test/e2e/BasePageObject'
 import { AssetsInTests, TOKENS_ON_FORK } from '@/test/e2e/constants'
 import { getTokenBalance } from '@/test/e2e/utils'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { Locator, expect } from '@playwright/test'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { Address } from 'viem'
 
 export class FarmDetailsPageObject extends BasePageObject {

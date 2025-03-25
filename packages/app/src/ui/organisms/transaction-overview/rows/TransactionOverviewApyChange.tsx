@@ -1,7 +1,7 @@
 import { formatPercentage } from '@/domain/common/format'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { MoveRightIcon } from 'lucide-react'
 
 export interface TransactionOverviewApyChangeProps {

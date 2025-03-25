@@ -1,12 +1,4 @@
-import {
-  assert,
-  BaseUnitNumber,
-  CheckedAddress,
-  Hash,
-  RAY,
-  bigNumberify,
-  toBigInt,
-} from '@marsfoundation/common-universal'
+import { assert, BaseUnitNumber, CheckedAddress, Hash, RAY, bigNumberify, toBigInt } from '@sparkdotfi/common-universal'
 import { encodeAbiParameters, encodePacked, hexToBigInt, keccak256, parseAbi, toHex } from 'viem'
 import { TestnetClient } from '../TestnetClient.js'
 

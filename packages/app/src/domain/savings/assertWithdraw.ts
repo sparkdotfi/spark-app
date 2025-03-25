@@ -1,5 +1,5 @@
 import { Mode } from '@/features/dialogs/savings/withdraw/types'
-import { assert, CheckedAddress } from '@marsfoundation/common-universal'
+import { assert, CheckedAddress } from '@sparkdotfi/common-universal'
 import { Address } from 'viem'
 import { receiverValidationIssueToMessage, validateReceiver } from './validateReceiver'
 

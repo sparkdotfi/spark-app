@@ -1,8 +1,8 @@
 import { SavingsConverter } from '@/domain/savings-converters/types'
 import { EnsName } from '@/domain/types/EnsName'
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 
 export interface Reward {
   token: Token

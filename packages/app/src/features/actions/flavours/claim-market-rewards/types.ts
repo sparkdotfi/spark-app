@@ -1,5 +1,5 @@
 import { Token } from '@/domain/types/Token'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 
 export interface ClaimMarketRewardsObjective {
   type: 'claimMarketRewards'

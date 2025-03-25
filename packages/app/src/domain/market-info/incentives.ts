@@ -1,4 +1,4 @@
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { Token } from '../types/Token'
 import { TokenSymbol } from '../types/TokenSymbol'
 import type { AaveData, AaveUserReserve } from './aave-data-layer/query'

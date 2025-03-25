@@ -4,7 +4,7 @@ import { Panel } from '@/ui/atoms/panel/Panel'
 import { AmountCell } from '@/ui/molecules/data-table/components/AmountCell'
 import { TokenCell } from '@/ui/molecules/data-table/components/TokenCell'
 import { ResponsiveDataTable } from '@/ui/organisms/responsive-data-table/ResponsiveDataTable'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { TimeLeftCell } from './TimeLeftCell'
 
 export interface WithdrawalsTableRow {

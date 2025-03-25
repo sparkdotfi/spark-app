@@ -2,7 +2,7 @@ import { SimplifiedQueryResult, transformSimplifiedQueryResult } from '@/domain/
 import { useClaimableRewardsQuery } from '@/domain/spark-rewards/useClaimableRewardsQuery'
 import { useOpenDialog } from '@/domain/state/dialogs'
 import { claimSparkRewardsDialogConfig } from '@/features/dialogs/claim-spark-rewards/ClaimSparkRewardsDialog'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useChainId, useSwitchChain } from 'wagmi'
 import { ClaimableReward } from '../types'
 

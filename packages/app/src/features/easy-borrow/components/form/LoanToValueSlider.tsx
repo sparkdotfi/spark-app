@@ -6,7 +6,7 @@ import { MODERATE_HEALTH_FACTOR_THRESHOLD, RISKY_HEALTH_FACTOR_THRESHOLD, RiskLe
 import { healthFactorToLtv } from '@/domain/market-info/math'
 import { assets } from '@/ui/assets'
 import { cn } from '@/ui/utils/style'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 export interface LoanToValueSliderProps {
   ltv: Percentage

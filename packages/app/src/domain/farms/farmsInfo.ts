@@ -1,4 +1,4 @@
-import { CheckedAddress, raise } from '@marsfoundation/common-universal'
+import { CheckedAddress, raise } from '@sparkdotfi/common-universal'
 import { Farm } from './types'
 
 export class FarmsInfo {

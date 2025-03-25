@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { ReserveStatus } from '../market-info/reserve-status'
 
 export interface GetRepayMaxValueParams {

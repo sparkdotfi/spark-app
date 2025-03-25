@@ -5,8 +5,8 @@ import { SavingsRateChartData } from '@/domain/savings-charts/savings-rate-query
 import { SavingsConverterQueryOptions, SavingsConverterQueryParams } from '@/domain/savings-converters/types'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { UseQueryOptions } from '@tanstack/react-query'
 import { SUPPORTED_CHAIN_IDS } from './constants'
 

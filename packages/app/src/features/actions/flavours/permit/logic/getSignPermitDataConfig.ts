@@ -2,8 +2,8 @@ import { Address } from 'viem'
 import { UseSignTypedDataReturnType } from 'wagmi'
 
 import { Token } from '@/domain/types/Token'
-import { UnixTime, toBigInt } from '@marsfoundation/common-universal'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { UnixTime, toBigInt } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 const EIP2612_TYPES = {
   Permit: [

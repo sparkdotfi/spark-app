@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/ui/atoms/dropdown/DropdownMenu'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export interface Reward {
   token: Token

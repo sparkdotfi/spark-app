@@ -1,4 +1,4 @@
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { zeroAddress } from 'viem'
 import { Token } from '../src/domain/types/Token'
 import { TokenSymbol } from '../src/domain/types/TokenSymbol'

@@ -1,5 +1,5 @@
 import { cn } from '@/ui/utils/style'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { cva } from 'class-variance-authority'
 
 export interface AddressProps {

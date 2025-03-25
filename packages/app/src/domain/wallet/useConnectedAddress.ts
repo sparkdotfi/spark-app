@@ -2,7 +2,7 @@ import { useAccount, useChainId } from 'wagmi'
 
 import { NotConnectedError } from '@/domain/errors/not-connected'
 
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 
 export interface ConnectedInfo {
   chainId: number

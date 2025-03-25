@@ -1,5 +1,5 @@
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { DssAutoline } from '../../types'
 import { DaiMarketOverview } from './DaiMarketOverview'

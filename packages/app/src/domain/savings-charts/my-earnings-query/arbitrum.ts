@@ -1,8 +1,8 @@
 import { queryOptions } from '@tanstack/react-query'
 
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { arbitrum } from 'viem/chains'
 import { Psm3MyEarningsDataResponseSchema, psm3SavingsMyEarningsQueryOptions } from './psm3-savings'
 import { MyEarningsResult } from './types'

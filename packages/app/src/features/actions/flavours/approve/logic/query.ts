@@ -5,7 +5,7 @@ import { readContract } from 'wagmi/actions'
 
 import { MAX_INT } from '@/config/consts'
 
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { normalizeErc20AbiForToken } from './normalizeErc20Abi'
 
 export interface AllowanceOptions {

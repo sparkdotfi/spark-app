@@ -1,7 +1,7 @@
 import { Token } from '@/domain/types/Token'
 import { Mode } from '@/features/dialogs/savings/withdraw/types'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 
 export type WithdrawFromSavingsObjective = {
   type: 'withdrawFromSavings'

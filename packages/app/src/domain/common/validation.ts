@@ -1,5 +1,5 @@
-import { CheckedAddress, Hex } from '@marsfoundation/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { CheckedAddress, Hex } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { Address, Hex as ViemHex, isAddress, isHex } from 'viem'
 import * as z from 'zod'

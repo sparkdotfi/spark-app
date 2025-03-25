@@ -2,7 +2,7 @@ import { useBlockExplorerAddressLink } from '@/domain/hooks/useBlockExplorerAddr
 import { useIsSmartContract } from '@/domain/hooks/useIsSmartContract'
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { UseFormReturn, useForm } from 'react-hook-form'
 import { Address } from 'viem'
 import { useAccount } from 'wagmi'

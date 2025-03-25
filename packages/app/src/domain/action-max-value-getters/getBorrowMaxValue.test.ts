@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { getBorrowMaxValue } from './getBorrowMaxValue'
 
 describe(getBorrowMaxValue.name, () => {

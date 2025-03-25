@@ -1,4 +1,4 @@
-import { assertNever } from '@marsfoundation/common-universal'
+import { assertNever } from '@sparkdotfi/common-universal'
 import { ContentBlock } from '../types.js'
 
 export function renderToPagerdutyString(node: ContentBlock[]): string {

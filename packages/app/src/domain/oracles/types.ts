@@ -1,8 +1,8 @@
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { Token } from '../types/Token'
 
 import { OracleFeedProvider } from '@/config/chain/types'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { TokenSymbol } from '../types/TokenSymbol'
 
 export interface OracleInfoBase {

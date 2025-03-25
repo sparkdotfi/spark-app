@@ -1,4 +1,4 @@
-import { Hash } from '@marsfoundation/common-universal'
+import { Hash } from '@sparkdotfi/common-universal'
 import { IReporter, Report } from '../types.js'
 import { PagerDutyClient } from './PagerDutyClient.js'
 import { renderToPagerdutyString } from './renderToPagerDuty.js'

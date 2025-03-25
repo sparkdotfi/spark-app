@@ -1,6 +1,6 @@
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber, Opaque } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Opaque } from '@sparkdotfi/common-universal'
 import { QueryKey, useSuspenseQuery } from '@tanstack/react-query'
 import { arbitrum, base } from 'viem/chains'
 import { Config, useConfig } from 'wagmi'

@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
 import { randomHexId } from '@/utils/random'
-import { HttpClient } from '@marsfoundation/common-universal/http-client'
-import { Logger } from '@marsfoundation/common-universal/logger'
+import { HttpClient } from '@sparkdotfi/common-universal/http-client'
+import { Logger } from '@sparkdotfi/common-universal/logger'
 
 const createForkResponseSchema = z.object({
   simulation_fork: z.object({

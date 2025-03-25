@@ -1,5 +1,5 @@
 import { TokenWithBalance, TokenWithValue } from '@/domain/common/types'
-import { NormalizedUnitNumber, raise } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
 import { EasyBorrowFormNormalizedData } from '../types'
 import type { AssetInputSchema, EasyBorrowFormSchema } from './validation'
 

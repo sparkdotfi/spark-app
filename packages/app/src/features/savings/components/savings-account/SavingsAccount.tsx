@@ -1,6 +1,6 @@
 import { TokenWithBalance } from '@/domain/common/types'
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { MigrationInfo } from '../../logic/makeMigrationInfo'
 import { ChartsData, InterestData, SavingsAccountSupportedStablecoin } from '../../logic/useSavings'
 import { AccountMetadata, AccountSparkRewardsSummary } from '../../types'

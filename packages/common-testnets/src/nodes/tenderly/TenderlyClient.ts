@@ -1,4 +1,4 @@
-import { Hash } from '@marsfoundation/common-universal'
+import { Hash } from '@sparkdotfi/common-universal'
 import { http, Address, Hex, createTestClient, numberToHex, publicActions, walletActions } from 'viem'
 import { TestnetClient } from '../../TestnetClient.js'
 import { CreateClientFromUrlParamsInternal } from '../../TestnetFactory.js'

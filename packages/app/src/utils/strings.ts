@@ -1,4 +1,4 @@
-import { assert } from '@marsfoundation/common-universal'
+import { assert } from '@sparkdotfi/common-universal'
 
 export function trimCharEnd(str: string, char: string): string {
   assert(char.length === 1, 'char has to be a single character')

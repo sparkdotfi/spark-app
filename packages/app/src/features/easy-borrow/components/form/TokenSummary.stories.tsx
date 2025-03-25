@@ -1,7 +1,7 @@
 import { tokens } from '@sb/tokens'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 import { TokenSummary } from './TokenSummary'
 

@@ -1,5 +1,5 @@
-import { CheckedAddress } from '@marsfoundation/common-universal'
 import { ZeroAllowanceWagmiDecorator } from '@sb/decorators'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { BlockExplorerAddressLink } from './BlockExplorerAddressLink'

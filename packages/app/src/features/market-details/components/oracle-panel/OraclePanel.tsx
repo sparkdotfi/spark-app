@@ -1,6 +1,6 @@
 import { UseOracleInfoResult } from '@/domain/oracles/useOracleInfo'
 import { Skeleton } from '@/ui/atoms/skeleton/Skeleton'
-import { assertNever } from '@marsfoundation/common-universal'
+import { assertNever } from '@sparkdotfi/common-universal'
 import { FixedOraclePanel } from './components/FixedOraclePanel'
 import { MarketOraclePanel } from './components/MarketOraclePanel'
 import { UnderlyingAssetOraclePanel } from './components/UnderlyingAssetOraclePanel'

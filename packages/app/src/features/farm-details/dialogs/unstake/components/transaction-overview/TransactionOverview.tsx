@@ -3,7 +3,7 @@ import { HorizontalScroll } from '@/ui/atoms/horizontal-scroll/HorizontalScroll'
 import { TransactionOverview } from '@/ui/organisms/transaction-overview/TransactionOverview'
 import { RouteItem } from '@/ui/organisms/transaction-overview/rows/TransactionOverviewRoute'
 import { testIds } from '@/ui/utils/testIds'
-import { assert } from '@marsfoundation/common-universal'
+import { assert } from '@sparkdotfi/common-universal'
 import { TxOverview } from '../../logic/createTxOverview'
 import { UnstakeTransactionOutcome } from './UnstakeTransactionOutcome'
 

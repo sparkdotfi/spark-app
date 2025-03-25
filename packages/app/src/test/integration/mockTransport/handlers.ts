@@ -1,5 +1,5 @@
 import { isDeepStrictEqual } from 'node:util'
-import { Hex } from '@marsfoundation/common-universal'
+import { Hex } from '@sparkdotfi/common-universal'
 import {
   Abi,
   AbiEvent,

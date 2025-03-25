@@ -1,5 +1,5 @@
 import { RequiredProps } from '@/utils/types'
-import { assertNever } from '@marsfoundation/common-universal'
+import { assertNever } from '@sparkdotfi/common-universal'
 import { type VariantProps, cva } from 'class-variance-authority'
 import { AlertTriangleIcon, CheckCircle2Icon, InfoIcon } from 'lucide-react'
 import { forwardRef } from 'react'

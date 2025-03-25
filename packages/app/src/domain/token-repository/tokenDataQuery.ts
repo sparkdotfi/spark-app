@@ -1,5 +1,5 @@
 import { TokenConfig } from '@/config/chain/types'
-import { assert } from '@marsfoundation/common-universal'
+import { assert } from '@sparkdotfi/common-universal'
 import { queryOptions } from '@tanstack/react-query'
 import { Address } from 'viem'
 import { Config } from 'wagmi'

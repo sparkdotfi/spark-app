@@ -3,7 +3,7 @@ import { SuccessViewCheckmark } from '@/features/dialogs/common/components/succe
 import { SuccessViewContent } from '@/features/dialogs/common/components/success-view/SuccessViewContent'
 import { SuccessViewProceedButton } from '@/features/dialogs/common/components/success-view/SuccessViewProceedButton'
 import { testIds } from '@/ui/utils/testIds'
-import { assert } from '@marsfoundation/common-universal'
+import { assert } from '@sparkdotfi/common-universal'
 import { SuccessViewPanel } from '../../common/components/success-view/SuccessViewPanel'
 import { SuccessViewTokenRow } from '../../common/components/success-view/SuccessViewTokenRow'
 import { TxOverview } from '../logic/createTxOverview'

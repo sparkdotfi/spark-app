@@ -2,7 +2,7 @@ import { formatPercentage } from '@/domain/common/format'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { testIds } from '@/ui/utils/testIds'
 import { nonZeroOrDefault } from '@/utils/bigNumber'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { LoanToValueSlider } from './LoanToValueSlider'
 
 interface LoanToValuePanelProps {

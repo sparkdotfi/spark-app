@@ -1,7 +1,7 @@
 import { TokenWithBalance } from '@/domain/common/types'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { CheckedAddress, NormalizedUnitNumber, raise } from '@marsfoundation/common-universal'
+import { CheckedAddress, NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
 
 export interface FeaturedTokens {
   DAI?: TokenSymbol

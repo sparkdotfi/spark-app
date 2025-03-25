@@ -1,7 +1,7 @@
-import { NormalizedUnitNumber, raise } from '@marsfoundation/common-universal'
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
+import { NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
 import type { Meta, StoryObj } from '@storybook/react'
 import { userEvent, within } from '@storybook/test'
 import { WithdrawalsTablePanel } from './WithdrawalsTablePanel'

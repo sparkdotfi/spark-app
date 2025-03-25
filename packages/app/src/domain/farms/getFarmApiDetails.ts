@@ -1,7 +1,7 @@
 import { FarmConfig } from '@/config/chain/types'
 import { infoSkyApiUrl } from '@/config/consts'
 import { FarmApiDetails } from '@/domain/farms/types'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import { z } from 'zod'
 import { normalizedUnitNumberSchema, percentageAboveOneSchema } from '../common/validation'
 

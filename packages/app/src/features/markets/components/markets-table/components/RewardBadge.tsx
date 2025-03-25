@@ -2,7 +2,7 @@ import { formatPercentage } from '@/domain/common/format'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { getTokenColor, getTokenImage } from '@/ui/assets'
 import { Tooltip, TooltipContent, TooltipContentLayout, TooltipTrigger } from '@/ui/atoms/tooltip/Tooltip'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 interface RewardBadgeProps {
   incentivizedReserve: TokenSymbol

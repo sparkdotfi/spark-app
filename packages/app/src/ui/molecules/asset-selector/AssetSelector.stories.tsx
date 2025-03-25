@@ -1,8 +1,8 @@
 import { tokens } from '@sb/tokens'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
 import { WithClassname } from '@sb/decorators'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { userEvent } from '@storybook/test'
 import { within } from '@testing-library/react'
 import { AssetSelector } from './AssetSelector'

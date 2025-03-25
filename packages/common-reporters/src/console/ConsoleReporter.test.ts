@@ -1,4 +1,4 @@
-import { Logger } from '@marsfoundation/common-universal/logger'
+import { Logger } from '@sparkdotfi/common-universal/logger'
 import { MockObject, expect, mockFn, mockObject } from 'earl'
 import { templating as t } from '../templating.js'
 import { ConsoleReporter } from './ConsoleReporter.js'

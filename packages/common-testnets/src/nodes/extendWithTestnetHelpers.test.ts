@@ -1,4 +1,4 @@
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { expect, mockFn } from 'earl'
 import { encodeFunctionData, erc20Abi, parseEther } from 'viem'
 import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts'

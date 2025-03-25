@@ -1,6 +1,6 @@
 import { TokenWithBalance } from '@/domain/common/types'
-import { bigNumberify } from '@marsfoundation/common-universal'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { bigNumberify } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export interface CalculateMaxBalanceTokenAndTotalParams {
   assets: TokenWithBalance[]

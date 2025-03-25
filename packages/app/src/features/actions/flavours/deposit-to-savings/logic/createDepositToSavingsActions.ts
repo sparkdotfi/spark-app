@@ -7,7 +7,7 @@ import {
 } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { Action, ActionContext } from '@/features/actions/logic/types'
-import { CheckedAddress, assertNever, raise } from '@marsfoundation/common-universal'
+import { CheckedAddress, assertNever, raise } from '@sparkdotfi/common-universal'
 import { ApproveAction } from '../../approve/types'
 import { DepositToSavingsAction, DepositToSavingsObjective } from '../types'
 import { getSavingsDepositActionPath } from './getSavingsDepositActionPath'

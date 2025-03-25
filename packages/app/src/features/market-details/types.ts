@@ -6,7 +6,7 @@ import {
 } from '@/domain/market-info/reserve-status'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { CapAutomatorConfig } from '@/domain/cap-automator/types'
 import { MarketSparkRewards } from '@/domain/spark-rewards/types'

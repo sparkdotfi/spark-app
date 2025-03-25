@@ -5,7 +5,7 @@ import { WalletDropdownTriggerInfo } from '@/features/topbar/types'
 
 import { Button, ButtonIcon } from '@/ui/atoms/button/Button'
 import { cn } from '@/ui/utils/style'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 
 export interface TopbarWalletButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, WalletDropdownTriggerInfo {
   open: boolean

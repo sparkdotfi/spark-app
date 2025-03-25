@@ -23,7 +23,7 @@ import {
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { assets } from '@/ui/assets'
-import { CheckedAddress, NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { mainnet } from 'viem/chains'
 import { infoSkyApiUrl } from '../../consts'
 import { usdcVaultAddress } from '../../contracts-generated'

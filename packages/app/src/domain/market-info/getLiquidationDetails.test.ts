@@ -4,7 +4,7 @@ import { MarketInfo } from '@/domain/market-info/marketInfo'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { testAddresses } from '@/test/integration/constants'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { getLiquidationDetails } from './getLiquidationDetails'
 

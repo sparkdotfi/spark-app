@@ -1,6 +1,6 @@
 import { Token } from '@/domain/types/Token'
 import { CooldownTimer } from '@/ui/molecules/cooldown-timer/CooldownTimer'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import { DssAutoline } from '../../types'
 import { Legend } from './components/LegendItem'
 import { MarketOverviewChart, colors } from './components/MarketOverviewChart'

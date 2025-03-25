@@ -1,7 +1,7 @@
 import { CapAutomatorInfo } from '@/domain/cap-automator/types'
 import { MarketInfo, Reserve } from '@/domain/market-info/marketInfo'
 import { MarketSparkRewards } from '@/domain/spark-rewards/types'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { MarketOverview } from '../types'
 import { getReserveEModeCategoryTokens } from './getReserveEModeCategoryTokens'
 import { getSparkAirdropDetails } from './getSparkAirdropDetails'

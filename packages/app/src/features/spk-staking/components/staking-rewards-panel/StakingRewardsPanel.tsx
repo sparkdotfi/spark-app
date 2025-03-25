@@ -6,7 +6,7 @@ import { Panel } from '@/ui/atoms/panel/Panel'
 import { GrowingReward } from '@/ui/molecules/growing-reward/GrowingReward'
 import { Info } from '@/ui/molecules/info/Info'
 import { cn } from '@/ui/utils/style'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import { ReactNode } from 'react'
 
 export interface StakingRewardsPanelProps {

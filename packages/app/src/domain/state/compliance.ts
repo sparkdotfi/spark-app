@@ -1,6 +1,6 @@
 import { StateCreator } from 'zustand'
 
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { StoreState, useStore } from '.'
 
 export interface Compliance {

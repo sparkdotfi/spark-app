@@ -1,8 +1,8 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useAccount, useConfig } from 'wagmi'
 
-import { CheckedAddress } from '@marsfoundation/common-universal'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useMarketInfo } from '../market-info/useMarketInfo'
 import { Token } from '../types/Token'
 import { TokenSymbol } from '../types/TokenSymbol'

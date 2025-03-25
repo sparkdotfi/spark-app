@@ -1,4 +1,4 @@
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import mixpanel from 'mixpanel-browser'
 import { useStore } from '../state'
 

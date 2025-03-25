@@ -1,7 +1,7 @@
 import { transformSimplifiedQueryResult } from '@/domain/common/query'
 import { useOngoingCampaignsQuery } from '@/domain/spark-rewards/useOngoingCampaignsQuery'
 import { Token } from '@/domain/types/Token'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { AccountSparkRewardsSummary } from '../types'
 
 export interface UseSparkRewardsSummaryParams {

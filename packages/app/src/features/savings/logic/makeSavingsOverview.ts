@@ -1,6 +1,6 @@
 import { TokenWithBalance } from '@/domain/common/types'
 import { SavingsConverter } from '@/domain/savings-converters/types'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 const DEFAULT_PRECISION = 6
 export const STEP_IN_MS = 50

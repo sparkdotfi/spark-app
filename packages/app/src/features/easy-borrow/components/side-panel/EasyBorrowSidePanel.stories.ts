@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react'
 
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { bigNumberify } from '@marsfoundation/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
+import { bigNumberify } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import { EasyBorrowSidePanel } from './EasyBorrowSidePanel'
 
 const meta: Meta<typeof EasyBorrowSidePanel> = {

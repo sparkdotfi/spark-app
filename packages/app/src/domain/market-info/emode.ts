@@ -1,4 +1,4 @@
-import { assert, Percentage } from '@marsfoundation/common-universal'
+import { assert, Percentage } from '@sparkdotfi/common-universal'
 import { AaveFormattedReserve } from './aave-data-layer/query'
 import { EModeCategories, EModeState } from './marketInfo'
 import { parseRawPercentage } from './math'

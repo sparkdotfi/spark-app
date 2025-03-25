@@ -1,7 +1,7 @@
 import { formatPercentage } from '@/domain/common/format'
 import { Skeleton } from '@/ui/atoms/skeleton/Skeleton'
 import { cn } from '@/ui/utils/style'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 export interface SavingsAPYBadgeProps {
   APY?: Percentage

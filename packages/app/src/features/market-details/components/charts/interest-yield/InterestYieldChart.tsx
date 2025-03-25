@@ -1,7 +1,7 @@
 import { colors } from '@/ui/charts/colors'
 import { Margins, defaultMargins } from '@/ui/charts/defaults'
 import { useElementSize } from '@/ui/utils/useElementSize'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { Circle } from 'lucide-react'
 import { Chart } from './components/Chart'

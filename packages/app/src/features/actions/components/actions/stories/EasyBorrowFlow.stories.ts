@@ -5,8 +5,8 @@ import { Meta, StoryObj } from '@storybook/react'
 import { zeroAddress } from 'viem'
 
 import { ActionHandler } from '@/features/actions/logic/types'
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 
 import { Actions } from '../Actions'
 import { allActionHandlers } from './allActionHandlers'

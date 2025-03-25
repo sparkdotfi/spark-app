@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 
 import { EModeCategoryName } from '@/domain/e-mode/types'
 import { Token } from '@/domain/types/Token'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 export interface PositionOverview {
   healthFactor: BigNumber | undefined

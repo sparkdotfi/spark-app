@@ -13,7 +13,7 @@ import {
 import { getTransferFromUserFormValidator } from '@/features/dialogs/common/logic/transfer-from-user/validation'
 import { FormFieldsForDialog, PageState, PageStatus } from '@/features/dialogs/common/types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { assert, NormalizedUnitNumber, raise } from '@marsfoundation/common-universal'
+import { assert, NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
 import { useState } from 'react'
 import { UseFormReturn, useForm } from 'react-hook-form'
 import { useChainId } from 'wagmi'

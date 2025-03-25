@@ -1,6 +1,6 @@
 import { fromRay, pow } from '@/utils/math'
-import { bigNumberify } from '@marsfoundation/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { bigNumberify } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { SavingsConverter } from './types'
 

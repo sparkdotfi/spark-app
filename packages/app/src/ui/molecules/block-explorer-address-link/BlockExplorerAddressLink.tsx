@@ -2,7 +2,7 @@ import { useBlockExplorerAddressLink } from '@/domain/hooks/useBlockExplorerAddr
 import { Address } from '@/ui/atoms/address/Address'
 import { Link } from '@/ui/atoms/link/Link'
 import { cn } from '@/ui/utils/style'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { SquareArrowOutUpRight } from 'lucide-react'
 
 interface BlockExplorerAddressLinkProps {

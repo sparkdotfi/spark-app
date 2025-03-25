@@ -16,7 +16,7 @@ import {
   NormalizedUnitNumber,
   assertNever,
   raise,
-} from '@marsfoundation/common-universal'
+} from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { gnosis } from 'viem/chains'
 import { ApproveAction } from '../../approve/types'

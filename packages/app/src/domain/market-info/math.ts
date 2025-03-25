@@ -1,9 +1,9 @@
 import { calculateCompoundedInterest, calculateLinearInterest, rayDiv, rayMul } from '@aave/math-utils'
 import BigNumber from 'bignumber.js'
 
-import { NumberLike, bigNumberify } from '@marsfoundation/common-universal'
+import { NumberLike, bigNumberify } from '@sparkdotfi/common-universal'
 
-import { BaseUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { BaseUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 
 interface GetScaledBalanceArgs {
   rate: BigNumber

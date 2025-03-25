@@ -1,5 +1,5 @@
-import { assertNever } from '@marsfoundation/common-universal'
-import { ILogger } from '@marsfoundation/common-universal/logger'
+import { assertNever } from '@sparkdotfi/common-universal'
+import { ILogger } from '@sparkdotfi/common-universal/logger'
 import { templating } from '../templating.js'
 import { ContentBlock, IReporter, Report } from '../types.js'
 

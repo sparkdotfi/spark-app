@@ -7,7 +7,7 @@ import { aaveDataLayerQueryKey } from '@/domain/market-info/aave-data-layer/quer
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
 import { allowanceQueryKey } from '@/features/actions/flavours/approve/logic/query'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
-import { CheckedAddress, UnixTime, toBigInt } from '@marsfoundation/common-universal'
+import { CheckedAddress, UnixTime, toBigInt } from '@sparkdotfi/common-universal'
 import { DepositAction } from '../types'
 
 export function createDepositActionConfig(action: DepositAction, context: ActionContext): ActionConfig {

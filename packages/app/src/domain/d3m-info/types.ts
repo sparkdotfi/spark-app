@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export interface D3MInfo {
   D3MCurrentDebtUSD: NormalizedUnitNumber

@@ -4,7 +4,7 @@ import { LinkButton } from '@/ui/atoms/link-button/LinkButton'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { links } from '@/ui/constants/links'
 import { cn } from '@/ui/utils/style'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 export interface UpgradeSavingsBannerProps {
   apyImprovement?: Percentage

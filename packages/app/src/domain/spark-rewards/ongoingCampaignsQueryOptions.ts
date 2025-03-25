@@ -1,7 +1,7 @@
 import { spark2ApiUrl } from '@/config/consts'
 import { checkedAddressSchema, percentageSchema } from '@/domain/common/validation'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { CheckedAddress, Percentage, assertNever } from '@marsfoundation/common-universal'
+import { CheckedAddress, Percentage, assertNever } from '@sparkdotfi/common-universal'
 import { queryOptions } from '@tanstack/react-query'
 import { Address, erc20Abi } from 'viem'
 import { Config } from 'wagmi'

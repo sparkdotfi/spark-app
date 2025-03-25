@@ -4,8 +4,8 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 import { encodeFunctionResult, zeroAddress } from 'viem'
 
-import { NormalizedUnitNumber } from '@marsfoundation/common-universal'
-import { CheckedAddress } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress } from '@sparkdotfi/common-universal'
 
 import { incentiveControllerAbi } from '@/config/abis/incentiveControllerAbi'
 import { ClaimRewardsView } from './ClaimRewardsView'

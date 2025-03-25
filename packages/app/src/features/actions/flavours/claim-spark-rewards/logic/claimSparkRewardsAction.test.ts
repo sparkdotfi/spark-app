@@ -4,7 +4,7 @@ import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPr
 import { getMockToken, testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
-import { Hex, NormalizedUnitNumber, toBigInt } from '@marsfoundation/common-universal'
+import { Hex, NormalizedUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { times } from 'remeda'
 import { mainnet } from 'viem/chains'

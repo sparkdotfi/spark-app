@@ -2,7 +2,7 @@ import { TokenWithValue } from '@/domain/common/types'
 import { useConditionalFreeze } from '@/domain/hooks/useConditionalFreeze'
 import { LiquidationDetails, getLiquidationDetails } from '@/domain/market-info/getLiquidationDetails'
 import { MarketInfo } from '@/domain/market-info/marketInfo'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 
 export interface UseLiquidationDetailsArgs {
   marketInfo: MarketInfo

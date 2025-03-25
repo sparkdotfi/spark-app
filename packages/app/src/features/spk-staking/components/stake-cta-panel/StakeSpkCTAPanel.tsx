@@ -6,7 +6,7 @@ import { Link } from '@/ui/atoms/link/Link'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { links } from '@/ui/constants/links'
 import { cn } from '@/ui/utils/style'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import { VariantProps, cva } from 'class-variance-authority'
 import { ExternalLinkIcon } from 'lucide-react'
 

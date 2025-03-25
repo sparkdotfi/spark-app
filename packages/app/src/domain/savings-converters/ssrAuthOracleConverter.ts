@@ -1,6 +1,6 @@
 import { ssrAuthOracleConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
-import { bigNumberify } from '@marsfoundation/common-universal'
+import { bigNumberify } from '@sparkdotfi/common-universal'
 import { readContract } from 'wagmi/actions'
 import { PotSavingsConverter } from './PotSavingsConverter'
 import { SavingsConverterQueryOptions, SavingsConverterQueryParams } from './types'

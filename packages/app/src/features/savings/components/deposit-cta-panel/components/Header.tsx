@@ -6,7 +6,7 @@ import { Link } from '@/ui/atoms/link/Link'
 import { Info } from '@/ui/molecules/info/Info'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { Percentage } from '@marsfoundation/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { cva } from 'class-variance-authority'
 import { savingsTokenToAccountType } from '../../common/utils'
 

@@ -21,7 +21,7 @@ export default defineConfig({
   },
 
   resolve: {
-    conditions: ['@marsfoundation/local-spark-monorepo'],
+    conditions: ['@sparkdotfi/local-spark-monorepo'],
   },
 
   plugins: [

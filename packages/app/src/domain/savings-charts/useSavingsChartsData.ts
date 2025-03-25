@@ -1,6 +1,6 @@
 import { MyEarningsQueryOptions, SavingsRateQueryOptions } from '@/config/chain/types'
 import { useTimestamp } from '@/utils/useTimestamp'
-import { CheckedAddress, NormalizedUnitNumber } from '@marsfoundation/common-universal'
+import { CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useAccount, useChainId } from 'wagmi'
 import { SavingsConverter } from '../savings-converters/types'
 import { UseMyEarningsInfoResult, useMyEarningsInfo } from './useMyEarningsInfo/useMyEarningsInfo'
