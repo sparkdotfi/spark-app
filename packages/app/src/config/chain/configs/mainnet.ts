@@ -76,6 +76,12 @@ const sky = defineToken({
   symbol: TokenSymbol('SKY'),
 })
 
+const spk = defineToken({
+  address: CheckedAddress('0x56072C95FAA701256059aa122697B133aDEd9279'), // @todo: add correct address
+  oracleType: 'zero-price',
+  symbol: TokenSymbol('SPK'),
+})
+
 export const mainnetConfig: ChainConfigEntry = {
   originChainId: mainnet.id,
   daiSymbol: dai.symbol,
@@ -257,5 +263,9 @@ export const mainnetConfig: ChainConfigEntry = {
     ],
     getFarmDetailsApiUrl: (address) => `${infoSkyApiUrl}/farms/${address.toLowerCase()}/historic/`,
   },
-  definedTokens: [dai, usdc, usds, susds, sdai, susdc, sky],
+  sparkToken: {
+    spkSymbol: spk.symbol,
+    usdsSymbol: usds.symbol,
+  },
+  definedTokens: [dai, usdc, usds, susds, sdai, susdc, sky, spk],
 }
