@@ -196,14 +196,6 @@ export const mainnetConfig: ChainConfigEntry = {
   },
   savings: {
     accounts: [
-      {
-        savingsToken: susds.symbol,
-        underlyingToken: usds.symbol,
-        supportedStablecoins: [usds.symbol, usdc.symbol, dai.symbol],
-        fetchConverterQuery: mainnetSavingsUsdsConverterQuery,
-        savingsRateQueryOptions: mainnetSusdsSavingsRateQueryOptions,
-        myEarningsQueryOptions: mainnetSusdsMyEarningsQueryOptions,
-      },
       ...(USDC_ACCOUNT_ENABLED
         ? [
             {
@@ -216,6 +208,14 @@ export const mainnetConfig: ChainConfigEntry = {
             },
           ]
         : []),
+      {
+        savingsToken: susds.symbol,
+        underlyingToken: usds.symbol,
+        supportedStablecoins: [usds.symbol, usdc.symbol, dai.symbol],
+        fetchConverterQuery: mainnetSavingsUsdsConverterQuery,
+        savingsRateQueryOptions: mainnetSusdsSavingsRateQueryOptions,
+        myEarningsQueryOptions: mainnetSusdsMyEarningsQueryOptions,
+      },
       {
         savingsToken: sdai.symbol,
         underlyingToken: dai.symbol,

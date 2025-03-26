@@ -58,14 +58,6 @@ export const arbitrumConfig: ChainConfigEntry = {
   farms: undefined,
   savings: {
     accounts: [
-      {
-        savingsToken: susds.symbol,
-        underlyingToken: usds.symbol,
-        supportedStablecoins: [usds.symbol, usdc.symbol],
-        fetchConverterQuery: ssrAuthOracleConverterQueryOptions,
-        savingsRateQueryOptions: arbitrumSusdsSavingsRateQueryOptions,
-        myEarningsQueryOptions: arbitrumSusdsMyEarningsQueryOptions,
-      },
       ...(USDC_ACCOUNT_ENABLED
         ? [
             {
@@ -78,6 +70,14 @@ export const arbitrumConfig: ChainConfigEntry = {
             },
           ]
         : []),
+      {
+        savingsToken: susds.symbol,
+        underlyingToken: usds.symbol,
+        supportedStablecoins: [usds.symbol, usdc.symbol],
+        fetchConverterQuery: ssrAuthOracleConverterQueryOptions,
+        savingsRateQueryOptions: arbitrumSusdsSavingsRateQueryOptions,
+        myEarningsQueryOptions: arbitrumSusdsMyEarningsQueryOptions,
+      },
     ],
     psmStables: [usds.symbol, usdc.symbol],
   },
