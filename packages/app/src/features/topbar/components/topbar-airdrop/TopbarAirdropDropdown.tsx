@@ -13,6 +13,7 @@ import {
 import { Link } from '@/ui/atoms/link/Link'
 import { Skeleton } from '@/ui/atoms/skeleton/Skeleton'
 import { links } from '@/ui/constants/links'
+import { text } from '@/ui/constants/text'
 import { testIds } from '@/ui/utils/testIds'
 import { DropdownMenuGroup } from '@radix-ui/react-dropdown-menu'
 import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
@@ -68,7 +69,7 @@ export function TopbarAirdropDropdown({
           </DropdownMenuItem>
           <DropdownMenuSeparator className="my-2" />
           <DropdownMenuItem className="!typography-body-4 pointer-events-none py-2 text-secondary">
-            DAI borrowers with volatile assets and ETH depositors will be eligible for a future ⚡ SPK airdrop.
+            {text.airdrop.preFarmingEligibilityMessage}
           </DropdownMenuItem>
         </DropdownMenuGroup>
 
