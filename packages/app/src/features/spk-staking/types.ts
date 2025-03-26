@@ -1,6 +1,6 @@
 import { SimplifiedQueryResult } from '@/domain/common/query'
 import { Timeframe } from '@/ui/charts/defaults'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber, Percentage, UnixTime } from '@sparkdotfi/common-universal'
 import { UseQueryResult } from '@tanstack/react-query'
 import { StakeSpkCTAPanelProps } from './components/stake-cta-panel/StakeSpkCTAPanel'
 import { StakingRewardsPanelProps } from './components/staking-rewards-panel/StakingRewardsPanel'
@@ -40,6 +40,6 @@ export type MainPanelData =
 
 export interface SpkStakingEpochs {
   currentEpoch: bigint
-  epochDuration: number
-  epochDurationInit: number
+  epochDuration: UnixTime
+  epochDurationInit: UnixTime
 }

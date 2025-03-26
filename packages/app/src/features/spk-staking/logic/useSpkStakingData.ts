@@ -10,7 +10,13 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { SuspenseQueryWith } from '@/utils/types'
-import { BaseUnitNumber, CheckedAddress, NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import {
+  BaseUnitNumber,
+  CheckedAddress,
+  NormalizedUnitNumber,
+  Percentage,
+  UnixTime,
+} from '@sparkdotfi/common-universal'
 import { QueryKey, queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 import { Config } from 'wagmi'
 import { readContract } from 'wagmi/actions'
@@ -76,8 +82,8 @@ export function spkStakingDataQueryOptions({
 
         return {
           currentEpoch,
-          epochDuration,
-          epochDurationInit,
+          epochDuration: UnixTime(epochDuration),
+          epochDurationInit: UnixTime(epochDurationInit),
         }
       }
 
