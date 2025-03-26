@@ -12,7 +12,8 @@ import { useAccount, useConfig } from 'wagmi'
 import { AvailableToStakeRow } from '../components/available-to-stake-panel/AvailableToStakePanel'
 import { WithdrawalsTableRow } from '../components/withdrawals-table/WithdrawalsTablePanel'
 import { stakeDialogConfig } from '../dialogs/stake/StakeDialog'
-import { MainPanelData, UseGeneralStatsResult } from '../types'
+import { ChartDetails, MainPanelData, UseGeneralStatsResult } from '../types'
+import { useChartDetails } from './useChartDetails'
 import { useGeneralStats } from './useGeneralStats'
 import { Withdrawal, useSpkStakingData } from './useSpkStakingData'
 
@@ -20,6 +21,7 @@ export interface UseSpkStakingResult {
   chainId: number
   generalStats: UseGeneralStatsResult
   mainPanelData: MainPanelData
+  chartDetails: ChartDetails
   withdrawalsTableRows: WithdrawalsTableRow[]
   availableToStakeRow: AvailableToStakeRow
 }
@@ -36,11 +38,13 @@ export function useSpkStaking(): UseSpkStakingResult {
     openDialog(sandboxDialogConfig, { mode: 'ephemeral' } as const)
   }
 
+  const generalStats = useGeneralStats()
+  const chartDetails = useChartDetails()
+
   const { tokenRepository } = useTokenRepositoryForFeature({
     chainId,
     featureGroup: 'sparkToken',
   })
-  const generalStats = useGeneralStats()
 
   const { spkStakingData } = useSpkStakingData({
     chainId,
@@ -119,6 +123,7 @@ export function useSpkStaking(): UseSpkStakingResult {
     chainId,
     generalStats,
     mainPanelData,
+    chartDetails,
     withdrawalsTableRows,
     availableToStakeRow,
   }
