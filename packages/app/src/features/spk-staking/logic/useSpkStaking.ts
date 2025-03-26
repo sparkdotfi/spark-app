@@ -1,3 +1,4 @@
+import { useGetBlockExplorerAddressLink } from '@/domain/hooks/useGetBlockExplorerAddressLink'
 import { usePageChainId } from '@/domain/hooks/usePageChainId'
 import { useOpenDialog } from '@/domain/state/dialogs'
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
@@ -8,7 +9,9 @@ import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { CheckedAddress, UnixTime } from '@sparkdotfi/common-universal'
 import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useAccount, useConfig } from 'wagmi'
+import { AvailableToStakeRow } from '../components/available-to-stake-panel/AvailableToStakePanel'
 import { WithdrawalsTableRow } from '../components/withdrawals-table/WithdrawalsTablePanel'
+import { stakeDialogConfig } from '../dialogs/stake/StakeDialog'
 import { MainPanelData, UseGeneralStatsResult } from '../types'
 import { useGeneralStats } from './useGeneralStats'
 import { Withdrawal, useSpkStakingData } from './useSpkStakingData'
@@ -18,6 +21,7 @@ export interface UseSpkStakingResult {
   generalStats: UseGeneralStatsResult
   mainPanelData: MainPanelData
   withdrawalsTableRows: WithdrawalsTableRow[]
+  availableToStakeRow: AvailableToStakeRow
 }
 
 export function useSpkStaking(): UseSpkStakingResult {
@@ -26,6 +30,8 @@ export function useSpkStaking(): UseSpkStakingResult {
   const wagmiConfig = useConfig()
   const { openConnectModal = () => {} } = useConnectModal()
   const openDialog = useOpenDialog()
+  const getBlockExplorerLink = useGetBlockExplorerAddressLink()
+
   function openSandboxModal(): void {
     openDialog(sandboxDialogConfig, { mode: 'ephemeral' } as const)
   }
@@ -42,6 +48,8 @@ export function useSpkStaking(): UseSpkStakingResult {
     wagmiConfig,
     tokenRepository,
   })
+
+  const spk = tokenRepository.findOneTokenBySymbol(TokenSymbol('SPK'))
 
   const mainPanelData: MainPanelData = (() => {
     if (spkStakingData.amountStaked.isZero()) {
@@ -98,11 +106,21 @@ export function useSpkStaking(): UseSpkStakingResult {
     tokenRepository,
   })
 
+  const availableToStakeRow: AvailableToStakeRow = {
+    token: spk,
+    balance: spkStakingData.amountStaked,
+    blockExplorerLink: getBlockExplorerLink(spk.address) ?? '/',
+    openStakeDialog: () => {
+      openDialog(stakeDialogConfig, {})
+    },
+  }
+
   return {
     chainId,
     generalStats,
     mainPanelData,
     withdrawalsTableRows,
+    availableToStakeRow,
   }
 }
 

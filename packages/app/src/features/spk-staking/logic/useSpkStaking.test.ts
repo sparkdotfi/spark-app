@@ -111,7 +111,7 @@ describe(useSpkStaking.name, () => {
           abi: erc20Abi,
           functionName: 'balanceOf',
           args: [account],
-          result: 0n,
+          result: parseEther('10'),
         }),
         handlers.contractCall({
           to: spk,
@@ -236,6 +236,15 @@ describe(useSpkStaking.name, () => {
           isActionEnabled: false,
         },
       ])
+      expect(result.current.availableToStakeRow).toMatchObject({
+        token: expect.objectContaining({
+          symbol: 'SPK',
+          address: spk,
+        }),
+        balance: NormalizedUnitNumber(10),
+        blockExplorerLink: `https://etherscan.io/address/${spk}`,
+        openStakeDialog: expect.any(Function),
+      })
     })
   })
 })
