@@ -6,6 +6,7 @@ import { Link } from '@/ui/atoms/link/Link'
 import { MenuItem, MenuItemIcon } from '@/ui/atoms/menu-item/MenuItem'
 import { Skeleton } from '@/ui/atoms/skeleton/Skeleton'
 import { links } from '@/ui/constants/links'
+import { text } from '@/ui/constants/text'
 import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { ChevronRight, ExternalLinkIcon } from 'lucide-react'
 import { useState } from 'react'
@@ -96,9 +97,7 @@ function TopbarMenuAirdropDialog({
         </MenuItem>
 
         <div className="flex flex-col gap-4 bg-secondary p-6">
-          <span className="typography-body-3 text-secondary">
-            DAI borrowers with volatile assets and ETH depositors will be eligible for a future ⚡ SPK airdrop.
-          </span>
+          <span className="typography-body-3 text-secondary">{text.airdrop.preFarmingEligibilityMessage}</span>
 
           <MenuItem asChild className="cursor-pointer">
             <Link to={links.docs.sparkAirdrop} variant="unstyled" external>

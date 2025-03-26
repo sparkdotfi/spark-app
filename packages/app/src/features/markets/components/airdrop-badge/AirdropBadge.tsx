@@ -3,6 +3,7 @@ import { assets, getTokenColor, getTokenImage } from '@/ui/assets'
 import { Link } from '@/ui/atoms/link/Link'
 import { Tooltip, TooltipContent, TooltipContentLayout, TooltipTrigger } from '@/ui/atoms/tooltip/Tooltip'
 import { links } from '@/ui/constants/links'
+import { text } from '@/ui/constants/text'
 
 interface AirdropBadgeProps {
   'data-testid'?: string
@@ -31,8 +32,7 @@ export function AirdropBadge({ 'data-testid': dataTestId }: AirdropBadgeProps) {
           </TooltipContentLayout.Header>
 
           <TooltipContentLayout.Body>
-            DAI borrowers with volatile assets and ETH depositors will be eligible for a future ⚡&nbsp;SPK airdrop.
-            Please read the details on the{' '}
+            {text.airdrop.preFarmingEligibilityMessage} Please read the details on the{' '}
             <Link to={links.docs.sparkAirdrop} external>
               Spark Docs
             </Link>
