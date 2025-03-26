@@ -11,12 +11,13 @@ import {
 } from '@/features/dialogs/common/logic/transfer-from-user/form'
 import { getTransferFromUserFormValidator } from '@/features/dialogs/common/logic/transfer-from-user/validation'
 import { FormFieldsForDialog, PageState, PageStatus } from '@/features/dialogs/common/types'
-import { SpkStakingEpochs } from '@/features/spk-staking/types'
+import { useSpkStakingData } from '@/features/spk-staking/logic/useSpkStakingData'
 import { useTimestamp } from '@/utils/useTimestamp'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { assert, NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { assert, CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useState } from 'react'
 import { UseFormReturn, useForm } from 'react-hook-form'
+import { useAccount, useChainId, useConfig } from 'wagmi'
 import { TxOverview, createTxOverview } from './createTxOverview'
 import { validationIssueToMessage } from './validation'
 
@@ -31,20 +32,25 @@ export interface UseStakeDialogResult {
   txOverview: TxOverview
 }
 
-export interface UseStakeDialogParams {
-  apy: Percentage
-  spkStakingEpochs: SpkStakingEpochs
-}
-
-export function useStakeDialog({ apy, spkStakingEpochs }: UseStakeDialogParams): UseStakeDialogResult {
-  const { timestamp } = useTimestamp()
+export function useStakeDialog(): UseStakeDialogResult {
   const [pageStatus, setPageStatus] = useState<PageState>('form')
+  const { timestamp } = useTimestamp() // @todo: spk staking - replace with blockchain timestamp from data hook when available
+  const chainId = useChainId()
+  const account = useAccount().address
+  const wagmiConfig = useConfig()
+
   const { sparkToken: sparkTokenFeatureConfig } = useChainConfigEntry()
   assert(sparkTokenFeatureConfig, 'Spark token config should be defined')
   const { tokenRepository } = useTokenRepositoryForFeature({ featureGroup: 'sparkToken' })
-
   const spkWithBalance = tokenRepository.findOneTokenWithBalanceBySymbol(sparkTokenFeatureConfig.spkSymbol)
   const usds = tokenRepository.findOneTokenBySymbol(sparkTokenFeatureConfig.usdsSymbol)
+
+  const { spkStakingData } = useSpkStakingData({
+    chainId,
+    account: account && CheckedAddress(account),
+    wagmiConfig,
+    tokenRepository,
+  })
 
   const form = useForm<AssetInputSchema>({
     resolver: zodResolver(getTransferFromUserFormValidator(tokenRepository, validationIssueToMessage)),
@@ -72,10 +78,10 @@ export function useStakeDialog({ apy, spkStakingEpochs }: UseStakeDialogParams):
   ]
 
   const txOverview = createTxOverview({
-    apy,
+    apy: spkStakingData.apy,
     usds,
     timestamp,
-    spkStakingEpochs,
+    spkStakingEpochs: spkStakingData.epochs,
     formValues,
   })
 
