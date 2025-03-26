@@ -8,8 +8,13 @@ import { StakeView, StakeViewProps } from './StakeView'
 
 const meta: Meta<typeof StakeView> = {
   title: 'Features/SpkStaking/Dialogs/Views/Stake',
-  component: (args) => {
-    const form = useForm() as any
+  render: (args) => {
+    const form = useForm({
+      defaultValues: {
+        symbol: tokens.SPK.symbol,
+        value: '100',
+      },
+    }) as any
     return <StakeView {...args} form={form} />
   },
   decorators: [ZeroAllowanceWagmiDecorator(), WithClassname('max-w-xl'), WithTooltipProvider()],
@@ -57,3 +62,32 @@ type Story = StoryObj<typeof StakeView>
 export const Desktop: Story = {}
 export const Mobile = getMobileStory(Desktop)
 export const Tablet = getTabletStory(Desktop)
+
+export const EmptyInput: Story = {
+  render: (args) => {
+    const form = useForm({
+      defaultValues: {
+        symbol: tokens.SPK.symbol,
+        value: '',
+      },
+    }) as any
+    return <StakeView {...args} form={form} />
+  },
+  args: {
+    pageStatus: {
+      state: 'form',
+      actionsEnabled: false,
+      goToSuccessScreen: () => {},
+    },
+    txOverview: {
+      status: 'no-overview',
+    },
+    objectives: [
+      {
+        type: 'stakeSpk',
+        spk: tokens.SPK,
+        amount: NormalizedUnitNumber(0),
+      },
+    ],
+  },
+}

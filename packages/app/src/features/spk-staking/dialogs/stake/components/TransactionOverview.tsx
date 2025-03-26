@@ -1,4 +1,5 @@
 import { Token } from '@/domain/types/Token'
+import { formatTimeLeft } from '@/features/spk-staking/utils/formatTimeLeft'
 import { TransactionOverview } from '@/ui/organisms/transaction-overview/TransactionOverview'
 import { UnixTime } from '@sparkdotfi/common-universal'
 import type { TxOverview } from '../logic/createTxOverview'
@@ -35,9 +36,7 @@ function StakeTransactionOverview({ txOverview }: StakeTransactionOverviewProps)
       </TransactionOverview.Row>
       <TransactionOverview.Row>
         <TransactionOverview.Label>Unstaking delay</TransactionOverview.Label>
-        <TransactionOverview.Generic>
-          {UnixTime.formatSpan(UnixTime(unstakingDelay), { unitCount: 2 })}
-        </TransactionOverview.Generic>
+        <TransactionOverview.Generic>{formatTimeLeft(UnixTime(unstakingDelay))}</TransactionOverview.Generic>
       </TransactionOverview.Row>
     </TransactionOverview>
   )

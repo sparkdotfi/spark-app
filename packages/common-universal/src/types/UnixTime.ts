@@ -1,4 +1,4 @@
-import prettyMilliseconds, { Options as PrettyMsOptions } from 'pretty-ms'
+import prettyMilliseconds from 'pretty-ms'
 import { assert } from '../assert/assert.js'
 import { NumberLike, bigNumberify } from '../math/bigNumber.js'
 import { Opaque } from './Opaque.js'
@@ -68,8 +68,8 @@ UnixTime.toMilliseconds = (unixTime: UnixTime): number => {
   return Number(unixTime) * 1000
 }
 
-UnixTime.formatSpan = (span: UnixTime, options?: PrettyMsOptions): string => {
-  return prettyMilliseconds(UnixTime.toMilliseconds(span), options)
+UnixTime.formatSpan = (span: UnixTime): string => {
+  return prettyMilliseconds(UnixTime.toMilliseconds(span))
 }
 
 const YEAR_3000_TIMESTAMP = Math.floor(new Date('3000-01-01T00:00:00.000Z').getTime() / 1000)
