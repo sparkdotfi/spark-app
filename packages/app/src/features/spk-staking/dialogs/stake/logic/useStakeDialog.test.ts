@@ -34,7 +34,7 @@ describe(useStakeDialog.name, () => {
     vi.useFakeTimers({
       shouldAdvanceTime: true,
     })
-    const fixedTime = new Date(2025, 2, 26).getTime()
+    const fixedTime = Date.UTC(2025, 2, 26)
     vi.setSystemTime(fixedTime)
   })
 
@@ -117,7 +117,7 @@ describe(useStakeDialog.name, () => {
       expect(result.current.txOverview).toMatchObject({
         status: 'success',
         apy: Percentage(0.17),
-        unstakingDelay: 802590,
+        unstakingDelay: 777390,
         rewardsPerYearUsd: NormalizedUnitNumber(0), // No price for SPK yet
       })
       expect(result.current.objectives).toMatchObject([
