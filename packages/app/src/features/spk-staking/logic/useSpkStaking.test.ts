@@ -131,23 +131,54 @@ describe(useSpkStaking.name, () => {
           functionName: 'name',
           result: 'SPK',
         }),
+        handlers.blockCall({
+          timestamp: 330,
+        }),
         handlers.contractCall({
           to: getContractAddress(testSpkStakingAddress, chainId),
           abi: testSpkStakingAbi,
           functionName: 'currentEpoch',
-          result: 9n,
+          result: 4n,
         }),
         handlers.contractCall({
           to: getContractAddress(testSpkStakingAddress, chainId),
           abi: testSpkStakingAbi,
           functionName: 'epochDuration',
-          result: 604800,
+          result: 60,
         }),
         handlers.contractCall({
           to: getContractAddress(testSpkStakingAddress, chainId),
           abi: testSpkStakingAbi,
           functionName: 'epochDurationInit',
-          result: 1737071795,
+          result: 60,
+        }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
+          functionName: 'withdrawalSharesOf',
+          args: [1n, account],
+          result: 0n,
+        }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
+          functionName: 'withdrawalSharesOf',
+          args: [2n, account],
+          result: parseEther('1'),
+        }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
+          functionName: 'withdrawalSharesOf',
+          args: [3n, account],
+          result: parseEther('2'),
+        }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
+          functionName: 'withdrawalSharesOf',
+          args: [4n, account],
+          result: parseEther('4'),
         }),
       ],
     })
@@ -179,6 +210,32 @@ describe(useSpkStaking.name, () => {
           calculateReward: expect.any(Function),
         },
       })
+      expect(result.current.withdrawalsTableRows).toEqual([
+        {
+          token: expect.objectContaining({
+            symbol: 'SPK',
+            address: spk,
+          }),
+          amount: NormalizedUnitNumber(3),
+          timeToClaim: 0,
+          claimableAt: expect.any(Date),
+          action: expect.any(Function),
+          actionName: 'Claim',
+          isActionEnabled: true,
+        },
+        {
+          token: expect.objectContaining({
+            symbol: 'SPK',
+            address: spk,
+          }),
+          amount: NormalizedUnitNumber(4),
+          timeToClaim: 30,
+          claimableAt: expect.any(Date),
+          action: expect.any(Function),
+          actionName: 'Claim',
+          isActionEnabled: false,
+        },
+      ])
     })
   })
 })

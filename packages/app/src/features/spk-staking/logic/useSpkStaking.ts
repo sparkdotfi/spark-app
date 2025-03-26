@@ -1,21 +1,23 @@
 import { usePageChainId } from '@/domain/hooks/usePageChainId'
 import { useOpenDialog } from '@/domain/state/dialogs'
+import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { useTokenRepositoryForFeature } from '@/domain/token-repository/useTokenRepositoryForFeature'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { sandboxDialogConfig } from '@/features/dialogs/sandbox/SandboxDialog'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
-import { CheckedAddress } from '@sparkdotfi/common-universal'
+import { CheckedAddress, UnixTime } from '@sparkdotfi/common-universal'
 import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useAccount, useConfig } from 'wagmi'
-import { MainPanelData, SpkStakingEpochs, UseGeneralStatsResult } from '../types'
+import { WithdrawalsTableRow } from '../components/withdrawals-table/WithdrawalsTablePanel'
+import { MainPanelData, UseGeneralStatsResult } from '../types'
 import { useGeneralStats } from './useGeneralStats'
-import { useSpkStakingData } from './useSpkStakingData'
+import { Withdrawal, useSpkStakingData } from './useSpkStakingData'
 
 export interface UseSpkStakingResult {
   chainId: number
   generalStats: UseGeneralStatsResult
   mainPanelData: MainPanelData
-  spkStakingEpochs: SpkStakingEpochs
+  withdrawalsTableRows: WithdrawalsTableRow[]
 }
 
 export function useSpkStaking(): UseSpkStakingResult {
@@ -90,10 +92,39 @@ export function useSpkStaking(): UseSpkStakingResult {
     } satisfies MainPanelData
   })()
 
+  const withdrawalsTableRows = formatWithdrawals({
+    withdrawals: spkStakingData.withdrawals,
+    timestamp: spkStakingData.timestamp,
+    tokenRepository,
+  })
+
   return {
     chainId,
     generalStats,
     mainPanelData,
-    spkStakingEpochs: spkStakingData.epochs,
+    withdrawalsTableRows,
   }
+}
+
+function formatWithdrawals({
+  withdrawals,
+  timestamp,
+  tokenRepository,
+}: { withdrawals: Withdrawal[]; timestamp: UnixTime; tokenRepository: TokenRepository }): WithdrawalsTableRow[] {
+  return withdrawals
+    .map((withdrawal) => {
+      const timeToClaim = Math.max(0, Number(UnixTime.fromDate(withdrawal.claimableAt) - timestamp))
+      const isActionEnabled = timeToClaim === 0
+
+      return {
+        token: tokenRepository.findOneTokenBySymbol(TokenSymbol('SPK')),
+        amount: withdrawal.amount,
+        timeToClaim,
+        claimableAt: withdrawal.claimableAt,
+        action: () => {},
+        actionName: 'Claim',
+        isActionEnabled,
+      }
+    })
+    .sort((a, b) => a.timeToClaim - b.timeToClaim)
 }

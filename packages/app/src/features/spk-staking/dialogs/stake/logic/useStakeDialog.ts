@@ -12,7 +12,6 @@ import {
 import { getTransferFromUserFormValidator } from '@/features/dialogs/common/logic/transfer-from-user/validation'
 import { FormFieldsForDialog, PageState, PageStatus } from '@/features/dialogs/common/types'
 import { useSpkStakingData } from '@/features/spk-staking/logic/useSpkStakingData'
-import { useTimestamp } from '@/utils/useTimestamp'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { assert, CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useState } from 'react'
@@ -34,7 +33,6 @@ export interface UseStakeDialogResult {
 
 export function useStakeDialog(): UseStakeDialogResult {
   const [pageStatus, setPageStatus] = useState<PageState>('form')
-  const { timestamp } = useTimestamp() // @todo: spk staking - replace with blockchain timestamp from data hook when available
   const chainId = useChainId()
   const account = useAccount().address
   const wagmiConfig = useConfig()
@@ -80,8 +78,8 @@ export function useStakeDialog(): UseStakeDialogResult {
   const txOverview = createTxOverview({
     apy: spkStakingData.apy,
     usds,
-    timestamp,
-    spkStakingEpochs: spkStakingData.epochs,
+    nextEpochStart: Number(spkStakingData.nextEpochStart),
+    timestamp: Number(spkStakingData.timestamp),
     formValues,
   })
 

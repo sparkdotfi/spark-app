@@ -1,12 +1,11 @@
 import { Token } from '@/domain/types/Token'
 import { TransferFromUserFormNormalizedData } from '@/features/dialogs/common/logic/transfer-from-user/form'
-import { SpkStakingEpochs } from '@/features/spk-staking/types'
 import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 
 export interface CreateTxOverviewParams {
   apy: Percentage
   usds: Token
-  spkStakingEpochs: SpkStakingEpochs
+  nextEpochStart: number
   timestamp: number
   formValues: TransferFromUserFormNormalizedData
 }
@@ -25,7 +24,7 @@ export function createTxOverview({
   formValues,
   apy,
   usds,
-  spkStakingEpochs,
+  nextEpochStart,
   timestamp,
 }: CreateTxOverviewParams): TxOverview {
   const amount = formValues.value
@@ -36,14 +35,13 @@ export function createTxOverview({
   const stakedAmountUsd = formValues.token.toUSD(amount)
   const rewardsPerYearUsd = NormalizedUnitNumber(stakedAmountUsd.multipliedBy(apy))
 
-  const { currentEpoch, epochDurationInit, epochDuration } = spkStakingEpochs
-  const unstakingDelay = (currentEpoch + 2n) * epochDuration + epochDurationInit - BigInt(timestamp)
+  const unstakingDelay = Math.max(0, nextEpochStart - timestamp)
 
   return {
     apy,
     usds,
     status: 'success',
     rewardsPerYearUsd,
-    unstakingDelay: Number(unstakingDelay), // storybook doesn't support bigint
+    unstakingDelay,
   }
 }
