@@ -29,7 +29,7 @@ export class HttpClient {
       throw new HttpError('POST', url, result.status, await result.text())
     }
 
-    if (schema instanceof ZodString) {
+    if (isZodString(schema)) {
       return await result.text()
     }
     return schema.parse(await result.json())
@@ -45,7 +45,7 @@ export class HttpClient {
       throw new HttpError('GET', url, result.status, await result.text())
     }
 
-    if (schema instanceof ZodString) {
+    if (isZodString(schema)) {
       return schema.parse(await result.text())
     }
     return schema.parse(await result.json())
@@ -66,4 +66,8 @@ export class HttpError extends Error {
 
 const applicationJsonHeader = {
   'Content-Type': 'application/json',
+}
+
+function isZodString<T extends z.ZodTypeAny>(schema: T): boolean {
+  return schema instanceof ZodString || schema._def.typeName === 'ZodString'
 }
