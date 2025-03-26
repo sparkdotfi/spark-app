@@ -131,6 +131,24 @@ describe(useSpkStaking.name, () => {
           functionName: 'name',
           result: 'SPK',
         }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
+          functionName: 'currentEpoch',
+          result: 9n,
+        }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
+          functionName: 'epochDuration',
+          result: 604800,
+        }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
+          functionName: 'epochDurationInit',
+          result: 1737071795,
+        }),
       ],
     })
     await waitFor(() => {
