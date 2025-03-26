@@ -1,6 +1,6 @@
 import { infoSkyApiUrl } from '@/config/consts'
 import { normalizedUnitNumberSchema, percentageSchema } from '@/domain/common/validation'
-import { NormalizedUnitNumber, Percentage } from '@marsfoundation/common-universal'
+import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import { queryOptions, useQuery } from '@tanstack/react-query'
 import { z } from 'zod'
 import { UseGeneralStatsResult } from '../types'
