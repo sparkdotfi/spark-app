@@ -7,13 +7,15 @@ import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useAccount, useConfig } from 'wagmi'
-import { MainPanelData, UseGeneralStatsResult } from '../types'
+import { MainPanelData, SpkStakingEpochs, UseGeneralStatsResult } from '../types'
 import { useGeneralStats } from './useGeneralStats'
 import { useSpkStakingData } from './useSpkStakingData'
+
 export interface UseSpkStakingResult {
   chainId: number
   generalStats: UseGeneralStatsResult
   mainPanelData: MainPanelData
+  spkStakingEpochs: SpkStakingEpochs
 }
 
 export function useSpkStaking(): UseSpkStakingResult {
@@ -92,5 +94,6 @@ export function useSpkStaking(): UseSpkStakingResult {
     chainId,
     generalStats,
     mainPanelData,
+    spkStakingEpochs: spkStakingData.epochs,
   }
 }

@@ -10,11 +10,18 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { SuspenseQueryWith } from '@/utils/types'
-import { BaseUnitNumber, CheckedAddress, NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import {
+  BaseUnitNumber,
+  CheckedAddress,
+  NormalizedUnitNumber,
+  Percentage,
+  UnixTime,
+} from '@sparkdotfi/common-universal'
 import { QueryKey, queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 import { Config } from 'wagmi'
 import { readContract } from 'wagmi/actions'
 import { z } from 'zod'
+import { SpkStakingEpochs } from '../types'
 
 export interface SpkStakingDataQueryParams {
   chainId: number
@@ -51,6 +58,35 @@ export function spkStakingDataQueryOptions({
         return BaseUnitNumber.toNormalizedUnit(BaseUnitNumber(balance), spk.decimals)
       }
 
+      async function fetchEpochs(): Promise<SpkStakingEpochs> {
+        const [currentEpoch, epochDuration, epochDurationInit] = await Promise.all([
+          readContract(wagmiConfig, {
+            address: getContractAddress(testSpkStakingAddress, chainId),
+            abi: testSpkStakingAbi,
+            functionName: 'currentEpoch',
+            chainId,
+          }),
+          readContract(wagmiConfig, {
+            address: getContractAddress(testSpkStakingAddress, chainId),
+            abi: testSpkStakingAbi,
+            functionName: 'epochDuration',
+            chainId,
+          }),
+          readContract(wagmiConfig, {
+            address: getContractAddress(testSpkStakingAddress, chainId),
+            abi: testSpkStakingAbi,
+            functionName: 'epochDurationInit',
+            chainId,
+          }),
+        ])
+
+        return {
+          currentEpoch,
+          epochDuration: UnixTime(epochDuration),
+          epochDurationInit: UnixTime(epochDurationInit),
+        }
+      }
+
       async function fetchPreclaimedRewards(): Promise<NormalizedUnitNumber> {
         if (!account) {
           return Promise.resolve(NormalizedUnitNumber(0))
@@ -75,8 +111,9 @@ export function spkStakingDataQueryOptions({
         return baDataResponseSchema.parse(await res.json())
       }
 
-      const [amountStaked, preclaimedRewards, baData] = await Promise.all([
+      const [amountStaked, epochs, preclaimedRewards, baData] = await Promise.all([
         fetchAmountStaked(),
+        fetchEpochs(),
         fetchPreclaimedRewards(),
         fetchBaData(),
       ])
@@ -86,6 +123,7 @@ export function spkStakingDataQueryOptions({
 
       return {
         amountStaked,
+        epochs,
         pendingAmount,
         pendingAmountRate: baData.pending_amount_rate,
         pendingAmountTimestamp: baData.timestamp,
@@ -117,6 +155,7 @@ const baDataResponseSchema = z.object({
 
 export interface SpkStakingData {
   amountStaked: NormalizedUnitNumber
+  epochs: SpkStakingEpochs
   pendingAmount: NormalizedUnitNumber
   pendingAmountRate: NormalizedUnitNumber
   pendingAmountTimestamp: number
