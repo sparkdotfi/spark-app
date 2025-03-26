@@ -37,3 +37,9 @@ export type MainPanelData =
       type: 'active'
       props: StakingRewardsPanelProps
     }
+
+export interface SpkStakingEpochs {
+  currentEpoch: bigint
+  epochDuration: number
+  epochDurationInit: number
+}
