@@ -68,6 +68,6 @@ const applicationJsonHeader = {
   'Content-Type': 'application/json',
 }
 
-function isZodString<T extends z.ZodTypeAny>(schema: T): boolean {
+function isZodString(schema: z.ZodTypeAny): schema is ZodString {
   return schema instanceof ZodString || schema._def.typeName === 'ZodString'
 }
