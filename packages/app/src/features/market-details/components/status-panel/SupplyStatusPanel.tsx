@@ -94,7 +94,7 @@ function SupplyCapInfoTile({ token, capAutomatorInfo, supplyCap }: SupplyCapInfo
   return (
     <InfoTile>
       <InfoTile.Label>Supply cap</InfoTile.Label>
-      <InfoTile.Value data-testid={testIds.marketDetails.capAutomator.cap}>
+      <InfoTile.Value data-testid={testIds.marketDetails.supplyStatusPanel.cap}>
         {token.format(maxCap, { style: 'compact' })} {token.symbol}
       </InfoTile.Value>
       <InfoTile.ComplementaryLine>{token.formatUSD(maxCap, { compact: true })}</InfoTile.ComplementaryLine>
@@ -116,7 +116,7 @@ function InstantlyAvailableToSupplyInfoTile({
   return (
     <InfoTile>
       <InfoTile.Label>Instantly available to supply</InfoTile.Label>
-      <InfoTile.Value data-testid={testIds.marketDetails.capAutomator.cap}>
+      <InfoTile.Value data-testid={testIds.marketDetails.supplyStatusPanel.instantlyAvailableToSupply}>
         {token.format(instantlyAvailableToSupply, { style: 'compact' })} {token.symbol}
         {capAutomatorInfo && (
           <CooldownTimer

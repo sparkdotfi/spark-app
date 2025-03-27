@@ -35,16 +35,20 @@ export class MarketDetailsPageObject extends BasePageObject {
     return this.locatePanelByHeader(/Yielding Fixed Price|Market Price|Underlying Asset Price|Fixed Price/)
   }
 
-  locatePanelAutomatorCap(panelLocator: Locator): Locator {
-    return panelLocator.getByTestId(testIds.marketDetails.capAutomator.cap)
+  locateInstantlyAvailableToSupply(panelLocator: Locator): Locator {
+    return panelLocator.getByTestId(testIds.marketDetails.supplyStatusPanel.instantlyAvailableToSupply)
   }
 
   locateBorrowLiquidity(panelLocator: Locator): Locator {
-    return panelLocator.getByTestId(testIds.marketDetails.capAutomator.borrowLiquidity)
+    return panelLocator.getByTestId(testIds.marketDetails.borrowStatusPanel.liquidity)
   }
 
-  locatePanelAutomatorMaxCap(panelLocator: Locator): Locator {
-    return panelLocator.getByTestId(testIds.marketDetails.capAutomator.maxCap)
+  locateSupplyCap(panelLocator: Locator): Locator {
+    return panelLocator.getByTestId(testIds.marketDetails.supplyStatusPanel.cap)
+  }
+
+  locateBorrowCap(panelLocator: Locator): Locator {
+    return panelLocator.getByTestId(testIds.marketDetails.borrowStatusPanel.cap)
   }
 
   locatePanelAutomatorCooldownTimer(panelLocator: Locator): Locator {
@@ -132,15 +136,17 @@ export class MarketDetailsPageObject extends BasePageObject {
   }
 
   async expectSupplyCap(value: string): Promise<void> {
-    await expect(this.locatePanelAutomatorCap(this.locateSupplyStatusPanel())).toHaveText(value)
+    await expect(this.page.getByTestId(testIds.marketDetails.supplyStatusPanel.cap)).toHaveText(value)
   }
 
-  async expectSupplyMaxCap(value: string): Promise<void> {
-    await expect(this.locatePanelAutomatorMaxCap(this.locateSupplyStatusPanel())).toHaveText(value)
+  async expectInstantlyAvailableToSupply(value: string): Promise<void> {
+    await expect(this.page.getByTestId(testIds.marketDetails.supplyStatusPanel.instantlyAvailableToSupply)).toHaveText(
+      value,
+    )
   }
 
-  async expectSupplyMaxCapNotVisible(): Promise<void> {
-    await expect(this.locatePanelAutomatorMaxCap(this.locateSupplyStatusPanel())).not.toBeVisible()
+  async expectSupplyCapNotVisible(): Promise<void> {
+    await expect(this.page.getByTestId(testIds.marketDetails.supplyStatusPanel.cap)).not.toBeVisible()
   }
 
   async expectSupplyCapCooldown(value: string): Promise<void> {
@@ -149,10 +155,13 @@ export class MarketDetailsPageObject extends BasePageObject {
     const tooltipLocator = this.page.getByRole('tooltip')
 
     await expect(tooltipLocator).toContainText(value)
+    // Move mouse away to dismiss the tooltip
+    await this.page.keyboard.press('Escape')
+    await expect(tooltipLocator).not.toBeVisible()
   }
 
   async expectCollateralCap(value: string): Promise<void> {
-    await expect(this.locatePanelAutomatorCap(this.locateCollateralStatusPanel())).toHaveText(value)
+    await expect(this.locateSupplyCap(this.locateCollateralStatusPanel())).toHaveText(value)
   }
 
   async expectDisabledCollateralInfoVisible(): Promise<void> {
@@ -164,11 +173,11 @@ export class MarketDetailsPageObject extends BasePageObject {
   }
 
   async expectCollateralMaxCap(value: string): Promise<void> {
-    await expect(this.locatePanelAutomatorMaxCap(this.locateCollateralStatusPanel())).toHaveText(value)
+    await expect(this.locateSupplyCap(this.locateCollateralStatusPanel())).toHaveText(value)
   }
 
   async expectCollateralMaxCapNotVisible(): Promise<void> {
-    await expect(this.locatePanelAutomatorMaxCap(this.locateCollateralStatusPanel())).not.toBeVisible()
+    await expect(this.locateSupplyCap(this.locateCollateralStatusPanel())).not.toBeVisible()
   }
 
   async expectCollateralCapCooldown(value: string): Promise<void> {
@@ -177,6 +186,9 @@ export class MarketDetailsPageObject extends BasePageObject {
     const tooltipLocator = this.page.getByRole('tooltip')
 
     await expect(tooltipLocator).toContainText(value)
+    // Move mouse away to dismiss the tooltip
+    await this.page.keyboard.press('Escape')
+    await expect(tooltipLocator).not.toBeVisible()
   }
 
   async expectBorrowLiquidity(value: string): Promise<void> {
@@ -184,11 +196,11 @@ export class MarketDetailsPageObject extends BasePageObject {
   }
 
   async expectBorrowCap(value: string): Promise<void> {
-    await expect(this.locatePanelAutomatorCap(this.locateBorrowStatusPanel())).toHaveText(value)
+    await expect(this.locateBorrowCap(this.locateBorrowStatusPanel())).toHaveText(value)
   }
 
-  async expectBorrowMaxCapNotVisible(): Promise<void> {
-    await expect(this.locatePanelAutomatorMaxCap(this.locateBorrowStatusPanel())).not.toBeVisible()
+  async expectBorrowCapNotVisible(): Promise<void> {
+    await expect(this.locateBorrowCap(this.locateBorrowStatusPanel())).not.toBeVisible()
   }
 
   async expectBorrowCapCooldown(value: string): Promise<void> {
@@ -197,6 +209,9 @@ export class MarketDetailsPageObject extends BasePageObject {
     const tooltipLocator = this.page.getByRole('tooltip')
 
     await expect(tooltipLocator).toContainText(value)
+    // Move mouse away to dismiss the tooltip
+    await this.page.keyboard.press('Escape')
+    await expect(tooltipLocator).not.toBeVisible()
   }
 
   async expectOraclePanelToHaveTitle(title: string): Promise<void> {

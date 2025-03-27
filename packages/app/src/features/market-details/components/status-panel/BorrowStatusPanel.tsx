@@ -81,14 +81,12 @@ export function BorrowStatusPanel({
         </InfoTile>
 
         {borrowCap && <BorrowCapInfoTile token={token} borrowCap={borrowCap} capAutomatorInfo={capAutomatorInfo} />}
-        {capAutomatorInfo && (
-          <BorrowLiquidityInfoTile
-            token={token}
-            borrowLiquidity={borrowLiquidity}
-            limitedByBorrowCap={limitedByBorrowCap}
-            capAutomatorInfo={capAutomatorInfo}
-          />
-        )}
+        <BorrowLiquidityInfoTile
+          token={token}
+          borrowLiquidity={borrowLiquidity}
+          limitedByBorrowCap={limitedByBorrowCap}
+          capAutomatorInfo={capAutomatorInfo}
+        />
       </InfoTilesGrid>
 
       <div className="col-span-3 mt-6 sm:mt-10">
@@ -111,7 +109,7 @@ function BorrowCapInfoTile({ token, borrowCap, capAutomatorInfo }: BorrowCapInfo
   return (
     <InfoTile>
       <InfoTile.Label>Borrow cap</InfoTile.Label>
-      <InfoTile.Value data-testid={testIds.marketDetails.capAutomator.cap}>
+      <InfoTile.Value data-testid={testIds.marketDetails.borrowStatusPanel.cap}>
         {token.format(maxCap, { style: 'compact' })} {token.symbol}
       </InfoTile.Value>
       <InfoTile.ComplementaryLine>{token.formatUSD(maxCap, { compact: true })}</InfoTile.ComplementaryLine>
@@ -123,7 +121,7 @@ interface BorrowLiquidityInfoTileProps {
   token: Token
   borrowLiquidity: NormalizedUnitNumber
   limitedByBorrowCap: boolean
-  capAutomatorInfo: CapAutomatorConfig
+  capAutomatorInfo?: CapAutomatorConfig
 }
 
 function BorrowLiquidityInfoTile({
@@ -132,24 +130,22 @@ function BorrowLiquidityInfoTile({
   borrowLiquidity,
   limitedByBorrowCap,
 }: BorrowLiquidityInfoTileProps) {
-  const renewalPeriod = capAutomatorInfo.increaseCooldown
-
   return (
     <InfoTile>
       <InfoTile.Label>Instantly available liquidity</InfoTile.Label>
-      <InfoTile.Value data-testid={testIds.marketDetails.capAutomator.borrowLiquidity}>
+      <InfoTile.Value data-testid={testIds.marketDetails.borrowStatusPanel.liquidity}>
         {token.format(borrowLiquidity, { style: 'compact' })} {token.symbol}
-        {limitedByBorrowCap && (
+        {limitedByBorrowCap && capAutomatorInfo && (
           <CooldownTimer
             renewalPeriod={capAutomatorInfo.increaseCooldown}
             latestUpdateTimestamp={capAutomatorInfo.lastIncreaseTimestamp}
             cooldownOverContent={
-              <>The available liquidity is constrained by the borrow cap, which may be adjusted at any time. </>
+              <>The available liquidity is constrained by instant borrow cap, which may be adjusted at any time. </>
             }
             cooldownActiveContent={
               <>
-                The liquidity is constrained by the borrow cap, which has a renewal time of{' '}
-                {secondsToHours(renewalPeriod)} hours.{' '}
+                The liquidity is constrained by instant borrow cap, which has a renewal time of{' '}
+                {secondsToHours(capAutomatorInfo.increaseCooldown)} hours.{' '}
               </>
             }
           />
