@@ -9,7 +9,7 @@ export function setupOutputRedirects(process: Instance, config: OutputParams): (
   process.on('stdout', (data) => stdoutStream.write(data))
   process.on('stderr', (data) => stderrStream.write(data))
 
-  function cleanup() {
+  function cleanup(): void {
     stdoutStream.end()
     stderrStream.end()
   }

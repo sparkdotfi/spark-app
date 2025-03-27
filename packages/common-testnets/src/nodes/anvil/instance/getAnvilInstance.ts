@@ -43,10 +43,10 @@ export const getAnvilInstance = defineInstance((parameters: Partial<AnvilParamet
                 resolve()
               }
             })
-            process.stderr.on('data', (data) => {
+            process.stderr.on('data', async (data) => {
               const message = data.toString()
               if (!message.includes('Warning')) {
-                reject(message)
+                await reject(message)
               }
             })
           },
