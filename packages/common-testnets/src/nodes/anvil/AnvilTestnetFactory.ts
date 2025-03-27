@@ -1,4 +1,7 @@
 import { assert } from '@sparkdotfi/common-universal'
+import getPort from 'get-port'
+import { http, createPublicClient } from 'viem'
+import { arbitrum, base, gnosis, mainnet } from 'viem/chains'
 import { TestnetClient } from '../../TestnetClient.js'
 import {
   CreateClientFromUrlParams,
@@ -6,12 +9,9 @@ import {
   TestnetCreateResult,
   TestnetFactory,
 } from '../../TestnetFactory.js'
-
-import { createAnvil } from '@viem/anvil'
-import getPort from 'get-port'
-import { http, createPublicClient } from 'viem'
-import { arbitrum, base, gnosis, mainnet } from 'viem/chains'
 import { getAnvilClient } from './AnvilClient.js'
+import { getAnvilInstance } from './instance/getAnvilInstance.js'
+import { setupOutputRedirects } from './instance/streamOutputToFile.js'
 
 export class AnvilTestnetFactory implements TestnetFactory {
   constructor(private readonly opts: { alchemyApiKey: string }) {}
@@ -31,7 +31,7 @@ export class AnvilTestnetFactory implements TestnetFactory {
     })()
     const port = await getPort({ port: 8545 })
 
-    const anvil = createAnvil({
+    const anvil = getAnvilInstance({
       forkUrl,
       autoImpersonate: true,
       forkBlockNumber,
@@ -41,11 +41,12 @@ export class AnvilTestnetFactory implements TestnetFactory {
       blockBaseFeePerGas: 0,
     })
 
+    const cleanupOutputRedirects = args.outputParams && setupOutputRedirects(anvil, args.outputParams)
     await anvil.start()
 
     const rpcUrl = `http://${anvil.host}:${anvil.port}`
 
-    assert(anvil.status === 'listening', `Anvil failed to start: ${anvil.status}`)
+    assert(anvil.status === 'started', `Anvil failed to start: ${anvil.status}`)
 
     const client = getAnvilClient({
       rpcUrl,
@@ -61,6 +62,7 @@ export class AnvilTestnetFactory implements TestnetFactory {
     // eslint-disable-next-line
     const cleanup = async () => {
       await anvil.stop()
+      cleanupOutputRedirects?.()
     }
 
     return {

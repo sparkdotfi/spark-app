@@ -24,6 +24,12 @@ export interface CreateNetworkParams {
   forkChainId: number
   blockNumber?: bigint
   onBlock?: OnBlockHandler /* @note: called only when interacting directly via TestnetClient  */
+  outputParams?: OutputParams /* @note: only for anvil client */
+}
+
+export interface OutputParams {
+  stdoutFile: string
+  stderrFile: string
 }
 
 export interface CreateClientFromUrlParams {
