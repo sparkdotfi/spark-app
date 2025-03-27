@@ -348,8 +348,8 @@ test.describe('Market details Mainnet', () => {
 
       const marketDetailsPage = new MarketDetailsPageObject(testContext)
 
-      await marketDetailsPage.expectSupplyCap('569.9K WETH')
-      await marketDetailsPage.expectSupplyMaxCap('2M WETH')
+      await marketDetailsPage.expectSupplyCap('2M WETH')
+      await marketDetailsPage.expectInstantlyAvailableToSupply('178.8K WETH')
       await marketDetailsPage.expectSupplyCapCooldown('0h 00m 00s')
 
       await marketDetailsPage.expectBorrowLiquidity('20.65K WETH')
@@ -387,8 +387,8 @@ test.describe('Market details Mainnet', () => {
 
       const marketDetailsPage = new MarketDetailsPageObject(testContext)
 
-      await marketDetailsPage.expectSupplyCap('1,941 WBTC')
-      await marketDetailsPage.expectSupplyMaxCap('5,000 WBTC')
+      await marketDetailsPage.expectInstantlyAvailableToSupply('199.3 WBTC')
+      await marketDetailsPage.expectSupplyCap('5,000 WBTC')
       await marketDetailsPage.expectSupplyCapCooldown('0h 00m 00s')
 
       await marketDetailsPage.expectBorrowPanelNotVisible()
@@ -493,10 +493,10 @@ test.describe('Market details Gnosis', () => {
       const marketDetailsPage = new MarketDetailsPageObject(testContext)
 
       await marketDetailsPage.expectSupplyCap('5,000 WETH')
-      await marketDetailsPage.expectSupplyMaxCapNotVisible()
+      await marketDetailsPage.expectInstantlyAvailableToSupply('3,302 WETH')
 
       await marketDetailsPage.expectBorrowCap('3,000 WETH')
-      await marketDetailsPage.expectBorrowMaxCapNotVisible()
+      await marketDetailsPage.expectBorrowLiquidity('1,333 WETH')
     })
 
     test('XDAI', async ({ page }) => {
@@ -512,10 +512,9 @@ test.describe('Market details Gnosis', () => {
       const marketDetailsPage = new MarketDetailsPageObject(testContext)
 
       await marketDetailsPage.expectSupplyCap('20M WXDAI')
-      await marketDetailsPage.expectSupplyMaxCapNotVisible()
+      await marketDetailsPage.expectInstantlyAvailableToSupply('14.78M WXDAI')
 
       await marketDetailsPage.expectBorrowCap('16M WXDAI')
-      await marketDetailsPage.expectBorrowMaxCapNotVisible()
 
       await marketDetailsPage.expectCollateralPanelNotVisible()
     })

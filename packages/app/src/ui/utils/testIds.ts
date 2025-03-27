@@ -211,11 +211,16 @@ export const testIds = makeTestIds({
     walletPanel: {
       balance: true,
     },
-    capAutomator: {
+    supplyStatusPanel: {
       cap: true,
-      maxCap: true,
+      instantlyAvailableToSupply: true,
+    },
+    borrowStatusPanel: {
+      cap: true,
+      liquidity: true,
+    },
+    capAutomator: {
       cooldownTimer: true,
-      borrowLiquidity: true,
     },
     oraclePanel: {
       asset: true,
