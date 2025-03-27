@@ -1,5 +1,6 @@
 import { MobileViewOptions } from '@/ui/molecules/data-table/types'
 import { UnixTime } from '@sparkdotfi/common-universal'
+import { formatTimeLeft } from '../../utils/formatTimeLeft'
 
 export interface TimeLeftCellProps {
   timeLeft: number // can't be UnixTime because it's a bigint
@@ -35,13 +36,6 @@ function TimeLeft({ timeLeft, targetDate }: TimeLeftCellProps) {
       <div className="typography-body-4 text-secondary">{formatTargetDate(targetDate)}</div>
     </div>
   )
-}
-
-export function formatTimeLeft(timeLeft: UnixTime): string {
-  const days = timeLeft / UnixTime.ONE_DAY()
-  const hours = (timeLeft % UnixTime.ONE_DAY()) / UnixTime.ONE_HOUR()
-  const minutes = (timeLeft % UnixTime.ONE_HOUR()) / UnixTime.ONE_MINUTE()
-  return `${days}D ${hours}H ${minutes}M`
 }
 
 export function formatTargetDate(date: Date): string {

@@ -33,7 +33,7 @@ export function useTokenRepositoryForFeature(
       case 'sparkRewards':
         return undefined
       case 'sparkToken':
-        return undefined
+        return chainConfig.sparkToken
       default:
         assertNever(featureGroup)
     }

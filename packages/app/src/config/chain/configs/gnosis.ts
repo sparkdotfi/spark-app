@@ -118,5 +118,6 @@ export const gnosisConfig: ChainConfigEntry = {
     psmStables: undefined,
   },
   farms: undefined,
+  sparkToken: undefined,
   definedTokens: [xdai, wxdai, sdai],
 }

@@ -19,6 +19,7 @@ export interface SetupHookRendererArgs<HOOK extends (args: any) => any> {
   args: Parameters<HOOK>[0]
   queryClient?: QueryClient
   chain?: Chain
+  initialPath?: string
 }
 
 export function setupHookRenderer<HOOK extends (args: any) => any>(defaultArgs: SetupHookRendererArgs<HOOK>) {
@@ -41,6 +42,7 @@ export function setupHookRenderer<HOOK extends (args: any) => any>(defaultArgs: 
             chain: final.chain,
           })}
           queryClient={queryClient}
+          initialPath={final.initialPath}
         >
           {children}
         </TestingWrapper>
