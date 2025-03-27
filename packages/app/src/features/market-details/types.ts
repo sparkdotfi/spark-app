@@ -43,6 +43,7 @@ export interface MarketOverview {
     status: SupplyAvailabilityStatus
     totalSupplied: NormalizedUnitNumber
     supplyCap?: NormalizedUnitNumber
+    instantlyAvailableToSupply?: NormalizedUnitNumber
     apy: Percentage | undefined
     capAutomatorInfo?: CapAutomatorConfig
     sparkRewards: MarketSparkRewards[]

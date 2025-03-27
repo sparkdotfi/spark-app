@@ -25,6 +25,10 @@ export function makeMarketOverview({
     marketInfo,
     token: reserve.token.symbol,
   })
+
+  const instantlyAvailableToSupply =
+    reserve.supplyCap && NormalizedUnitNumber(reserve.supplyCap?.minus(reserve.totalLiquidity))
+
   const capLessThanLiquidity = Boolean(reserve.borrowCap?.lt(reserve.totalLiquidity))
   const borrowLiquidity = NormalizedUnitNumber(
     capLessThanLiquidity ? reserve.borrowCap!.minus(reserve.totalDebt) : reserve.availableLiquidity,
@@ -39,6 +43,7 @@ export function makeMarketOverview({
       status: reserve.supplyAvailabilityStatus,
       totalSupplied: reserve.totalLiquidity,
       supplyCap: reserve.supplyCap,
+      instantlyAvailableToSupply,
       apy: reserve.supplyAPY,
       capAutomatorInfo: capAutomatorInfo.supplyCap,
       sparkRewards: supplySparkRewards,
