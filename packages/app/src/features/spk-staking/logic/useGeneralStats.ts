@@ -18,7 +18,7 @@ export function generalStatsQueryOptions() {
     queryFn: async () => {
       const response = await fetch(`${infoSkyApiUrl}/spk-staking/stats/`)
       if (!response.ok) {
-        throw new Error('Error fetching savings spk staking stats')
+        throw new Error('Error fetching SPK staking stats')
       }
       const result = await response.json()
       const parsedResult = generalStatsResponseSchema.parse(result)
