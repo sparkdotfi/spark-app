@@ -421,6 +421,9 @@ importers:
       '@sparkdotfi/common-universal':
         specifier: workspace:^
         version: link:../common-universal
+      execa:
+        specifier: ^9.5.2
+        version: 9.5.2
       get-port:
         specifier: ^7.1.0
         version: 7.1.0
