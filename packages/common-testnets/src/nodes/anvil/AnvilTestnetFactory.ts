@@ -10,13 +10,17 @@ import {
   TestnetFactory,
 } from '../../TestnetFactory.js'
 import { getAnvilClient } from './AnvilClient.js'
-import { getAnvilInstance } from './instance/getAnvilInstance.js'
-import { setupOutputRedirects } from './instance/streamOutputToFile.js'
+import { Anvil } from './instance/Anvil.js'
+
+interface CreateAnvilNetworkParams extends CreateNetworkParams {
+  verbose?: boolean
+  noStorageCaching?: boolean
+}
 
 export class AnvilTestnetFactory implements TestnetFactory {
   constructor(private readonly opts: { alchemyApiKey: string }) {}
 
-  async create(args: CreateNetworkParams): Promise<TestnetCreateResult> {
+  async create(args: CreateAnvilNetworkParams): Promise<TestnetCreateResult> {
     const { originChain, forkChainId, blockNumber } = args
 
     const forkUrl = originChainIdToForkUrl(originChain.id, this.opts.alchemyApiKey)
@@ -31,7 +35,7 @@ export class AnvilTestnetFactory implements TestnetFactory {
     })()
     const port = await getPort({ port: 8545 })
 
-    const anvil = getAnvilInstance({
+    const anvil = new Anvil({
       forkUrl,
       autoImpersonate: true,
       forkBlockNumber,
@@ -39,14 +43,15 @@ export class AnvilTestnetFactory implements TestnetFactory {
       port,
       gasPrice: 0,
       blockBaseFeePerGas: 0,
+      verbose: args.verbose,
+      noStorageCaching: args.noStorageCaching,
     })
 
-    const cleanupOutputRedirects = args.outputParams && setupOutputRedirects(anvil, args.outputParams)
     await anvil.start()
 
-    const rpcUrl = `http://${anvil.host}:${anvil.port}`
+    const rpcUrl = `http://${anvil.config.host}:${anvil.config.port}`
 
-    assert(anvil.status === 'started', `Anvil failed to start: ${anvil.status}`)
+    assert(anvil.status === 'running', `Anvil failed to start: ${anvil.status}`)
 
     const client = getAnvilClient({
       rpcUrl,
@@ -62,7 +67,6 @@ export class AnvilTestnetFactory implements TestnetFactory {
     // eslint-disable-next-line
     const cleanup = async () => {
       await anvil.stop()
-      cleanupOutputRedirects?.()
     }
 
     return {
