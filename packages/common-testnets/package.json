@@ -34,7 +34,6 @@
   },
   "dependencies": {
     "get-port": "^7.1.0",
-    "prool": "^0.0.23",
     "viem-deal": "^2.0.0",
     "execa": "^9.5.2"
   },
