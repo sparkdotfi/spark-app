@@ -33,9 +33,9 @@
     "prepublishOnly": "pnpm run clean && pnpm run build"
   },
   "dependencies": {
-    "@viem/anvil": "^0.0.10",
     "get-port": "^7.1.0",
-    "viem-deal": "^2.0.0"
+    "viem-deal": "^2.0.0",
+    "execa": "^9.5.2"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
@@ -46,9 +46,10 @@
     "eslint-plugin-import": "^2.31.0"
   },
   "peerDependencies": {
-    "viem": "^2.0.0",
     "@sparkdotfi/common-nodejs": "workspace:^",
     "@sparkdotfi/common-universal": "workspace:^",
+    "remeda": "^2.0.0",
+    "viem": "^2.0.0",
     "zod": "^3.0"
   }
 }

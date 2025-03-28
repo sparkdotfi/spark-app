@@ -1,4 +1,7 @@
 import { assert } from '@sparkdotfi/common-universal'
+import getPort from 'get-port'
+import { http, createPublicClient } from 'viem'
+import { arbitrum, base, gnosis, mainnet } from 'viem/chains'
 import { TestnetClient } from '../../TestnetClient.js'
 import {
   CreateClientFromUrlParams,
@@ -6,17 +9,18 @@ import {
   TestnetCreateResult,
   TestnetFactory,
 } from '../../TestnetFactory.js'
-
-import { createAnvil } from '@viem/anvil'
-import getPort from 'get-port'
-import { http, createPublicClient } from 'viem'
-import { arbitrum, base, gnosis, mainnet } from 'viem/chains'
 import { getAnvilClient } from './AnvilClient.js'
+import { Anvil } from './instance/Anvil.js'
+
+interface CreateAnvilNetworkParams extends CreateNetworkParams {
+  verbose?: boolean
+  noStorageCaching?: boolean
+}
 
 export class AnvilTestnetFactory implements TestnetFactory {
   constructor(private readonly opts: { alchemyApiKey: string }) {}
 
-  async create(args: CreateNetworkParams): Promise<TestnetCreateResult> {
+  async create(args: CreateAnvilNetworkParams): Promise<TestnetCreateResult> {
     const { originChain, forkChainId, blockNumber } = args
 
     const forkUrl = originChainIdToForkUrl(originChain.id, this.opts.alchemyApiKey)
@@ -31,7 +35,7 @@ export class AnvilTestnetFactory implements TestnetFactory {
     })()
     const port = await getPort({ port: 8545 })
 
-    const anvil = createAnvil({
+    const anvil = new Anvil({
       forkUrl,
       autoImpersonate: true,
       forkBlockNumber,
@@ -39,13 +43,15 @@ export class AnvilTestnetFactory implements TestnetFactory {
       port,
       gasPrice: 0,
       blockBaseFeePerGas: 0,
+      verbose: args.verbose,
+      noStorageCaching: args.noStorageCaching,
     })
 
     await anvil.start()
 
-    const rpcUrl = `http://${anvil.host}:${anvil.port}`
+    const rpcUrl = `http://${anvil.config.host}:${anvil.config.port}`
 
-    assert(anvil.status === 'listening', `Anvil failed to start: ${anvil.status}`)
+    assert(anvil.status === 'running', `Anvil failed to start: ${anvil.status}`)
 
     const client = getAnvilClient({
       rpcUrl,
