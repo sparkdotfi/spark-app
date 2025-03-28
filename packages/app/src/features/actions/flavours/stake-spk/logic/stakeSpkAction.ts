@@ -3,6 +3,7 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
+import { spkStakingDataQueryKey } from '@/features/spk-staking/logic/useSpkStakingData'
 import { toBigInt } from '@sparkdotfi/common-universal'
 import { allowanceQueryKey } from '../../approve/logic/query'
 import { StakeSpkAction } from '../types'
@@ -28,7 +29,7 @@ export function createStakeSpkActionConfig(action: StakeSpkAction, context: Acti
       return [
         allowanceQueryKey({ token: action.spk.address, spender: vault, account, chainId }),
         getBalancesQueryKeyPrefix({ account, chainId }),
-        // @todo: spk staking - add related query keys after they are implemented
+        spkStakingDataQueryKey({ account, chainId }),
       ]
     },
   }

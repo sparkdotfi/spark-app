@@ -19,6 +19,7 @@ import {
 } from '@sparkdotfi/common-universal'
 import { QueryKey, queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 import { range } from 'remeda'
+import { Address } from 'viem'
 import { Config } from 'wagmi'
 import { getBlock, readContract } from 'wagmi/actions'
 import { z } from 'zod'
@@ -229,7 +230,7 @@ export function spkStakingDataQueryOptions({
 }
 
 export interface SpkStakingDataQueryKeyParams {
-  account: CheckedAddress | undefined
+  account: Address | undefined
   chainId: number
 }
 
