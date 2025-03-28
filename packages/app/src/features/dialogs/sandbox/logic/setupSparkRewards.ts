@@ -7,12 +7,13 @@ import { randomHexId } from '@/utils/random'
 import { BaseUnitNumber, Hex } from '@sparkdotfi/common-universal'
 import { CheckedAddress, NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
 import { http, HttpResponse } from 'msw'
-import { setupWorker } from 'msw/browser'
+import type { SetupWorker } from 'msw/browser'
 import { mainnet } from 'viem/chains'
 import { Config } from 'wagmi'
 import { readContract } from 'wagmi/actions'
 
 export interface SetupSparkRewardsParams {
+  msw: SetupWorker
   testnetClient: TestnetClient
   account: CheckedAddress
   wagmiConfig: Config
@@ -107,6 +108,7 @@ function getCampaignsConfig(sandboxChainId: number) {
 }
 
 export async function setupSparkRewards({
+  msw,
   testnetClient,
   account,
   wagmiConfig,
@@ -153,7 +155,7 @@ export async function setupSparkRewards({
     chainId: mainnet.id,
   })
 
-  const worker = setupWorker(
+  msw.use(
     http.get(`${spark2ApiUrl}/rewards/roots/${sandboxChainId}/${merkleRoot}/${account}/`, async () => {
       return HttpResponse.json(
         rewards.map(
@@ -205,7 +207,4 @@ export async function setupSparkRewards({
       return HttpResponse.json(getCampaignsConfig(sandboxChainId))
     }),
   )
-  await worker.start({
-    onUnhandledRequest: 'bypass',
-  })
 }

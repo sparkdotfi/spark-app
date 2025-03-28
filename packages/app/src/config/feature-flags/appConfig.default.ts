@@ -53,6 +53,14 @@ export function getDefaultAppConfig(): AppConfig {
             address: '0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf',
             decimals: 8,
           },
+          ...(import.meta.env.MODE === 'development' || import.meta.env.MODE === 'staging'
+            ? {
+                SPK: {
+                  address: '0xf94473bf6ef648638a7b1eeef354fe440721ef41',
+                  decimals: 18,
+                },
+              }
+            : {}),
         },
       },
     },

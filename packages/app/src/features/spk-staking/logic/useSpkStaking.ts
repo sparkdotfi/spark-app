@@ -12,14 +12,13 @@ import { useAccount, useConfig } from 'wagmi'
 import { AvailableToStakeRow } from '../components/available-to-stake-panel/AvailableToStakePanel'
 import { WithdrawalsTableRow } from '../components/withdrawals-table/WithdrawalsTablePanel'
 import { stakeDialogConfig } from '../dialogs/stake/StakeDialog'
-import { ChartDetails, MainPanelData, UseGeneralStatsResult } from '../types'
+import { ChartDetails, GeneralStats, MainPanelData } from '../types'
 import { useChartDetails } from './useChartDetails'
-import { useGeneralStats } from './useGeneralStats'
 import { Withdrawal, useSpkStakingData } from './useSpkStakingData'
 
 export interface UseSpkStakingResult {
   chainId: number
-  generalStats: UseGeneralStatsResult
+  generalStats: GeneralStats
   mainPanelData: MainPanelData
   chartDetails: ChartDetails
   withdrawalsTableRows: WithdrawalsTableRow[]
@@ -38,7 +37,6 @@ export function useSpkStaking(): UseSpkStakingResult {
     openDialog(sandboxDialogConfig, { mode: 'ephemeral' } as const)
   }
 
-  const generalStats = useGeneralStats()
   const chartDetails = useChartDetails()
 
   const { tokenRepository } = useTokenRepositoryForFeature({
@@ -53,7 +51,7 @@ export function useSpkStaking(): UseSpkStakingResult {
     tokenRepository,
   })
 
-  const spk = tokenRepository.findOneTokenBySymbol(TokenSymbol('SPK'))
+  const { token: spk, balance: spkBalance } = tokenRepository.findOneTokenWithBalanceBySymbol(TokenSymbol('SPK'))
 
   const mainPanelData: MainPanelData = (() => {
     if (spkStakingData.amountStaked.isZero()) {
@@ -62,7 +60,7 @@ export function useSpkStaking(): UseSpkStakingResult {
           type: 'cta',
           props: {
             type: 'disconnected',
-            apy: spkStakingData.apy,
+            apy: spkStakingData.generalStats.apr,
             connectWallet: openConnectModal,
             tryInSandbox: openSandboxModal,
           },
@@ -73,9 +71,11 @@ export function useSpkStaking(): UseSpkStakingResult {
         type: 'cta',
         props: {
           type: 'connected',
-          stake: () => {},
-          spkBalance: spkStakingData.amountStaked,
-          apy: spkStakingData.apy,
+          stake: () => {
+            openDialog(stakeDialogConfig, {})
+          },
+          spkBalance,
+          apy: spkStakingData.generalStats.apr,
         },
       } satisfies MainPanelData
     }
@@ -91,7 +91,7 @@ export function useSpkStaking(): UseSpkStakingResult {
     return {
       type: 'active',
       props: {
-        apy: spkStakingData.apy,
+        apy: spkStakingData.generalStats.apr,
         stakedAmount: spkStakingData.amountStaked,
         rewardToken: tokenRepository.findOneTokenBySymbol(TokenSymbol('SPK')),
         stakingToken: tokenRepository.findOneTokenBySymbol(TokenSymbol('USDS')),
@@ -112,7 +112,7 @@ export function useSpkStaking(): UseSpkStakingResult {
 
   const availableToStakeRow: AvailableToStakeRow = {
     token: spk,
-    balance: spkStakingData.amountStaked,
+    balance: spkBalance,
     blockExplorerLink: getBlockExplorerLink(spk.address) ?? '/',
     openStakeDialog: () => {
       openDialog(stakeDialogConfig, {})
@@ -121,7 +121,7 @@ export function useSpkStaking(): UseSpkStakingResult {
 
   return {
     chainId,
-    generalStats,
+    generalStats: spkStakingData.generalStats,
     mainPanelData,
     chartDetails,
     withdrawalsTableRows,

@@ -1,4 +1,3 @@
-import { mainnet } from 'viem/chains'
 import { ChainConfigEntry } from './chain/types'
 
 export const paths = {
@@ -25,12 +24,12 @@ export const pathGroups = {
 
 export type PathGroup = keyof typeof pathGroups
 
-export function getSupportedPages(chainConfigEntry: ChainConfigEntry, chainId: number): Path[] {
+export function getSupportedPages(chainConfigEntry: ChainConfigEntry): Path[] {
   return [
     ...(chainConfigEntry.markets ? pathGroups.borrow : []),
     ...(chainConfigEntry.savings ? pathGroups.savings : []),
     ...(chainConfigEntry.farms ? pathGroups.farms : []),
     ...(import.meta.env.VITE_DEV_SPARK_REWARDS === '1' ? pathGroups.sparkRewards : []),
-    ...(import.meta.env.VITE_DEV_SPARK_TOKEN === '1' && chainId === mainnet.id ? pathGroups.sparkToken : []),
+    ...(import.meta.env.VITE_DEV_SPARK_TOKEN === '1' && chainConfigEntry.sparkToken ? pathGroups.sparkToken : []),
   ]
 }

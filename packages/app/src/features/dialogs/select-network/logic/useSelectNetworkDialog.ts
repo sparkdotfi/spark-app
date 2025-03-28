@@ -24,7 +24,7 @@ export function useSelectNetworkDialog({ closeDialog }: UseSelectNetworkDialogPa
 
   const chains: Chain[] = supportedChains.map((chain) => {
     const config = getChainConfigEntry(chain.id)
-    const supportedPages = getSupportedPages(config, chain.id)
+    const supportedPages = getSupportedPages(config)
 
     return {
       name: config.meta.name,

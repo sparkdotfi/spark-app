@@ -4,6 +4,7 @@ import { trackEvent } from '@/domain/analytics/mixpanel'
 import { createTenderlyFork } from '@/domain/sandbox/createTenderlyFork'
 import { getTenderlyClient } from '@/features/dialogs/sandbox/tenderly/TenderlyClient'
 import { CheckedAddress, UnixTime, raise } from '@sparkdotfi/common-universal'
+import type { SetupWorker } from 'msw/browser'
 import { Address, Chain, parseEther, parseUnits } from 'viem'
 import { Config } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
@@ -14,7 +15,7 @@ export async function createSandbox(opts: {
   userAddress: Address
   wagmiConfig: Config
   mintBalances: NonNullable<AppConfig['sandbox']>['mintBalances']
-}): Promise<string> {
+}): Promise<{ forkUrl: string; msw: SetupWorker | undefined }> {
   const { rpcUrl: forkUrl } = await createTenderlyFork({
     namePrefix: 'sandbox',
     originChainId: opts.originChainId,
@@ -36,18 +37,33 @@ export async function createSandbox(opts: {
   )
 
   if (import.meta.env.MODE === 'development' || import.meta.env.MODE === 'staging') {
+    const { setupWorker } = await import('./setupWorker')
+
+    const msw = setupWorker()
+    await msw.start({ onUnhandledRequest: 'bypass' })
+
     const { setupSparkRewards } = await import('./setupSparkRewards')
     await setupSparkRewards({
+      msw,
       testnetClient,
       account: CheckedAddress(opts.userAddress),
       wagmiConfig: opts.wagmiConfig,
       sandboxChainId: opts.forkChainId,
     })
+
+    const { setupSpkStaking } = await import('./setupSpkStaking')
+    await setupSpkStaking({
+      msw,
+      account: CheckedAddress(opts.userAddress),
+      sandboxChainId: opts.forkChainId,
+    })
+
+    return { forkUrl, msw }
   }
 
   trackEvent('sandbox-created')
 
-  return forkUrl
+  return { forkUrl, msw: undefined }
 }
 
 /**
