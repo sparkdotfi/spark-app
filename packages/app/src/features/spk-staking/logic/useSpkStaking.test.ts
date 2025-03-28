@@ -18,7 +18,7 @@ import { useSpkStaking } from './useSpkStaking'
 
 const chainId = mainnet.id
 const usds = CheckedAddress('0xdC035D45d973E3EC169d2276DDab16f1e407384F')
-const spk = CheckedAddress('0x56072C95FAA701256059aa122697B133aDEd9279')
+const spk = CheckedAddress('0xf94473bf6ef648638a7b1eeef354fe440721ef41')
 const account = testAddresses.alice
 
 const chainIdCall = handlers.chainIdCall({ chainId })
@@ -180,18 +180,21 @@ describe(useSpkStaking.name, () => {
           args: [4n, account],
           result: parseEther('4'),
         }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
+          functionName: 'withdrawalSharesOf',
+          args: [5n, account],
+          result: parseEther('8'),
+        }),
       ],
     })
     await waitFor(() => {
       expect(result.current.chainId).toBe(chainId)
       expect(result.current.generalStats).toMatchObject({
-        data: {
-          tvl: NormalizedUnitNumber(1000000),
-          stakers: 100,
-          apr: Percentage(0.1),
-        },
-        isPending: false,
-        isError: false,
+        tvl: NormalizedUnitNumber(1000000),
+        stakers: 100,
+        apr: Percentage(0.1),
       })
       expect(result.current.mainPanelData).toMatchObject({
         type: 'active',
@@ -230,6 +233,18 @@ describe(useSpkStaking.name, () => {
           }),
           amount: NormalizedUnitNumber(4),
           timeToClaim: 30,
+          claimableAt: expect.any(Date),
+          action: expect.any(Function),
+          actionName: 'Claim',
+          isActionEnabled: false,
+        },
+        {
+          token: expect.objectContaining({
+            symbol: 'SPK',
+            address: spk,
+          }),
+          amount: NormalizedUnitNumber(8),
+          timeToClaim: 90,
           claimableAt: expect.any(Date),
           action: expect.any(Function),
           actionName: 'Claim',

@@ -1,4 +1,4 @@
-import { spark2ApiUrl } from '@/config/consts'
+import { infoSkyApiUrl, spark2ApiUrl } from '@/config/consts'
 import {
   testSpkStakingAbi,
   testSpkStakingAddress,
@@ -16,13 +16,13 @@ import {
   NormalizedUnitNumber,
   Percentage,
   UnixTime,
-  raise,
 } from '@sparkdotfi/common-universal'
 import { QueryKey, queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { times } from 'remeda'
+import { range } from 'remeda'
 import { Config } from 'wagmi'
 import { getBlock, readContract } from 'wagmi/actions'
 import { z } from 'zod'
+import { GeneralStats } from '../types'
 
 export interface SpkStakingDataQueryParams {
   chainId: number
@@ -75,6 +75,17 @@ export function spkStakingDataQueryOptions({
       }
 
       async function fetchBaData(): Promise<z.infer<typeof baDataResponseSchema>> {
+        if (!account) {
+          return Promise.resolve({
+            amount_staked: NormalizedUnitNumber(0),
+            pending_amount_normalized: NormalizedUnitNumber(0),
+            pending_amount_rate: NormalizedUnitNumber(0),
+            cumulative_amount_normalized: NormalizedUnitNumber(0),
+            apy: Percentage(0),
+            timestamp: 0,
+          })
+        }
+
         const res = await fetch(`${spark2ApiUrl}/spk-staking/${chainId}/${account}/`)
         if (!res.ok) {
           throw new Error('Failed to fetch rewards')
@@ -105,7 +116,8 @@ export function spkStakingDataQueryOptions({
           }),
         ])
 
-        const nextEpochStart = UnixTime((Number(currentEpoch + 1n) * epochDuration + epochDurationInit) * 1000)
+        const nextEpoch = currentEpoch + 1n
+        const nextEpochStart = UnixTime(Number(nextEpoch) * epochDuration + epochDurationInit)
 
         if (!account) {
           return {
@@ -114,35 +126,38 @@ export function spkStakingDataQueryOptions({
           }
         }
 
-        const withdrawalsAmounts = await Promise.all(
-          times(Number(currentEpoch), async (i) =>
-            readContract(wagmiConfig, {
+        const withdrawals = await Promise.all(
+          range(Math.max(0, Number(currentEpoch) - 25), Number(currentEpoch) + 1).map(async (i) => {
+            const epoch = BigInt(i) + 1n
+
+            const amount = await readContract(wagmiConfig, {
               address: getContractAddress(testSpkStakingAddress, chainId),
               abi: testSpkStakingAbi,
               functionName: 'withdrawalSharesOf',
-              args: [BigInt(i) + 1n, account],
+              args: [epoch, account],
               chainId,
-            }),
-          ),
+            })
+
+            return {
+              epoch,
+              amount: BaseUnitNumber.toNormalizedUnit(BaseUnitNumber(amount), spk.decimals),
+            }
+          }),
         )
 
-        const normalizedWithdrawals = withdrawalsAmounts.map((amount, index) => ({
-          epoch: BigInt(index + 1), // when the epoch ends, the withdrawal is claimable
-          amount: BaseUnitNumber.toNormalizedUnit(BaseUnitNumber(amount), spk.decimals),
+        const pendingWithdrawals = withdrawals.filter((w) => w.epoch >= currentEpoch)
+
+        const formattedPendingWithdrawals = pendingWithdrawals.map((w) => ({
+          epochs: [w.epoch],
+          amount: w.amount,
+          claimableAt: new Date(
+            UnixTime.toMilliseconds(UnixTime(Number(w.epoch + 1n) * epochDuration + epochDurationInit)),
+          ),
         }))
 
-        const pendingWithdrawal =
-          normalizedWithdrawals.find((w) => w.epoch === currentEpoch) ?? raise(new Error('No pending withdrawal found'))
-
-        const formattedPendingWithdrawal = {
-          epochs: [pendingWithdrawal.epoch],
-          amount: pendingWithdrawal.amount,
-          claimableAt: new Date(Number(nextEpochStart)),
-        }
-
         const formattedPreviousWithdrawals = {
-          ...normalizedWithdrawals
-            .filter((w) => w.epoch < pendingWithdrawal.epoch)
+          ...withdrawals
+            .filter((w) => w.epoch < currentEpoch)
             .reduce(
               (acc, curr) => ({
                 epochs: [...acc.epochs, curr.epoch],
@@ -150,12 +165,14 @@ export function spkStakingDataQueryOptions({
               }),
               { epochs: [] as bigint[], amount: NormalizedUnitNumber(0) },
             ),
-          claimableAt: new Date((Number(currentEpoch) * epochDuration + epochDurationInit) * 1000),
+          claimableAt: new Date(
+            UnixTime.toMilliseconds(UnixTime(Number(currentEpoch) * epochDuration + epochDurationInit)),
+          ),
         }
 
         return {
           nextEpochStart,
-          withdrawals: [formattedPendingWithdrawal, formattedPreviousWithdrawals].filter((w) => !w.amount.isZero()),
+          withdrawals: [...formattedPendingWithdrawals, formattedPreviousWithdrawals].filter((w) => !w.amount.isZero()),
         }
       }
 
@@ -167,13 +184,30 @@ export function spkStakingDataQueryOptions({
         return UnixTime(timestamp)
       }
 
-      const [amountStaked, preclaimedRewards, baData, { withdrawals, nextEpochStart }, timestamp] = await Promise.all([
-        fetchAmountStaked(),
-        fetchPreclaimedRewards(),
-        fetchBaData(),
-        fetchVaultData(),
-        fetchTimestamp(),
-      ])
+      async function fetchGeneralStats(): Promise<GeneralStats> {
+        const response = await fetch(`${infoSkyApiUrl}/spk-staking/stats/`)
+        if (!response.ok) {
+          throw new Error('Error fetching SPK staking stats')
+        }
+        const result = await response.json()
+        const parsedResult = generalStatsResponseSchema.parse(result)
+
+        return {
+          tvl: parsedResult.tvl,
+          stakers: parsedResult.stakers,
+          apr: parsedResult.apr,
+        }
+      }
+
+      const [amountStaked, preclaimedRewards, baData, { withdrawals, nextEpochStart }, timestamp, generalStats] =
+        await Promise.all([
+          fetchAmountStaked(),
+          fetchPreclaimedRewards(),
+          fetchBaData(),
+          fetchVaultData(),
+          fetchTimestamp(),
+          fetchGeneralStats(),
+        ])
 
       const pendingAmount = NormalizedUnitNumber(baData.pending_amount_normalized.minus(preclaimedRewards))
       const claimableAmount = NormalizedUnitNumber(baData.cumulative_amount_normalized.minus(preclaimedRewards))
@@ -184,8 +218,8 @@ export function spkStakingDataQueryOptions({
         pendingAmountRate: baData.pending_amount_rate,
         pendingAmountTimestamp: baData.timestamp,
         claimableAmount,
-        apy: Percentage(baData.apy),
         withdrawals,
+        generalStats,
         timestamp,
         nextEpochStart,
         isOutOfSync: !amountStaked.eq(baData.amount_staked),
@@ -208,9 +242,20 @@ const baDataResponseSchema = z.object({
   pending_amount_normalized: normalizedUnitNumberSchema,
   pending_amount_rate: normalizedUnitNumberSchema,
   cumulative_amount_normalized: normalizedUnitNumberSchema,
-  apy: percentageSchema,
   timestamp: z.number(),
 })
+
+const generalStatsResponseSchema = z
+  .object({
+    tvl: normalizedUnitNumberSchema,
+    number_of_wallets: z.number(),
+    apr: percentageSchema,
+  })
+  .transform((o) => ({
+    tvl: o.tvl,
+    stakers: o.number_of_wallets,
+    apr: o.apr,
+  }))
 
 export interface Withdrawal {
   epochs: bigint[]
@@ -229,7 +274,7 @@ export interface SpkStakingData {
   pendingAmountRate: NormalizedUnitNumber
   pendingAmountTimestamp: number
   claimableAmount: NormalizedUnitNumber
-  apy: Percentage
+  generalStats: GeneralStats
   withdrawals: Withdrawal[]
   timestamp: UnixTime
   nextEpochStart: UnixTime
