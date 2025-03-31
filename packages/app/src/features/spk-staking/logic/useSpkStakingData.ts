@@ -117,12 +117,11 @@ export function spkStakingDataQueryOptions({
           }),
         ])
 
-        const nextEpoch = currentEpoch + 1n
-        const nextEpochStart = UnixTime(Number(nextEpoch) * epochDuration + epochDurationInit)
+        const nextEpochEnd = UnixTime(Number(currentEpoch + 2n) * epochDuration + epochDurationInit)
 
         if (!account) {
           return {
-            nextEpochStart,
+            nextEpochEnd,
             withdrawals: [],
           }
         }
@@ -172,7 +171,7 @@ export function spkStakingDataQueryOptions({
         }
 
         return {
-          nextEpochStart,
+          nextEpochEnd,
           withdrawals: [...formattedPendingWithdrawals, formattedPreviousWithdrawals].filter((w) => !w.amount.isZero()),
         }
       }
@@ -200,7 +199,7 @@ export function spkStakingDataQueryOptions({
         }
       }
 
-      const [amountStaked, preclaimedRewards, baData, { withdrawals, nextEpochStart }, timestamp, generalStats] =
+      const [amountStaked, preclaimedRewards, baData, { withdrawals, nextEpochEnd }, timestamp, generalStats] =
         await Promise.all([
           fetchAmountStaked(),
           fetchPreclaimedRewards(),
@@ -222,7 +221,7 @@ export function spkStakingDataQueryOptions({
         withdrawals,
         generalStats,
         timestamp,
-        nextEpochStart,
+        nextEpochEnd,
         isOutOfSync: !amountStaked.eq(baData.amount_staked),
       }
     },
@@ -272,7 +271,7 @@ export interface Withdrawal {
 }
 
 export interface VaultData {
-  nextEpochStart: UnixTime
+  nextEpochEnd: UnixTime
   withdrawals: Withdrawal[]
 }
 
@@ -285,7 +284,7 @@ export interface SpkStakingData {
   generalStats: GeneralStats
   withdrawals: Withdrawal[]
   timestamp: UnixTime
-  nextEpochStart: UnixTime
+  nextEpochEnd: UnixTime
   isOutOfSync: boolean
 }
 

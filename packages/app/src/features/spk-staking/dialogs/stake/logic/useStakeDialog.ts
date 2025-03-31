@@ -78,7 +78,7 @@ export function useStakeDialog(): UseStakeDialogResult {
   const txOverview = createTxOverview({
     apy: spkStakingData.generalStats.apr,
     usds,
-    nextEpochStart: Number(spkStakingData.nextEpochStart),
+    nextEpochEnd: Number(spkStakingData.nextEpochEnd),
     timestamp: Number(spkStakingData.timestamp),
     formValues,
   })
