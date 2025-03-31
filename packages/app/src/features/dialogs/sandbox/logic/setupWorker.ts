@@ -1,3 +1,3 @@
-// This file only exists to make vite happy
+// This file only exists to make vitest happy
 
 export { setupWorker } from 'msw/browser'

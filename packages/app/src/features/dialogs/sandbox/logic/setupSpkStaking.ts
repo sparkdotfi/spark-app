@@ -1,7 +1,7 @@
 import { infoSkyApiUrl, spark2ApiUrl } from '@/config/consts'
 import { testSpkStakingAddress } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
-import { CheckedAddress, Hash } from '@sparkdotfi/common-universal'
+import { CheckedAddress, Hash, UnixTime } from '@sparkdotfi/common-universal'
 import { http, HttpResponse } from 'msw'
 import type { SetupWorker } from 'msw/browser'
 import { mergeDeep } from 'remeda'
@@ -34,8 +34,8 @@ export interface SpkStakingEndpointsConfig {
 let currentConfig: SpkStakingEndpointsConfig = {
   walletData: DEFAULT_WALLET_DATA,
   statsData: DEFAULT_STATS_DATA,
-  sandboxChainId: 1,
-  account: CheckedAddress('0x0000000000000000000000000000000000000000'),
+  sandboxChainId: mainnet.id,
+  account: CheckedAddress.random(),
 } // global state, yes
 
 export interface SetupSpkStakingParams {
@@ -54,7 +54,7 @@ export async function setupSpkStaking({
   await setEpochDurationStorage(
     testnetClient,
     getContractAddress(testSpkStakingAddress, mainnet.id),
-    60, // 1 minute
+    Number(UnixTime.ONE_MINUTE),
   )
 
   currentConfig = {
