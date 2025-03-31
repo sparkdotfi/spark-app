@@ -53,7 +53,11 @@ export function useSpkStaking(): UseSpkStakingResult {
     wagmiConfig,
     tokenRepository,
   })
-  useStakedAmountWatcher({ amountStaked: spkStakingData.amountStaked })
+
+  if (import.meta.env.MODE === 'development' || import.meta.env.MODE === 'staging') {
+    // biome-ignore lint/correctness/useHookAtTopLevel: <explanation>
+    useStakedAmountWatcher({ amountStaked: spkStakingData.amountStaked })
+  }
 
   const { token: spk, balance: spkBalance } = tokenRepository.findOneTokenWithBalanceBySymbol(TokenSymbol('SPK'))
 
