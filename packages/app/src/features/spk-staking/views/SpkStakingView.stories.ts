@@ -18,15 +18,10 @@ const meta: Meta<typeof SpkStakingView> = {
   },
   args: {
     chainId: mainnet.id,
-    generalStatsResult: {
-      data: {
-        apr: Percentage(0.05),
-        stakers: 100,
-        tvl: NormalizedUnitNumber(1000000),
-      },
-      isPending: false,
-      isError: false,
-      error: null,
+    generalStats: {
+      apr: Percentage(0.05),
+      stakers: 100,
+      tvl: NormalizedUnitNumber(1000000),
     },
     mainPanelData: {
       type: 'cta',
@@ -84,6 +79,7 @@ export const Active: Story = {
         rewardToken: tokens.USDS,
         stakingToken: tokens.SPK,
         claimableRewards: NormalizedUnitNumber(1000),
+        refreshGrowingRewardIntervalInMs: undefined,
         calculateReward: () => NormalizedUnitNumber(1000),
         openClaimDialog: () => {},
         openUnstakeDialog: () => {},

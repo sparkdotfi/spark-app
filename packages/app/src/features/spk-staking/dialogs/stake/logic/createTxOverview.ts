@@ -5,7 +5,7 @@ import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 export interface CreateTxOverviewParams {
   apy: Percentage
   usds: Token
-  nextEpochStart: number
+  nextEpochEnd: number
   timestamp: number
   formValues: TransferFromUserFormNormalizedData
 }
@@ -24,7 +24,7 @@ export function createTxOverview({
   formValues,
   apy,
   usds,
-  nextEpochStart,
+  nextEpochEnd,
   timestamp,
 }: CreateTxOverviewParams): TxOverview {
   const amount = formValues.value
@@ -35,7 +35,7 @@ export function createTxOverview({
   const stakedAmountUsd = formValues.token.toUSD(amount)
   const rewardsPerYearUsd = NormalizedUnitNumber(stakedAmountUsd.multipliedBy(apy))
 
-  const unstakingDelay = Math.max(0, nextEpochStart - timestamp)
+  const unstakingDelay = Math.max(0, nextEpochEnd - timestamp)
 
   return {
     apy,
