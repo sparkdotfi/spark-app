@@ -12,15 +12,11 @@ import {
 import { getAnvilClient } from './AnvilClient.js'
 import { Anvil } from './instance/Anvil.js'
 
-interface CreateAnvilNetworkParams extends CreateNetworkParams {
-  verbose?: boolean
-  noStorageCaching?: boolean
-}
-
+// Set TESTNETS_ANVIL_NO_STORAGE_CACHING or TESTNETS_ANVIL_VERBOSE env variables to configure Anvil server
 export class AnvilTestnetFactory implements TestnetFactory {
   constructor(private readonly opts: { alchemyApiKey: string }) {}
 
-  async create(args: CreateAnvilNetworkParams): Promise<TestnetCreateResult> {
+  async create(args: CreateNetworkParams): Promise<TestnetCreateResult> {
     const { originChain, forkChainId, blockNumber } = args
 
     const forkUrl = originChainIdToForkUrl(originChain.id, this.opts.alchemyApiKey)
@@ -43,8 +39,6 @@ export class AnvilTestnetFactory implements TestnetFactory {
       port,
       gasPrice: 0,
       blockBaseFeePerGas: 0,
-      verbose: args.verbose,
-      noStorageCaching: args.noStorageCaching,
     })
 
     await anvil.start()
