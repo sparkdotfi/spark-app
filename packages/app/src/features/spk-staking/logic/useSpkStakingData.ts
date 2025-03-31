@@ -10,13 +10,7 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { SuspenseQueryWith } from '@/utils/types'
-import {
-  BaseUnitNumber,
-  CheckedAddress,
-  NormalizedUnitNumber,
-  Percentage,
-  UnixTime,
-} from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, CheckedAddress, NormalizedUnitNumber, UnixTime } from '@sparkdotfi/common-universal'
 import { QueryKey, queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 import { range } from 'remeda'
 import { Address } from 'viem'
@@ -77,14 +71,13 @@ export function spkStakingDataQueryOptions({
 
       async function fetchBaData(): Promise<z.infer<typeof baDataResponseSchema>> {
         if (!account) {
-          return Promise.resolve({
+          return {
             amount_staked: NormalizedUnitNumber(0),
             pending_amount_normalized: NormalizedUnitNumber(0),
             pending_amount_rate: NormalizedUnitNumber(0),
             cumulative_amount_normalized: NormalizedUnitNumber(0),
-            apy: Percentage(0),
             timestamp: 0,
-          })
+          }
         }
 
         const res = await fetch(`${spark2ApiUrl}/spk-staking/${chainId}/${account}/`)
