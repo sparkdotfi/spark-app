@@ -1,4 +1,4 @@
-import { assert } from '@sparkdotfi/common-universal'
+import { assert, Hash } from '@sparkdotfi/common-universal'
 import {
   http,
   Address,
@@ -22,6 +22,7 @@ interface TenderlyClientParams {
 type TestnetActions = {
   setErc20Balance(tkn: Address, usr: Address, amount: bigint): Promise<void>
   setBalance(usr: Address, amount: bigint): Promise<void>
+  setStorageAt(addr: Address, slot: Hash, value: string): Promise<void>
   assertSendTransaction: (
     args: PartialBy<Parameters<WalletClient['sendTransaction']>[0], 'chain'>,
   ) => Promise<WaitForTransactionReceiptReturnType>
@@ -50,6 +51,13 @@ export function getTenderlyClient(params: TenderlyClientParams): TestnetClient {
           return c.request({
             method: 'tenderly_setBalance',
             params: [usr.toString(), numberToHex(amt)],
+          } as any)
+        },
+
+        async setStorageAt(addr: Address, slot: Hash, value: string) {
+          await c.request({
+            method: 'tenderly_setStorageAt',
+            params: [addr.toString(), slot, value],
           } as any)
         },
         async assertSendTransaction(args) {

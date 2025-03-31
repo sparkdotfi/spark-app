@@ -1,36 +1,27 @@
 import { formatPercentage } from '@/domain/common/format'
 import { USD_MOCK_TOKEN } from '@/domain/types/Token'
-import { Skeleton } from '@/ui/atoms/skeleton/Skeleton'
 import { cn } from '@/ui/utils/style'
 import { ReactNode } from 'react'
-import { UseGeneralStatsResult } from '../../types'
+import { GeneralStats } from '../../types'
 
 export interface GeneralStatsBarProps {
-  generalStatsResult: UseGeneralStatsResult
+  generalStats: GeneralStats
 }
 
-export function GeneralStatsBar({ generalStatsResult }: GeneralStatsBarProps) {
-  if (generalStatsResult.isPending) {
-    return <Skeleton className="h-10 w-full max-w-[400px]" />
-  }
-
-  if (generalStatsResult.isError) {
-    return null
-  }
-
+export function GeneralStatsBar({ generalStats }: GeneralStatsBarProps) {
   return (
     <div className={cn('inline-flex divide-x divide-secondary rounded-[10px]', 'bg-primary/80 py-3 backdrop-blur-lg')}>
       <Stat>
         <Label>Stakers:</Label>
-        <Value>{formatUsersNumber(generalStatsResult.data.stakers)}</Value>
+        <Value>{formatUsersNumber(generalStats.stakers)}</Value>
       </Stat>
       <Stat>
         <Label>TVL:</Label>
-        <Value>{USD_MOCK_TOKEN.formatUSD(generalStatsResult.data.tvl, { compact: true })}</Value>
+        <Value>{USD_MOCK_TOKEN.formatUSD(generalStats.tvl, { compact: true })}</Value>
       </Stat>
       <Stat>
         <Label>APR:</Label>
-        <Value>{formatPercentage(generalStatsResult.data.apr)}</Value>
+        <Value>{formatPercentage(generalStats.apr)}</Value>
       </Stat>
     </div>
   )
