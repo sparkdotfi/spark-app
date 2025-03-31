@@ -15,6 +15,9 @@ import { stakeDialogConfig } from '../dialogs/stake/StakeDialog'
 import { ChartDetails, GeneralStats, MainPanelData } from '../types'
 import { useChartDetails } from './useChartDetails'
 import { Withdrawal, useSpkStakingData } from './useSpkStakingData'
+// import { useStakedAmountWatcher } from './useStakedAmountWatcher'
+
+const GROWING_REWARD_REFRESH_INTERVAL_IN_MS = 50
 
 export interface UseSpkStakingResult {
   chainId: number
@@ -50,6 +53,7 @@ export function useSpkStaking(): UseSpkStakingResult {
     wagmiConfig,
     tokenRepository,
   })
+  // useStakedAmountWatcher({ amountStaked: spkStakingData.amountStaked })
 
   const { token: spk, balance: spkBalance } = tokenRepository.findOneTokenWithBalanceBySymbol(TokenSymbol('SPK'))
 
@@ -83,10 +87,15 @@ export function useSpkStaking(): UseSpkStakingResult {
     function calculateReward(timestampInMs: number): NormalizedUnitNumber {
       return NormalizedUnitNumber(
         spkStakingData.pendingAmount.plus(
-          spkStakingData.pendingAmountRate.multipliedBy(timestampInMs - spkStakingData.pendingAmountTimestamp * 1000),
+          spkStakingData.pendingAmountRate.multipliedBy(timestampInMs / 1000 - spkStakingData.pendingAmountTimestamp),
         ),
       )
     }
+
+    const refreshGrowingRewardIntervalInMs =
+      spkStakingData.pendingAmountRate.gt(0) || spkStakingData.amountStaked.gt(0)
+        ? GROWING_REWARD_REFRESH_INTERVAL_IN_MS
+        : undefined
 
     return {
       type: 'active',
@@ -96,10 +105,11 @@ export function useSpkStaking(): UseSpkStakingResult {
         rewardToken: tokenRepository.findOneTokenBySymbol(TokenSymbol('SPK')),
         stakingToken: tokenRepository.findOneTokenBySymbol(TokenSymbol('USDS')),
         claimableRewards: spkStakingData.claimableAmount,
+        refreshGrowingRewardIntervalInMs,
         calculateReward,
         openClaimDialog: () => {},
         openUnstakeDialog: () => {},
-        openStakeDialog: () => {},
+        openStakeDialog: () => openDialog(stakeDialogConfig, {}),
       },
     } satisfies MainPanelData
   })()

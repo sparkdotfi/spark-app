@@ -79,6 +79,7 @@ export const Active: Story = {
         rewardToken: tokens.USDS,
         stakingToken: tokens.SPK,
         claimableRewards: NormalizedUnitNumber(1000),
+        refreshGrowingRewardIntervalInMs: undefined,
         calculateReward: () => NormalizedUnitNumber(1000),
         openClaimDialog: () => {},
         openUnstakeDialog: () => {},

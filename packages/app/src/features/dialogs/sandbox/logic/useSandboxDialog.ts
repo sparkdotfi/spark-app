@@ -52,7 +52,7 @@ export function useSandboxDialog(mode: SandboxMode): UseSandboxDialogResult {
       const privateKey = generatePrivateKey()
       const account = privateKeyToAccount(privateKey)
 
-      const { forkUrl, msw } = await createSandbox({
+      const forkUrl = await createSandbox({
         originChainId: sandboxConfig.originChainId,
         forkChainId,
         userAddress: account.address,
@@ -66,7 +66,6 @@ export function useSandboxDialog(mode: SandboxMode): UseSandboxDialogResult {
         createdAt,
         name: sandboxConfig.chainName,
         ephemeralAccountPrivateKey: privateKey,
-        msw,
       })
       await retry(
         async () => {
@@ -93,7 +92,7 @@ export function useSandboxDialog(mode: SandboxMode): UseSandboxDialogResult {
       })
     } else {
       assert(address, 'Address should be defined when not using ephemeral account.')
-      const { forkUrl, msw } = await createSandbox({
+      const forkUrl = await createSandbox({
         originChainId: sandboxConfig.originChainId,
         forkChainId,
         userAddress: address,
@@ -106,7 +105,6 @@ export function useSandboxDialog(mode: SandboxMode): UseSandboxDialogResult {
         forkUrl,
         createdAt,
         name: sandboxConfig.chainName,
-        msw,
       })
 
       await retry(

@@ -226,6 +226,13 @@ export function spkStakingDataQueryOptions({
         isOutOfSync: !amountStaked.eq(baData.amount_staked),
       }
     },
+    refetchInterval: (query) => {
+      if (query.state.data?.isOutOfSync) {
+        return 2_000
+      }
+
+      return undefined
+    },
   })
 }
 

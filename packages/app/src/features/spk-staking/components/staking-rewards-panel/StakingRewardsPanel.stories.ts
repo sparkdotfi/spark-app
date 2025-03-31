@@ -17,6 +17,7 @@ const meta: Meta<typeof StakingRewardsPanel> = {
     rewardToken: tokens.USDS,
     stakingToken: tokens.SPK,
     calculateReward: () => NormalizedUnitNumber(71.2345892),
+    refreshGrowingRewardIntervalInMs: undefined,
     openClaimDialog: () => {},
     openUnstakeDialog: () => {},
     openStakeDialog: () => {},

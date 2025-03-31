@@ -3,7 +3,6 @@ import { StateCreator } from 'zustand'
 
 import { tryOrDefault } from '@/utils/tryOrDefault'
 
-import type { SetupWorker } from 'msw/browser'
 import { StoreState } from '.'
 
 const SANDBOX_EXPIRY = 6 * 3600 * 1000 // 6 hours
@@ -15,7 +14,6 @@ export interface SandboxNetwork {
   forkChainId: number
   createdAt: Date
   ephemeralAccountPrivateKey?: `0x${string}`
-  msw?: SetupWorker
 }
 
 export interface Sandbox {
@@ -50,19 +48,11 @@ export interface PersistedSandboxSlice {
 }
 
 export function persistSandboxSlice(state: StoreState): PersistedSandboxSlice {
-  if (!state.sandbox.network) {
-    return {
-      sandbox: {},
-    }
-  }
-
-  const { msw: _, ...serializableFields } = state.sandbox.network
-
   return {
     sandbox: {
-      network: {
-        ...serializableFields,
-        createdAt: serializableFields.createdAt.toISOString(),
+      network: state.sandbox.network && {
+        ...state.sandbox.network,
+        createdAt: state.sandbox.network.createdAt.toISOString(),
       },
     },
   }
