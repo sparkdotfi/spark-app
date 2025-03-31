@@ -15,7 +15,7 @@ import { stakeDialogConfig } from '../dialogs/stake/StakeDialog'
 import { ChartDetails, GeneralStats, MainPanelData } from '../types'
 import { useChartDetails } from './useChartDetails'
 import { Withdrawal, useSpkStakingData } from './useSpkStakingData'
-// import { useStakedAmountWatcher } from './useStakedAmountWatcher'
+import { useStakedAmountWatcher } from './useStakedAmountWatcher'
 
 const GROWING_REWARD_REFRESH_INTERVAL_IN_MS = 50
 
@@ -53,7 +53,7 @@ export function useSpkStaking(): UseSpkStakingResult {
     wagmiConfig,
     tokenRepository,
   })
-  // useStakedAmountWatcher({ amountStaked: spkStakingData.amountStaked })
+  useStakedAmountWatcher({ amountStaked: spkStakingData.amountStaked })
 
   const { token: spk, balance: spkBalance } = tokenRepository.findOneTokenWithBalanceBySymbol(TokenSymbol('SPK'))
 
