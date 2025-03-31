@@ -1,6 +1,8 @@
+import { getEnv } from '@sparkdotfi/common-nodejs/env'
 import { assert } from '@sparkdotfi/common-universal'
 import { ResultPromise, execa } from 'execa'
 import { mergeDeep } from 'remeda'
+import { promiseWithResolvers } from './promiseWithResolvers.js'
 import { toCliArgs } from './toCliArgs.js'
 
 interface AnvilArgs {
@@ -33,7 +35,7 @@ export class Anvil {
   private process: ResultPromise<{ cleanup: boolean }> | undefined
 
   constructor(args: Partial<AnvilArgs>) {
-    const { verbose, ...anvilArgs } = mergeDeep(defaultAnvilArgs, args) as AnvilArgs
+    const { verbose, ...anvilArgs } = mergeDeep(getDefaultAnvilArgs(), args) as AnvilArgs
 
     this.anvilArgs = anvilArgs
     this.config = {
@@ -45,15 +47,9 @@ export class Anvil {
   }
 
   async start(): Promise<void> {
-    let resolve: () => void
-    let reject: (reason: Error) => void
+    const { promise, resolve, reject } = promiseWithResolvers()
 
     this.process = execa({ cleanup: true })`anvil ${toCliArgs({ ...this.anvilArgs })}`
-
-    const promise = new Promise<void>((res, rej) => {
-      resolve = res
-      reject = rej
-    })
 
     this.setupVerboseOutput()
 
@@ -112,6 +108,12 @@ function getLog(data: string, prefix: string): string {
     .join('\n')
 }
 
-const defaultAnvilArgs: AnvilArgs = {
-  port: 8545,
+function getDefaultAnvilArgs(): AnvilArgs {
+  const env = getEnv()
+
+  return {
+    port: 8545,
+    noStorageCaching: env.optionalBoolean('TESTNETS_ANVIL_NO_STORAGE_CACHING'),
+    verbose: env.optionalBoolean('TESTNETS_ANVIL_VERBOSE'),
+  }
 }
