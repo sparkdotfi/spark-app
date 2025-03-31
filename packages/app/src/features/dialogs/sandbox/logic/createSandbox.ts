@@ -55,6 +55,7 @@ export async function createSandbox(opts: {
     const { setupSpkStaking } = await import('./setupSpkStaking')
     await setupSpkStaking({
       msw,
+      testnetClient,
       account: CheckedAddress(opts.userAddress),
       sandboxChainId: opts.forkChainId,
     })

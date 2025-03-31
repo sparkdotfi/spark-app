@@ -1,8 +1,13 @@
 import { infoSkyApiUrl, spark2ApiUrl } from '@/config/consts'
-import { CheckedAddress } from '@sparkdotfi/common-universal'
+import { testSpkStakingAddress } from '@/config/contracts-generated'
+import { getContractAddress } from '@/domain/hooks/useContractAddress'
+import { CheckedAddress, Hash } from '@sparkdotfi/common-universal'
 import { http, HttpResponse } from 'msw'
 import type { SetupWorker } from 'msw/browser'
 import { mergeDeep } from 'remeda'
+import { concat, pad, slice, toHex } from 'viem'
+import { mainnet } from 'viem/chains'
+import { TestnetClient } from '../tenderly/TenderlyClient'
 
 // Default mock data
 const DEFAULT_WALLET_DATA = {
@@ -35,11 +40,23 @@ let currentConfig: SpkStakingEndpointsConfig = {
 
 export interface SetupSpkStakingParams {
   msw: SetupWorker
+  testnetClient: TestnetClient
   account: CheckedAddress
   sandboxChainId: number
 }
 
-export async function setupSpkStaking({ msw, account, sandboxChainId }: SetupSpkStakingParams): Promise<void> {
+export async function setupSpkStaking({
+  msw,
+  testnetClient,
+  account,
+  sandboxChainId,
+}: SetupSpkStakingParams): Promise<void> {
+  await setEpochDurationStorage(
+    testnetClient,
+    getContractAddress(testSpkStakingAddress, mainnet.id),
+    60, // 1 minute
+  )
+
   currentConfig = {
     walletData: DEFAULT_WALLET_DATA,
     statsData: DEFAULT_STATS_DATA,
@@ -76,4 +93,34 @@ export function updateEndpoints(msw: SetupWorker, newConfig: RecursivePartial<Sp
       return HttpResponse.json(currentConfig.statsData)
     }),
   )
+}
+
+async function setEpochDurationStorage(
+  testnetClient: TestnetClient,
+  spkStakingVaultAddress: CheckedAddress,
+  newEpochDuration: number,
+): Promise<void> {
+  const VAULT_TOKENIZED_SLOT_EPOCH_DURATION = 1n
+  const EPOCH_DURATION_OFFSET_BYTES = 26
+  const EPOCH_DURATION_SIZE_BYTES = 6
+  const SLOT_SIZE_BYTES = 32
+
+  const slotIndexHex = Hash(pad(toHex(VAULT_TOKENIZED_SLOT_EPOCH_DURATION), { size: SLOT_SIZE_BYTES }))
+
+  const oldStorageValue = await testnetClient.getStorageAt({
+    address: spkStakingVaultAddress,
+    slot: slotIndexHex,
+  })
+
+  if (!oldStorageValue) {
+    throw new Error('Failed to read storage slot')
+  }
+
+  const encodedDuration = pad(toHex(newEpochDuration), { size: EPOCH_DURATION_SIZE_BYTES })
+  const newStorageValue = concat([
+    encodedDuration,
+    slice(oldStorageValue, SLOT_SIZE_BYTES - EPOCH_DURATION_OFFSET_BYTES),
+  ])
+
+  await testnetClient.setStorageAt(spkStakingVaultAddress, slotIndexHex, newStorageValue)
 }
