@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js'
+import { maxUint256 } from 'viem'
 import { assert } from '../assert/assert.js'
 import { NumberLike, bigNumberify } from '../math/bigNumber.js'
 import { BaseUnitNumber } from './BaseUnitNumber.js'
@@ -56,6 +57,22 @@ export class NormalizedUnitClass implements NormalizedUnitNumber {
   constructor(value: NumberLike) {
     this.value = BigNumber(bigNumberify(value))
     this.asString = this.value.toString()
+  }
+
+  static zero: NormalizedUnitNumber = new NormalizedUnitClass(0)
+  static maxUint256: NormalizedUnitNumber = new NormalizedUnitClass(maxUint256)
+  static min(...values: NormalizedUnitNumber[]): NormalizedUnitNumber {
+    assert(values.length > 0, 'Requires at least 1 arg')
+    let min = values[0]!
+    for (const value of values) {
+      if (value.lt(min)) {
+        min = value
+      }
+    }
+    return min
+  }
+  static isInstance(value: unknown): value is NormalizedUnitNumber {
+    return value instanceof NormalizedUnitClass
   }
 
   toBaseUnit(decimals: number): BaseUnitNumber {
@@ -229,23 +246,8 @@ interface StaticNormalizedUnit {
 
   min(...values: NormalizedUnitNumber[]): NormalizedUnitNumber
   isInstance(value: unknown): value is NormalizedUnitNumber
-}
-
-const NormalizedUnitStaticFunctions: Pick<StaticNormalizedUnit, 'min' | 'isInstance'> = {
-  min(...values: NormalizedUnitNumber[]): NormalizedUnitNumber {
-    assert(values.length > 0, 'Requires at least 1 arg')
-    let min = values[0]!
-    for (const value of values) {
-      if (value.lt(min)) {
-        min = value
-      }
-    }
-    return min
-  },
-
-  isInstance(value: unknown): value is NormalizedUnitNumber {
-    return value instanceof NormalizedUnitClass
-  },
+  zero: NormalizedUnitNumber
+  maxUint256: NormalizedUnitNumber
 }
 
 Object.setPrototypeOf(NormalizedUnitFunction, NormalizedUnitClass)
@@ -254,8 +256,4 @@ NormalizedUnitFunction.prototype = NormalizedUnitClass.prototype
 /**
  * Represents a base number divided by decimals i.e. 1.5 (DAI)
  */
-export const NormalizedUnitNumber: StaticNormalizedUnit = Object.assign(
-  NormalizedUnitFunction,
-  NormalizedUnitClass,
-  NormalizedUnitStaticFunctions,
-)
+export const NormalizedUnitNumber: StaticNormalizedUnit = Object.assign(NormalizedUnitFunction, NormalizedUnitClass)
