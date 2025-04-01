@@ -12,6 +12,7 @@ import { useAccount, useConfig } from 'wagmi'
 import { AvailableToStakeRow } from '../components/available-to-stake-panel/AvailableToStakePanel'
 import { WithdrawalsTableRow } from '../components/withdrawals-table/WithdrawalsTablePanel'
 import { stakeDialogConfig } from '../dialogs/stake/StakeDialog'
+import { unstakeDialogConfig } from '../dialogs/unstake/UnstakeDialog'
 import { ChartDetails, GeneralStats, MainPanelData } from '../types'
 import { useChartDetails } from './useChartDetails'
 import { Withdrawal, useSpkStakingData } from './useSpkStakingData'
@@ -62,19 +63,19 @@ export function useSpkStaking(): UseSpkStakingResult {
   const { token: spk, balance: spkBalance } = tokenRepository.findOneTokenWithBalanceBySymbol(TokenSymbol('SPK'))
 
   const mainPanelData: MainPanelData = (() => {
-    if (spkStakingData.amountStaked.isZero()) {
-      if (!account) {
-        return {
-          type: 'cta',
-          props: {
-            type: 'disconnected',
-            apy: spkStakingData.generalStats.apr,
-            connectWallet: openConnectModal,
-            tryInSandbox: openSandboxModal,
-          },
-        } satisfies MainPanelData
-      }
+    if (!account) {
+      return {
+        type: 'cta',
+        props: {
+          type: 'disconnected',
+          apy: spkStakingData.generalStats.apr,
+          connectWallet: openConnectModal,
+          tryInSandbox: openSandboxModal,
+        },
+      } satisfies MainPanelData
+    }
 
+    if (spkStakingData.pendingAmount.isZero() && spkStakingData.amountStaked.isZero()) {
       return {
         type: 'cta',
         props: {
@@ -112,7 +113,7 @@ export function useSpkStaking(): UseSpkStakingResult {
         refreshGrowingRewardIntervalInMs,
         calculateReward,
         openClaimDialog: () => {},
-        openUnstakeDialog: () => {},
+        openUnstakeDialog: () => openDialog(unstakeDialogConfig, {}),
         openStakeDialog: () => openDialog(stakeDialogConfig, {}),
       },
     } satisfies MainPanelData

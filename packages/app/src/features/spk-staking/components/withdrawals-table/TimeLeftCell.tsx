@@ -1,5 +1,6 @@
 import { MobileViewOptions } from '@/ui/molecules/data-table/types'
 import { UnixTime } from '@sparkdotfi/common-universal'
+import { formatTargetDate } from '../../utils/formatTargetDate'
 import { formatTimeLeft } from '../../utils/formatTimeLeft'
 
 export interface TimeLeftCellProps {
@@ -36,12 +37,4 @@ function TimeLeft({ timeLeft, targetDate }: TimeLeftCellProps) {
       <div className="typography-body-4 text-secondary">{formatTargetDate(targetDate)}</div>
     </div>
   )
-}
-
-export function formatTargetDate(date: Date): string {
-  const day = String(date.getDate()).padStart(2, '0')
-  const month = String(date.getMonth() + 1).padStart(2, '0') // Months are zero-based
-  const year = date.getFullYear()
-
-  return `${day}.${month}.${year}`
 }
