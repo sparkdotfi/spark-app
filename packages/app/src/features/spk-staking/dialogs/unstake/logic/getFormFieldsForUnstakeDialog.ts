@@ -5,7 +5,7 @@ import { FormFieldsForDialog } from '@/features/dialogs/common/types'
 import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { UseFormReturn } from 'react-hook-form'
 
-export interface GetFormFieldsForWithdrawDialogParams {
+export interface GetFormFieldsForUnstakeDialogParams {
   form: UseFormReturn<AssetInputSchema>
   tokenRepository: TokenRepository
   stakedAmount: NormalizedUnitNumber
@@ -15,7 +15,7 @@ export function getFormFieldsForUnstakeDialog({
   form,
   tokenRepository,
   stakedAmount,
-}: GetFormFieldsForWithdrawDialogParams): FormFieldsForDialog {
+}: GetFormFieldsForUnstakeDialogParams): FormFieldsForDialog {
   // eslint-disable-next-line func-style
   const changeAsset = (newSymbol: TokenSymbol): void => {
     form.setValue('symbol', newSymbol)
