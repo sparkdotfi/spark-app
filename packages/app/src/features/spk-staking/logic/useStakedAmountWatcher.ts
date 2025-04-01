@@ -1,4 +1,4 @@
-import { updateEndpoints } from '@/features/dialogs/sandbox/logic/setupSpkStaking'
+import { getEndpointsConfig, updateEndpoints } from '@/features/dialogs/sandbox/logic/setupSpkStaking'
 import { getWorker } from '@/features/dialogs/sandbox/logic/worker'
 import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useEffect, useRef } from 'react'
@@ -25,14 +25,24 @@ export function useStakedAmountWatcher({ amountStaked }: UseStakedAmountWatcherP
     if (!previousAmount.isEqualTo(amountStaked)) {
       clearTimeout(timeoutRef.current)
       timeoutRef.current = setTimeout(() => {
+        const endpointsConfig = getEndpointsConfig()
+        const previousPendingAmount = NormalizedUnitNumber(endpointsConfig.walletData.pending_amount_normalized)
+        const previousPendingAmountRate = NormalizedUnitNumber(endpointsConfig.walletData.pending_amount_rate)
+        const previousTimestamp = endpointsConfig.walletData.timestamp
+        const currentTimestamp = Math.ceil(Date.now() / 1000)
+
+        const pendingAmount = previousPendingAmount.plus(
+          previousPendingAmountRate.multipliedBy(currentTimestamp - previousTimestamp),
+        )
+
         const rate = amountStaked.multipliedBy(0.00000001)
 
         updateEndpoints(msw, {
           walletData: {
             amount_staked: amountStaked.toString(),
-            pending_amount_normalized: previousAmount.plus(rate.multipliedBy(10)).toString(),
+            pending_amount_normalized: pendingAmount.toString(),
             pending_amount_rate: rate.toString(),
-            timestamp: Math.ceil(Date.now() / 1000),
+            timestamp: currentTimestamp,
           },
         })
       }, 10000)

@@ -54,7 +54,7 @@ export async function setupSpkStaking({
   await setEpochDurationStorage(
     testnetClient,
     getContractAddress(testSpkStakingAddress, mainnet.id),
-    Number(UnixTime.ONE_MINUTE),
+    Number(UnixTime.ONE_MINUTE()),
   )
 
   currentConfig = {
@@ -80,6 +80,10 @@ type RecursivePartial<T> = {
     : T[P] extends object | undefined
       ? RecursivePartial<T[P]>
       : T[P]
+}
+
+export function getEndpointsConfig(): SpkStakingEndpointsConfig {
+  return currentConfig
 }
 
 export function updateEndpoints(msw: SetupWorker, newConfig: RecursivePartial<SpkStakingEndpointsConfig>): void {
