@@ -22,12 +22,6 @@ describe(NormalizedUnitNumber.name, () => {
     expect(NormalizedUnitNumber(10) instanceof NormalizedUnitClass).toBeTruthy()
   })
 
-  it('stores string representation of value', () => {
-    const value = NormalizedUnitNumber(10)
-    expect(value.asString).toEqual('10')
-    expect(value.asString).toEqual(value.toString())
-  })
-
   it('works with negative numbers', () => {
     expect(new NormalizedUnitNumber(-1)).toEqual(new NormalizedUnitNumber(-1))
   })
@@ -55,6 +49,12 @@ describe(NormalizedUnitNumber.name, () => {
       expect(NormalizedUnitNumber('1.555555555555555555555555555555555555').toBaseUnit(18)).toEqual(
         BaseUnitNumber('1555555555555555555'),
       )
+    })
+  })
+
+  describe(NormalizedUnitNumber.prototype.toBigNumber.name, () => {
+    it('returns BigNumber', () => {
+      expect(NormalizedUnitNumber(10).toBigNumber()).toEqual(BigNumber(10))
     })
   })
 
@@ -92,6 +92,20 @@ describe(NormalizedUnitNumber.name, () => {
 
     it('throws if there are no arguments', () => {
       expect(() => NormalizedUnitNumber.min()).toThrow(AssertionError, 'Requires at least 1 arg')
+    })
+  })
+
+  describe(NormalizedUnitNumber.isInstance.name, () => {
+    it(`returns true for ${NormalizedUnitNumber.name} using constructor`, () => {
+      expect(NormalizedUnitNumber.isInstance(new NormalizedUnitNumber(10))).toBeTruthy()
+    })
+
+    it(`returns true for ${NormalizedUnitNumber.name} using non-constructor`, () => {
+      expect(NormalizedUnitNumber.isInstance(NormalizedUnitNumber(10))).toBeTruthy()
+    })
+
+    it(`returns false for ${BigNumber.name}`, () => {
+      expect(NormalizedUnitNumber.isInstance(BigNumber(10))).toBeFalsy()
     })
   })
 })

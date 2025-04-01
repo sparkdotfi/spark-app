@@ -1,4 +1,4 @@
-import { BigNumber } from 'bignumber.js'
+import BigNumber from 'bignumber.js'
 import { assert } from '../assert/assert.js'
 import { NumberLike, bigNumberify } from '../math/bigNumber.js'
 import { BaseUnitNumber } from './BaseUnitNumber.js'
@@ -6,10 +6,8 @@ import { BaseUnitNumber } from './BaseUnitNumber.js'
 type Value = NormalizedUnitNumber | number
 
 export interface NormalizedUnitNumber {
-  readonly value: BigNumber
-  readonly asString: string
-
   toBaseUnit(decimals: number): BaseUnitNumber
+  toBigNumber(): BigNumber
 
   abs(): NormalizedUnitNumber
   eq(n: Value, base?: number): boolean
@@ -52,8 +50,8 @@ export interface NormalizedUnitNumber {
 
 // Should be used only for type checking (e.g. instanceof)
 export class NormalizedUnitClass implements NormalizedUnitNumber {
-  readonly value: BigNumber
-  readonly asString: string
+  private readonly value: BigNumber
+  private readonly asString: string
 
   constructor(value: NumberLike) {
     this.value = BigNumber(bigNumberify(value))
@@ -63,6 +61,10 @@ export class NormalizedUnitClass implements NormalizedUnitNumber {
   toBaseUnit(decimals: number): BaseUnitNumber {
     const lowerPrecisionNumber = this.value.decimalPlaces(decimals, BigNumber.ROUND_DOWN)
     return BaseUnitNumber(lowerPrecisionNumber.shiftedBy(decimals))
+  }
+
+  toBigNumber(): BigNumber {
+    return this.value
   }
 
   abs(): NormalizedUnitNumber {
@@ -184,7 +186,7 @@ export class NormalizedUnitClass implements NormalizedUnitNumber {
   }
 
   toFraction(maxDenominator?: NormalizedUnitNumber): [BigNumber, BigNumber] {
-    return this.value.toFraction(maxDenominator?.value)
+    return this.value.toFraction(maxDenominator?.toBigNumber())
   }
 
   toJSON(): string {
@@ -212,7 +214,7 @@ function getValue(value: Value): number | BigNumber {
   if (typeof value === 'number') {
     return value
   }
-  return value.value
+  return value.toBigNumber()
 }
 
 function NormalizedUnitFunction(value: NumberLike): NormalizedUnitClass {
@@ -226,9 +228,10 @@ interface StaticNormalizedUnit {
   readonly prototype: NormalizedUnitNumber
 
   min(...values: NormalizedUnitNumber[]): NormalizedUnitNumber
+  isInstance(value: unknown): value is NormalizedUnitNumber
 }
 
-const NormalizedUnitStaticFunctions: Pick<StaticNormalizedUnit, 'min'> = {
+const NormalizedUnitStaticFunctions: Pick<StaticNormalizedUnit, 'min' | 'isInstance'> = {
   min(...values: NormalizedUnitNumber[]): NormalizedUnitNumber {
     assert(values.length > 0, 'Requires at least 1 arg')
     let min = values[0]!
@@ -238,6 +241,10 @@ const NormalizedUnitStaticFunctions: Pick<StaticNormalizedUnit, 'min'> = {
       }
     }
     return min
+  },
+
+  isInstance(value: unknown): value is NormalizedUnitNumber {
+    return value instanceof NormalizedUnitClass
   },
 }
 
