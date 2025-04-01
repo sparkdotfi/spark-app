@@ -36,9 +36,11 @@ const meta: Meta<typeof UnstakeView> = {
     },
     objectives: [
       {
-        type: 'stakeSpk',
+        type: 'unstakeSpk',
         spk: tokens.SPK,
         amount: NormalizedUnitNumber(100),
+        accountActiveShares: NormalizedUnitNumber.toBaseUnit(NormalizedUnitNumber(100), 18),
+        unstakeAll: false,
       },
     ],
     pageStatus: {
@@ -83,9 +85,11 @@ export const EmptyInput: Story = {
     },
     objectives: [
       {
-        type: 'stakeSpk',
+        type: 'unstakeSpk',
         spk: tokens.SPK,
         amount: NormalizedUnitNumber(0),
+        accountActiveShares: NormalizedUnitNumber.toBaseUnit(NormalizedUnitNumber(100), 18),
+        unstakeAll: false,
       },
     ],
   },
