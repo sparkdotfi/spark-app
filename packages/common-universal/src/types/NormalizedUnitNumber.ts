@@ -2,70 +2,46 @@ import { BigNumber } from 'bignumber.js'
 import { assert } from '../assert/assert.js'
 import { NumberLike, bigNumberify } from '../math/bigNumber.js'
 import { BaseUnitNumber } from './BaseUnitNumber.js'
-import { Opaque } from './Opaque.js'
 
-/**
- * Represents a base number divided by decimals i.e. 1.5 (DAI)
- */
-export type NormalizedUnitNumber = Opaque<BigNumber, 'NormalizedUnitNumber'>
-export function NormalizedUnitNumber(value: NumberLike): NormalizedUnitNumber {
-  const result = bigNumberify(value)
-  return result as NormalizedUnitNumber
-}
+type Value = NormalizedUnitNumber | number
 
-NormalizedUnitNumber.toBaseUnit = function toBaseUnit(value: NormalizedUnitNumber, decimals: number): BaseUnitNumber {
-  const lowerPrecisionNumber = value.decimalPlaces(decimals, BigNumber.ROUND_DOWN)
-  return BaseUnitNumber(lowerPrecisionNumber.shiftedBy(decimals))
-}
-
-NormalizedUnitNumber.min = function min(...values: NormalizedUnitNumber[]): NormalizedUnitNumber {
-  assert(values.length > 0, 'Requires at least 1 arg')
-  let min = values[0]!
-  for (const value of values) {
-    if (value.lt(min)) {
-      min = value
-    }
-  }
-  return min
-}
-
-interface NormalizedUnit {
+export interface NormalizedUnitNumber {
   readonly value: BigNumber
   readonly asString: string
 
   toBaseUnit(decimals: number): BaseUnitNumber
 
-  abs(): NormalizedUnit
-  eq(n: NormalizedUnit, base?: number): boolean
-  abs(): NormalizedUnit
-  comparedTo(n: NormalizedUnit, base?: number): number
-  decimalPlaces(decimalPlaces: number, roundingMode?: BigNumber.RoundingMode): NormalizedUnit
-  div(n: NormalizedUnit, base?: number): NormalizedUnit
-  pow(n: number, m?: NormalizedUnit): NormalizedUnit
-  sqrt(): NormalizedUnit
-  integerValue(rm?: BigNumber.RoundingMode): NormalizedUnit
-  eq(n: NormalizedUnit, base?: number): boolean
-  gt(n: NormalizedUnit, base?: number): boolean
-  gte(n: NormalizedUnit, base?: number): boolean
-  lt(n: NormalizedUnit, base?: number): boolean
-  lte(n: NormalizedUnit, base?: number): boolean
+  abs(): NormalizedUnitNumber
+  eq(n: Value, base?: number): boolean
+  abs(): NormalizedUnitNumber
+  comparedTo(n: Value, base?: number): number
+  decimalPlaces(decimalPlaces: number, roundingMode?: BigNumber.RoundingMode): NormalizedUnitNumber
+  div(n: Value, base?: number): NormalizedUnitNumber
+  pow(n: number, m?: Value): NormalizedUnitNumber
+  sqrt(): NormalizedUnitNumber
+  integerValue(rm?: BigNumber.RoundingMode): NormalizedUnitNumber
+  eq(n: Value, base?: number): boolean
+  gt(n: Value, base?: number): boolean
+  gte(n: Value, base?: number): boolean
+  lt(n: Value, base?: number): boolean
+  lte(n: Value, base?: number): boolean
   isNaN(): boolean
   isInteger(): boolean
   isFinite(): boolean
   isNegative(): boolean
   isPositive(): boolean
   isZero(): boolean
-  minus(n: NormalizedUnit, base?: number): NormalizedUnit
-  plus(n: NormalizedUnit, base?: number): NormalizedUnit
-  mod(n: NormalizedUnit, base?: number): NormalizedUnit
-  times(n: NormalizedUnit, base?: number): NormalizedUnit
-  negated(): NormalizedUnit
-  precision(significantDigits: number, roundingMode?: BigNumber.RoundingMode): NormalizedUnit
-  shiftedBy(n: number): NormalizedUnit
+  minus(n: Value, base?: number): NormalizedUnitNumber
+  plus(n: Value, base?: number): NormalizedUnitNumber
+  mod(n: Value, base?: number): NormalizedUnitNumber
+  times(n: Value, base?: number): NormalizedUnitNumber
+  negated(): NormalizedUnitNumber
+  precision(significantDigits: number, roundingMode?: BigNumber.RoundingMode): NormalizedUnitNumber
+  shiftedBy(n: number): NormalizedUnitNumber
   toExponential(): string
   toFixed(): string
   toFormat(format: BigNumber.Format): string
-  toFraction(maxDenominator?: NormalizedUnit): [BigNumber, BigNumber]
+  toFraction(maxDenominator?: NormalizedUnitNumber): [BigNumber, BigNumber]
   toJSON(): string
   toNumber(): number
   toPrecision(): string
@@ -74,7 +50,7 @@ interface NormalizedUnit {
 }
 
 // Should be used only for type checking (e.g. instanceof)
-export class NormalizedUnitClass implements NormalizedUnit {
+export class NormalizedUnitClass implements NormalizedUnitNumber {
   readonly value: BigNumber
   readonly asString: string
 
@@ -88,52 +64,53 @@ export class NormalizedUnitClass implements NormalizedUnit {
     return BaseUnitNumber(lowerPrecisionNumber.shiftedBy(decimals))
   }
 
-  abs(): NormalizedUnit {
-    return new NormalizedUnit(this.value.abs())
+  abs(): NormalizedUnitNumber {
+    return new NormalizedUnitNumber(this.value.abs())
   }
 
-  comparedTo(n: NormalizedUnit, base?: number): number {
-    return this.value.comparedTo(n.value, base)
+  comparedTo(n: Value, base?: number): number {
+    return this.value.comparedTo(getValue(n), base)
   }
 
-  decimalPlaces(decimalPlaces: number, roundingMode?: BigNumber.RoundingMode): NormalizedUnit {
-    return new NormalizedUnit(this.value.decimalPlaces(decimalPlaces, roundingMode))
+  decimalPlaces(decimalPlaces: number, roundingMode?: BigNumber.RoundingMode): NormalizedUnitNumber {
+    return new NormalizedUnitNumber(this.value.decimalPlaces(decimalPlaces, roundingMode))
   }
 
-  div(n: NormalizedUnit, base?: number): NormalizedUnit {
-    return new NormalizedUnit(this.value.div(n.value, base))
+  div(n: Value, base?: number): NormalizedUnitNumber {
+    return new NormalizedUnitNumber(this.value.div(getValue(n), base))
   }
 
-  pow(n: number, m?: NormalizedUnit): NormalizedUnit {
-    return new NormalizedUnit(this.value.pow(n, m?.value))
+  pow(n: number, modulus?: Value): NormalizedUnitNumber {
+    const m = modulus ? getValue(modulus) : undefined
+    return new NormalizedUnitNumber(this.value.pow(n, m))
   }
 
-  sqrt(): NormalizedUnit {
-    return new NormalizedUnit(this.value.sqrt())
+  sqrt(): NormalizedUnitNumber {
+    return new NormalizedUnitNumber(this.value.sqrt())
   }
 
-  integerValue(rm?: BigNumber.RoundingMode): NormalizedUnit {
-    return new NormalizedUnit(this.value.integerValue(rm))
+  integerValue(rm?: BigNumber.RoundingMode): NormalizedUnitNumber {
+    return new NormalizedUnitNumber(this.value.integerValue(rm))
   }
 
-  eq(n: NormalizedUnit, base?: number): boolean {
-    return this.value.eq(n.value, base)
+  eq(n: Value, base?: number): boolean {
+    return this.value.eq(getValue(n), base)
   }
 
-  gt(n: NormalizedUnit, base?: number): boolean {
-    return this.value.gt(n.value, base)
+  gt(n: Value, base?: number): boolean {
+    return this.value.gt(getValue(n), base)
   }
 
-  gte(n: NormalizedUnit, base?: number): boolean {
-    return this.value.gte(n.value, base)
+  gte(n: Value, base?: number): boolean {
+    return this.value.gte(getValue(n), base)
   }
 
-  lt(n: NormalizedUnit, base?: number): boolean {
-    return this.value.lt(n.value, base)
+  lt(n: Value, base?: number): boolean {
+    return this.value.lt(getValue(n), base)
   }
 
-  lte(n: NormalizedUnit, base?: number): boolean {
-    return this.value.lte(n.value, base)
+  lte(n: Value, base?: number): boolean {
+    return this.value.lte(getValue(n), base)
   }
 
   isNaN(): boolean {
@@ -160,32 +137,32 @@ export class NormalizedUnitClass implements NormalizedUnit {
     return this.value.isZero()
   }
 
-  minus(n: NormalizedUnit, base?: number): NormalizedUnit {
-    return new NormalizedUnit(this.value.minus(n.value, base))
+  minus(n: Value, base?: number): NormalizedUnitNumber {
+    return new NormalizedUnitNumber(this.value.minus(getValue(n), base))
   }
 
-  plus(n: NormalizedUnit, base?: number): NormalizedUnit {
-    return new NormalizedUnit(this.value.plus(n.value, base))
+  plus(n: Value, base?: number): NormalizedUnitNumber {
+    return new NormalizedUnitNumber(this.value.plus(getValue(n), base))
   }
 
-  mod(n: NormalizedUnit, base?: number): NormalizedUnit {
-    return new NormalizedUnit(this.value.mod(n.value, base))
+  mod(n: Value, base?: number): NormalizedUnitNumber {
+    return new NormalizedUnitNumber(this.value.mod(getValue(n), base))
   }
 
-  times(n: NormalizedUnit, base?: number): NormalizedUnit {
-    return new NormalizedUnit(this.value.times(n.value, base))
+  times(n: Value, base?: number): NormalizedUnitNumber {
+    return new NormalizedUnitNumber(this.value.times(getValue(n), base))
   }
 
-  negated(): NormalizedUnit {
-    return new NormalizedUnit(this.value.negated())
+  negated(): NormalizedUnitNumber {
+    return new NormalizedUnitNumber(this.value.negated())
   }
 
-  precision(significantDigits: number, roundingMode?: BigNumber.RoundingMode): NormalizedUnit {
-    return new NormalizedUnit(this.value.precision(significantDigits, roundingMode))
+  precision(significantDigits: number, roundingMode?: BigNumber.RoundingMode): NormalizedUnitNumber {
+    return new NormalizedUnitNumber(this.value.precision(significantDigits, roundingMode))
   }
 
-  shiftedBy(n: number): NormalizedUnit {
-    return new NormalizedUnit(this.value.shiftedBy(n))
+  shiftedBy(n: number): NormalizedUnitNumber {
+    return new NormalizedUnitNumber(this.value.shiftedBy(n))
   }
 
   toExponential(): string {
@@ -200,7 +177,7 @@ export class NormalizedUnitClass implements NormalizedUnit {
     return this.value.toFormat(format)
   }
 
-  toFraction(maxDenominator?: NormalizedUnit): [BigNumber, BigNumber] {
+  toFraction(maxDenominator?: NormalizedUnitNumber): [BigNumber, BigNumber] {
     return this.value.toFraction(maxDenominator?.value)
   }
 
@@ -225,21 +202,28 @@ export class NormalizedUnitClass implements NormalizedUnit {
   }
 }
 
+function getValue(value: Value): number | BigNumber {
+  if (typeof value === 'number') {
+    return value
+  }
+  return value.value
+}
+
 function NormalizedUnitFunction(value: NumberLike): NormalizedUnitClass {
   const result = bigNumberify(value)
   return new NormalizedUnitClass(result)
 }
 
 interface StaticNormalizedUnit {
-  new (value: NumberLike): NormalizedUnit
-  (value: NumberLike): NormalizedUnit
-  readonly prototype: NormalizedUnit
+  new (value: NumberLike): NormalizedUnitNumber
+  (value: NumberLike): NormalizedUnitNumber
+  readonly prototype: NormalizedUnitNumber
 
   min(...values: NormalizedUnitClass[]): NormalizedUnitClass
 }
 
 const NormalizedUnitStaticFunctions: Pick<StaticNormalizedUnit, 'min'> = {
-  min(...values: NormalizedUnit[]): NormalizedUnit {
+  min(...values: NormalizedUnitNumber[]): NormalizedUnitNumber {
     assert(values.length > 0, 'Requires at least 1 arg')
     let min = values[0]!
     for (const value of values) {
@@ -254,7 +238,10 @@ const NormalizedUnitStaticFunctions: Pick<StaticNormalizedUnit, 'min'> = {
 Object.setPrototypeOf(NormalizedUnitFunction, NormalizedUnitClass)
 NormalizedUnitFunction.prototype = NormalizedUnitClass.prototype
 
-export const NormalizedUnit: StaticNormalizedUnit = Object.assign(
+/**
+ * Represents a base number divided by decimals i.e. 1.5 (DAI)
+ */
+export const NormalizedUnitNumber: StaticNormalizedUnit = Object.assign(
   NormalizedUnitFunction,
   NormalizedUnitClass,
   NormalizedUnitStaticFunctions,
