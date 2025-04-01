@@ -5,6 +5,7 @@ import { Address } from 'viem'
 import { Config } from 'wagmi'
 import { TokenWithBalance } from '../common/types'
 import { Token } from '../types/Token'
+import { TokenSymbol } from '../types/TokenSymbol'
 import { getBalancesQueryKeyPrefix } from '../wallet/getBalancesQueryKeyPrefix'
 import { createAssetDataFetcher } from './createAssetDataFetcher'
 import { createOraclePriceFetcher } from './createOraclePriceFetcher'
@@ -25,6 +26,18 @@ export function tokenDataQueryOptions({ tokenConfig, wagmiConfig, chainId, accou
       const getAssetData = createAssetDataFetcher({ tokenConfig, wagmiConfig, chainId, account })
 
       const [assetData, oraclePrice] = await Promise.all([getAssetData(), getOraclePrice()])
+
+      if (tokenConfig.symbol === TokenSymbol('SPK') && assetData.symbol === TokenSymbol('TST')) {
+        const token = new Token({
+          name: 'SPK',
+          decimals: assetData.decimals,
+          address: tokenConfig.address,
+          symbol: tokenConfig.symbol,
+          unitPriceUsd: '0',
+        })
+
+        return { token, balance: assetData.balance }
+      }
 
       assert(
         assetData.symbol === tokenConfig.symbol,

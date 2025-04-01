@@ -10,7 +10,9 @@ export class ConsoleReporter implements IReporter {
     logger: ILogger,
     private readonly logFunctionName: LogFunctionName,
   ) {
-    this.logger = logger.for(this)
+    this.logger = logger.for(this).configure({
+      reportError: undefined, // avoids invoking reportError (e.g. Sentry reporting) in case logger's error function
+    })
   }
 
   async report(report: Report): Promise<void> {

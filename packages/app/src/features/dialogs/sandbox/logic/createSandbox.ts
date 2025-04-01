@@ -7,6 +7,7 @@ import { CheckedAddress, UnixTime, raise } from '@sparkdotfi/common-universal'
 import { Address, Chain, parseEther, parseUnits } from 'viem'
 import { Config } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
+import { setWorker } from './worker'
 
 export async function createSandbox(opts: {
   originChainId: number
@@ -36,11 +37,26 @@ export async function createSandbox(opts: {
   )
 
   if (import.meta.env.MODE === 'development' || import.meta.env.MODE === 'staging') {
+    const { setupWorker } = await import('./setupWorker')
+
+    const msw = setupWorker()
+    setWorker(msw)
+    await msw.start({ onUnhandledRequest: 'bypass' })
+
     const { setupSparkRewards } = await import('./setupSparkRewards')
     await setupSparkRewards({
+      msw,
       testnetClient,
       account: CheckedAddress(opts.userAddress),
       wagmiConfig: opts.wagmiConfig,
+      sandboxChainId: opts.forkChainId,
+    })
+
+    const { setupSpkStaking } = await import('./setupSpkStaking')
+    await setupSpkStaking({
+      msw,
+      testnetClient,
+      account: CheckedAddress(opts.userAddress),
       sandboxChainId: opts.forkChainId,
     })
   }

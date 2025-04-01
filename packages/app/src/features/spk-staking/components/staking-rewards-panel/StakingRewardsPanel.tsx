@@ -15,6 +15,7 @@ export interface StakingRewardsPanelProps {
   rewardToken: Token
   stakingToken: Token
   calculateReward: (timestampInMs: number) => NormalizedUnitNumber
+  refreshGrowingRewardIntervalInMs: number | undefined
   openClaimDialog: () => void
   openUnstakeDialog: () => void
   openStakeDialog: () => void
@@ -28,6 +29,7 @@ export function StakingRewardsPanel({
   rewardToken,
   stakingToken,
   calculateReward,
+  refreshGrowingRewardIntervalInMs,
   openClaimDialog,
   openUnstakeDialog,
   openStakeDialog,
@@ -69,7 +71,7 @@ export function StakingRewardsPanel({
       <GrowingReward
         rewardToken={rewardToken}
         calculateReward={calculateReward}
-        refreshIntervalInMs={undefined}
+        refreshIntervalInMs={refreshGrowingRewardIntervalInMs}
         wholePartTextBgGradientClass={cn(
           'bg-[radial-gradient(160.27%_160.27%_at_50.08%_115.91%,_#FFD232_0%,_#FF6D6D_100%)]',
         )}
