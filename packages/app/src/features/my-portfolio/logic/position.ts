@@ -38,7 +38,7 @@ export function getTicks({
   const ticks = times(numTicks, (i) => {
     const x = (i / (numTicks - 1)) * 100
 
-    const label = USD_MOCK_TOKEN.format(NormalizedUnitNumber(maxTickValue.dividedBy(numTicks - 1).multipliedBy(i)), {
+    const label = USD_MOCK_TOKEN.format(NormalizedUnitNumber(maxTickValue.div(numTicks - 1).times(i)), {
       style: 'compact',
     })
     if (i % ticksPerLabel === 0) return { label, x }
@@ -107,9 +107,9 @@ function getBorrowPercents(
   maxBorrow: NormalizedUnitNumber,
   totalCollateralUSD: NormalizedUnitNumber,
 ): BorrowPercents {
-  let borrowPercent = currentBorrow.dividedBy(totalCollateralUSD).multipliedBy(100).toNumber()
+  let borrowPercent = currentBorrow.div(totalCollateralUSD).times(100).toNumber()
   let restPercent = new BigNumber(100).minus(borrowPercent).toNumber()
-  const maxPercent = maxBorrow.dividedBy(totalCollateralUSD).multipliedBy(100).toNumber()
+  const maxPercent = maxBorrow.div(totalCollateralUSD).times(100).toNumber()
   if (borrowPercent < 0.5) {
     borrowPercent = 0
     restPercent = 100

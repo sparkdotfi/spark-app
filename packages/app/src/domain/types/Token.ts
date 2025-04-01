@@ -91,7 +91,7 @@ export class Token {
   }
 
   public toBaseUnit(value: NormalizedUnitNumber): BaseUnitNumber {
-    return NormalizedUnitNumber.toBaseUnit(value, this.decimals)
+    return value.toBaseUnit(this.decimals)
   }
 
   public fromBaseUnit(value: BaseUnitNumber): NormalizedUnitNumber {
@@ -99,7 +99,7 @@ export class Token {
   }
 
   public toUSD(value: NormalizedUnitNumber): NormalizedUnitNumber {
-    return NormalizedUnitNumber(value.multipliedBy(this.unitPriceUsd))
+    return NormalizedUnitNumber(value.times(this.unitPriceUsd))
   }
 
   public clone({

@@ -48,5 +48,5 @@ export function getWithdrawMaxValue({ user, asset }: GetWithdrawMaxValueParams):
     }
   }
 
-  return NormalizedUnitNumber(BigNumber.min(...ceilings).dp(asset.decimals, BigNumber.ROUND_DOWN))
+  return NormalizedUnitNumber(NormalizedUnitNumber.min(...ceilings).decimalPlaces(asset.decimals, BigNumber.ROUND_DOWN))
 }

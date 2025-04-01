@@ -121,7 +121,7 @@ describe(AssetInput.name, () => {
     const { getByRole } = render(<AssetInputTestWrapper max={max} />)
 
     act(() => getByRole('button', { name: 'MAX' }).click())
-    await waitFor(() => expect(getByRole('textbox')).toHaveValue(max.dp(6).toFixed()))
+    await waitFor(() => expect(getByRole('textbox')).toHaveValue(max.decimalPlaces(6).toFixed()))
   })
 
   test('Able to alter input after clicking max', async () => {

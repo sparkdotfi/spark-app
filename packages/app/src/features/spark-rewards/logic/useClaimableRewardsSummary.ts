@@ -35,10 +35,10 @@ export function useClaimableRewardsSummary(): UseClaimableRewardsSummaryResult {
           chainId,
         }
       })
-      .filter(({ amountToClaim }) => amountToClaim.isGreaterThan(0))
+      .filter(({ amountToClaim }) => amountToClaim.gt(0))
 
     const claimableRewardsWithPrice = claimableRewards.filter(({ token, amountToClaim }) =>
-      token.toUSD(amountToClaim).isGreaterThan(0),
+      token.toUSD(amountToClaim).gt(0),
     )
     const usdSum = pipe(
       claimableRewardsWithPrice,
@@ -53,7 +53,7 @@ export function useClaimableRewardsSummary(): UseClaimableRewardsSummaryResult {
     )
 
     const claimableRewardsWithoutPrice = claimableRewards.filter(
-      ({ token, amountToClaim }) => amountToClaim.isGreaterThan(0) && token.toUSD(amountToClaim).isEqualTo(0),
+      ({ token, amountToClaim }) => amountToClaim.gt(0) && token.toUSD(amountToClaim).eq(0),
     )
 
     function claimAll(): void {

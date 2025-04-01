@@ -188,7 +188,7 @@ export function getMockReserve(overrides: Partial<Reserve> = {}): Reserve {
 
     variableBorrowApy: Percentage(0.05),
 
-    priceInUSD: new BigNumber(priceInUsd),
+    priceInUSD: NormalizedUnitNumber(priceInUsd),
     priceOracle: CheckedAddress(zeroAddress),
 
     usageAsCollateralEnabled: true,

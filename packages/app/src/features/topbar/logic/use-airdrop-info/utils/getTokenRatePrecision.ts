@@ -9,7 +9,7 @@ export function getTokenRatePrecision({
   tokenRatePerSecond,
   refreshIntervalInMs,
 }: ExtendAirdropResponseParams): number {
-  const ratePerRefreshInterval = NormalizedUnitNumber(tokenRatePerSecond.dividedBy(1000 / refreshIntervalInMs))
+  const ratePerRefreshInterval = NormalizedUnitNumber(tokenRatePerSecond.div(1000 / refreshIntervalInMs))
   if (ratePerRefreshInterval.isZero()) {
     return 0
   }

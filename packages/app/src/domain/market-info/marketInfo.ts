@@ -79,7 +79,7 @@ export interface Reserve {
 
   variableBorrowApy: Percentage | undefined
 
-  priceInUSD: BigNumber
+  priceInUSD: NormalizedUnitNumber
   priceOracle: CheckedAddress
   usageAsCollateralEnabled: boolean
   usageAsCollateralEnabledOnUser: boolean
@@ -89,8 +89,8 @@ export interface Reserve {
 
 export interface UserPosition {
   reserve: Reserve
-  scaledVariableDebt: BigNumber
-  scaledATokenBalance: BigNumber
+  scaledVariableDebt: NormalizedUnitNumber
+  scaledATokenBalance: NormalizedUnitNumber
   collateralBalance: NormalizedUnitNumber
   borrowBalance: NormalizedUnitNumber
 }
@@ -323,7 +323,7 @@ export function marketInfoSelectFn({ timeAdvance }: MarketInfoSelectFnParams = {
         utilizationRate: Percentage(r.reserve.borrowUsageRatio),
         baseVariableBorrowRate: NormalizedUnitNumber(r.reserve.baseVariableBorrowRate),
 
-        priceInUSD: bigNumberify(r.reserve.priceInUSD),
+        priceInUSD: NormalizedUnitNumber(r.reserve.priceInUSD),
         priceOracle: CheckedAddress(r.reserve.priceOracle),
 
         usageAsCollateralEnabled: r.reserve.usageAsCollateralEnabled,
@@ -342,8 +342,8 @@ export function marketInfoSelectFn({ timeAdvance }: MarketInfoSelectFnParams = {
 
       return {
         reserve,
-        scaledATokenBalance: bigNumberify(r.scaledATokenBalance),
-        scaledVariableDebt: bigNumberify(r.scaledVariableDebt),
+        scaledATokenBalance: NormalizedUnitNumber(r.scaledATokenBalance),
+        scaledVariableDebt: NormalizedUnitNumber(r.scaledVariableDebt),
         collateralBalance: NormalizedUnitNumber(formattedReserve.underlyingBalance),
         borrowBalance: NormalizedUnitNumber(formattedReserve.variableBorrows),
       }
