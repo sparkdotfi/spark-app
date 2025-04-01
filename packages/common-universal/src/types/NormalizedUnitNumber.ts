@@ -225,7 +225,7 @@ interface StaticNormalizedUnit {
   (value: NumberLike): NormalizedUnitNumber
   readonly prototype: NormalizedUnitNumber
 
-  min(...values: NormalizedUnitClass[]): NormalizedUnitClass
+  min(...values: NormalizedUnitNumber[]): NormalizedUnitNumber
 }
 
 const NormalizedUnitStaticFunctions: Pick<StaticNormalizedUnit, 'min'> = {
