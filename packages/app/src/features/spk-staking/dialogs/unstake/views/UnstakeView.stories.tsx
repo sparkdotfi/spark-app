@@ -1,9 +1,11 @@
+import { testSpkStakingAbi } from '@/config/contracts-generated'
 import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { useForm } from 'react-hook-form'
+import { encodeFunctionResult } from 'viem'
 import { UnstakeView, UnstakeViewProps } from './UnstakeView'
 
 const meta: Meta<typeof UnstakeView> = {
@@ -17,7 +19,19 @@ const meta: Meta<typeof UnstakeView> = {
     }) as any
     return <UnstakeView {...args} form={form} />
   },
-  decorators: [ZeroAllowanceWagmiDecorator(), WithClassname('max-w-xl'), WithTooltipProvider()],
+  decorators: [
+    ZeroAllowanceWagmiDecorator({
+      requestFnOverride: async () => {
+        return encodeFunctionResult({
+          abi: testSpkStakingAbi,
+          functionName: 'withdraw',
+          result: [0n, 0n],
+        })
+      },
+    }),
+    WithClassname('max-w-xl'),
+    WithTooltipProvider(),
+  ],
   args: {
     selectableAssets: [
       {
