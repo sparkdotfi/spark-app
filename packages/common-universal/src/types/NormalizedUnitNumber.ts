@@ -40,6 +40,7 @@ export interface NormalizedUnitNumber {
   shiftedBy(n: number): NormalizedUnitNumber
   toExponential(): string
   toFixed(): string
+  toFixed(decimalPlaces: number, roundingMode?: BigNumber.RoundingMode): string
   toFormat(format: BigNumber.Format): string
   toFraction(maxDenominator?: NormalizedUnitNumber): [BigNumber, BigNumber]
   toJSON(): string
@@ -169,8 +170,13 @@ export class NormalizedUnitClass implements NormalizedUnitNumber {
     return this.value.toExponential()
   }
 
-  toFixed(): string {
-    return this.value.toFixed()
+  toFixed(): string
+  toFixed(decimalPlaces: number, roundingMode?: BigNumber.RoundingMode): string
+  toFixed(decimalPlaces?: number, roundingMode?: BigNumber.RoundingMode): string {
+    if (decimalPlaces === undefined) {
+      return this.value.toFixed()
+    }
+    return this.value.toFixed(decimalPlaces, roundingMode)
   }
 
   toFormat(format: BigNumber.Format): string {
