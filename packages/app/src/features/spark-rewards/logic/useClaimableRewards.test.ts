@@ -109,7 +109,7 @@ describe(useClaimableRewards.name, () => {
       {
         token: rewardToken,
         amountPending: pendingAmountNormalized,
-        amountToClaim: NormalizedNumber(cumulativeAmountNormalized.minus(preClaimed)),
+        amountToClaim: cumulativeAmountNormalized.minus(preClaimed),
         action: expect.any(Function),
         actionName: 'Claim',
         isActionEnabled: true,

@@ -40,9 +40,9 @@ export function aggregateStats(marketInfo: MarketInfo, D3MInfo: D3MInfo | undefi
   )
 
   return {
-    totalMarketSizeUSD: NormalizedNumber(aggregatedValues.totalLiquidityUSD),
+    totalMarketSizeUSD: aggregatedValues.totalLiquidityUSD,
     totalValueLockedUSD,
-    totalAvailableUSD: NormalizedNumber(totalAvailableUSD),
-    totalBorrowsUSD: NormalizedNumber(aggregatedValues.totalDebtUSD),
+    totalAvailableUSD,
+    totalBorrowsUSD: aggregatedValues.totalDebtUSD,
   }
 }

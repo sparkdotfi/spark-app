@@ -70,8 +70,7 @@ function interpolateSharesToAssets({
   const now = savingsConverter.predictAssetsAmount({ timestamp, shares })
   const inASecond = savingsConverter.predictAssetsAmount({ timestamp: timestamp + 1, shares })
 
-  const linearApproximation = NormalizedNumber(now.plus(inASecond.minus(now).times((timestampInMs % 1000) / 1000)))
-  return linearApproximation
+  return now.plus(inASecond.minus(now).times((timestampInMs % 1000) / 1000))
 }
 
 interface CalculatePrecisionParams {

@@ -64,8 +64,8 @@ export function gnosisSavingsDaiConverterQuery({
     select: ({ vaultAPY, totalAssets, totalSupply, decimals }) => {
       return new GnosisSavingsConverter({
         vaultAPY: Percentage(fromWad(bigNumberify(vaultAPY))),
-        totalAssets: NormalizedNumber(bigNumberify(totalAssets).shiftedBy(-decimals)),
-        totalSupply: NormalizedNumber(bigNumberify(totalSupply).shiftedBy(-decimals)),
+        totalAssets: NormalizedNumber(totalAssets).shiftedBy(-decimals),
+        totalSupply: NormalizedNumber(totalSupply).shiftedBy(-decimals),
         currentTimestamp: timestamp,
       })
     },

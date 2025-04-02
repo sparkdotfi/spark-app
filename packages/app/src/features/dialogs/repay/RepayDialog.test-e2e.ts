@@ -229,7 +229,7 @@ test.describe('Repay dialog', () => {
       } as const
       const daiDebtIn1Epoch = NormalizedNumber(daiToBorrow).times(daiDebtIncreaseIn1Epoch)
       // newBalance = (daiToBorrow, daiDebtIn1Epoch) / 2 - a number somewhere between daiToBorrow and daiDebtIn1Epoch
-      const newBalance = NormalizedNumber(daiDebtIn1Epoch.plus(daiToBorrow).div(2))
+      const newBalance = daiDebtIn1Epoch.plus(daiToBorrow).div(2)
       await overrideDaiBalance({
         balance: newBalance,
         testContext,
@@ -264,7 +264,7 @@ test.describe('Repay dialog', () => {
       const daiDebtIn1Epoch = NormalizedNumber(daiToBorrow).times(daiDebtIncreaseIn1Epoch)
       const daiDebtIn2Epochs = NormalizedNumber(daiToBorrow).times(daiDebtIncreaseIn2Epochs)
       // newBalance = (daiDebtIn1Epoch + daiDebtIn2Epochs) / 2 - a number somewhere between daiDebtIn1Epoch and daiDebtIn2Epochs
-      const newBalance = NormalizedNumber(daiDebtIn2Epochs.plus(daiDebtIn1Epoch).div(2))
+      const newBalance = daiDebtIn2Epochs.plus(daiDebtIn1Epoch).div(2)
       await overrideDaiBalance({
         balance: newBalance,
         testContext,

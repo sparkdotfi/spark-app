@@ -5,7 +5,6 @@ import { Skeleton } from '@/ui/atoms/skeleton/Skeleton'
 import { links } from '@/ui/constants/links'
 import { Info } from '@/ui/molecules/info/Info'
 import { cn } from '@/ui/utils/style'
-import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ExternalLinkIcon } from 'lucide-react'
 import { ReactNode } from 'react'
 import { UseGeneralStatsResult } from '../../logic/general-stats/useGeneralStats'
@@ -31,7 +30,7 @@ export function GeneralStatsBar({ accountSavingsToken, generalStatsResult, psmSu
     <div className={cn('inline-flex divide-x divide-secondary rounded-[10px]', 'bg-primary/80 py-3 backdrop-blur-lg')}>
       <Stat>
         <Label>TVL:</Label>
-        <Value>{USD_MOCK_TOKEN.formatUSD(NormalizedNumber(generalStatsResult.data.tvl), { compact: true })}</Value>
+        <Value>{USD_MOCK_TOKEN.formatUSD(generalStatsResult.data.tvl, { compact: true })}</Value>
       </Stat>
       <Stat>
         <Label>Users:</Label>
@@ -42,7 +41,7 @@ export function GeneralStatsBar({ accountSavingsToken, generalStatsResult, psmSu
           <Label>Liquidity:</Label>
           <Value>
             <div className="flex items-center gap-1">
-              {USD_MOCK_TOKEN.formatUSD(NormalizedNumber(liquidityCap), { compact: true })}
+              {USD_MOCK_TOKEN.formatUSD(liquidityCap, { compact: true })}
               <LiquidityCapInfo psmSupplier={psmSupplier} />
             </div>
           </Value>

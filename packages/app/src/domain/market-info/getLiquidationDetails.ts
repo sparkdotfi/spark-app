@@ -55,7 +55,7 @@ export function getLiquidationDetails({
     return {
       liquidationPrice,
       tokenWithPrice: {
-        priceInUSD: NormalizedNumber(WETHPrice),
+        priceInUSD: WETHPrice,
         symbol: TokenSymbol('ETH'),
       },
     }
@@ -77,7 +77,7 @@ export function getLiquidationDetails({
   return {
     liquidationPrice,
     tokenWithPrice: {
-      priceInUSD: NormalizedNumber(collateralPrice),
+      priceInUSD: collateralPrice,
       symbol: collateral.token.symbol,
     },
   }

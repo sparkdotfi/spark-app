@@ -8,8 +8,8 @@ export function useSparkRewardsSummary(): SparkRewardsSummary {
 
   const { data } = transformSimplifiedQueryResult(claimableRewardsResult, (data) => {
     const totalUsdAmount = data.reduce((acc, { rewardToken, cumulativeAmount, preClaimed }) => {
-      const amountToClaim = NormalizedNumber(cumulativeAmount.minus(preClaimed))
-      return NormalizedNumber(acc.plus(rewardToken.toUSD(amountToClaim)))
+      const amountToClaim = cumulativeAmount.minus(preClaimed)
+      return acc.plus(rewardToken.toUSD(amountToClaim))
     }, NormalizedNumber.ZERO)
 
     return {

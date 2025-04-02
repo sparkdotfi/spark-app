@@ -27,7 +27,7 @@ export function useClaimableRewardsSummary(): UseClaimableRewardsSummaryResult {
     const claimableRewards = data
       .filter((reward) => reward.chainId === chainId)
       .map(({ rewardToken, cumulativeAmount, pendingAmount, preClaimed, chainId }) => {
-        const amountToClaim = NormalizedNumber(cumulativeAmount.minus(preClaimed))
+        const amountToClaim = cumulativeAmount.minus(preClaimed)
         return {
           token: rewardToken,
           amountPending: pendingAmount,

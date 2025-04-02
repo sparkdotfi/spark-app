@@ -8,7 +8,7 @@ import { assert, NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export function getTokenSupply(marketInfo: MarketInfo, withdrawAsset: TokenWithValue): NormalizedNumber {
   const position = marketInfo.findOnePositionBySymbol(withdrawAsset.token.symbol)
-  return NormalizedNumber(position.collateralBalance.minus(withdrawAsset.value))
+  return position.collateralBalance.minus(withdrawAsset.value)
 }
 
 export interface GetWithdrawOptionsParams {

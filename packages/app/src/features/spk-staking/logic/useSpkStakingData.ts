@@ -166,7 +166,7 @@ export function spkStakingDataQueryOptions({
             .reduce(
               (acc, curr) => ({
                 epochs: [...acc.epochs, curr.epoch],
-                amount: NormalizedNumber(acc.amount.plus(curr.amount)),
+                amount: acc.amount.plus(curr.amount),
               }),
               { epochs: [] as bigint[], amount: NormalizedNumber.ZERO },
             ),
@@ -216,8 +216,8 @@ export function spkStakingDataQueryOptions({
           fetchGeneralStats(),
         ])
 
-      const pendingAmount = NormalizedNumber(baData.pending_amount_normalized.minus(preclaimedRewards))
-      const claimableAmount = NormalizedNumber(baData.cumulative_amount_normalized.minus(preclaimedRewards))
+      const pendingAmount = baData.pending_amount_normalized.minus(preclaimedRewards)
+      const claimableAmount = baData.cumulative_amount_normalized.minus(preclaimedRewards)
 
       return {
         amountStaked,

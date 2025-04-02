@@ -75,5 +75,5 @@ function getDefaultRepayOptions({ token, marketInfo, walletInfo }: GetDepositOpt
 
 export function getTokenDebt(marketInfo: MarketInfo, repayAsset: TokenWithValue): NormalizedNumber {
   const position = marketInfo.findOnePositionBySymbol(repayAsset.token.symbol)
-  return NormalizedNumber(position.borrowBalance.minus(repayAsset.value))
+  return position.borrowBalance.minus(repayAsset.value)
 }

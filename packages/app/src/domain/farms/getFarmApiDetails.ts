@@ -51,6 +51,6 @@ const baFarmDataResponseSchema = z
   .transform(({ apy, depositors, price, total_farmed }) => ({
     apy,
     depositors,
-    rewardTokenPriceUsd: NormalizedNumber(price),
+    rewardTokenPriceUsd: price,
     totalRewarded: total_farmed,
   }))

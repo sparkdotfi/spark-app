@@ -1,7 +1,6 @@
 import { USD_MOCK_TOKEN } from '@/domain/types/Token'
 import { Locator } from '@playwright/test'
 import { TestnetClient } from '@sparkdotfi/common-testnets'
-import { bigNumberify } from '@sparkdotfi/common-universal'
 import { BaseUnitNumber, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Address, erc20Abi, weiUnits } from 'viem'
 import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts'
@@ -52,7 +51,7 @@ export interface GetTokenBalanceArgs extends GetBalanceArgs {
 
 export async function getBalance({ client, address }: GetBalanceArgs): Promise<NormalizedNumber> {
   const balance = await client.getBalance({ address })
-  return NormalizedNumber(bigNumberify(balance).shiftedBy(weiUnits.ether))
+  return NormalizedNumber(balance).shiftedBy(weiUnits.ether)
 }
 
 export async function getTokenBalance({ client, address, token }: GetTokenBalanceArgs): Promise<NormalizedNumber> {

@@ -23,7 +23,7 @@ export function useClaimableRewards(): UseClaimableRewardsResult {
     data
       .filter((reward) => reward.chainId === chainId)
       .map(({ rewardToken, cumulativeAmount, epoch, preClaimed, merkleRoot, merkleProof }) => {
-        const amountToClaim = NormalizedNumber(cumulativeAmount.minus(preClaimed))
+        const amountToClaim = cumulativeAmount.minus(preClaimed)
         return {
           token: rewardToken,
           amountToClaim,

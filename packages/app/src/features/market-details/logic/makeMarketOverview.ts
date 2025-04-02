@@ -30,9 +30,9 @@ export function makeMarketOverview({
     reserve.supplyCap && NormalizedNumber(reserve.supplyCap?.minus(reserve.totalLiquidity))
 
   const capLessThanLiquidity = Boolean(reserve.borrowCap?.lt(reserve.totalLiquidity))
-  const borrowLiquidity = NormalizedNumber(
-    capLessThanLiquidity ? reserve.borrowCap!.minus(reserve.totalDebt) : reserve.availableLiquidity,
-  )
+  const borrowLiquidity = capLessThanLiquidity
+    ? reserve.borrowCap!.minus(reserve.totalDebt)
+    : reserve.availableLiquidity
 
   const supplySparkRewards = sparkRewards.filter((reward) => reward.action === 'supply')
   const borrowSparkRewards = sparkRewards.filter((reward) => reward.action === 'borrow')
