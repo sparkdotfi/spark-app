@@ -32,12 +32,12 @@ export const Tablet = getTabletStory(Desktop)
 
 export const OnlyPendingRewards: Story = {
   args: {
-    claimableRewards: NormalizedUnitNumber(0),
+    claimableRewards: NormalizedUnitNumber.ZERO,
   },
 }
 
 export const NoStake: Story = {
   args: {
-    stakedAmount: NormalizedUnitNumber(0),
+    stakedAmount: NormalizedUnitNumber.ZERO,
   },
 }

@@ -193,7 +193,7 @@ function PendingRewardsSubPanel() {
         <Info>You have nothing to claim at the moment.</Info>
       </div>
       <div className="typography-heading-2 text-primary-inverse">
-        {USD_MOCK_TOKEN.formatUSD(NormalizedUnitNumber(0))}
+        {USD_MOCK_TOKEN.formatUSD(NormalizedUnitNumber.ZERO)}
       </div>
     </SubPanel>
   )

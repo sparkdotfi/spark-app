@@ -88,7 +88,7 @@ export function useStakeDialog({ farm, initialToken }: UseStakeDialogParams): Us
       : undefined
   const stakedToken = {
     token: farm.stakingToken,
-    value: stakingTokenRouteItem?.value ?? NormalizedUnitNumber(0),
+    value: stakingTokenRouteItem?.value ?? NormalizedUnitNumber.ZERO,
   }
 
   const actionsEnabled = formValues.value.gt(0) && isFormValid && !isDebouncing

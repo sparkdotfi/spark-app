@@ -17,12 +17,12 @@ export interface GetRepayMaxValueParams {
 
 export function getRepayMaxValue({ user, asset, chain }: GetRepayMaxValueParams): NormalizedUnitNumber {
   if (asset.status === 'paused') {
-    return NormalizedUnitNumber.zero
+    return NormalizedUnitNumber.ZERO
   }
 
   const maxRepay = NormalizedUnitNumber.min(
     user.debt,
-    user.balance.minus(asset.isNativeAsset ? chain.minRemainingNativeAsset : NormalizedUnitNumber.zero),
+    user.balance.minus(asset.isNativeAsset ? chain.minRemainingNativeAsset : NormalizedUnitNumber.ZERO),
   )
-  return NormalizedUnitNumber.max(maxRepay, NormalizedUnitNumber.zero)
+  return NormalizedUnitNumber.max(maxRepay, NormalizedUnitNumber.ZERO)
 }

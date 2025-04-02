@@ -9,7 +9,7 @@ interface UseStakedAmountWatcherProps {
 }
 
 export function useStakedAmountWatcher({ amountStaked }: UseStakedAmountWatcherProps): void {
-  const previousAmountRef = useRef(NormalizedUnitNumber(0))
+  const previousAmountRef = useRef(NormalizedUnitNumber.ZERO)
   const timeoutRef = useRef<NodeJS.Timeout>()
   const chainId = useChainId()
 

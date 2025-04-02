@@ -158,7 +158,7 @@ export const ZeroBorrow: Story = {
         },
       ],
       borrow: {
-        current: NormalizedUnitNumber(0),
+        current: NormalizedUnitNumber.ZERO,
         max: NormalizedUnitNumber(45012),
         percents: {
           borrowed: 0,
@@ -236,14 +236,14 @@ export const Empty: Story = {
   name: 'Empty',
   args: {
     positionSummary: {
-      totalCollateralUSD: NormalizedUnitNumber(0),
+      totalCollateralUSD: NormalizedUnitNumber.ZERO,
       hasCollaterals: false,
       hasDeposits: false,
       healthFactor: undefined,
       collaterals: [],
       borrow: {
-        current: NormalizedUnitNumber(0),
-        max: NormalizedUnitNumber(0),
+        current: NormalizedUnitNumber.ZERO,
+        max: NormalizedUnitNumber.ZERO,
         percents: {
           borrowed: 0,
           max: 0,

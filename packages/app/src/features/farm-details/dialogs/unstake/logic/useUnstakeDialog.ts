@@ -108,7 +108,7 @@ export function useUnstakeDialog({ farm, initialToken }: UseStakeDialogParams): 
 
   const outcomeToken = {
     token: outcomeTokenRouteItem?.token ?? farm.stakingToken,
-    value: outcomeTokenRouteItem?.value ?? NormalizedUnitNumber(0),
+    value: outcomeTokenRouteItem?.value ?? NormalizedUnitNumber.ZERO,
   }
 
   const actionsEnabled = formValues.value.gt(0) && isFormValid && !isDebouncing

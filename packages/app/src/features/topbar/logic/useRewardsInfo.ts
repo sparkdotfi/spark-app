@@ -34,7 +34,7 @@ export function useRewardsInfo({ chainId, address }: UseRewardsInfoParams): Topb
 
   const totalClaimableReward = rewards.reduce(
     (acc, { token, amount }) => NormalizedUnitNumber(acc.plus(token.toUSD(amount))),
-    NormalizedUnitNumber(0),
+    NormalizedUnitNumber.ZERO,
   )
 
   return {

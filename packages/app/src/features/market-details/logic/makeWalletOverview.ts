@@ -48,11 +48,11 @@ function makeGuestModeOverview({ reserve, walletInfo }: MakeWalletOverviewParams
     tokenBalance: walletInfo.findWalletBalanceForToken(token),
     deposit: {
       token,
-      available: NormalizedUnitNumber(0),
+      available: NormalizedUnitNumber.ZERO,
     },
     borrow: {
       token,
-      available: NormalizedUnitNumber(0),
+      available: NormalizedUnitNumber.ZERO,
       eligibility: reserve.borrowEligibilityStatus,
     },
   }
@@ -76,11 +76,11 @@ function makeChainMismatchOverview({
     tokenBalance: walletInfo.findWalletBalanceForToken(token),
     deposit: {
       token,
-      available: NormalizedUnitNumber(0),
+      available: NormalizedUnitNumber.ZERO,
     },
     borrow: {
       token,
-      available: NormalizedUnitNumber(0),
+      available: NormalizedUnitNumber.ZERO,
       eligibility: reserve.borrowEligibilityStatus,
     },
   }
@@ -105,7 +105,7 @@ function makeBaseWalletOverview({ reserve, marketInfo, walletInfo }: MakeWalletO
     },
   })
 
-  const borrowValidationArgs = getValidateBorrowArgs(NormalizedUnitNumber(0), reserve, marketInfo)
+  const borrowValidationArgs = getValidateBorrowArgs(NormalizedUnitNumber.ZERO, reserve, marketInfo)
   const validationIssue = validateBorrow(borrowValidationArgs)
 
   const availableToBorrow = getBorrowMaxValue({

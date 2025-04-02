@@ -40,8 +40,8 @@ const myEarningsDataResponseSchema = z
 
     return sortedData.map((item) => ({
       date: item.datetime,
-      balance: item.balance ?? NormalizedUnitNumber(0),
-      susdcBalance: item.susdc_balance ?? NormalizedUnitNumber(0),
+      balance: item.balance ?? NormalizedUnitNumber.ZERO,
+      susdcBalance: item.susdc_balance ?? NormalizedUnitNumber.ZERO,
     }))
   })
 

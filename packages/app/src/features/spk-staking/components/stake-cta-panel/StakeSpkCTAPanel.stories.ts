@@ -37,6 +37,6 @@ export const Disconnected: Story = {
 export const NothingToStake: Story = {
   args: {
     type: 'connected',
-    spkBalance: NormalizedUnitNumber(0),
+    spkBalance: NormalizedUnitNumber.ZERO,
   },
 }

@@ -164,21 +164,21 @@ const meta: Meta<typeof EasyBorrowViewStory> = {
     ],
     alreadyDeposited: {
       tokens: [],
-      totalValueUSD: NormalizedUnitNumber(0),
+      totalValueUSD: NormalizedUnitNumber.ZERO,
     },
     alreadyBorrowed: {
       tokens: [],
-      totalValueUSD: NormalizedUnitNumber(0),
+      totalValueUSD: NormalizedUnitNumber.ZERO,
     },
     updatedPositionSummary: {
-      availableBorrowsUSD: NormalizedUnitNumber(0),
+      availableBorrowsUSD: NormalizedUnitNumber.ZERO,
       currentLiquidationThreshold: Percentage(0.8),
       loanToValue: Percentage(0),
       healthFactor: undefined,
       maxLoanToValue: Percentage(0.8),
-      totalBorrowsUSD: NormalizedUnitNumber(0),
-      totalCollateralUSD: NormalizedUnitNumber(0),
-      totalLiquidityUSD: NormalizedUnitNumber(0),
+      totalBorrowsUSD: NormalizedUnitNumber.ZERO,
+      totalCollateralUSD: NormalizedUnitNumber.ZERO,
+      totalLiquidityUSD: NormalizedUnitNumber.ZERO,
     },
     guestMode: false,
     borrowDetails: {

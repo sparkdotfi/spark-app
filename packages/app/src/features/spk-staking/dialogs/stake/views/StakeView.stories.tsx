@@ -86,7 +86,7 @@ export const EmptyInput: Story = {
       {
         type: 'stakeSpk',
         spk: tokens.SPK,
-        amount: NormalizedUnitNumber(0),
+        amount: NormalizedUnitNumber.ZERO,
       },
     ],
   },

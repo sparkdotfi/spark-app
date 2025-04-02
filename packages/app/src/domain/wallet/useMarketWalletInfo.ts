@@ -70,7 +70,7 @@ export function useMarketWalletInfo({ chainId }: MarketWalletInfoParams): Market
       return aTokenReserve.aTokenBalance
     }
 
-    return walletBalances.find((wb) => wb.token.symbol === symbol)?.balance ?? NormalizedUnitNumber(0)
+    return walletBalances.find((wb) => wb.token.symbol === symbol)?.balance ?? NormalizedUnitNumber.ZERO
   }
   /* eslint-enable func-style */
 

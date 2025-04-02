@@ -71,7 +71,7 @@ const meta: Meta<typeof RewardsView> = {
         {
           token: tokens.USDS,
           amountPending: NormalizedUnitNumber(11.22),
-          amountToClaim: NormalizedUnitNumber(0),
+          amountToClaim: NormalizedUnitNumber.ZERO,
           chainId: arbitrum.id,
           actionName: 'Switch',
           action: () => {},
@@ -192,7 +192,7 @@ export const NoClaimableRewards: Story = {
     },
     claimableRewardsSummaryResult: {
       data: {
-        usdSum: NormalizedUnitNumber(0),
+        usdSum: NormalizedUnitNumber.ZERO,
         isClaimEnabled: false,
         claimableRewardsWithPrice: [],
         claimableRewardsWithoutPrice: [],
@@ -214,8 +214,8 @@ export const ZeroAmounts: Story = {
       data: [
         {
           token: tokens.RED,
-          amountPending: NormalizedUnitNumber(0),
-          amountToClaim: NormalizedUnitNumber(0),
+          amountPending: NormalizedUnitNumber.ZERO,
+          amountToClaim: NormalizedUnitNumber.ZERO,
           chainId: mainnet.id,
           actionName: 'Claim',
           action: () => {},
@@ -223,8 +223,8 @@ export const ZeroAmounts: Story = {
         },
         {
           token: tokens.SPK,
-          amountPending: NormalizedUnitNumber(0),
-          amountToClaim: NormalizedUnitNumber(0),
+          amountPending: NormalizedUnitNumber.ZERO,
+          amountToClaim: NormalizedUnitNumber.ZERO,
           chainId: mainnet.id,
           actionName: 'Claim',
           action: () => {},
@@ -232,8 +232,8 @@ export const ZeroAmounts: Story = {
         },
         {
           token: tokens.USDS,
-          amountPending: NormalizedUnitNumber(0),
-          amountToClaim: NormalizedUnitNumber(0),
+          amountPending: NormalizedUnitNumber.ZERO,
+          amountToClaim: NormalizedUnitNumber.ZERO,
           chainId: arbitrum.id,
           actionName: 'Switch',
           action: () => {},
@@ -246,21 +246,21 @@ export const ZeroAmounts: Story = {
     },
     claimableRewardsSummaryResult: {
       data: {
-        usdSum: NormalizedUnitNumber(0),
+        usdSum: NormalizedUnitNumber.ZERO,
         isClaimEnabled: false,
         claimableRewardsWithPrice: [
           {
             token: tokens.SPK,
-            amountPending: NormalizedUnitNumber(0),
-            amountToClaim: NormalizedUnitNumber(0),
+            amountPending: NormalizedUnitNumber.ZERO,
+            amountToClaim: NormalizedUnitNumber.ZERO,
             chainId: mainnet.id,
           },
         ],
         claimableRewardsWithoutPrice: [
           {
             token: tokens.RED,
-            amountPending: NormalizedUnitNumber(0),
-            amountToClaim: NormalizedUnitNumber(0),
+            amountPending: NormalizedUnitNumber.ZERO,
+            amountToClaim: NormalizedUnitNumber.ZERO,
             chainId: mainnet.id,
           },
         ],
@@ -292,7 +292,7 @@ export const Nothing: Story = {
     },
     claimableRewardsSummaryResult: {
       data: {
-        usdSum: NormalizedUnitNumber(0),
+        usdSum: NormalizedUnitNumber.ZERO,
         isClaimEnabled: false,
         claimableRewardsWithPrice: [],
         claimableRewardsWithoutPrice: [],

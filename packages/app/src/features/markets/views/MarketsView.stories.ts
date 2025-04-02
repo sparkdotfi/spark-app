@@ -53,7 +53,7 @@ export const Desktop: Story = {
             },
           ],
         },
-        totalBorrowed: NormalizedUnitNumber(0),
+        totalBorrowed: NormalizedUnitNumber.ZERO,
         totalSupplied: NormalizedUnitNumber(11.99),
         marketStatus: {
           supplyAvailabilityStatus: 'yes',
@@ -86,7 +86,7 @@ export const Desktop: Story = {
           baseApy: Percentage(0.157),
         },
         totalBorrowed: NormalizedUnitNumber(1257),
-        totalSupplied: NormalizedUnitNumber(0),
+        totalSupplied: NormalizedUnitNumber.ZERO,
         marketStatus: {
           supplyAvailabilityStatus: 'yes',
           collateralEligibilityStatus: 'yes',
@@ -103,7 +103,7 @@ export const Desktop: Story = {
           baseApy: undefined,
         },
         totalBorrowed: NormalizedUnitNumber(1257),
-        totalSupplied: NormalizedUnitNumber(0),
+        totalSupplied: NormalizedUnitNumber.ZERO,
         marketStatus: {
           supplyAvailabilityStatus: 'no',
           collateralEligibilityStatus: 'no',
@@ -117,7 +117,7 @@ export const Desktop: Story = {
         reserveStatus: 'frozen',
         borrowApyDetails: { baseApy: Percentage(0.11) },
         depositApyDetails: { baseApy: Percentage(0.157) },
-        totalBorrowed: NormalizedUnitNumber(0),
+        totalBorrowed: NormalizedUnitNumber.ZERO,
         totalSupplied: NormalizedUnitNumber(11.99),
         marketStatus: {
           supplyAvailabilityStatus: 'no',
@@ -131,7 +131,7 @@ export const Desktop: Story = {
         borrowApyDetails: { baseApy: undefined },
         depositApyDetails: { baseApy: undefined },
         totalBorrowed: NormalizedUnitNumber(1257),
-        totalSupplied: NormalizedUnitNumber(0),
+        totalSupplied: NormalizedUnitNumber.ZERO,
         marketStatus: {
           supplyAvailabilityStatus: 'no',
           collateralEligibilityStatus: 'no',

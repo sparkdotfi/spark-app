@@ -5,7 +5,7 @@ describe(validateRepay.name, () => {
   it('validates that value is positive', () => {
     expect(
       validateRepay({
-        value: NormalizedUnitNumber(0),
+        value: NormalizedUnitNumber.ZERO,
         asset: { status: 'active' },
         user: { debt: NormalizedUnitNumber(10), balance: NormalizedUnitNumber(10) },
       }),

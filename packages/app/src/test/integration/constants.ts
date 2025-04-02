@@ -164,13 +164,13 @@ export function getMockReserve(overrides: Partial<Reserve> = {}): Reserve {
     totalDebtUSD: NormalizedUnitNumber(100 * priceInUsd),
     totalVariableDebt: NormalizedUnitNumber(100),
     totalVariableDebtUSD: NormalizedUnitNumber(100 * priceInUsd),
-    isolationModeTotalDebt: NormalizedUnitNumber(0),
+    isolationModeTotalDebt: NormalizedUnitNumber.ZERO,
     debtCeiling: NormalizedUnitNumber(200),
     supplyAPY: Percentage(0.05),
     maxLtv: Percentage(0.8),
     liquidationThreshold: Percentage(0.8),
     liquidationBonus: Percentage(0.05),
-    aTokenBalance: NormalizedUnitNumber(0),
+    aTokenBalance: NormalizedUnitNumber.ZERO,
 
     lastUpdateTimestamp: 0,
 
@@ -205,8 +205,8 @@ export function getMockUserPosition(overrides?: Partial<UserPosition>): UserPosi
     reserve: getMockReserve(),
     scaledATokenBalance: BigNumber(0),
     scaledVariableDebt: BigNumber(0),
-    borrowBalance: NormalizedUnitNumber.zero,
-    collateralBalance: NormalizedUnitNumber.zero,
+    borrowBalance: NormalizedUnitNumber.ZERO,
+    collateralBalance: NormalizedUnitNumber.ZERO,
     ...overrides,
   }
 }
@@ -216,11 +216,11 @@ export function getMockUserPositionSummary(overrides?: Partial<UserPositionSumma
     loanToValue: Percentage(0),
     maxLoanToValue: Percentage(0),
     healthFactor: new BigNumber(0),
-    availableBorrowsUSD: NormalizedUnitNumber.zero,
-    totalBorrowsUSD: NormalizedUnitNumber.zero,
+    availableBorrowsUSD: NormalizedUnitNumber.ZERO,
+    totalBorrowsUSD: NormalizedUnitNumber.ZERO,
     currentLiquidationThreshold: Percentage(0),
-    totalCollateralUSD: NormalizedUnitNumber.zero,
-    totalLiquidityUSD: NormalizedUnitNumber.zero,
+    totalCollateralUSD: NormalizedUnitNumber.ZERO,
+    totalLiquidityUSD: NormalizedUnitNumber.ZERO,
     ...overrides,
   }
 }

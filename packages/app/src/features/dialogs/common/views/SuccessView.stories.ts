@@ -60,7 +60,7 @@ export const ZeroPriceToken = getMobileStory({
   args: {
     objectiveType: 'claimFarmRewards',
     tokenWithValue: {
-      token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber(0) }),
+      token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
       value: NormalizedUnitNumber(2000),
     },
     onProceed: () => {},

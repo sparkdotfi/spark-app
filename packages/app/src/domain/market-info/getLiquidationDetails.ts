@@ -45,7 +45,7 @@ export function getLiquidationDetails({
     const totalCollateralInWETH = collaterals.reduce((sum, collateral) => {
       const collateralPrice = marketInfo.findOneTokenBySymbol(collateral.token.symbol).unitPriceUsd
       return sum.plus(collateral.value.times(collateralPrice).div(WETHPrice))
-    }, NormalizedUnitNumber.zero)
+    }, NormalizedUnitNumber.ZERO)
     const liquidationPrice = calculateLiquidationPrice({
       borrowInUSD,
       depositAmount: totalCollateralInWETH,
@@ -96,7 +96,7 @@ function calculateLiquidationPrice({
 }: CalculateLiquidationPriceArguments): NormalizedUnitNumber {
   const denominator = depositAmount.times(NormalizedUnitNumber(liquidationThreshold))
   if (denominator.isZero()) {
-    return NormalizedUnitNumber.zero
+    return NormalizedUnitNumber.ZERO
   }
 
   return borrowInUSD.div(denominator)

@@ -24,7 +24,7 @@ export function getBorrowMaxValue({ asset, user, validationIssue }: GetBorrowMax
     validationIssue === 'siloed-mode-enabled' ||
     validationIssue === 'emode-category-mismatch'
   ) {
-    return NormalizedUnitNumber(0)
+    return NormalizedUnitNumber.ZERO
   }
 
   const ceilings = [
@@ -42,5 +42,5 @@ export function getBorrowMaxValue({ asset, user, validationIssue }: GetBorrowMax
     ceilings.push(isolationModeCollateralDebtCeiling.minus(isolationModeCollateralTotalDebt))
   }
 
-  return NormalizedUnitNumber.max(NormalizedUnitNumber.min(...ceilings), NormalizedUnitNumber.zero)
+  return NormalizedUnitNumber.max(NormalizedUnitNumber.min(...ceilings), NormalizedUnitNumber.ZERO)
 }

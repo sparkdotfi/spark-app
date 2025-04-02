@@ -8,7 +8,7 @@ import { Psm3MyEarningsDataResponseSchema, psm3SavingsMyEarningsQueryOptions } f
 import { MyEarningsResult } from './types'
 
 function susdsSelectQuery(data: Psm3MyEarningsDataResponseSchema): MyEarningsResult {
-  return data.map(({ date, balance }) => ({ date, balance: balance ?? NormalizedUnitNumber(0) }))
+  return data.map(({ date, balance }) => ({ date, balance: balance ?? NormalizedUnitNumber.ZERO }))
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -20,7 +20,7 @@ export function arbitrumSusdsMyEarningsQueryOptions(wallet: CheckedAddress) {
 }
 
 function arbitrumSusdcSelectQuery(data: Psm3MyEarningsDataResponseSchema): MyEarningsResult {
-  return data.map(({ date, susdcBalance }) => ({ date, balance: susdcBalance ?? NormalizedUnitNumber(0) }))
+  return data.map(({ date, susdcBalance }) => ({ date, balance: susdcBalance ?? NormalizedUnitNumber.ZERO }))
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type

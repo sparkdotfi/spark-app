@@ -84,7 +84,7 @@ const interestData = {
   APY: Percentage(0.12),
   balanceRefreshIntervalInMs: 50,
   oneYearProjection: NormalizedUnitNumber(1250),
-  sparkRewardsOneYearProjection: NormalizedUnitNumber(0),
+  sparkRewardsOneYearProjection: NormalizedUnitNumber.ZERO,
   calculateUnderlyingTokenBalance: () => ({
     depositedAssets: NormalizedUnitNumber(10365.7654),
     depositedAssetsPrecision: 2,
@@ -285,7 +285,7 @@ export const DaiNoDeposit: Story = {
     ...savingsViewSusdsArgs,
     selectedAccount: {
       ...savingsDaiAccountDefinition,
-      savingsTokenBalance: NormalizedUnitNumber(0),
+      savingsTokenBalance: NormalizedUnitNumber.ZERO,
     },
   } satisfies SavingsViewProps,
 }
@@ -316,12 +316,12 @@ export const NoDeposit: Story = {
     ...savingsViewSusdsArgs,
     allAccounts: [
       shortSavingsUsdcAccountDefinition,
-      { ...shortSavingsUsdsAccountDefinition, underlyingTokenDeposit: NormalizedUnitNumber(0) },
+      { ...shortSavingsUsdsAccountDefinition, underlyingTokenDeposit: NormalizedUnitNumber.ZERO },
       shortSavingsDaiAccountDefinition,
     ],
     selectedAccount: {
       ...savingsUsdsAccountDefinition,
-      savingsTokenBalance: NormalizedUnitNumber(0),
+      savingsTokenBalance: NormalizedUnitNumber.ZERO,
     },
   } satisfies SavingsViewProps,
 }
@@ -336,21 +336,21 @@ export const AllIn: Story = {
       supportedStablecoins: [
         {
           token: tokens.DAI,
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedUnitNumber.ZERO,
           blockExplorerLink: '/',
         },
         {
           token: tokens.USDS,
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedUnitNumber.ZERO,
           blockExplorerLink: '/',
         },
         {
           token: tokens.USDC,
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedUnitNumber.ZERO,
           blockExplorerLink: '/',
         },
       ],
-      mostValuableAsset: { token: tokens.USDS, balance: NormalizedUnitNumber(0) },
+      mostValuableAsset: { token: tokens.USDS, balance: NormalizedUnitNumber.ZERO },
     },
   } satisfies SavingsViewProps,
 }

@@ -44,7 +44,7 @@ export const NoApiData: Story = {
   args: {
     txOverview: {
       reward: {
-        token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber(0) }),
+        token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
         value: NormalizedUnitNumber(500.89),
       },
     },

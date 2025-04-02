@@ -40,16 +40,16 @@ const myEarningsDataResponseSchema = z
 
     return sortedData.map((item) => ({
       date: item.datetime,
-      sdaiBalance: item.sdai_balance ?? NormalizedUnitNumber(0),
-      susdsBalance: item.susds_balance ?? NormalizedUnitNumber(0),
-      susdcBalance: item.susdc_balance ?? NormalizedUnitNumber(0),
+      sdaiBalance: item.sdai_balance ?? NormalizedUnitNumber.ZERO,
+      susdsBalance: item.susds_balance ?? NormalizedUnitNumber.ZERO,
+      susdcBalance: item.susdc_balance ?? NormalizedUnitNumber.ZERO,
     }))
   })
 
 type MyEarningsDataResponseSchema = z.infer<typeof myEarningsDataResponseSchema>
 
 function sdaiSelectQuery(data: MyEarningsDataResponseSchema): MyEarningsResult {
-  return data.map(({ date, sdaiBalance }) => ({ date, balance: sdaiBalance ?? NormalizedUnitNumber(0) }))
+  return data.map(({ date, sdaiBalance }) => ({ date, balance: sdaiBalance ?? NormalizedUnitNumber.ZERO }))
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -61,7 +61,7 @@ export function mainnetSdaiMyEarningsQueryOptions(wallet: CheckedAddress) {
 }
 
 function susdsSelectQuery(data: MyEarningsDataResponseSchema): MyEarningsResult {
-  return data.map(({ date, susdsBalance }) => ({ date, balance: susdsBalance ?? NormalizedUnitNumber(0) }))
+  return data.map(({ date, susdsBalance }) => ({ date, balance: susdsBalance ?? NormalizedUnitNumber.ZERO }))
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -73,7 +73,7 @@ export function mainnetSusdsMyEarningsQueryOptions(wallet: CheckedAddress) {
 }
 
 function mainnetSusdcSelectQuery(data: MyEarningsDataResponseSchema): MyEarningsResult {
-  return data.map(({ date, susdcBalance }) => ({ date, balance: susdcBalance ?? NormalizedUnitNumber(0) }))
+  return data.map(({ date, susdcBalance }) => ({ date, balance: susdcBalance ?? NormalizedUnitNumber.ZERO }))
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type

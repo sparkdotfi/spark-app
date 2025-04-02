@@ -9,7 +9,7 @@ describe(validateSetUseAsCollateral.name, () => {
       validateSetUseAsCollateral({
         useAsCollateral: true,
         asset: {
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedUnitNumber.ZERO,
           status: 'active',
           isUsedAsCollateral: true,
           maxLtv: Percentage(0.8),
@@ -26,7 +26,7 @@ describe(validateSetUseAsCollateral.name, () => {
       validateSetUseAsCollateral({
         useAsCollateral: false,
         asset: {
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedUnitNumber.ZERO,
           status: 'active',
           isUsedAsCollateral: false,
           maxLtv: Percentage(0.8),
@@ -45,7 +45,7 @@ describe(validateSetUseAsCollateral.name, () => {
       validateSetUseAsCollateral({
         useAsCollateral: true,
         asset: {
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedUnitNumber.ZERO,
           status: 'active',
           isUsedAsCollateral: false,
           maxLtv: Percentage(0.8),

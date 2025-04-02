@@ -17,7 +17,7 @@ describe(Token.name, () => {
     address: CheckedAddress(testAddresses.token),
   })
 
-  const zeroPriceToken = token.clone({ unitPriceUsd: NormalizedUnitNumber(0) })
+  const zeroPriceToken = token.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO })
 
   describe(Token.prototype.formatUSD.name, () => {
     const tokenB = new Token({
@@ -29,12 +29,12 @@ describe(Token.name, () => {
     })
 
     test('formats whole values', () => {
-      expect(token.formatUSD(NormalizedUnitNumber(0))).toEqual('$0.00')
+      expect(token.formatUSD(NormalizedUnitNumber.ZERO)).toEqual('$0.00')
       expect(token.formatUSD(NormalizedUnitNumber(1))).toEqual('$1.00')
       expect(token.formatUSD(NormalizedUnitNumber(2))).toEqual('$2.00')
       expect(token.formatUSD(NormalizedUnitNumber(45))).toEqual('$45.00')
 
-      expect(tokenB.formatUSD(NormalizedUnitNumber(0))).toEqual('$0.00')
+      expect(tokenB.formatUSD(NormalizedUnitNumber.ZERO)).toEqual('$0.00')
       expect(tokenB.formatUSD(NormalizedUnitNumber(1))).toEqual('$2.00')
       expect(tokenB.formatUSD(NormalizedUnitNumber(2))).toEqual('$4.00')
       expect(tokenB.formatUSD(NormalizedUnitNumber(45))).toEqual('$90.00')
@@ -67,7 +67,7 @@ describe(Token.name, () => {
     })
 
     test('formats in compact mode', () => {
-      expect(token.formatUSD(NormalizedUnitNumber(0), { compact: true })).toEqual('$0.00')
+      expect(token.formatUSD(NormalizedUnitNumber.ZERO, { compact: true })).toEqual('$0.00')
       expect(token.formatUSD(NormalizedUnitNumber(0.0001), { compact: true })).toEqual('<$0.01')
       expect(token.formatUSD(NormalizedUnitNumber(823.2345), { compact: true })).toEqual('$823.23')
       expect(token.formatUSD(NormalizedUnitNumber(1234), { compact: true })).toEqual('$1,234')
@@ -79,21 +79,21 @@ describe(Token.name, () => {
     })
 
     test('formats with display cents set to never', () => {
-      expect(token.formatUSD(NormalizedUnitNumber(0), { showCents: 'never' })).toEqual('$0')
+      expect(token.formatUSD(NormalizedUnitNumber.ZERO, { showCents: 'never' })).toEqual('$0')
       expect(token.formatUSD(NormalizedUnitNumber(0.0001), { showCents: 'never' })).toEqual('<$0.01')
       expect(token.formatUSD(NormalizedUnitNumber(1234), { showCents: 'never' })).toEqual('$1,234')
       expect(token.formatUSD(NormalizedUnitNumber(1234.56), { showCents: 'never' })).toEqual('$1,235')
     })
 
     test('formats with display cents set to always', () => {
-      expect(token.formatUSD(NormalizedUnitNumber(0), { showCents: 'always' })).toEqual('$0.00')
+      expect(token.formatUSD(NormalizedUnitNumber.ZERO, { showCents: 'always' })).toEqual('$0.00')
       expect(token.formatUSD(NormalizedUnitNumber(0.0001), { showCents: 'always' })).toEqual('<$0.01')
       expect(token.formatUSD(NormalizedUnitNumber(1234), { showCents: 'always' })).toEqual('$1,234.00')
       expect(token.formatUSD(NormalizedUnitNumber(1234.56), { showCents: 'always' })).toEqual('$1,234.56')
     })
 
     test('formats with display cents set to when-not-round', () => {
-      expect(token.formatUSD(NormalizedUnitNumber(0), { showCents: 'when-not-round' })).toEqual('$0')
+      expect(token.formatUSD(NormalizedUnitNumber.ZERO, { showCents: 'when-not-round' })).toEqual('$0')
       expect(token.formatUSD(NormalizedUnitNumber(0.0001), { showCents: 'when-not-round' })).toEqual('<$0.01')
       expect(token.formatUSD(NormalizedUnitNumber(1234), { showCents: 'when-not-round' })).toEqual('$1,234')
       expect(token.formatUSD(NormalizedUnitNumber(1234.56), { showCents: 'when-not-round' })).toEqual('$1,234.56')
@@ -104,14 +104,14 @@ describe(Token.name, () => {
     })
 
     test('returns placeholer for zero price', () => {
-      expect(zeroPriceToken.formatUSD(NormalizedUnitNumber(0))).toEqual('$ N/A')
+      expect(zeroPriceToken.formatUSD(NormalizedUnitNumber.ZERO)).toEqual('$ N/A')
     })
   })
 
   describe(Token.prototype.format.name, () => {
     describe('compact style', () => {
       test('should return 0 for 0', () => {
-        expect(token.format(NormalizedUnitNumber(0), { style: 'compact' })).toEqual('0')
+        expect(token.format(NormalizedUnitNumber.ZERO, { style: 'compact' })).toEqual('0')
       })
 
       test('should return <0.001 for values less than 0.001', () => {
@@ -173,7 +173,7 @@ describe(Token.name, () => {
     describe('auto style', () => {
       describe('with stablecoin like', () => {
         test('formats whole values', () => {
-          expect(token.format(NormalizedUnitNumber(0), { style: 'auto' })).toEqual('0.00')
+          expect(token.format(NormalizedUnitNumber.ZERO, { style: 'auto' })).toEqual('0.00')
           expect(token.format(NormalizedUnitNumber(1), { style: 'auto' })).toEqual('1.00')
           expect(token.format(NormalizedUnitNumber(45), { style: 'auto' })).toEqual('45.00')
         })
@@ -209,7 +209,7 @@ describe(Token.name, () => {
         })
 
         test('formats whole values', () => {
-          expect(token.format(NormalizedUnitNumber(0), { style: 'auto' })).toEqual('0.00')
+          expect(token.format(NormalizedUnitNumber.ZERO, { style: 'auto' })).toEqual('0.00')
           expect(token.format(NormalizedUnitNumber(1), { style: 'auto' })).toEqual('1.00')
           expect(token.format(NormalizedUnitNumber(45), { style: 'auto' })).toEqual('45.00')
         })

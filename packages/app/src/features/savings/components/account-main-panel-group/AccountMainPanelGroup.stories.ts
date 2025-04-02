@@ -14,7 +14,7 @@ const meta: Meta<typeof AccountMainPanelGroup> = {
     underlyingToken: tokens.USDS,
     savingsToken: tokens.sUSDS,
     savingsTokenBalance: NormalizedUnitNumber(22_543.2349),
-    sparkRewardsOneYearProjection: NormalizedUnitNumber(0),
+    sparkRewardsOneYearProjection: NormalizedUnitNumber.ZERO,
     calculateUnderlyingTokenBalance: () => ({
       depositedAssets: NormalizedUnitNumber(25_000.12),
       depositedAssetsPrecision: 4,

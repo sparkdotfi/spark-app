@@ -21,7 +21,7 @@ const meta: Meta<typeof MarketsTable> = {
         depositApyDetails: {
           baseApy: Percentage(0.157),
         },
-        totalBorrowed: NormalizedUnitNumber(0),
+        totalBorrowed: NormalizedUnitNumber.ZERO,
         totalSupplied: NormalizedUnitNumber(11.99),
         marketStatus: {
           supplyAvailabilityStatus: 'no',
@@ -36,7 +36,7 @@ const meta: Meta<typeof MarketsTable> = {
         depositApyDetails: {
           baseApy: Percentage(0.157),
         },
-        totalBorrowed: NormalizedUnitNumber(0),
+        totalBorrowed: NormalizedUnitNumber.ZERO,
         totalSupplied: NormalizedUnitNumber(11.99),
         marketStatus: {
           supplyAvailabilityStatus: 'no',
@@ -67,7 +67,7 @@ const meta: Meta<typeof MarketsTable> = {
           baseApy: Percentage(0.157),
           airdrops: [TokenSymbol('SPK')],
         },
-        totalBorrowed: NormalizedUnitNumber(0),
+        totalBorrowed: NormalizedUnitNumber.ZERO,
         totalSupplied: NormalizedUnitNumber(11.99),
         marketStatus: {
           supplyAvailabilityStatus: 'yes',
@@ -96,7 +96,7 @@ const meta: Meta<typeof MarketsTable> = {
             },
           ],
         },
-        totalBorrowed: NormalizedUnitNumber(0),
+        totalBorrowed: NormalizedUnitNumber.ZERO,
         totalSupplied: NormalizedUnitNumber(11.99),
         marketStatus: {
           supplyAvailabilityStatus: 'yes',
@@ -112,7 +112,7 @@ const meta: Meta<typeof MarketsTable> = {
         },
         depositApyDetails: { baseApy: Percentage(0.05) },
         totalBorrowed: NormalizedUnitNumber(1257),
-        totalSupplied: NormalizedUnitNumber(0),
+        totalSupplied: NormalizedUnitNumber.ZERO,
         marketStatus: {
           supplyAvailabilityStatus: 'yes',
           collateralEligibilityStatus: 'yes',

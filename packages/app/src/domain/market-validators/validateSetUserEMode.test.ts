@@ -96,7 +96,7 @@ describe(validateSetUserEMode.name, () => {
             reserves: [
               { eModeCategoryId: 1, borrowBalance: NormalizedUnitNumber(1) },
               { eModeCategoryId: 1, borrowBalance: NormalizedUnitNumber(2) },
-              { eModeCategoryId: 2, borrowBalance: NormalizedUnitNumber(0) },
+              { eModeCategoryId: 2, borrowBalance: NormalizedUnitNumber.ZERO },
             ],
           },
         }),

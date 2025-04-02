@@ -18,18 +18,18 @@ interface GetDepositMaxValueParams {
 
 export function getDepositMaxValue({ user, asset, chain }: GetDepositMaxValueParams): NormalizedUnitNumber {
   if (asset.status !== 'active') {
-    return NormalizedUnitNumber(0)
+    return NormalizedUnitNumber.ZERO
   }
 
   const marketMaxDeposit = asset.supplyCap
-    ? NormalizedUnitNumber.max(asset.supplyCap.minus(asset.totalLiquidity), NormalizedUnitNumber.zero)
+    ? NormalizedUnitNumber.max(asset.supplyCap.minus(asset.totalLiquidity), NormalizedUnitNumber.ZERO)
     : NormalizedUnitNumber(Number.POSITIVE_INFINITY)
   const balanceBasedMaxDeposit = user.balance.minus(
-    asset.isNativeAsset ? chain.minRemainingNativeAsset : NormalizedUnitNumber.zero,
+    asset.isNativeAsset ? chain.minRemainingNativeAsset : NormalizedUnitNumber.ZERO,
   )
 
   return NormalizedUnitNumber.max(
     NormalizedUnitNumber.min(balanceBasedMaxDeposit, marketMaxDeposit),
-    NormalizedUnitNumber.zero,
+    NormalizedUnitNumber.ZERO,
   )
 }

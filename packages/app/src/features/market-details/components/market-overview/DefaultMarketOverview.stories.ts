@@ -35,7 +35,7 @@ export const FullUtilization: Story = {
     token: tokens.USDC,
     marketSize: NormalizedUnitNumber(1_000_000_000),
     borrowed: NormalizedUnitNumber(1_000_000_000),
-    available: NormalizedUnitNumber(0),
+    available: NormalizedUnitNumber.ZERO,
     utilizationRate: Percentage(1),
   },
 }
@@ -47,7 +47,7 @@ export const ZeroUtilization: Story = {
   args: {
     token: tokens.USDC,
     marketSize: NormalizedUnitNumber(1_000_000_000),
-    borrowed: NormalizedUnitNumber(0),
+    borrowed: NormalizedUnitNumber.ZERO,
     available: NormalizedUnitNumber(1_000_000_000),
     utilizationRate: Percentage(0),
   },

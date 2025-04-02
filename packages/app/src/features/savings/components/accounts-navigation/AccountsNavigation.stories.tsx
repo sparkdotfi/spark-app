@@ -28,7 +28,7 @@ function InteractiveNavigation({ variant }: { variant: 'vertical' | 'horizontal'
     {
       underlyingToken: tokens.USDC,
       savingsToken: tokens.sUSDC,
-      underlyingTokenDeposit: NormalizedUnitNumber(0),
+      underlyingTokenDeposit: NormalizedUnitNumber.ZERO,
     },
     {
       underlyingToken: tokens.DAI,

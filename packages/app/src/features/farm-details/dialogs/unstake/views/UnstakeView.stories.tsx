@@ -232,7 +232,7 @@ export const WithExitFarmSwitchZeroApy: Story = {
       onSwitch: () => {},
       checked: true,
       reward: {
-        token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber(0) }),
+        token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
         value: NormalizedUnitNumber(2311.34),
       },
     },
@@ -281,7 +281,7 @@ export const NoApiData: Story = {
       apy: undefined,
       totalRewarded: undefined,
       depositors: undefined,
-      rewardToken: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber(0) }),
+      rewardToken: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
     },
   },
 }
@@ -295,21 +295,21 @@ export const NoApiDataMaxValue: Story = {
       apy: undefined,
       totalRewarded: undefined,
       depositors: undefined,
-      rewardToken: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber(0) }),
+      rewardToken: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
     },
     exitFarmSwitchInfo: {
       showSwitch: true,
       onSwitch: () => {},
       checked: false,
       reward: {
-        token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber(0) }),
+        token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
         value: NormalizedUnitNumber(2311.34),
       },
     },
     txOverview: {
       status: 'success',
       stakingToken: tokens.USDS,
-      rewardToken: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber(0) }),
+      rewardToken: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
       isExiting: false,
       earnedRewards: NormalizedUnitNumber(2311.34),
       routeToOutcomeToken: [

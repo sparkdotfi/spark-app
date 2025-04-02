@@ -84,7 +84,7 @@ export const OneTokenWithoutPrice: Story = {
       isError: false,
       error: null,
       data: {
-        usdSum: NormalizedUnitNumber(0),
+        usdSum: NormalizedUnitNumber.ZERO,
         isClaimEnabled: true,
         claimableRewardsWithoutPrice: [
           {
@@ -108,7 +108,7 @@ export const TwoTokensWithoutPrice: Story = {
       isError: false,
       error: null,
       data: {
-        usdSum: NormalizedUnitNumber(0),
+        usdSum: NormalizedUnitNumber.ZERO,
         isClaimEnabled: true,
         claimableRewardsWithoutPrice: [
           {
@@ -139,27 +139,27 @@ export const NothingToClaim: Story = {
       isError: false,
       error: null,
       data: {
-        usdSum: NormalizedUnitNumber(0),
+        usdSum: NormalizedUnitNumber.ZERO,
         isClaimEnabled: false,
         claimableRewardsWithPrice: [
           {
             token: tokens.wstETH,
-            amountPending: NormalizedUnitNumber(0),
-            amountToClaim: NormalizedUnitNumber(0),
+            amountPending: NormalizedUnitNumber.ZERO,
+            amountToClaim: NormalizedUnitNumber.ZERO,
             chainId: mainnet.id,
           },
           {
             token: tokens.sUSDS,
-            amountPending: NormalizedUnitNumber(0),
-            amountToClaim: NormalizedUnitNumber(0),
+            amountPending: NormalizedUnitNumber.ZERO,
+            amountToClaim: NormalizedUnitNumber.ZERO,
             chainId: mainnet.id,
           },
         ],
         claimableRewardsWithoutPrice: [
           {
             token: tokens.RED,
-            amountPending: NormalizedUnitNumber(0),
-            amountToClaim: NormalizedUnitNumber(0),
+            amountPending: NormalizedUnitNumber.ZERO,
+            amountToClaim: NormalizedUnitNumber.ZERO,
             chainId: mainnet.id,
           },
         ],

@@ -10,19 +10,19 @@ describe(getWithdrawMaxValue.name, () => {
         user: {
           deposited: NormalizedUnitNumber(100),
           healthFactor: undefined,
-          totalBorrowsUSD: NormalizedUnitNumber(0),
+          totalBorrowsUSD: NormalizedUnitNumber.ZERO,
           eModeState: { enabled: false },
         },
         asset: {
           status: 'paused',
           liquidationThreshold: Percentage(0),
-          unborrowedLiquidity: NormalizedUnitNumber(0),
+          unborrowedLiquidity: NormalizedUnitNumber.ZERO,
           unitPriceUsd: NormalizedUnitNumber(1),
           decimals: 18,
           usageAsCollateralEnabledOnUser: true,
         },
       }),
-    ).toEqual(NormalizedUnitNumber(0))
+    ).toEqual(NormalizedUnitNumber.ZERO)
   })
 
   test('returns deposited amount when no borrows', () => {
@@ -31,7 +31,7 @@ describe(getWithdrawMaxValue.name, () => {
         user: {
           deposited: NormalizedUnitNumber(100),
           healthFactor: undefined,
-          totalBorrowsUSD: NormalizedUnitNumber(0),
+          totalBorrowsUSD: NormalizedUnitNumber.ZERO,
           eModeState: { enabled: false },
         },
         asset: {
@@ -52,7 +52,7 @@ describe(getWithdrawMaxValue.name, () => {
         user: {
           deposited: NormalizedUnitNumber(200),
           healthFactor: undefined,
-          totalBorrowsUSD: NormalizedUnitNumber(0),
+          totalBorrowsUSD: NormalizedUnitNumber.ZERO,
           eModeState: { enabled: false },
         },
         asset: {

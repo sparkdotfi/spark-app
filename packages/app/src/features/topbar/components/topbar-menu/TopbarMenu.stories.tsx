@@ -39,7 +39,7 @@ const meta: Meta<typeof TopbarMenu> = {
         }}
         rewardsInfo={{
           rewards: [],
-          totalClaimableReward: NormalizedUnitNumber(0),
+          totalClaimableReward: NormalizedUnitNumber.ZERO,
           onClaim: () => {},
         }}
         sparkRewardsSummary={{

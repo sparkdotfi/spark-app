@@ -14,7 +14,7 @@ const usdc = tokens.USDC
 const mockTokenRepository = new TokenRepository(
   [
     { token: dai, balance: NormalizedUnitNumber(2000) },
-    { token: usds, balance: NormalizedUnitNumber(0) },
+    { token: usds, balance: NormalizedUnitNumber.ZERO },
     { token: usdc, balance: NormalizedUnitNumber(500) },
   ],
   {

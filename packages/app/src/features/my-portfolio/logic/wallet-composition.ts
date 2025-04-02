@@ -46,7 +46,7 @@ function calculateCombinedBalance({
     }
   }
 
-  const deposit = marketInfo.findPositionByToken(walletBalance.token)?.collateralBalance ?? NormalizedUnitNumber(0)
+  const deposit = marketInfo.findPositionByToken(walletBalance.token)?.collateralBalance ?? NormalizedUnitNumber.ZERO
   return {
     token: walletBalance.token,
     value: NormalizedUnitNumber(walletBalance.balance.plus(deposit)),

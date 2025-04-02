@@ -226,7 +226,7 @@ describe(useTokenRepository.name, () => {
           unitPriceUsd: NormalizedUnitNumber(1),
           isAToken: false,
         },
-        balance: NormalizedUnitNumber(0),
+        balance: NormalizedUnitNumber.ZERO,
       },
     ])
   })
@@ -319,7 +319,7 @@ describe(useTokenRepository.name, () => {
           unitPriceUsd: NormalizedUnitNumber(1),
           isAToken: false,
         },
-        balance: NormalizedUnitNumber(0),
+        balance: NormalizedUnitNumber.ZERO,
       },
     ])
   })

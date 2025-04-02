@@ -28,7 +28,7 @@ export interface TopbarAirdropDropdownProps {
 }
 
 export function TopbarAirdropDropdown({
-  amount = NormalizedUnitNumber(0),
+  amount = NormalizedUnitNumber.ZERO,
   precision = 0,
   isLoading,
   isGrowing = false,

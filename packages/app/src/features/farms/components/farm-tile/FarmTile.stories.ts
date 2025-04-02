@@ -12,7 +12,7 @@ const meta: Meta<typeof FarmTile> = {
   decorators: [WithClassname('flex w-80'), withRouter],
   args: {
     apy: Percentage(0.05),
-    staked: NormalizedUnitNumber(0),
+    staked: NormalizedUnitNumber.ZERO,
     rewardToken: tokens.weETH,
     stakingToken: tokens.USDS,
     detailsLink: 'farm-details/1/0x1234567890123456789012345678901234567890',
@@ -43,7 +43,7 @@ export const GovernanceEntryAssets: Story = {
     rewardToken: tokens.USDS,
     stakingToken: tokens.weETH,
     apy: Percentage(0.05),
-    staked: NormalizedUnitNumber(0),
+    staked: NormalizedUnitNumber.ZERO,
     detailsLink: 'farm-details/1/0x1234567890123456789012345678901234567890',
     entryAssetsGroup: {
       type: 'governance',

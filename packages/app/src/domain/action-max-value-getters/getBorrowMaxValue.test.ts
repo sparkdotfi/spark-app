@@ -8,13 +8,13 @@ describe(getBorrowMaxValue.name, () => {
         getBorrowMaxValue({
           asset: {
             availableLiquidity: NormalizedUnitNumber(Number.POSITIVE_INFINITY),
-            totalDebt: NormalizedUnitNumber(0),
+            totalDebt: NormalizedUnitNumber.ZERO,
           },
           user: {
-            maxBorrowBasedOnCollateral: NormalizedUnitNumber(0),
+            maxBorrowBasedOnCollateral: NormalizedUnitNumber.ZERO,
           },
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedUnitNumber.ZERO)
     })
 
     it('returns collateral based borrow limit', () => {
@@ -22,7 +22,7 @@ describe(getBorrowMaxValue.name, () => {
         getBorrowMaxValue({
           asset: {
             availableLiquidity: NormalizedUnitNumber(Number.POSITIVE_INFINITY),
-            totalDebt: NormalizedUnitNumber(0),
+            totalDebt: NormalizedUnitNumber.ZERO,
           },
           user: {
             maxBorrowBasedOnCollateral: NormalizedUnitNumber(100),
@@ -53,13 +53,13 @@ describe(getBorrowMaxValue.name, () => {
         getBorrowMaxValue({
           asset: {
             availableLiquidity: NormalizedUnitNumber(10),
-            totalDebt: NormalizedUnitNumber(0),
+            totalDebt: NormalizedUnitNumber.ZERO,
           },
           user: {
-            maxBorrowBasedOnCollateral: NormalizedUnitNumber(0),
+            maxBorrowBasedOnCollateral: NormalizedUnitNumber.ZERO,
           },
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedUnitNumber.ZERO)
     })
 
     it('returns available liquidity based value when smaller than borrow limit', () => {
@@ -82,17 +82,17 @@ describe(getBorrowMaxValue.name, () => {
       expect(
         getBorrowMaxValue({
           user: {
-            maxBorrowBasedOnCollateral: NormalizedUnitNumber(0),
+            maxBorrowBasedOnCollateral: NormalizedUnitNumber.ZERO,
             inIsolationMode: true,
-            isolationModeCollateralTotalDebt: NormalizedUnitNumber(0),
+            isolationModeCollateralTotalDebt: NormalizedUnitNumber.ZERO,
             isolationModeCollateralDebtCeiling: NormalizedUnitNumber(100),
           },
           asset: {
             availableLiquidity: NormalizedUnitNumber(Number.POSITIVE_INFINITY),
-            totalDebt: NormalizedUnitNumber(0),
+            totalDebt: NormalizedUnitNumber.ZERO,
           },
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedUnitNumber.ZERO)
     })
 
     it('returns collateral based borrow limit', () => {
@@ -101,12 +101,12 @@ describe(getBorrowMaxValue.name, () => {
           user: {
             maxBorrowBasedOnCollateral: NormalizedUnitNumber(100),
             inIsolationMode: true,
-            isolationModeCollateralTotalDebt: NormalizedUnitNumber(0),
+            isolationModeCollateralTotalDebt: NormalizedUnitNumber.ZERO,
             isolationModeCollateralDebtCeiling: NormalizedUnitNumber(100),
           },
           asset: {
             availableLiquidity: NormalizedUnitNumber(Number.POSITIVE_INFINITY),
-            totalDebt: NormalizedUnitNumber(0),
+            totalDebt: NormalizedUnitNumber.ZERO,
           },
         }),
       ).toEqual(NormalizedUnitNumber(99))
@@ -124,7 +124,7 @@ describe(getBorrowMaxValue.name, () => {
 
           asset: {
             availableLiquidity: NormalizedUnitNumber(Number.POSITIVE_INFINITY),
-            totalDebt: NormalizedUnitNumber(0),
+            totalDebt: NormalizedUnitNumber.ZERO,
           },
         }),
       ).toEqual(NormalizedUnitNumber(50))
@@ -138,7 +138,7 @@ describe(getBorrowMaxValue.name, () => {
       },
       asset: {
         availableLiquidity: NormalizedUnitNumber(100),
-        totalDebt: NormalizedUnitNumber(0),
+        totalDebt: NormalizedUnitNumber.ZERO,
       },
     }
 
@@ -148,7 +148,7 @@ describe(getBorrowMaxValue.name, () => {
           ...userAndAsset,
           validationIssue: 'reserve-not-active',
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedUnitNumber.ZERO)
     })
 
     it('returns 0 when reserve borrowing disabled', () => {
@@ -157,7 +157,7 @@ describe(getBorrowMaxValue.name, () => {
           ...userAndAsset,
           validationIssue: 'reserve-borrowing-disabled',
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedUnitNumber.ZERO)
     })
 
     it('returns 0 when asset not borrowable in isolation', () => {
@@ -166,7 +166,7 @@ describe(getBorrowMaxValue.name, () => {
           ...userAndAsset,
           validationIssue: 'asset-not-borrowable-in-isolation',
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedUnitNumber.ZERO)
     })
 
     it('returns 0 when siloed mode cannot enable', () => {
@@ -175,7 +175,7 @@ describe(getBorrowMaxValue.name, () => {
           ...userAndAsset,
           validationIssue: 'siloed-mode-cannot-enable',
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedUnitNumber.ZERO)
     })
 
     it('returns 0 when siloed mode enabled', () => {
@@ -184,7 +184,7 @@ describe(getBorrowMaxValue.name, () => {
           ...userAndAsset,
           validationIssue: 'siloed-mode-enabled',
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedUnitNumber.ZERO)
     })
 
     it('returns 0 when emode category mismatch', () => {
@@ -193,7 +193,7 @@ describe(getBorrowMaxValue.name, () => {
           ...userAndAsset,
           validationIssue: 'emode-category-mismatch',
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedUnitNumber.ZERO)
     })
   })
 })

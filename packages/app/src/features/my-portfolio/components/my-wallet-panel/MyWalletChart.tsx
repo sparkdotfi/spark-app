@@ -15,7 +15,7 @@ export interface MyWalletChartProps {
 export function MyWalletChart({ assets, className }: MyWalletChartProps) {
   const totalUsd = assets.reduce(
     (acc, asset) => NormalizedUnitNumber(acc.plus(asset.token.toUSD(asset.balance))),
-    NormalizedUnitNumber(0),
+    NormalizedUnitNumber.ZERO,
   )
   const displayedAssets = assets.filter((asset) => asset.token.toUSD(asset.balance).div(totalUsd).gt(0.005)) // @note: filter out values that are smaller than 0.5% of total
   const data = displayedAssets.map((asset) => ({

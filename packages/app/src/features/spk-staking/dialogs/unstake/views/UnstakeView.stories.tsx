@@ -101,7 +101,7 @@ export const EmptyInput: Story = {
       {
         type: 'unstakeSpk',
         spk: tokens.SPK,
-        amount: NormalizedUnitNumber(0),
+        amount: NormalizedUnitNumber.ZERO,
         accountActiveShares: NormalizedUnitNumber(100).toBaseUnit(18),
         unstakeAll: false,
       },

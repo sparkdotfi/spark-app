@@ -52,8 +52,8 @@ export const CannotBeSupplied: Story = {
   args: {
     status: 'no',
     token: tokens.rETH,
-    totalSupplied: NormalizedUnitNumber(0),
-    supplyCap: NormalizedUnitNumber(0),
+    totalSupplied: NormalizedUnitNumber.ZERO,
+    supplyCap: NormalizedUnitNumber.ZERO,
     apy: Percentage(0),
     sparkRewards: [],
   },
@@ -69,7 +69,7 @@ export const WithCapAutomatorInfo: Story = {
     apy: Percentage(0.05),
     capAutomatorInfo: {
       maxCap: NormalizedUnitNumber(200_000),
-      gap: NormalizedUnitNumber(0),
+      gap: NormalizedUnitNumber.ZERO,
       increaseCooldown: 43200,
       lastIncreaseTimestamp: Math.floor(STORYBOOK_TIMESTAMP / 1000 - 41903),
       lastUpdateBlock: 0,

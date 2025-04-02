@@ -30,7 +30,7 @@ export function calculateReward({
 
   const accruedEarned = staked
     .times(rewardRate)
-    .times(NormalizedUnitNumber.max(NormalizedUnitNumber(timeDiff), NormalizedUnitNumber.zero))
+    .times(NormalizedUnitNumber.max(NormalizedUnitNumber(timeDiff), NormalizedUnitNumber.ZERO))
     .div(totalSupply)
   return earned.plus(accruedEarned)
 }

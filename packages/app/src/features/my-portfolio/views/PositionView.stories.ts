@@ -92,14 +92,14 @@ const meta: Meta<typeof PositionView> = {
         token: tokens.ETH,
         reserveStatus: 'active',
         available: NormalizedUnitNumber('11.99'),
-        debt: NormalizedUnitNumber(0),
+        debt: NormalizedUnitNumber.ZERO,
         borrowAPY: Percentage(0.157),
       },
       {
         token: tokens.stETH,
         reserveStatus: 'active',
         available: NormalizedUnitNumber('14.68'),
-        debt: NormalizedUnitNumber(0),
+        debt: NormalizedUnitNumber.ZERO,
         borrowAPY: Percentage(0.145),
       },
       {

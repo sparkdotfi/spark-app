@@ -10,7 +10,7 @@ export function useSparkRewardsSummary(): SparkRewardsSummary {
     const totalUsdAmount = data.reduce((acc, { rewardToken, cumulativeAmount, preClaimed }) => {
       const amountToClaim = NormalizedUnitNumber(cumulativeAmount.minus(preClaimed))
       return NormalizedUnitNumber(acc.plus(rewardToken.toUSD(amountToClaim)))
-    }, NormalizedUnitNumber(0))
+    }, NormalizedUnitNumber.ZERO)
 
     return {
       totalUsdAmount,

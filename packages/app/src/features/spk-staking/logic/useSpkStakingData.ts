@@ -41,7 +41,7 @@ export function spkStakingDataQueryOptions({
 
       async function fetchAmountStaked(): Promise<NormalizedUnitNumber> {
         if (!account) {
-          return Promise.resolve(NormalizedUnitNumber(0))
+          return Promise.resolve(NormalizedUnitNumber.ZERO)
         }
         const balance = await readContract(wagmiConfig, {
           address: getContractAddress(testSpkStakingAddress, chainId),
@@ -56,7 +56,7 @@ export function spkStakingDataQueryOptions({
 
       async function fetchPreclaimedRewards(): Promise<NormalizedUnitNumber> {
         if (!account) {
-          return Promise.resolve(NormalizedUnitNumber(0))
+          return Promise.resolve(NormalizedUnitNumber.ZERO)
         }
         const balance = await readContract(wagmiConfig, {
           address: getContractAddress(testStakingRewardsAddress, chainId),
@@ -72,10 +72,10 @@ export function spkStakingDataQueryOptions({
       async function fetchBaData(): Promise<z.infer<typeof baDataResponseSchema>> {
         if (!account) {
           return {
-            amount_staked: NormalizedUnitNumber(0),
-            pending_amount_normalized: NormalizedUnitNumber(0),
-            pending_amount_rate: NormalizedUnitNumber(0),
-            cumulative_amount_normalized: NormalizedUnitNumber(0),
+            amount_staked: NormalizedUnitNumber.ZERO,
+            pending_amount_normalized: NormalizedUnitNumber.ZERO,
+            pending_amount_rate: NormalizedUnitNumber.ZERO,
+            cumulative_amount_normalized: NormalizedUnitNumber.ZERO,
             timestamp: 0,
           }
         }
@@ -168,7 +168,7 @@ export function spkStakingDataQueryOptions({
                 epochs: [...acc.epochs, curr.epoch],
                 amount: NormalizedUnitNumber(acc.amount.plus(curr.amount)),
               }),
-              { epochs: [] as bigint[], amount: NormalizedUnitNumber(0) },
+              { epochs: [] as bigint[], amount: NormalizedUnitNumber.ZERO },
             ),
           claimableAt: new Date(
             UnixTime.toMilliseconds(UnixTime(Number(currentEpoch) * epochDuration + epochDurationInit)),

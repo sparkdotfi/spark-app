@@ -38,7 +38,7 @@ export const ExitNoApiData: Story = {
   args: {
     isExiting: true,
     reward: {
-      token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber(0) }),
+      token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
       value: NormalizedUnitNumber(500),
     },
   },

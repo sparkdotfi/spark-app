@@ -19,14 +19,14 @@ const assets: Borrow[] = [
   {
     token: tokens.ETH,
     available: NormalizedUnitNumber('11.99'),
-    debt: NormalizedUnitNumber(0),
+    debt: NormalizedUnitNumber.ZERO,
     borrowAPY: Percentage(0.157),
     reserveStatus: 'active',
   },
   {
     token: tokens.stETH,
     available: NormalizedUnitNumber('14.68'),
-    debt: NormalizedUnitNumber(0),
+    debt: NormalizedUnitNumber.ZERO,
     borrowAPY: Percentage(0.145),
     reserveStatus: 'active',
   },

@@ -16,17 +16,17 @@ describe(getRepayMaxValue.name, () => {
           isNativeAsset: false,
         },
         chain: {
-          minRemainingNativeAsset: NormalizedUnitNumber(0),
+          minRemainingNativeAsset: NormalizedUnitNumber.ZERO,
         },
       }),
-    ).toEqual(NormalizedUnitNumber(0))
+    ).toEqual(NormalizedUnitNumber.ZERO)
   })
 
   test('returns 0 when no debt', () => {
     expect(
       getRepayMaxValue({
         user: {
-          debt: NormalizedUnitNumber(0),
+          debt: NormalizedUnitNumber.ZERO,
           balance: NormalizedUnitNumber(100),
         },
         asset: {
@@ -34,10 +34,10 @@ describe(getRepayMaxValue.name, () => {
           isNativeAsset: false,
         },
         chain: {
-          minRemainingNativeAsset: NormalizedUnitNumber(0),
+          minRemainingNativeAsset: NormalizedUnitNumber.ZERO,
         },
       }),
-    ).toEqual(NormalizedUnitNumber(0))
+    ).toEqual(NormalizedUnitNumber.ZERO)
   })
 
   test('returns 0 when no balance', () => {
@@ -45,17 +45,17 @@ describe(getRepayMaxValue.name, () => {
       getRepayMaxValue({
         user: {
           debt: NormalizedUnitNumber(100),
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedUnitNumber.ZERO,
         },
         asset: {
           status: 'active',
           isNativeAsset: false,
         },
         chain: {
-          minRemainingNativeAsset: NormalizedUnitNumber(0),
+          minRemainingNativeAsset: NormalizedUnitNumber.ZERO,
         },
       }),
-    ).toEqual(NormalizedUnitNumber(0))
+    ).toEqual(NormalizedUnitNumber.ZERO)
   })
 
   test('returns debt when balance is greater', () => {
@@ -70,7 +70,7 @@ describe(getRepayMaxValue.name, () => {
           isNativeAsset: false,
         },
         chain: {
-          minRemainingNativeAsset: NormalizedUnitNumber(0),
+          minRemainingNativeAsset: NormalizedUnitNumber.ZERO,
         },
       }),
     ).toEqual(NormalizedUnitNumber(100))
@@ -88,7 +88,7 @@ describe(getRepayMaxValue.name, () => {
           isNativeAsset: false,
         },
         chain: {
-          minRemainingNativeAsset: NormalizedUnitNumber(0),
+          minRemainingNativeAsset: NormalizedUnitNumber.ZERO,
         },
       }),
     ).toEqual(NormalizedUnitNumber(100))

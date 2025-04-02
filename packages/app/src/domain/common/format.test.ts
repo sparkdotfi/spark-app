@@ -105,7 +105,7 @@ describe(formFormat.name, () => {
   })
 
   it('avoids unnecessary zeroes', () => {
-    expect(formFormat(NormalizedUnitNumber(0), 10)).toBe('0')
+    expect(formFormat(NormalizedUnitNumber.ZERO, 10)).toBe('0')
     expect(formFormat(NormalizedUnitNumber(1), 10)).toBe('1')
   })
 

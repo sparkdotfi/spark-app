@@ -29,7 +29,7 @@ interface GetTicksArgs {
 export function getTicks({
   numLabels,
   ticksPerLabel,
-  totalCollateralUSD = NormalizedUnitNumber(0),
+  totalCollateralUSD = NormalizedUnitNumber.ZERO,
   xAxisFallbackMax = NormalizedUnitNumber(90_000),
 }: GetTicksArgs): Ticks {
   const maxTickValue = totalCollateralUSD.gt(0) ? totalCollateralUSD : xAxisFallbackMax

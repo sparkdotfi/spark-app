@@ -29,7 +29,7 @@ export const Default: Story = {
     skyCapacity: NormalizedUnitNumber(320_000_000),
     dssAutoline: {
       maxDebtCeiling: NormalizedUnitNumber(200_000),
-      gap: NormalizedUnitNumber(0),
+      gap: NormalizedUnitNumber.ZERO,
       increaseCooldown: 43200,
       lastIncreaseTimestamp: Math.floor(STORYBOOK_TIMESTAMP / 1000 - 41903),
       lastUpdateBlock: 0,

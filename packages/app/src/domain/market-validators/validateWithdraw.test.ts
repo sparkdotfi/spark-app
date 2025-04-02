@@ -6,7 +6,7 @@ describe(validateWithdraw.name, () => {
   test('validates that value is positive', () => {
     expect(
       validateWithdraw({
-        value: NormalizedUnitNumber(0),
+        value: NormalizedUnitNumber.ZERO,
         asset: {
           status: 'active',
           unborrowedLiquidity: NormalizedUnitNumber(10),

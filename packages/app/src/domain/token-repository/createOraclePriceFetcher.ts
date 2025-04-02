@@ -21,7 +21,7 @@ export function createOraclePriceFetcher({
 }: CreateOraclePriceFetcherParams): () => Promise<NormalizedUnitNumber> {
   switch (tokenConfig.oracleType) {
     case 'zero-price':
-      return async () => NormalizedUnitNumber(0)
+      return async () => NormalizedUnitNumber.ZERO
 
     case 'fixed-usd':
       return async () => NormalizedUnitNumber(1)

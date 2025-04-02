@@ -39,7 +39,7 @@ const data: ClaimableRewardWithAction[] = [
   {
     token: tokens.USDS,
     amountPending: NormalizedUnitNumber(11.22),
-    amountToClaim: NormalizedUnitNumber(0),
+    amountToClaim: NormalizedUnitNumber.ZERO,
     chainId: base.id,
     actionName: 'Switch',
     action: () => {},
@@ -106,8 +106,8 @@ export const ZeroAmounts: Story = {
       data: [
         {
           token: tokens.RED,
-          amountPending: NormalizedUnitNumber(0),
-          amountToClaim: NormalizedUnitNumber(0),
+          amountPending: NormalizedUnitNumber.ZERO,
+          amountToClaim: NormalizedUnitNumber.ZERO,
           chainId: mainnet.id,
           actionName: 'Claim',
           action: () => {},
@@ -115,8 +115,8 @@ export const ZeroAmounts: Story = {
         },
         {
           token: tokens.SPK,
-          amountPending: NormalizedUnitNumber(0),
-          amountToClaim: NormalizedUnitNumber(0),
+          amountPending: NormalizedUnitNumber.ZERO,
+          amountToClaim: NormalizedUnitNumber.ZERO,
           chainId: mainnet.id,
           actionName: 'Claim',
           action: () => {},
@@ -124,8 +124,8 @@ export const ZeroAmounts: Story = {
         },
         {
           token: tokens.USDS,
-          amountPending: NormalizedUnitNumber(0),
-          amountToClaim: NormalizedUnitNumber(0),
+          amountPending: NormalizedUnitNumber.ZERO,
+          amountToClaim: NormalizedUnitNumber.ZERO,
           chainId: base.id,
           actionName: 'Switch',
           action: () => {},

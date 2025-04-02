@@ -73,7 +73,7 @@ export function createStakeActions(objective: StakeObjective, context: ActionCon
         mode: 'withdraw',
       }
 
-      let fallbackStakeAmount = NormalizedUnitNumber(0)
+      let fallbackStakeAmount = NormalizedUnitNumber.ZERO
 
       if (actionPath === 'susds-to-usds-to-farm') {
         assert(

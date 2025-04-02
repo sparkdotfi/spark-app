@@ -17,15 +17,15 @@ export function aggregateStats(marketInfo: MarketInfo, D3MInfo: D3MInfo | undefi
       return acc
     },
     {
-      totalLiquidityUSD: NormalizedUnitNumber.zero,
-      totalDebtUSD: NormalizedUnitNumber.zero,
+      totalLiquidityUSD: NormalizedUnitNumber.ZERO,
+      totalDebtUSD: NormalizedUnitNumber.ZERO,
     },
   )
   const totalAvailableUSD = aggregatedValues.totalLiquidityUSD.minus(aggregatedValues.totalDebtUSD)
   const daiReserve = marketInfo.findReserveByToken(marketInfo.DAI)
   const daiAvailable = daiReserve
     ? daiReserve.totalLiquidityUSD.minus(daiReserve.totalDebtUSD)
-    : NormalizedUnitNumber.zero
+    : NormalizedUnitNumber.ZERO
 
   // @note: D3M current debt data comes from different smart contract.
   // Theoretically, there might be a situation, that for one block, D3M debt is higher than

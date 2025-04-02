@@ -58,7 +58,7 @@ export function getFormFieldsForBorrowDialog({
   // account for interest accrual here.
   const reserveIn1Epoch = marketInfoIn1Epoch.findOneReserveBySymbol(symbol)
 
-  const borrowValidationArgs = getValidateBorrowArgs(NormalizedUnitNumber(0), reserveIn1Epoch, marketInfo)
+  const borrowValidationArgs = getValidateBorrowArgs(NormalizedUnitNumber.ZERO, reserveIn1Epoch, marketInfo)
   const validationIssue = validateBorrow(borrowValidationArgs)
   const borrowMaxValue = getBorrowMaxValue({
     validationIssue,

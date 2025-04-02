@@ -59,8 +59,8 @@ export class NormalizedUnitClass implements NormalizedUnitNumber {
     this.asString = this.value.toString()
   }
 
-  static zero: NormalizedUnitNumber = new NormalizedUnitClass(0)
-  static maxUint256: NormalizedUnitNumber = new NormalizedUnitClass(maxUint256)
+  static ZERO: NormalizedUnitNumber = new NormalizedUnitClass(0)
+  static MAX_UINT_256: NormalizedUnitNumber = new NormalizedUnitClass(maxUint256)
 
   static min(...values: NormalizedUnitNumber[]): NormalizedUnitNumber {
     assert(values.length > 0, 'Requires at least 1 arg')
@@ -248,8 +248,8 @@ interface StaticNormalizedUnit {
   min(...values: NormalizedUnitNumber[]): NormalizedUnitNumber
   max(...values: NormalizedUnitNumber[]): NormalizedUnitNumber
   isInstance(value: unknown): value is NormalizedUnitNumber
-  zero: NormalizedUnitNumber
-  maxUint256: NormalizedUnitNumber
+  ZERO: NormalizedUnitNumber
+  MAX_UINT_256: NormalizedUnitNumber
 }
 
 Object.setPrototypeOf(NormalizedUnitFunction, NormalizedUnitClass)

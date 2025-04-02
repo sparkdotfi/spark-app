@@ -16,6 +16,6 @@ export function getFakePermitAction(): PermitAction {
       unitPriceUsd: '1',
     }),
     spender: CheckedAddress(zeroAddress),
-    value: NormalizedUnitNumber(0),
+    value: NormalizedUnitNumber.ZERO,
   }
 }
