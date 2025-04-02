@@ -61,16 +61,17 @@ export class NormalizedUnitClass implements NormalizedUnitNumber {
 
   static zero: NormalizedUnitNumber = new NormalizedUnitClass(0)
   static maxUint256: NormalizedUnitNumber = new NormalizedUnitClass(maxUint256)
+
   static min(...values: NormalizedUnitNumber[]): NormalizedUnitNumber {
     assert(values.length > 0, 'Requires at least 1 arg')
-    let min = values[0]!
-    for (const value of values) {
-      if (value.lt(min)) {
-        min = value
-      }
-    }
-    return min
+    return values.reduce((min, val) => (val.lt(min) ? val : min))
   }
+
+  static max(...values: NormalizedUnitNumber[]): NormalizedUnitNumber {
+    assert(values.length > 0, 'Requires at least 1 arg')
+    return values.reduce((max, val) => (val.gt(max) ? val : max))
+  }
+
   static isInstance(value: unknown): value is NormalizedUnitNumber {
     return value instanceof NormalizedUnitClass
   }
@@ -245,6 +246,7 @@ interface StaticNormalizedUnit {
   readonly prototype: NormalizedUnitNumber
 
   min(...values: NormalizedUnitNumber[]): NormalizedUnitNumber
+  max(...values: NormalizedUnitNumber[]): NormalizedUnitNumber
   isInstance(value: unknown): value is NormalizedUnitNumber
   zero: NormalizedUnitNumber
   maxUint256: NormalizedUnitNumber

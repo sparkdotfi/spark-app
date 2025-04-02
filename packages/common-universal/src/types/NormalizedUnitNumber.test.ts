@@ -95,6 +95,38 @@ describe(NormalizedUnitNumber.name, () => {
     })
   })
 
+  describe(NormalizedUnitNumber.max.name, () => {
+    it('returns the biggest value', () => {
+      expect(NormalizedUnitNumber.max(NormalizedUnitNumber(2), NormalizedUnitNumber(1))).toEqual(
+        NormalizedUnitNumber(2),
+      )
+    })
+
+    it('returns the biggest value when there are more than 2 arguments', () => {
+      expect(
+        NormalizedUnitNumber.max(
+          NormalizedUnitNumber(3),
+          NormalizedUnitNumber(1),
+          NormalizedUnitNumber(5),
+          NormalizedUnitNumber(2),
+        ),
+      ).toEqual(NormalizedUnitNumber(5))
+    })
+
+    it('works with array', () => {
+      const input = [NormalizedUnitNumber(3), NormalizedUnitNumber(1), NormalizedUnitNumber(5), NormalizedUnitNumber(2)]
+      expect(NormalizedUnitNumber.max(...input)).toEqual(NormalizedUnitNumber(5))
+    })
+
+    it('return the argument if there is only 1 element', () => {
+      expect(NormalizedUnitNumber.max(NormalizedUnitNumber(1))).toEqual(NormalizedUnitNumber(1))
+    })
+
+    it('throws if there are no arguments', () => {
+      expect(() => NormalizedUnitNumber.max()).toThrow(AssertionError, 'Requires at least 1 arg')
+    })
+  })
+
   describe(NormalizedUnitNumber.isInstance.name, () => {
     it(`returns true for ${NormalizedUnitNumber.name} using constructor`, () => {
       expect(NormalizedUnitNumber.isInstance(new NormalizedUnitNumber(10))).toBeTruthy()
