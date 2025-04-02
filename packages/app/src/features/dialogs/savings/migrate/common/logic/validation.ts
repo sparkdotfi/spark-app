@@ -36,7 +36,7 @@ export function validateMigration({
   value,
   user: { balance },
 }: ValidateMigrationArgs): MigrationValidationIssue | undefined {
-  if (value.isLessThanOrEqualTo(0)) {
+  if (value.lte(0)) {
     return 'value-not-positive'
   }
 

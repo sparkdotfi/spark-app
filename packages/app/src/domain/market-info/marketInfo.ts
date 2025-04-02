@@ -321,7 +321,7 @@ export function marketInfoSelectFn({ timeAdvance }: MarketInfoSelectFnParams = {
         variableRateSlope2: bigNumberify(r.reserve.variableRateSlope2),
         optimalUtilizationRate: Percentage(fromRay(r.reserve.optimalUsageRatio)),
         utilizationRate: Percentage(r.reserve.borrowUsageRatio),
-        baseVariableBorrowRate: NormalizedUnitNumber(r.reserve.baseVariableBorrowRate),
+        baseVariableBorrowRate: bigNumberify(r.reserve.baseVariableBorrowRate),
 
         priceInUSD: bigNumberify(r.reserve.priceInUSD),
         priceOracle: CheckedAddress(r.reserve.priceOracle),

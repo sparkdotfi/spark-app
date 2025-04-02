@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js'
-
-import { assert, BaseUnitNumber, NormalizedUnitNumber } from '../index.js'
+import { assert } from '../assert/assert.js'
+import { BaseUnitNumber } from '../types/BaseUnitNumber.js'
+import { NormalizedUnitNumber } from '../types/NormalizedUnitNumber.js'
 
 // Only use scientific notation if number's exponent is greater than 1e9 (so 1e9 decimals of precision)
 BigNumber.config({ EXPONENTIAL_AT: 1e9 })

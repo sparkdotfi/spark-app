@@ -120,7 +120,7 @@ export class SavingsDialogPageObject extends DialogPageObject {
       client: this.testContext.testnetController.client,
       address: receiver,
     })
-    expect(currentBalance.isEqualTo(expectedBalance)).toBe(true)
+    expect(currentBalance.eq(expectedBalance)).toBe(true)
   }
 
   async expectReceiverTokenBalance({
@@ -137,7 +137,7 @@ export class SavingsDialogPageObject extends DialogPageObject {
       address: receiver,
       token,
     })
-    expect(currentTokenBalance.isEqualTo(expectedBalance)).toBe(true)
+    expect(currentTokenBalance.eq(expectedBalance)).toBe(true)
   }
 
   expectUpgradeSwitchToBeHidden(): Promise<void> {

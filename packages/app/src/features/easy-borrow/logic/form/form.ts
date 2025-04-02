@@ -134,9 +134,9 @@ export function setDesiredLoanToValue({
 }: SetDesiredLoanToValueProps): void {
   const borrowedAsset = formValues.borrows[0]!
   const toAdd = userPositionSummary.totalCollateralUSD
-    .times(desiredLtv)
+    .times(NormalizedUnitNumber(desiredLtv))
     .minus(userPositionSummary.totalBorrowsUSD)
-    .div(borrowedAsset.reserve.priceInUSD)
+    .div(NormalizedUnitNumber(borrowedAsset.reserve.priceInUSD))
 
   const current = borrowedAsset.value
   const result = current.plus(toAdd)

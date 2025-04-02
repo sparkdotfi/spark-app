@@ -1,6 +1,6 @@
 import { D3MInfo } from '@/domain/d3m-info/types'
 import { daiLikeReserve, getMockMarketInfo, getMockReserve, wethLikeReserve } from '@/test/integration/constants'
-import { NormalizedUnitNumber, bigNumberify } from '@sparkdotfi/common-universal'
+import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { aggregateStats } from './aggregate-stats'
 
 describe('aggregateStats', () => {
@@ -19,7 +19,7 @@ describe('aggregateStats', () => {
     const marketInfo = getMockMarketInfo([daiReserve, wethReserve])
 
     const d3mInfo: D3MInfo = {
-      D3MCurrentDebtUSD: bigNumberify(970), // 97% of dai liquidity
+      D3MCurrentDebtUSD: NormalizedUnitNumber(970), // 97% of dai liquidity
     } as D3MInfo
 
     const result = aggregateStats(marketInfo, d3mInfo)
@@ -66,7 +66,7 @@ describe('aggregateStats', () => {
     const marketInfo = getMockMarketInfo([daiReserve, wethReserve])
 
     const d3mInfo: D3MInfo = {
-      D3MCurrentDebtUSD: bigNumberify(1500), // 150% of dai liquidity
+      D3MCurrentDebtUSD: NormalizedUnitNumber(1500), // 150% of dai liquidity
     } as D3MInfo
 
     const result = aggregateStats(marketInfo, d3mInfo)

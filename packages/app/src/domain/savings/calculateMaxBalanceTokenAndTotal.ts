@@ -1,5 +1,4 @@
 import { TokenWithBalance } from '@/domain/common/types'
-import { bigNumberify } from '@sparkdotfi/common-universal'
 import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 
 export interface CalculateMaxBalanceTokenAndTotalParams {
@@ -15,7 +14,7 @@ export function calculateMaxBalanceTokenAndTotal({
   assets,
 }: CalculateMaxBalanceTokenAndTotalParams): CalculateMaxBalanceTokenAndTotalResult {
   const totalUSD = NormalizedUnitNumber(
-    assets.reduce((acc, { token, balance }) => acc.plus(token.toUSD(balance)), bigNumberify('0')),
+    assets.reduce((acc, { token, balance }) => acc.plus(token.toUSD(balance)), NormalizedUnitNumber.zero),
   )
   const maxBalanceToken = assets.reduce((acc, token) => (token.balance.gt(acc.balance) ? token : acc), assets[0]!)
 

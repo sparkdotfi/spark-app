@@ -24,7 +24,7 @@ export function validateRepay({
   asset: { status },
   user: { debt, balance },
 }: ValidateRepayArgs): RepayValidationIssue | undefined {
-  if (value.isLessThanOrEqualTo(0)) {
+  if (value.lte(0)) {
     return 'value-not-positive'
   }
 

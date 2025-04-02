@@ -99,5 +99,5 @@ function calculateLiquidationPrice({
     return NormalizedUnitNumber.zero
   }
 
-  return borrowInUSD.times(denominator)
+  return borrowInUSD.div(denominator)
 }

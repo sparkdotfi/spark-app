@@ -1,5 +1,4 @@
 import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
-import BigNumber from 'bignumber.js'
 import { ReserveStatus } from '../market-info/reserve-status'
 
 interface GetDepositMaxValueParams {
@@ -23,11 +22,14 @@ export function getDepositMaxValue({ user, asset, chain }: GetDepositMaxValuePar
   }
 
   const marketMaxDeposit = asset.supplyCap
-    ? BigNumber.max(asset.supplyCap.minus(asset.totalLiquidity), 0)
-    : Number.POSITIVE_INFINITY
+    ? NormalizedUnitNumber.max(asset.supplyCap.minus(asset.totalLiquidity), NormalizedUnitNumber.zero)
+    : NormalizedUnitNumber(Number.POSITIVE_INFINITY)
   const balanceBasedMaxDeposit = user.balance.minus(
-    asset.isNativeAsset ? chain.minRemainingNativeAsset : NormalizedUnitNumber(0),
+    asset.isNativeAsset ? chain.minRemainingNativeAsset : NormalizedUnitNumber.zero,
   )
 
-  return NormalizedUnitNumber(BigNumber.max(BigNumber.min(balanceBasedMaxDeposit, marketMaxDeposit), 0))
+  return NormalizedUnitNumber.max(
+    NormalizedUnitNumber.min(balanceBasedMaxDeposit, marketMaxDeposit),
+    NormalizedUnitNumber.zero,
+  )
 }

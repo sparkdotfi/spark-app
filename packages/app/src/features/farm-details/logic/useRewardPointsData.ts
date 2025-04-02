@@ -48,7 +48,7 @@ function rewardPointsDataQueryOptions({ farm, account = zeroAddress }: UseReward
       }
     },
     refetchInterval: (query) => {
-      if (query.state.data?.balance && !query.state.data.balance.isEqualTo(farm.staked)) {
+      if (query.state.data?.balance && !query.state.data.balance.eq(farm.staked)) {
         return 2_000
       }
 

@@ -251,7 +251,7 @@ describe(Token.name, () => {
 
   test(Token.prototype.fromBaseUnit.name, () => {
     const value = BaseUnitNumber(new BigNumber(10).pow(19))
-    expect(token.fromBaseUnit(value)).toStrictEqual(BaseUnitNumber('10'))
+    expect(token.fromBaseUnit(value)).toStrictEqual(NormalizedUnitNumber(10))
   })
 
   test(Token.prototype.toUSD.name, () => {

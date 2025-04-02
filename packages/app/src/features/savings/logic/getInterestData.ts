@@ -39,9 +39,9 @@ export function getInterestData({
   })
 
   const { depositedAssets: currentUnderlyingTokenBalance } = calculateUnderlyingTokenBalance(timestamp * 1000)
-  const sparkRewardsOneYearProjection = NormalizedUnitNumber(
-    underlyingToken.toUSD(currentUnderlyingTokenBalance).times(sparkRewardsSummary.totalApy),
-  )
+  const sparkRewardsOneYearProjection = underlyingToken
+    .toUSD(currentUnderlyingTokenBalance)
+    .times(NormalizedUnitNumber(sparkRewardsSummary.totalApy))
 
   return {
     APY: savingsConverter.apy,

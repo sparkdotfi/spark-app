@@ -1,4 +1,5 @@
 import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import BigNumber from 'bignumber.js'
 import { validateSetUserEMode } from './validateSetUserEMode'
 
 describe(validateSetUserEMode.name, () => {
@@ -58,7 +59,7 @@ describe(validateSetUserEMode.name, () => {
           user: {
             eModeCategoryId: 1,
             reserves: [],
-            healthFactorAfterChangingEMode: NormalizedUnitNumber(0.9),
+            healthFactorAfterChangingEMode: BigNumber(0.9),
           },
         }),
       ).toBe('exceeds-ltv')
@@ -132,7 +133,7 @@ describe(validateSetUserEMode.name, () => {
           user: {
             eModeCategoryId: 1,
             reserves: [],
-            healthFactorAfterChangingEMode: NormalizedUnitNumber(1.1),
+            healthFactorAfterChangingEMode: BigNumber(1.1),
           },
         }),
       ).toBe(undefined)

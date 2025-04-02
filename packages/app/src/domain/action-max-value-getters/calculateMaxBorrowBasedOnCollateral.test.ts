@@ -1,4 +1,5 @@
 import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import BigNumber from 'bignumber.js'
 import { calculateMaxBorrowBasedOnCollateral } from './calculateMaxBorrowBasedOnCollateral'
 
 describe(calculateMaxBorrowBasedOnCollateral.name, () => {
@@ -8,7 +9,7 @@ describe(calculateMaxBorrowBasedOnCollateral.name, () => {
         totalCollateralUSD: NormalizedUnitNumber(5000),
         maxLoanToValue: Percentage(0.8),
         totalBorrowsUSD: NormalizedUnitNumber(1000),
-        borrowingAssetPriceUsd: NormalizedUnitNumber(1500),
+        borrowingAssetPriceUsd: BigNumber(1500),
       }),
     ).toStrictEqual(NormalizedUnitNumber(2))
   })

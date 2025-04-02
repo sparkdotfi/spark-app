@@ -67,9 +67,9 @@ export function validateBorrow({
     eModeCategory: userEModeCategory,
   },
 }: ValidateBorrowParams): BorrowValidationIssue | undefined {
-  const borrowedAnythingBefore = !totalBorrowedUSD.isEqualTo(0)
+  const borrowedAnythingBefore = !totalBorrowedUSD.eq(0)
 
-  if (value.isLessThanOrEqualTo(0)) {
+  if (value.lte(0)) {
     return 'value-not-positive'
   }
 
@@ -163,7 +163,7 @@ export function getValidateBorrowArgs(
     },
     user: {
       maxBorrowBasedOnCollateral: calculateMaxBorrowBasedOnCollateral({
-        borrowingAssetPriceUsd: reserve.token.unitPriceUsd,
+        borrowingAssetPriceUsd: reserve.token.unitPriceUsd.toBigNumber(),
         totalCollateralUSD: userSummary.totalCollateralUSD,
         maxLoanToValue: userSummary.maxLoanToValue,
         totalBorrowsUSD: marketInfo.userPositionSummary.totalBorrowsUSD,

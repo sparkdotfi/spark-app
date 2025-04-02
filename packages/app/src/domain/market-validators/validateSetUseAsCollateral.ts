@@ -66,7 +66,7 @@ export function validateSetUseAsCollateral({
     if (user.healthFactorAfterWithdrawal?.lt(1)) {
       return 'exceeds-ltv'
     }
-    if (user.hasZeroLtvAssetsInCollateral && asset.maxLtv.isGreaterThan(0)) {
+    if (user.hasZeroLtvAssetsInCollateral && asset.maxLtv.gt(0)) {
       return 'zero-ltv-assets-in-collateral'
     }
   }

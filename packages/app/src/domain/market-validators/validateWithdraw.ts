@@ -29,7 +29,7 @@ export interface ValidateWithdrawArgs {
 }
 
 export function validateWithdraw({ value, asset, user }: ValidateWithdrawArgs): WithdrawValidationIssue | undefined {
-  if (value.isLessThanOrEqualTo(0)) {
+  if (value.lte(0)) {
     return 'value-not-positive'
   }
 
@@ -41,11 +41,11 @@ export function validateWithdraw({ value, asset, user }: ValidateWithdrawArgs): 
     return 'reserve-paused'
   }
 
-  if (user.deposited.isLessThan(value)) {
+  if (user.deposited.lt(value)) {
     return 'exceeds-balance'
   }
 
-  if (value.isGreaterThan(asset.unborrowedLiquidity)) {
+  if (value.gt(asset.unborrowedLiquidity)) {
     return 'exceeds-unborrowed-liquidity'
   }
 
