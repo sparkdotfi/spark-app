@@ -97,7 +97,7 @@ function CollateralBar({ positionSummary }: CollateralBarProps) {
 
   const collateralWithPercentages = positionSummary.collaterals.map((c) => ({
     ...c,
-    x: c.token.toUSD(c.value).dividedBy(positionSummary.totalCollateralUSD).multipliedBy(100),
+    x: c.token.toUSD(c.value).div(positionSummary.totalCollateralUSD).times(100),
   }))
 
   return (

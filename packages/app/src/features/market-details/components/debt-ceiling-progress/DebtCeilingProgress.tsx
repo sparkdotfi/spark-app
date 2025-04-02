@@ -14,7 +14,7 @@ interface DebtCeilingProgressProps {
 }
 
 export function DebtCeilingProgress({ debt, debtCeiling }: DebtCeilingProgressProps) {
-  const value = debt.dividedBy(debtCeiling).multipliedBy(100).toNumber()
+  const value = debt.div(debtCeiling).times(100).toNumber()
 
   const hasCeilingBeenReached = value === 100
 

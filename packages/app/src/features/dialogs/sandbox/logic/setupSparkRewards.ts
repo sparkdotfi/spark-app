@@ -129,7 +129,7 @@ export async function setupSparkRewards({
         tokenSymbol: rewardTokenSymbol,
         tokenAddress: CheckedAddress(tokenConfig.address),
         cumulativeAmount,
-        cumulativeAmountBaseUnit: NormalizedUnitNumber.toBaseUnit(cumulativeAmount, tokenConfig.decimals),
+        cumulativeAmountBaseUnit: cumulativeAmount.toBaseUnit(tokenConfig.decimals),
         rewardTokenPrice,
         restrictedCountryCodes,
       }

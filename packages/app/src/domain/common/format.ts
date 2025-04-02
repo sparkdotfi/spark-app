@@ -26,7 +26,7 @@ export function formatPercentage(
     minimumFractionDigits,
   })
 
-  const value = percentage.multipliedBy(100).toNumber()
+  const value = percentage.times(100).toNumber()
   return `${percentageFormatter.format(value)}${skipSign ? '' : '%'}`
 }
 

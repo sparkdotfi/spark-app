@@ -266,7 +266,7 @@ function getUsdcDepositConfig({
     gemDecimals: token.decimals,
     assetsTokenDecimals: savingsToken.decimals,
   })
-  const assetsMinAmountOut = toBigInt(BaseUnitNumber(token.toBaseUnit(actionValue).multipliedBy(gemConversionFactor)))
+  const assetsMinAmountOut = toBigInt(BaseUnitNumber(token.toBaseUnit(actionValue).times(gemConversionFactor)))
 
   return ensureConfigTypes({
     address: psmActionsAddress,

@@ -91,10 +91,8 @@ export function useSpkStaking(): UseSpkStakingResult {
     }
 
     function calculateReward(timestampInMs: number): NormalizedUnitNumber {
-      return NormalizedUnitNumber(
-        spkStakingData.pendingAmount.plus(
-          spkStakingData.pendingAmountRate.multipliedBy(timestampInMs / 1000 - spkStakingData.pendingAmountTimestamp),
-        ),
+      return spkStakingData.pendingAmount.plus(
+        spkStakingData.pendingAmountRate.times(timestampInMs / 1000 - spkStakingData.pendingAmountTimestamp),
       )
     }
 

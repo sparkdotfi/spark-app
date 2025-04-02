@@ -15,10 +15,8 @@ export function calculateMaxBorrowBasedOnCollateral({
   maxLoanToValue,
   borrowingAssetPriceUsd,
 }: CalculateMaxBorrowBasedOnCollateralParams): NormalizedUnitNumber {
-  const collateralBasedBorrowLimit = totalCollateralUSD
-    .multipliedBy(maxLoanToValue)
+  return totalCollateralUSD
+    .times(NormalizedUnitNumber(maxLoanToValue))
     .minus(totalBorrowsUSD)
-    .dividedBy(borrowingAssetPriceUsd)
-
-  return NormalizedUnitNumber(collateralBasedBorrowLimit)
+    .div(NormalizedUnitNumber(borrowingAssetPriceUsd))
 }

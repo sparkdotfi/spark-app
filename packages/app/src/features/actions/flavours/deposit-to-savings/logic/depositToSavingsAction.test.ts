@@ -136,7 +136,7 @@ describe(createDepositToSavingsActionConfig.name, () => {
           args: [
             account,
             toBigInt(usdc.toBaseUnit(depositValue)),
-            toBigInt(BaseUnitNumber(usdc.toBaseUnit(depositValue).multipliedBy(1e12))),
+            toBigInt(BaseUnitNumber(usdc.toBaseUnit(depositValue).times(1e12))),
           ],
           from: account,
           result: 1n,
@@ -221,7 +221,7 @@ describe(createDepositToSavingsActionConfig.name, () => {
           args: [
             account,
             toBigInt(usdc.toBaseUnit(depositValue)),
-            toBigInt(BaseUnitNumber(usdc.toBaseUnit(depositValue).multipliedBy(1e12))),
+            toBigInt(BaseUnitNumber(usdc.toBaseUnit(depositValue).times(1e12))),
           ],
           from: account,
           result: 1n,

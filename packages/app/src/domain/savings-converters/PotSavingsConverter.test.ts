@@ -174,7 +174,7 @@ describe(PotSavingsConverter.name, () => {
         assets,
       })
 
-      const expectedShares = assets.dividedBy(1.05)
+      const expectedShares = assets.div(1.05)
       expect(sharesAtFutureTime.minus(expectedShares).abs().lt(1e-12)).toEqual(true)
     })
 

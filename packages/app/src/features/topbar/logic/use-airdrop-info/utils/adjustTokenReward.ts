@@ -14,6 +14,6 @@ export function adjustTokenReward({
   tokenReward,
 }: AdjustTokenRewardParams): NormalizedUnitNumber {
   const timeElapsedInMs = currentTimestampInMs > airdropTimestampInMs ? currentTimestampInMs - airdropTimestampInMs : 0
-  const tokensAccumulatedSinceSnapshot = tokenRatePerSecond.multipliedBy(timeElapsedInMs / 1000)
-  return NormalizedUnitNumber(tokenReward.plus(tokensAccumulatedSinceSnapshot))
+  const tokensAccumulatedSinceSnapshot = tokenRatePerSecond.times(timeElapsedInMs / 1000)
+  return tokenReward.plus(tokensAccumulatedSinceSnapshot)
 }

@@ -35,7 +35,7 @@ export class PotSavingsConverter implements SavingsConverter {
 
   private getUpdatedChi(timestamp: number): BigNumber {
     const { dsr, rho, chi } = this.potParams
-    return fromRay(pow(fromRay(dsr), bigNumberify(timestamp).minus(rho)).multipliedBy(chi))
+    return fromRay(pow(fromRay(dsr), bigNumberify(timestamp).minus(rho)).times(chi))
   }
 
   convertToShares({ assets }: { assets: NormalizedUnitNumber }): NormalizedUnitNumber {
@@ -51,7 +51,7 @@ export class PotSavingsConverter implements SavingsConverter {
     shares,
   }: { timestamp: number; shares: NormalizedUnitNumber }): NormalizedUnitNumber {
     const updatedChi = this.getUpdatedChi(timestamp)
-    return NormalizedUnitNumber(shares.multipliedBy(updatedChi))
+    return shares.times(NormalizedUnitNumber(updatedChi))
   }
 
   predictSharesAmount({
@@ -59,6 +59,6 @@ export class PotSavingsConverter implements SavingsConverter {
     assets,
   }: { timestamp: number; assets: NormalizedUnitNumber }): NormalizedUnitNumber {
     const updatedChi = this.getUpdatedChi(timestamp)
-    return NormalizedUnitNumber(assets.dividedBy(updatedChi))
+    return assets.div(NormalizedUnitNumber(updatedChi))
   }
 }

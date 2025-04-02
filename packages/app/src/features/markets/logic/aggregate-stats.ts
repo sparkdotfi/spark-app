@@ -1,8 +1,6 @@
 import { D3MInfo } from '@/domain/d3m-info/types'
 import { MarketInfo } from '@/domain/market-info/marketInfo'
-import { bigNumberify } from '@sparkdotfi/common-universal'
 import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
-import BigNumber from 'bignumber.js'
 
 export interface MarketStats {
   totalMarketSizeUSD: NormalizedUnitNumber
@@ -19,15 +17,15 @@ export function aggregateStats(marketInfo: MarketInfo, D3MInfo: D3MInfo | undefi
       return acc
     },
     {
-      totalLiquidityUSD: bigNumberify(0),
-      totalDebtUSD: bigNumberify(0),
+      totalLiquidityUSD: NormalizedUnitNumber.zero,
+      totalDebtUSD: NormalizedUnitNumber.zero,
     },
   )
   const totalAvailableUSD = aggregatedValues.totalLiquidityUSD.minus(aggregatedValues.totalDebtUSD)
   const daiReserve = marketInfo.findReserveByToken(marketInfo.DAI)
   const daiAvailable = daiReserve
-    ? NormalizedUnitNumber(daiReserve.totalLiquidityUSD.minus(daiReserve.totalDebtUSD))
-    : NormalizedUnitNumber(0)
+    ? daiReserve.totalLiquidityUSD.minus(daiReserve.totalDebtUSD)
+    : NormalizedUnitNumber.zero
 
   // @note: D3M current debt data comes from different smart contract.
   // Theoretically, there might be a situation, that for one block, D3M debt is higher than
@@ -35,12 +33,14 @@ export function aggregateStats(marketInfo: MarketInfo, D3MInfo: D3MInfo | undefi
   // In this case, we cap the D3M proportion in DAI supply at 100%.
   const D3MProportionInDaiSupply =
     daiReserve?.totalLiquidity.gt(0) && D3MInfo
-      ? Percentage(BigNumber.minimum(D3MInfo.D3MCurrentDebtUSD.div(daiReserve.totalLiquidity), 1))
+      ? Percentage(
+          NormalizedUnitNumber.min(D3MInfo.D3MCurrentDebtUSD.div(daiReserve.totalLiquidity), NormalizedUnitNumber(1)),
+        )
       : Percentage(0)
 
   // Here we assume D3M's share of available DAI is proportional to its share in total supply.
-  const totalValueLockedUSD = NormalizedUnitNumber(
-    totalAvailableUSD.minus(D3MProportionInDaiSupply.multipliedBy(daiAvailable)),
+  const totalValueLockedUSD = totalAvailableUSD.minus(
+    NormalizedUnitNumber(D3MProportionInDaiSupply.times(daiAvailable.toBigNumber())),
   )
 
   return {

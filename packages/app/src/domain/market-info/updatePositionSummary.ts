@@ -173,7 +173,7 @@ function tweakDepositPosition(
     rate: reserve.liquidityRate,
     lastUpdateTimestamp: reserve.lastUpdateTimestamp,
     timestamp,
-  }).multipliedBy(type === 'withdraw' ? -1 : 1)
+  }).times(type === 'withdraw' ? -1 : 1)
 
   return {
     ...userPosition,
@@ -198,7 +198,7 @@ function tweakBorrowPosition(
     rate: reserve.variableBorrowRate,
     lastUpdateTimestamp: reserve.lastUpdateTimestamp,
     timestamp,
-  }).multipliedBy(type === 'repay' ? -1 : 1)
+  }).times(type === 'repay' ? -1 : 1)
 
   return {
     ...userPosition,

@@ -84,7 +84,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
   test('withdraws usds from susds', async () => {
     const maxAmountIn = formatMaxAmountInForPsm3({
       susds,
-      susdsAmount: NormalizedUnitNumber(withdrawAmount.dividedBy(1.1)),
+      susdsAmount: withdrawAmount.div(1.1),
       assetOut: usds,
     })
 
@@ -138,7 +138,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
   })
 
   test('withdraws max usds from susds', async () => {
-    const minAmountOut = NormalizedUnitNumber(withdrawAmount.multipliedBy(1.1))
+    const minAmountOut = withdrawAmount.times(1.1)
 
     const { result, queryInvalidationManager } = hookRenderer({
       args: {
@@ -192,7 +192,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
   test('sends usds from susds', async () => {
     const maxAmountIn = formatMaxAmountInForPsm3({
       susds,
-      susdsAmount: NormalizedUnitNumber(withdrawAmount.dividedBy(1.1)),
+      susdsAmount: withdrawAmount.div(1.1),
       assetOut: usds,
     })
 
@@ -247,7 +247,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
   })
 
   test('sends max usds from susds', async () => {
-    const minAmountOut = NormalizedUnitNumber(withdrawAmount.multipliedBy(1.1))
+    const minAmountOut = withdrawAmount.times(1.1)
 
     const { result, queryInvalidationManager } = hookRenderer({
       args: {
@@ -302,7 +302,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
   test('withdraws usdc from susds', async () => {
     const maxAmountIn = formatMaxAmountInForPsm3({
       susds,
-      susdsAmount: NormalizedUnitNumber(withdrawAmount.dividedBy(1.1)),
+      susdsAmount: withdrawAmount.div(1.1),
       assetOut: usdc,
     })
 
@@ -359,7 +359,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
   })
 
   test('withdraws max usdc from susds', async () => {
-    const minAmountOut = NormalizedUnitNumber(withdrawAmount.multipliedBy(1.1))
+    const minAmountOut = withdrawAmount.times(1.1)
 
     const { result, queryInvalidationManager } = hookRenderer({
       args: {
@@ -416,7 +416,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
   test('sends usdc from susds', async () => {
     const maxAmountIn = formatMaxAmountInForPsm3({
       susds,
-      susdsAmount: NormalizedUnitNumber(withdrawAmount.dividedBy(1.1)),
+      susdsAmount: withdrawAmount.div(1.1),
       assetOut: usdc,
     })
 
@@ -474,7 +474,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
   })
 
   test('sends max usdc from susds', async () => {
-    const minAmountOut = NormalizedUnitNumber(withdrawAmount.multipliedBy(1.1))
+    const minAmountOut = withdrawAmount.times(1.1)
 
     const { result, queryInvalidationManager } = hookRenderer({
       args: {
@@ -532,7 +532,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
   test('withdraws usdc from susdc', async () => {
     const maxShares = formatMaxAmountInForPsm3({
       susds,
-      susdsAmount: NormalizedUnitNumber(withdrawAmount.dividedBy(1.1)),
+      susdsAmount: withdrawAmount.div(1.1),
       assetOut: usdc,
     })
 
@@ -631,7 +631,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
   test('sends usdc from susdc', async () => {
     const maxShares = formatMaxAmountInForPsm3({
       susds,
-      susdsAmount: NormalizedUnitNumber(withdrawAmount.dividedBy(1.1)),
+      susdsAmount: withdrawAmount.div(1.1),
       assetOut: usdc,
     })
 

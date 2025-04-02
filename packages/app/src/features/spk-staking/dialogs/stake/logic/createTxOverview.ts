@@ -33,7 +33,7 @@ export function createTxOverview({
   }
 
   const stakedAmountUsd = formValues.token.toUSD(amount)
-  const rewardsPerYearUsd = NormalizedUnitNumber(stakedAmountUsd.multipliedBy(apy))
+  const rewardsPerYearUsd = stakedAmountUsd.times(NormalizedUnitNumber(apy))
 
   const unstakingDelay = Math.max(0, nextEpochEnd - timestamp)
 

@@ -102,9 +102,7 @@ export function useFarmDetails(): UseFarmDetailsResult {
         data: { rewardBalance, rewardTokensPerSecond, updateTimestamp },
       } = rewardPointsData
 
-      return NormalizedUnitNumber(
-        rewardBalance.plus(rewardTokensPerSecond.div(1000).multipliedBy(timestampInMs - updateTimestamp)),
-      )
+      return rewardBalance.plus(rewardTokensPerSecond.div(1000).times(timestampInMs - updateTimestamp))
     }
 
     return _calculateReward({

@@ -14,9 +14,9 @@ export function calculateGemMinAmountOut({
   assetsTokenDecimals,
   assetsAmount,
 }: CalculateGemMinAmountOutParams): bigint {
-  const gemConversionFactor = calculateGemConversionFactor({ gemDecimals, assetsTokenDecimals })
+  const gemConversionFactor = NormalizedUnitNumber(calculateGemConversionFactor({ gemDecimals, assetsTokenDecimals }))
   const gemMinAmountOut = BaseUnitNumber(
-    NormalizedUnitNumber(assetsAmount).dividedBy(gemConversionFactor).integerValue(BigNumber.ROUND_DOWN),
+    NormalizedUnitNumber(assetsAmount).div(gemConversionFactor).integerValue(BigNumber.ROUND_DOWN),
   )
   return toBigInt(gemMinAmountOut)
 }

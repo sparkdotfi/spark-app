@@ -36,15 +36,13 @@ export function createTxOverview({ formValues, farm }: CreateTxOverviewParams): 
   })
 
   const stakedAmountUsd = formValues.token.toUSD(formValues.value)
-  const rewardsPerYear = NormalizedUnitNumber(
-    stakedAmountUsd
-      .multipliedBy(farm.rewardRate)
-      .dividedBy(farm.totalSupply.plus(formValues.value))
-      .multipliedBy(SECONDS_PER_YEAR),
-  )
+  const rewardsPerYear = stakedAmountUsd
+    .times(farm.rewardRate)
+    .div(farm.totalSupply.plus(formValues.value))
+    .times(SECONDS_PER_YEAR)
   const rewardsPerYearUsd = farm.rewardToken.toUSD(rewardsPerYear)
   const apy = stakedAmountUsd.gt(0)
-    ? Percentage(rewardsPerYearUsd.dividedBy(stakedAmountUsd), { allowMoreThan1: true })
+    ? Percentage(rewardsPerYearUsd.div(stakedAmountUsd), { allowMoreThan1: true })
     : Percentage(0)
 
   return {
@@ -67,7 +65,7 @@ function createRouteToStakingToken({
   stakingToken,
 }: CreateRouteToStakingTokenParams): TxOverviewRouteItem[] {
   const entryTokenUsdValue = formValues.token.toUSD(formValues.value)
-  const stakingTokenAmount = NormalizedUnitNumber(entryTokenUsdValue.dividedBy(stakingToken.unitPriceUsd))
+  const stakingTokenAmount = entryTokenUsdValue.div(stakingToken.unitPriceUsd)
   return [
     ...(stakingToken.symbol !== formValues.token.symbol
       ? [

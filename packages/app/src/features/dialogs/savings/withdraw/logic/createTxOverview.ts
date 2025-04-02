@@ -32,7 +32,7 @@ export function createTxOverview({
     return { status: 'no-overview' }
   }
 
-  const savingsRate = NormalizedUnitNumber(savingsTokenInAmount.multipliedBy(converter.apy))
+  const savingsRate = savingsTokenInAmount.times(NormalizedUnitNumber(converter.apy))
   const route = getWithdrawRoute({
     formValues,
     savingsAccount,

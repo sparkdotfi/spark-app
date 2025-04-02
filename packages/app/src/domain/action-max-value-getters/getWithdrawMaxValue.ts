@@ -23,7 +23,7 @@ interface GetWithdrawMaxValueParams {
 
 export function getWithdrawMaxValue({ user, asset }: GetWithdrawMaxValueParams): NormalizedUnitNumber {
   if (asset.status === 'paused') {
-    return NormalizedUnitNumber(0)
+    return NormalizedUnitNumber.zero
   }
 
   const ceilings = [user.deposited, asset.unborrowedLiquidity]
@@ -37,16 +37,16 @@ export function getWithdrawMaxValue({ user, asset }: GetWithdrawMaxValueParams):
           : asset.liquidationThreshold
 
       if (liquidationThreshold.gt(0) && user.totalBorrowsUSD.gt(0)) {
-        const maxCollateralToWithdraw = excessHF
-          .multipliedBy(user.totalBorrowsUSD)
-          .dividedBy(liquidationThreshold)
-          .dividedBy(asset.unitPriceUsd)
-        ceilings.push(NormalizedUnitNumber(maxCollateralToWithdraw))
+        const maxCollateralToWithdraw = NormalizedUnitNumber(excessHF)
+          .times(user.totalBorrowsUSD)
+          .div(NormalizedUnitNumber(liquidationThreshold))
+          .div(asset.unitPriceUsd)
+        ceilings.push(maxCollateralToWithdraw)
       }
     } else {
-      ceilings.push(NormalizedUnitNumber(0))
+      ceilings.push(NormalizedUnitNumber.zero)
     }
   }
 
-  return NormalizedUnitNumber(BigNumber.min(...ceilings).dp(asset.decimals, BigNumber.ROUND_DOWN))
+  return NormalizedUnitNumber.min(...ceilings).decimalPlaces(asset.decimals, BigNumber.ROUND_DOWN)
 }

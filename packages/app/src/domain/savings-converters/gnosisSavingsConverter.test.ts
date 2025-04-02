@@ -21,7 +21,7 @@ describe(GnosisSavingsConverter.name, () => {
         shares,
       })
 
-      const expectedAssets = shares.multipliedBy(1.05)
+      const expectedAssets = shares.times(1.05)
       expect(assetsAtFutureTime.minus(expectedAssets).abs().lt(1e-12)).toEqual(true)
     })
 
@@ -60,7 +60,7 @@ describe(GnosisSavingsConverter.name, () => {
         assets,
       })
 
-      const expectedShares = assets.dividedBy(1.05)
+      const expectedShares = assets.div(1.05)
       expect(sharesAtFutureTime.minus(expectedShares).abs().lt(1e-12)).toEqual(true)
     })
 

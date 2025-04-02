@@ -35,7 +35,7 @@ export function LoanToValueSlider({
   const onValueChange = (values: number[]) => {
     const value = Math.min(values[0] ?? 0, maxSelectableValue)
 
-    const newLTV = valueToBigNumber(value).dividedBy(maxSliderValue)
+    const newLTV = valueToBigNumber(value).div(maxSliderValue)
 
     onLtvChange(Percentage(newLTV))
   }

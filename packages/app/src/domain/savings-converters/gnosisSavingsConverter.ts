@@ -102,17 +102,17 @@ export class GnosisSavingsConverter implements SavingsConverter {
 
   private getGrowthFactor(timestamp: number): BigNumber {
     return this.vaultAPY
-      .dividedBy(365 * 24 * 60 * 60)
-      .multipliedBy(timestamp - this.currentTimestamp)
+      .div(365 * 24 * 60 * 60)
+      .times(timestamp - this.currentTimestamp)
       .plus(1)
   }
 
   convertToShares({ assets }: { assets: NormalizedUnitNumber }): NormalizedUnitNumber {
-    return NormalizedUnitNumber(assets.multipliedBy(this.totalAssets.plus(1)).dividedBy(this.totalSupply.plus(1)))
+    return assets.times(this.totalAssets.plus(1)).div(this.totalSupply.plus(1))
   }
 
   convertToAssets({ shares }: { shares: NormalizedUnitNumber }): NormalizedUnitNumber {
-    return NormalizedUnitNumber(shares.multipliedBy(this.totalSupply.plus(1)).dividedBy(this.totalAssets.plus(1)))
+    return shares.times(this.totalSupply.plus(1)).div(this.totalAssets.plus(1))
   }
 
   predictAssetsAmount({
@@ -121,7 +121,7 @@ export class GnosisSavingsConverter implements SavingsConverter {
   }: { timestamp: number; shares: NormalizedUnitNumber }): NormalizedUnitNumber {
     const growthFactor = this.getGrowthFactor(timestamp)
     const assets = this.convertToAssets({ shares })
-    return NormalizedUnitNumber(assets.multipliedBy(growthFactor))
+    return assets.times(NormalizedUnitNumber(growthFactor))
   }
 
   predictSharesAmount({
@@ -129,8 +129,8 @@ export class GnosisSavingsConverter implements SavingsConverter {
     assets,
   }: { timestamp: number; assets: NormalizedUnitNumber }): NormalizedUnitNumber {
     const growthFactor = this.getGrowthFactor(timestamp)
-    const predictedAssetsBuyingPower = NormalizedUnitNumber(assets.dividedBy(growthFactor))
-    return NormalizedUnitNumber(this.convertToShares({ assets: predictedAssetsBuyingPower }))
+    const predictedAssetsBuyingPower = assets.div(NormalizedUnitNumber(growthFactor))
+    return this.convertToShares({ assets: predictedAssetsBuyingPower })
   }
 }
 

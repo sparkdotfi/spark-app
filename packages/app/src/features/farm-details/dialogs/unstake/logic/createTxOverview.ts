@@ -52,7 +52,7 @@ function createRouteToOutcomeToken({
   stakingToken,
 }: CreateRouteToOutcomeTokenParams): TxOverviewRouteItem[] {
   const outcomeTokenUsdValue = formValues.token.toUSD(formValues.value)
-  const stakingTokenAmount = NormalizedUnitNumber(outcomeTokenUsdValue.dividedBy(stakingToken.unitPriceUsd))
+  const stakingTokenAmount = outcomeTokenUsdValue.div(stakingToken.unitPriceUsd)
 
   return [
     {

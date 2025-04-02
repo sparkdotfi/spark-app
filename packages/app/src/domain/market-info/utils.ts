@@ -42,7 +42,7 @@ export function normalizeUserSummary(formattedUserSummary: AaveUserSummary): Use
   const loanToValue =
     formattedUserSummary.totalCollateralMarketReferenceCurrency === '0'
       ? bigNumberify(0)
-      : bigNumberify(formattedUserSummary.totalBorrowsMarketReferenceCurrency).dividedBy(
+      : bigNumberify(formattedUserSummary.totalBorrowsMarketReferenceCurrency).div(
           formattedUserSummary.totalCollateralMarketReferenceCurrency,
         )
   const rawHealthFactor = bigNumberify(formattedUserSummary.healthFactor)

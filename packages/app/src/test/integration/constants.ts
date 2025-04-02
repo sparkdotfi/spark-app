@@ -203,10 +203,10 @@ export function getMockReserve(overrides: Partial<Reserve> = {}): Reserve {
 export function getMockUserPosition(overrides?: Partial<UserPosition>): UserPosition {
   return {
     reserve: getMockReserve(),
-    scaledATokenBalance: NormalizedUnitNumber(0),
-    scaledVariableDebt: NormalizedUnitNumber(0),
-    borrowBalance: NormalizedUnitNumber(0),
-    collateralBalance: NormalizedUnitNumber(0),
+    scaledATokenBalance: BigNumber(0),
+    scaledVariableDebt: BigNumber(0),
+    borrowBalance: NormalizedUnitNumber.zero,
+    collateralBalance: NormalizedUnitNumber.zero,
     ...overrides,
   }
 }
@@ -216,11 +216,11 @@ export function getMockUserPositionSummary(overrides?: Partial<UserPositionSumma
     loanToValue: Percentage(0),
     maxLoanToValue: Percentage(0),
     healthFactor: new BigNumber(0),
-    availableBorrowsUSD: NormalizedUnitNumber(0),
-    totalBorrowsUSD: NormalizedUnitNumber(0),
+    availableBorrowsUSD: NormalizedUnitNumber.zero,
+    totalBorrowsUSD: NormalizedUnitNumber.zero,
     currentLiquidationThreshold: Percentage(0),
-    totalCollateralUSD: NormalizedUnitNumber(0),
-    totalLiquidityUSD: NormalizedUnitNumber(0),
+    totalCollateralUSD: NormalizedUnitNumber.zero,
+    totalLiquidityUSD: NormalizedUnitNumber.zero,
     ...overrides,
   }
 }
@@ -305,7 +305,7 @@ export const daiLikeReserve = getMockReserve({
   variableBorrowRate: new BigNumber('6.2599141818649791361008e+25'),
   liquidityIndex: new BigNumber('1.028914737353923264312907136e+27'),
   liquidityRate: new BigNumber('6.1089080101931682768749404e+25'),
-  priceInUSD: NormalizedUnitNumber('1'),
+  priceInUSD: BigNumber('1'),
   usageAsCollateralEnabled: false,
   usageAsCollateralEnabledOnUser: false,
   incentives: { deposit: [], borrow: [] },
@@ -367,7 +367,7 @@ export const sDaiLikeReserve = getMockReserve({
   variableBorrowRate: new BigNumber('6.2599141818649791361008e+25'),
   liquidityIndex: new BigNumber('1.028914737353923264312907136e+27'),
   liquidityRate: new BigNumber('6.1089080101931682768749404e+25'),
-  priceInUSD: NormalizedUnitNumber('1'),
+  priceInUSD: BigNumber('1'),
   usageAsCollateralEnabled: false,
   usageAsCollateralEnabledOnUser: false,
   incentives: { deposit: [], borrow: [] },
@@ -406,7 +406,7 @@ export const wethLikeReserve = getMockReserve({
   variableBorrowRate: new BigNumber('1.6963100401904001627543239e+25'),
   liquidityIndex: new BigNumber('1.013900866792617715471863134e+27'),
   liquidityRate: new BigNumber('7.688234151079366400606947e+24'),
-  priceInUSD: NormalizedUnitNumber('2907.40835'),
+  priceInUSD: BigNumber('2907.40835'),
   usageAsCollateralEnabled: true,
   usageAsCollateralEnabledOnUser: true,
   incentives: {

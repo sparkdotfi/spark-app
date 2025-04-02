@@ -332,7 +332,7 @@ function getUsdcWithdrawConfig({
     gemDecimals: token.decimals,
     assetsTokenDecimals: savingsToken.decimals,
   })
-  const assetsMaxAmountIn = toBigInt(BaseUnitNumber(token.toBaseUnit(actionAmount).multipliedBy(gemConversionFactor)))
+  const assetsMaxAmountIn = toBigInt(BaseUnitNumber(token.toBaseUnit(actionAmount).times(gemConversionFactor)))
 
   return ensureConfigTypes({
     address: psmActionsAddress,

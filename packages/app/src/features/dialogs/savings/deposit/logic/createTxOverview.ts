@@ -17,7 +17,7 @@ export function createTxOverview({ formValues, savingsAccount }: CreateTxOvervie
   }
 
   const savingsTokenOutAmount = savingsAccount.converter.convertToShares({ assets: value })
-  const stableEarnRate = NormalizedUnitNumber(value.multipliedBy(savingsAccount.converter.apy))
+  const stableEarnRate = value.times(NormalizedUnitNumber(savingsAccount.converter.apy))
 
   const route: TxOverviewRouteItem[] = getDepositRoute({
     formValues,

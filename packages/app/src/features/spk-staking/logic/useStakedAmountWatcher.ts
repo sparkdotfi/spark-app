@@ -22,7 +22,7 @@ export function useStakedAmountWatcher({ amountStaked }: UseStakedAmountWatcherP
     }
     const previousAmount = previousAmountRef.current
 
-    if (!previousAmount.isEqualTo(amountStaked)) {
+    if (!previousAmount.eq(amountStaked)) {
       clearTimeout(timeoutRef.current)
       timeoutRef.current = setTimeout(() => {
         const endpointsConfig = getEndpointsConfig()
@@ -32,10 +32,10 @@ export function useStakedAmountWatcher({ amountStaked }: UseStakedAmountWatcherP
         const currentTimestamp = Math.ceil(Date.now() / 1000)
 
         const pendingAmount = previousPendingAmount.plus(
-          previousPendingAmountRate.multipliedBy(currentTimestamp - previousTimestamp),
+          previousPendingAmountRate.times(currentTimestamp - previousTimestamp),
         )
 
-        const rate = amountStaked.multipliedBy(0.00000001)
+        const rate = amountStaked.times(0.00000001)
 
         updateEndpoints(msw, {
           walletData: {

@@ -1,5 +1,4 @@
 import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
-import BigNumber from 'bignumber.js'
 
 export interface calculateRewardParams {
   earned: NormalizedUnitNumber
@@ -29,8 +28,9 @@ export function calculateReward({
 
   const timeDiff = ((timestampInMs > periodFinishInMs ? periodFinishInMs : timestampInMs) - earnedTimestampInMs) / 1000
 
-  const accruedEarned = staked.multipliedBy(rewardRate).multipliedBy(BigNumber.max(timeDiff, 0)).dividedBy(totalSupply)
-  const earnedInTotal = NormalizedUnitNumber(earned.plus(accruedEarned))
-
-  return earnedInTotal
+  const accruedEarned = staked
+    .times(rewardRate)
+    .times(NormalizedUnitNumber.max(NormalizedUnitNumber(timeDiff), NormalizedUnitNumber.zero))
+    .div(totalSupply)
+  return earned.plus(accruedEarned)
 }

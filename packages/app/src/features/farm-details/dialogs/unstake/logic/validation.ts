@@ -13,7 +13,7 @@ export function getUnstakeDialogFormValidator(farm: Farm, tokenRepository: Token
 
     const usdBalance = farm.stakingToken.toUSD(farm.staked)
     const token = tokenRepository.findOneTokenBySymbol(field.symbol)
-    const tokenBalance = NormalizedUnitNumber(usdBalance.dividedBy(token.unitPriceUsd))
+    const tokenBalance = usdBalance.div(token.unitPriceUsd)
 
     const issue = validateUnstake({
       value,
@@ -49,7 +49,7 @@ export function validateUnstake({
     return undefined
   }
 
-  if (value.isLessThanOrEqualTo(0)) {
+  if (value.lte(0)) {
     return 'value-not-positive'
   }
 

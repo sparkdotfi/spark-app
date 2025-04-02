@@ -102,7 +102,7 @@ const args: MarketDetailsViewProps = {
       ratio: NormalizedUnitNumber(1.1),
       ratioSourceOracle: CheckedAddress(tokens.rETH.address),
       token: tokens.rETH,
-      price: NormalizedUnitNumber(tokens.rETH.unitPriceUsd.multipliedBy(1.1)),
+      price: NormalizedUnitNumber(tokens.rETH.unitPriceUsd.times(1.1)),
       baseAssetPrice: NormalizedUnitNumber(tokens.WETH.unitPriceUsd),
       type: 'yielding-fixed',
       baseAssetSymbol: TokenSymbol('WETH'),

@@ -3,7 +3,6 @@ import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { AssetInputSchema } from '@/features/dialogs/common/logic/form'
 import { FormFieldsForDialog } from '@/features/dialogs/common/types'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { UseFormReturn } from 'react-hook-form'
 
 export interface GetFormFieldsForWithdrawDialogParams {
@@ -29,7 +28,7 @@ export function getFormFieldsForUnstakeDialog({
   const token = tokenRepository.findOneTokenBySymbol(symbol)
 
   const usdStakedBalance = farm.stakingToken.toUSD(farm.staked)
-  const tokenBalance = NormalizedUnitNumber(usdStakedBalance.dividedBy(token.unitPriceUsd))
+  const tokenBalance = usdStakedBalance.div(token.unitPriceUsd)
 
   return {
     selectedAsset: {

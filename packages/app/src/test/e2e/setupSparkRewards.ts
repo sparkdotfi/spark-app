@@ -28,7 +28,7 @@ export async function setupSparkRewards({
       tokenAddress: CheckedAddress(tokenConfig.address),
       rewardTokenPrice,
       cumulativeAmount,
-      cumulativeAmountBaseUnit: NormalizedUnitNumber.toBaseUnit(cumulativeAmount, tokenConfig.decimals),
+      cumulativeAmountBaseUnit: cumulativeAmount.toBaseUnit(tokenConfig.decimals),
     }
   })
 
