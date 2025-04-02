@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ReserveStatus } from '../market-info/reserve-status'
 
 export type DepositValidationIssue =
@@ -8,15 +8,15 @@ export type DepositValidationIssue =
   | 'reserve-not-active'
 
 export interface ValidateDepositArgs {
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   asset: {
     status: ReserveStatus
-    totalLiquidity: NormalizedUnitNumber
-    supplyCap?: NormalizedUnitNumber
+    totalLiquidity: NormalizedNumber
+    supplyCap?: NormalizedNumber
   }
   user: {
-    balance: NormalizedUnitNumber
-    alreadyDepositedValueUSD: NormalizedUnitNumber
+    balance: NormalizedNumber
+    alreadyDepositedValueUSD: NormalizedNumber
   }
 }
 

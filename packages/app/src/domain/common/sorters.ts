@@ -1,11 +1,11 @@
 import { FilterObjectValues } from '@/utils/types'
 
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { TokenRepository } from '../token-repository/TokenRepository'
 import { Token } from '../types/Token'
 import { TokenWithBalance } from './types'
 
-export function sortByUsdValue<T extends { token: Token }, K extends keyof FilterObjectValues<T, NormalizedUnitNumber>>(
+export function sortByUsdValue<T extends { token: Token }, K extends keyof FilterObjectValues<T, NormalizedNumber>>(
   a: T,
   b: T,
   key: K,

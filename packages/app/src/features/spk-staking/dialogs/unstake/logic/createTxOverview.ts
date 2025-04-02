@@ -1,9 +1,9 @@
 import { TransferFromUserFormNormalizedData } from '@/features/dialogs/common/logic/transfer-from-user/form'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 export interface CreateTxOverviewParams {
   apy: Percentage
-  amountStaked: NormalizedUnitNumber
+  amountStaked: NormalizedNumber
   nextEpochEnd: number
   formValues: TransferFromUserFormNormalizedData
 }

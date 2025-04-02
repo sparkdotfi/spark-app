@@ -1,6 +1,6 @@
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { AssetInputSchema } from '@/features/dialogs/common/logic/form'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { z } from 'zod'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -9,7 +9,7 @@ export function getTransferFromUserFormValidator(
   issueToMessage: Record<TransferFromUserValidationIssue, string>,
 ) {
   return AssetInputSchema.superRefine((field, ctx) => {
-    const value = NormalizedUnitNumber(field.value === '' ? '0' : field.value)
+    const value = NormalizedNumber(field.value === '' ? '0' : field.value)
     const balance = tokenRepository.findOneBalanceBySymbol(field.symbol)
 
     const issue = validateTransferFromUser({
@@ -29,9 +29,9 @@ export function getTransferFromUserFormValidator(
 export type TransferFromUserValidationIssue = 'exceeds-balance' | 'value-not-positive'
 
 export interface ValidateBalanceArgs {
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   user: {
-    balance: NormalizedUnitNumber
+    balance: NormalizedNumber
   }
 }
 

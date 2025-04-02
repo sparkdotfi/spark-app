@@ -2,7 +2,7 @@ import { NativeAssetInfo } from '@/config/chain/types'
 import { TokenWithBalance, TokenWithValue } from '@/domain/common/types'
 import { MarketInfo } from '@/domain/market-info/marketInfo'
 import { MarketWalletInfo, WalletBalance } from '@/domain/wallet/useMarketWalletInfo'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 interface MakeAssetListParams {
   marketInfo: MarketInfo
@@ -46,10 +46,10 @@ function calculateCombinedBalance({
     }
   }
 
-  const deposit = marketInfo.findPositionByToken(walletBalance.token)?.collateralBalance ?? NormalizedUnitNumber.ZERO
+  const deposit = marketInfo.findPositionByToken(walletBalance.token)?.collateralBalance ?? NormalizedNumber.ZERO
   return {
     token: walletBalance.token,
-    value: NormalizedUnitNumber(walletBalance.balance.plus(deposit)),
+    value: NormalizedNumber(walletBalance.balance.plus(deposit)),
   }
 }
 

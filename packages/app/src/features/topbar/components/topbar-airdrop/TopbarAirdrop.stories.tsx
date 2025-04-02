@@ -1,5 +1,5 @@
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { userEvent, within } from '@storybook/test'
 import { withRouter } from 'storybook-addon-remix-react-router'
@@ -13,8 +13,8 @@ const meta: Meta<typeof TopbarAirdrop> = {
   component: TopbarAirdrop,
   args: {
     airdrop: {
-      tokenReward: NormalizedUnitNumber(1_200_345.568),
-      tokenRatePerSecond: NormalizedUnitNumber(1),
+      tokenReward: NormalizedNumber(1_200_345.568),
+      tokenRatePerSecond: NormalizedNumber(1),
       tokenRatePrecision: 1,
       refreshIntervalInMs: 100,
       timestampInMs,
@@ -39,8 +39,8 @@ export const Loading: Story = { args: { ...meta.args, isLoading: true, isError: 
 export const LargeAirdrop = {
   args: {
     airdrop: {
-      tokenReward: NormalizedUnitNumber('7835102.158890800802961891'),
-      tokenRatePerSecond: NormalizedUnitNumber('0.262135690260185551'),
+      tokenReward: NormalizedNumber('7835102.158890800802961891'),
+      tokenRatePerSecond: NormalizedNumber('0.262135690260185551'),
       tokenRatePrecision: 2,
       refreshIntervalInMs: 100,
       timestampInMs,
@@ -51,8 +51,8 @@ export const LargeAirdrop = {
 export const SmallAirdrop = {
   args: {
     airdrop: {
-      tokenReward: NormalizedUnitNumber('0.005822830257558254'),
-      tokenRatePerSecond: NormalizedUnitNumber('2.37304339E-9'),
+      tokenReward: NormalizedNumber('0.005822830257558254'),
+      tokenRatePerSecond: NormalizedNumber('2.37304339E-9'),
       tokenRatePrecision: 10,
       refreshIntervalInMs: 100,
       timestampInMs,
@@ -63,8 +63,8 @@ export const SmallAirdrop = {
 export const AlmostZero = {
   args: {
     airdrop: {
-      tokenReward: NormalizedUnitNumber('8.73949580999E-7'),
-      tokenRatePerSecond: NormalizedUnitNumber('2.8442E-13'),
+      tokenReward: NormalizedNumber('8.73949580999E-7'),
+      tokenRatePerSecond: NormalizedNumber('2.8442E-13'),
       tokenRatePrecision: 14,
       refreshIntervalInMs: 100,
       timestampInMs,

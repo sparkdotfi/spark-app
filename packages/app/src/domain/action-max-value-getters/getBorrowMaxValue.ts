@@ -1,21 +1,21 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 interface GetBorrowMaxValueParams {
   asset: {
-    availableLiquidity: NormalizedUnitNumber
-    totalDebt: NormalizedUnitNumber
-    borrowCap?: NormalizedUnitNumber
+    availableLiquidity: NormalizedNumber
+    totalDebt: NormalizedNumber
+    borrowCap?: NormalizedNumber
   }
   user: {
-    maxBorrowBasedOnCollateral: NormalizedUnitNumber
+    maxBorrowBasedOnCollateral: NormalizedNumber
     inIsolationMode?: boolean
-    isolationModeCollateralTotalDebt?: NormalizedUnitNumber
-    isolationModeCollateralDebtCeiling?: NormalizedUnitNumber
+    isolationModeCollateralTotalDebt?: NormalizedNumber
+    isolationModeCollateralDebtCeiling?: NormalizedNumber
   }
   validationIssue?: string
 }
 
-export function getBorrowMaxValue({ asset, user, validationIssue }: GetBorrowMaxValueParams): NormalizedUnitNumber {
+export function getBorrowMaxValue({ asset, user, validationIssue }: GetBorrowMaxValueParams): NormalizedNumber {
   if (
     validationIssue === 'reserve-not-active' ||
     validationIssue === 'reserve-borrowing-disabled' ||
@@ -24,7 +24,7 @@ export function getBorrowMaxValue({ asset, user, validationIssue }: GetBorrowMax
     validationIssue === 'siloed-mode-enabled' ||
     validationIssue === 'emode-category-mismatch'
   ) {
-    return NormalizedUnitNumber.ZERO
+    return NormalizedNumber.ZERO
   }
 
   const ceilings = [
@@ -42,5 +42,5 @@ export function getBorrowMaxValue({ asset, user, validationIssue }: GetBorrowMax
     ceilings.push(isolationModeCollateralDebtCeiling.minus(isolationModeCollateralTotalDebt))
   }
 
-  return NormalizedUnitNumber.max(NormalizedUnitNumber.min(...ceilings), NormalizedUnitNumber.ZERO)
+  return NormalizedNumber.max(NormalizedNumber.min(...ceilings), NormalizedNumber.ZERO)
 }

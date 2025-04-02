@@ -1,6 +1,6 @@
 import { TokenWithValue } from '@/domain/common/types'
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export type PageState = 'form' | 'confirmation' | 'success'
 export interface PageStatus {
@@ -13,7 +13,7 @@ export interface PageStatus {
 
 export interface ExistingPosition {
   tokens: Token[]
-  totalValueUSD: NormalizedUnitNumber
+  totalValueUSD: NormalizedNumber
 }
 
 export interface EasyBorrowFormNormalizedData {

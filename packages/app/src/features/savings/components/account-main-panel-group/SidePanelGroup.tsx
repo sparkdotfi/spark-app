@@ -4,7 +4,7 @@ import { Link } from '@/ui/atoms/link/Link'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { TokenIcon } from '@/ui/atoms/token-icon/TokenIcon'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { AccountSparkRewardsSummary } from '../../types'
 import { AdditionalInfo } from './AdditionalInfo'
 import { PlusSparkRewards } from './PlusSparkRewards'
@@ -12,9 +12,9 @@ import { PlusSparkRewards } from './PlusSparkRewards'
 export interface SidePanelGroupProps {
   underlyingToken: Token
   savingsToken: Token
-  savingsTokenBalance: NormalizedUnitNumber
-  oneYearProjection: NormalizedUnitNumber
-  sparkRewardsOneYearProjection: NormalizedUnitNumber
+  savingsTokenBalance: NormalizedNumber
+  oneYearProjection: NormalizedNumber
+  sparkRewardsOneYearProjection: NormalizedNumber
   apy: Percentage
   apyExplainer: string
   apyExplainerDocsLink: string

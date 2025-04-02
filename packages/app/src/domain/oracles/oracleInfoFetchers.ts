@@ -20,7 +20,7 @@ import {
 import { chronicleAggorEthUsdAbi } from '@/config/contracts-generated'
 import { assert, toBigInt } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
-import { BaseUnitNumber, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { gnosis, mainnet } from 'viem/chains'
 import { Config } from 'wagmi'
 import { readContract } from 'wagmi/actions'
@@ -32,10 +32,10 @@ export interface OracleInfoFetcherParams {
 }
 
 export interface OracleInfoFetcherResult {
-  ratio: NormalizedUnitNumber
+  ratio: NormalizedNumber
   ratioSourceOracle: CheckedAddress
   baseAssetOracle: CheckedAddress
-  baseAssetPrice: NormalizedUnitNumber
+  baseAssetPrice: NormalizedNumber
 }
 
 export async function fetchWstethOracleInfoMainnet({
@@ -64,7 +64,7 @@ export async function fetchWstethOracleInfoMainnet({
       abi: wstethRatioMainnetAbi,
       address: steth,
       functionName: 'getPooledEthByShares',
-      args: [toBigInt(reserve.token.toBaseUnit(NormalizedUnitNumber(1)))],
+      args: [toBigInt(reserve.token.toBaseUnit(NormalizedNumber(1)))],
       chainId: mainnet.id,
     }),
     readContract(wagmiConfig, {
@@ -89,7 +89,7 @@ export async function fetchWstethOracleInfoMainnet({
     ratio: reserve.token.fromBaseUnit(BaseUnitNumber(ratio)),
     ratioSourceOracle: CheckedAddress(steth),
     baseAssetOracle: CheckedAddress(baseAssetOracle),
-    baseAssetPrice: NormalizedUnitNumber(BaseUnitNumber(baseAssetPrice).shiftedBy(-baseAssetPriceDecimals)),
+    baseAssetPrice: NormalizedNumber(BaseUnitNumber(baseAssetPrice).shiftedBy(-baseAssetPriceDecimals)),
   }
 }
 
@@ -119,7 +119,7 @@ export async function fetchSdaiOracleInfoGnosis({
       abi: sdaiRatioGnosisAbi,
       address: sdaiAddress,
       functionName: 'convertToAssets',
-      args: [toBigInt(reserve.token.toBaseUnit(NormalizedUnitNumber(1)))],
+      args: [toBigInt(reserve.token.toBaseUnit(NormalizedNumber(1)))],
       chainId: gnosis.id,
     }),
     readContract(wagmiConfig, {
@@ -142,7 +142,7 @@ export async function fetchSdaiOracleInfoGnosis({
     ratio: reserve.token.fromBaseUnit(BaseUnitNumber(ratio)),
     ratioSourceOracle: CheckedAddress(sdaiAddress),
     baseAssetOracle: CheckedAddress(baseAssetOracle),
-    baseAssetPrice: NormalizedUnitNumber(BaseUnitNumber(baseAssetPrice).shiftedBy(-baseAssetPriceDecimals)),
+    baseAssetPrice: NormalizedNumber(BaseUnitNumber(baseAssetPrice).shiftedBy(-baseAssetPriceDecimals)),
   }
 }
 
@@ -197,7 +197,7 @@ export async function fetchRethOracleInfo({
     ratio: reserve.token.fromBaseUnit(BaseUnitNumber(ratio)),
     ratioSourceOracle: CheckedAddress(reth),
     baseAssetOracle: CheckedAddress(baseAssetOracle),
-    baseAssetPrice: NormalizedUnitNumber(BaseUnitNumber(baseAssetPrice).shiftedBy(-baseAssetPriceDecimals)),
+    baseAssetPrice: NormalizedNumber(BaseUnitNumber(baseAssetPrice).shiftedBy(-baseAssetPriceDecimals)),
   }
 }
 
@@ -252,7 +252,7 @@ export async function fetchWeethOracleInfo({
     ratio: reserve.token.fromBaseUnit(BaseUnitNumber(ratio)),
     ratioSourceOracle: CheckedAddress(weeth),
     baseAssetOracle: CheckedAddress(baseAssetOracle),
-    baseAssetPrice: NormalizedUnitNumber(BaseUnitNumber(baseAssetPrice).shiftedBy(-baseAssetPriceDecimals)),
+    baseAssetPrice: NormalizedNumber(BaseUnitNumber(baseAssetPrice).shiftedBy(-baseAssetPriceDecimals)),
   }
 }
 

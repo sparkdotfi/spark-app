@@ -1,7 +1,7 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface ExtendAirdropResponseParams {
-  tokenRatePerSecond: NormalizedUnitNumber
+  tokenRatePerSecond: NormalizedNumber
   refreshIntervalInMs: number
 }
 

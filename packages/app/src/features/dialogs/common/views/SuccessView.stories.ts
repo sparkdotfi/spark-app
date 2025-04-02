@@ -3,7 +3,7 @@ import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { SuccessView } from './SuccessView'
 
@@ -14,7 +14,7 @@ const meta: Meta<typeof SuccessView> = {
   args: {
     tokenWithValue: {
       token: tokens.DAI,
-      value: NormalizedUnitNumber(2000),
+      value: NormalizedNumber(2000),
     },
     onProceed: () => {},
     proceedText: 'View in portfolio',
@@ -60,8 +60,8 @@ export const ZeroPriceToken = getMobileStory({
   args: {
     objectiveType: 'claimFarmRewards',
     tokenWithValue: {
-      token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
-      value: NormalizedUnitNumber(2000),
+      token: tokens.SKY.clone({ unitPriceUsd: NormalizedNumber.ZERO }),
+      value: NormalizedNumber(2000),
     },
     onProceed: () => {},
     proceedText: 'View in portfolio',

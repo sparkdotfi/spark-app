@@ -3,7 +3,7 @@ import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { TokenIcon } from '@/ui/atoms/token-icon/TokenIcon'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { cva } from 'class-variance-authority'
 import { ShortAccountDefinition } from '../../logic/useSavings'
 
@@ -51,7 +51,7 @@ const accountsNavigationVariants = cva('', {
 
 interface AccountNavigationItemProps {
   underlyingToken: Token
-  underlyingTokenDeposit: NormalizedUnitNumber
+  underlyingTokenDeposit: NormalizedNumber
   active: boolean
   onClick: () => void
   variant: 'horizontal' | 'vertical'

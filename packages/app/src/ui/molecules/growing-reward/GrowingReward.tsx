@@ -4,13 +4,13 @@ import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
 import { getFractionalPart, getWholePart } from '@/utils/bigNumber'
 import { useTimestamp } from '@/utils/useTimestamp'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 const STEP_IN_MS = 50
 
 export interface GrowingRewardProps {
   rewardToken: Token
-  calculateReward: (timestampInMs: number) => NormalizedUnitNumber
+  calculateReward: (timestampInMs: number) => NormalizedNumber
   refreshIntervalInMs: number | undefined
   wholePartTextBgGradientClass: string
   fractionalPartTextColorClass: string
@@ -70,8 +70,8 @@ export function GrowingReward({
 }
 
 interface CalculatePrecisionParams {
-  currentReward: NormalizedUnitNumber
-  rewardIn1Step: NormalizedUnitNumber
+  currentReward: NormalizedNumber
+  rewardIn1Step: NormalizedNumber
 }
 function calculatePrecision({ currentReward, rewardIn1Step }: CalculatePrecisionParams): number {
   const precision = rewardIn1Step.minus(currentReward).lt(1e-12)

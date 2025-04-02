@@ -2,7 +2,7 @@ import { MyEarningsQueryOptions } from '@/config/chain/types'
 import { SimplifiedQueryResult } from '@/domain/common/query'
 import { SavingsConverter } from '@/domain/savings-converters/types'
 import { Timeframe } from '@/ui/charts/defaults'
-import { CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { skipToken, useQuery } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
 import { useChainId } from 'wagmi'
@@ -15,7 +15,7 @@ export interface UseMyEarningsInfoParams {
   currentTimestamp: number
   staleTime: number
   savingsConverter: SavingsConverter | null
-  savingsTokenBalance: NormalizedUnitNumber | undefined
+  savingsTokenBalance: NormalizedNumber | undefined
   myEarningsQueryOptions: MyEarningsQueryOptions | undefined
 }
 

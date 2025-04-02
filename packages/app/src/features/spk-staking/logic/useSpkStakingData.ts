@@ -10,7 +10,7 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { SuspenseQueryWith } from '@/utils/types'
-import { BaseUnitNumber, CheckedAddress, NormalizedUnitNumber, UnixTime } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, CheckedAddress, NormalizedNumber, UnixTime } from '@sparkdotfi/common-universal'
 import { QueryKey, queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 import { range } from 'remeda'
 import { Address } from 'viem'
@@ -39,9 +39,9 @@ export function spkStakingDataQueryOptions({
       const spk = tokenRepository.findOneTokenBySymbol(TokenSymbol('SPK'))
       const usds = tokenRepository.findOneTokenBySymbol(TokenSymbol('USDS'))
 
-      async function fetchAmountStaked(): Promise<NormalizedUnitNumber> {
+      async function fetchAmountStaked(): Promise<NormalizedNumber> {
         if (!account) {
-          return Promise.resolve(NormalizedUnitNumber.ZERO)
+          return Promise.resolve(NormalizedNumber.ZERO)
         }
         const balance = await readContract(wagmiConfig, {
           address: getContractAddress(testSpkStakingAddress, chainId),
@@ -54,9 +54,9 @@ export function spkStakingDataQueryOptions({
         return BaseUnitNumber.toNormalizedUnit(BaseUnitNumber(balance), spk.decimals)
       }
 
-      async function fetchPreclaimedRewards(): Promise<NormalizedUnitNumber> {
+      async function fetchPreclaimedRewards(): Promise<NormalizedNumber> {
         if (!account) {
-          return Promise.resolve(NormalizedUnitNumber.ZERO)
+          return Promise.resolve(NormalizedNumber.ZERO)
         }
         const balance = await readContract(wagmiConfig, {
           address: getContractAddress(testStakingRewardsAddress, chainId),
@@ -72,10 +72,10 @@ export function spkStakingDataQueryOptions({
       async function fetchBaData(): Promise<z.infer<typeof baDataResponseSchema>> {
         if (!account) {
           return {
-            amount_staked: NormalizedUnitNumber.ZERO,
-            pending_amount_normalized: NormalizedUnitNumber.ZERO,
-            pending_amount_rate: NormalizedUnitNumber.ZERO,
-            cumulative_amount_normalized: NormalizedUnitNumber.ZERO,
+            amount_staked: NormalizedNumber.ZERO,
+            pending_amount_normalized: NormalizedNumber.ZERO,
+            pending_amount_rate: NormalizedNumber.ZERO,
+            cumulative_amount_normalized: NormalizedNumber.ZERO,
             timestamp: 0,
           }
         }
@@ -166,9 +166,9 @@ export function spkStakingDataQueryOptions({
             .reduce(
               (acc, curr) => ({
                 epochs: [...acc.epochs, curr.epoch],
-                amount: NormalizedUnitNumber(acc.amount.plus(curr.amount)),
+                amount: NormalizedNumber(acc.amount.plus(curr.amount)),
               }),
-              { epochs: [] as bigint[], amount: NormalizedUnitNumber.ZERO },
+              { epochs: [] as bigint[], amount: NormalizedNumber.ZERO },
             ),
           claimableAt: new Date(
             UnixTime.toMilliseconds(UnixTime(Number(currentEpoch) * epochDuration + epochDurationInit)),
@@ -216,8 +216,8 @@ export function spkStakingDataQueryOptions({
           fetchGeneralStats(),
         ])
 
-      const pendingAmount = NormalizedUnitNumber(baData.pending_amount_normalized.minus(preclaimedRewards))
-      const claimableAmount = NormalizedUnitNumber(baData.cumulative_amount_normalized.minus(preclaimedRewards))
+      const pendingAmount = NormalizedNumber(baData.pending_amount_normalized.minus(preclaimedRewards))
+      const claimableAmount = NormalizedNumber(baData.cumulative_amount_normalized.minus(preclaimedRewards))
 
       return {
         amountStaked,
@@ -273,7 +273,7 @@ const generalStatsResponseSchema = z
 
 export interface Withdrawal {
   epochs: bigint[]
-  amount: NormalizedUnitNumber
+  amount: NormalizedNumber
   claimableAt: Date
 }
 
@@ -283,11 +283,11 @@ export interface VaultData {
 }
 
 export interface SpkStakingData {
-  amountStaked: NormalizedUnitNumber
-  pendingAmount: NormalizedUnitNumber
-  pendingAmountRate: NormalizedUnitNumber
+  amountStaked: NormalizedNumber
+  pendingAmount: NormalizedNumber
+  pendingAmountRate: NormalizedNumber
   pendingAmountTimestamp: number
-  claimableAmount: NormalizedUnitNumber
+  claimableAmount: NormalizedNumber
   generalStats: GeneralStats
   withdrawals: Withdrawal[]
   timestamp: UnixTime

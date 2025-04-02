@@ -14,7 +14,7 @@ import { mergeUserPositionIntoRawUserReserve, recalculateUserSummary } from '@/d
 import { bigNumberify } from '@sparkdotfi/common-universal'
 
 import { CheckedAddress } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ReserveWithValue } from '../common/types'
 
 export interface ReserveWithUseAsCollateralFlag {
@@ -120,7 +120,7 @@ function getValueForUserPosition(
   userPosition: UserPosition,
   reserves: ReserveWithValue[],
   nativeAssetInfo: NativeAssetInfo,
-): NormalizedUnitNumber | undefined {
+): NormalizedNumber | undefined {
   if (userPosition.reserve.token.symbol === nativeAssetInfo.wrappedNativeAssetSymbol) {
     const nativeAssetValue = reserves.find((d) => d.reserve.token.symbol === nativeAssetInfo.nativeAssetSymbol)?.value
     if (nativeAssetValue) {
@@ -148,7 +148,7 @@ function findReserveWithValue<T extends { reserve: Reserve }>(
 function tweakDepositPosition(
   timestamp: number,
   type: 'deposit' | 'withdraw',
-  value: NormalizedUnitNumber,
+  value: NormalizedNumber,
   userPosition: UserPosition,
   userPositionSummary: UserPositionSummary,
   userConfiguration: UserConfiguration,
@@ -184,7 +184,7 @@ function tweakDepositPosition(
 function tweakBorrowPosition(
   timestamp: number,
   type: 'borrow' | 'repay',
-  value: NormalizedUnitNumber,
+  value: NormalizedNumber,
   userPosition: UserPosition,
 ): UserPosition {
   if (value.eq(0)) {

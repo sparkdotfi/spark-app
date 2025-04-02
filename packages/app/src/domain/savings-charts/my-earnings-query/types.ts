@@ -1,3 +1,3 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
-export type MyEarningsResult = { date: Date; balance: NormalizedUnitNumber }[]
+export type MyEarningsResult = { date: Date; balance: NormalizedNumber }[]

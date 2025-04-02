@@ -3,7 +3,7 @@ import { SavingsAccount } from '@/domain/savings-converters/types'
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { Token } from '@/domain/types/Token'
 import { getTransferFromUserFormValidator } from '@/features/dialogs/common/logic/transfer-from-user/validation'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { QueryKey, useSuspenseQuery } from '@tanstack/react-query'
 import { arbitrum, base } from 'viem/chains'
 import { Config, useConfig } from 'wagmi'
@@ -65,7 +65,7 @@ export function getValidatorConfig({
       fetchParamsQueryFn: validatorQuery.queryFn,
       createValidator: ({ susds: psm3SusdsBalance }) =>
         getTransferFromUserFormValidator(tokenRepository, depositValidationIssueToMessage).superRefine((field, ctx) => {
-          const value = NormalizedUnitNumber(field.value === '' ? '0' : field.value)
+          const value = NormalizedNumber(field.value === '' ? '0' : field.value)
           const estimatedSusdsReceived = savingsAccount.converter.convertToShares({ assets: value })
           const issue = validateDepositToSavingsWithPsm3({
             psm3SusdsBalance,

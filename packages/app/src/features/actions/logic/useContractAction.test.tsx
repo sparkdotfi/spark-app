@@ -4,7 +4,7 @@ import { lendingPoolConfig } from '@/config/contracts-generated'
 import { getMockMarketInfo, testAddresses, testTokens } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
-import { NormalizedUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, toBigInt } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { mainnet } from 'viem/chains'
 import { test } from 'vitest'
@@ -13,7 +13,7 @@ import { useContractAction } from './useContractAction'
 const userAddress = testAddresses.alice
 const chainId = mainnet.id
 const token = testTokens.WETH
-const value = NormalizedUnitNumber(1)
+const value = NormalizedNumber(1)
 
 const hookRenderer = setupUseContractActionRenderer({
   account: userAddress,

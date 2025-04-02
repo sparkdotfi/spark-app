@@ -3,7 +3,7 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 
 import { tokens } from '@sb/tokens'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { MarketOverviewChart } from './MarketOverviewChart'
 
 const meta: Meta<typeof MarketOverviewChart> = {
@@ -23,8 +23,8 @@ export const Default: Story = {
       { value: 200_000_000, color: '#33BE27' },
     ],
     token: tokens.ETH,
-    borrowed: NormalizedUnitNumber(800_000_000),
-    marketSize: NormalizedUnitNumber(1_000_000_000),
+    borrowed: NormalizedNumber(800_000_000),
+    marketSize: NormalizedNumber(1_000_000_000),
     utilizationRate: Percentage(0.8),
   },
 }
@@ -40,8 +40,8 @@ export const ZeroUtilization: Story = {
       { value: 1_000_000_000, color: '#33BE27' },
     ],
     token: tokens.ETH,
-    borrowed: NormalizedUnitNumber(800_000_000),
-    marketSize: NormalizedUnitNumber(1_000_000_000),
+    borrowed: NormalizedNumber(800_000_000),
+    marketSize: NormalizedNumber(1_000_000_000),
     utilizationRate: Percentage(0.8),
   },
 }
@@ -56,8 +56,8 @@ export const FullUtilization: Story = {
       { value: 0, color: '#33BE27' },
     ],
     token: tokens.ETH,
-    borrowed: NormalizedUnitNumber(800_000_000),
-    marketSize: NormalizedUnitNumber(1_000_000_000),
+    borrowed: NormalizedNumber(800_000_000),
+    marketSize: NormalizedNumber(1_000_000_000),
     utilizationRate: Percentage(0.8),
   },
 }

@@ -3,14 +3,14 @@ import {
   ValidateBalanceArgs,
   validateTransferFromUser,
 } from '@/features/dialogs/common/logic/transfer-from-user/validation'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { z } from 'zod'
 import { ConvertStablesFormSchema } from './schema'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function getConvertStablesFormValidator(tokenRepository: TokenRepository) {
   return ConvertStablesFormSchema.superRefine((field, ctx) => {
-    const amount = NormalizedUnitNumber(field.amount === '' ? '0' : field.amount)
+    const amount = NormalizedNumber(field.amount === '' ? '0' : field.amount)
     const balance = tokenRepository.findOneBalanceBySymbol(field.inTokenSymbol)
 
     const issue = validateTransferFromUser({
@@ -30,8 +30,8 @@ export function getConvertStablesFormValidator(tokenRepository: TokenRepository)
 export interface ValidateConvertStablesWithPsm3Args extends ValidateBalanceArgs {
   isConvertToUsdc: boolean
   psm3: {
-    usdsBalance: NormalizedUnitNumber
-    usdcBalance: NormalizedUnitNumber
+    usdsBalance: NormalizedNumber
+    usdcBalance: NormalizedNumber
   }
 }
 export function validateConvertStablesWithPsm3({

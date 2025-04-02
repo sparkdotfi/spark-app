@@ -9,7 +9,7 @@ import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from 
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { bigNumberify } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { useForm } from 'react-hook-form'
 import { mainnet } from 'viem/chains'
@@ -22,11 +22,11 @@ const susds = tokens.sUSDS
 const usdc = tokens.USDC
 const mockTokenRepository = new TokenRepository(
   [
-    { token: dai, balance: NormalizedUnitNumber(100) },
-    { token: sdai, balance: NormalizedUnitNumber(100) },
-    { token: usds, balance: NormalizedUnitNumber(100) },
-    { token: susds, balance: NormalizedUnitNumber(100) },
-    { token: usdc, balance: NormalizedUnitNumber(100) },
+    { token: dai, balance: NormalizedNumber(100) },
+    { token: sdai, balance: NormalizedNumber(100) },
+    { token: usds, balance: NormalizedNumber(100) },
+    { token: susds, balance: NormalizedNumber(100) },
+    { token: usdc, balance: NormalizedNumber(100) },
   ],
   {
     DAI: dai.symbol,
@@ -79,14 +79,14 @@ const farm: Farm = {
     name: 'Stablecoins',
     assets: [tokens.DAI.symbol, tokens.USDC.symbol],
   },
-  rewardRate: NormalizedUnitNumber(100),
+  rewardRate: NormalizedNumber(100),
   earnedTimestamp: timestamp,
   periodFinish: timestamp * 5,
-  totalSupply: NormalizedUnitNumber(123456),
-  totalRewarded: NormalizedUnitNumber(12345),
+  totalSupply: NormalizedNumber(123456),
+  totalRewarded: NormalizedNumber(12345),
   depositors: 1111,
-  earned: NormalizedUnitNumber(52),
-  staked: NormalizedUnitNumber(100),
+  earned: NormalizedNumber(52),
+  staked: NormalizedNumber(100),
   rewardType: 'token',
 }
 
@@ -110,24 +110,24 @@ const meta: Meta<typeof UnstakeView> = {
     selectableAssets: [
       {
         token: tokens.USDS,
-        balance: NormalizedUnitNumber(50_000),
+        balance: NormalizedNumber(50_000),
       },
       {
         token: tokens.DAI,
-        balance: NormalizedUnitNumber(1),
+        balance: NormalizedNumber(1),
       },
       {
         token: tokens.sDAI,
-        balance: NormalizedUnitNumber(1),
+        balance: NormalizedNumber(1),
       },
     ],
     assetsFields: {
       selectedAsset: {
         token: tokens.USDS,
-        balance: NormalizedUnitNumber(50_000),
+        balance: NormalizedNumber(50_000),
         value: '2000',
       },
-      maxValue: NormalizedUnitNumber(50_000),
+      maxValue: NormalizedNumber(50_000),
       maxSelectedFieldName: 'isMaxSelected',
       changeAsset: () => {},
     },
@@ -135,7 +135,7 @@ const meta: Meta<typeof UnstakeView> = {
       {
         type: 'unstake',
         token: tokens.USDS,
-        amount: NormalizedUnitNumber(100),
+        amount: NormalizedNumber(100),
         farm: farm.address,
         exit: false,
       },
@@ -150,10 +150,10 @@ const meta: Meta<typeof UnstakeView> = {
       stakingToken: tokens.USDS,
       rewardToken: tokens.SKY,
       isExiting: false,
-      earnedRewards: NormalizedUnitNumber(2311.34),
+      earnedRewards: NormalizedNumber(2311.34),
       routeToOutcomeToken: [
-        { token: tokens.USDS, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
-        { token: tokens.USDC, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
+        { token: tokens.USDS, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
+        { token: tokens.USDC, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
       ],
     },
     exitFarmSwitchInfo: {
@@ -162,7 +162,7 @@ const meta: Meta<typeof UnstakeView> = {
       checked: false,
       reward: {
         token: tokens.SKY,
-        value: NormalizedUnitNumber(2311.34),
+        value: NormalizedNumber(2311.34),
       },
     },
     actionsContext: {
@@ -188,14 +188,14 @@ export const WithExitFarmSwitch: Story = {
       checked: true,
       reward: {
         token: tokens.SKY,
-        value: NormalizedUnitNumber(2311.34),
+        value: NormalizedNumber(2311.34),
       },
     },
     objectives: [
       {
         type: 'unstake',
         token: tokens.USDS,
-        amount: NormalizedUnitNumber(100),
+        amount: NormalizedNumber(100),
         farm: farm.address,
         exit: true,
       },
@@ -203,10 +203,10 @@ export const WithExitFarmSwitch: Story = {
     assetsFields: {
       selectedAsset: {
         token: tokens.USDS,
-        balance: NormalizedUnitNumber(50_000),
+        balance: NormalizedNumber(50_000),
         value: '50000',
       },
-      maxValue: NormalizedUnitNumber(50_000),
+      maxValue: NormalizedNumber(50_000),
       maxSelectedFieldName: 'isMaxSelected',
       changeAsset: () => {},
     },
@@ -215,10 +215,10 @@ export const WithExitFarmSwitch: Story = {
       stakingToken: tokens.USDS,
       rewardToken: tokens.SKY,
       isExiting: true,
-      earnedRewards: NormalizedUnitNumber(2311.34),
+      earnedRewards: NormalizedNumber(2311.34),
       routeToOutcomeToken: [
-        { token: tokens.USDS, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
-        { token: tokens.USDC, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
+        { token: tokens.USDS, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
+        { token: tokens.USDC, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
       ],
     },
   },
@@ -232,8 +232,8 @@ export const WithExitFarmSwitchZeroApy: Story = {
       onSwitch: () => {},
       checked: true,
       reward: {
-        token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
-        value: NormalizedUnitNumber(2311.34),
+        token: tokens.SKY.clone({ unitPriceUsd: NormalizedNumber.ZERO }),
+        value: NormalizedNumber(2311.34),
       },
     },
   },
@@ -247,16 +247,16 @@ export const WithExitFarmSwitchUnchecked: Story = {
       checked: false,
       reward: {
         token: tokens.SKY,
-        value: NormalizedUnitNumber(2311.34),
+        value: NormalizedNumber(2311.34),
       },
     },
     assetsFields: {
       selectedAsset: {
         token: tokens.USDS,
-        balance: NormalizedUnitNumber(50_000),
+        balance: NormalizedNumber(50_000),
         value: '50000',
       },
-      maxValue: NormalizedUnitNumber(50_000),
+      maxValue: NormalizedNumber(50_000),
       maxSelectedFieldName: 'isMaxSelected',
       changeAsset: () => {},
     },
@@ -264,7 +264,7 @@ export const WithExitFarmSwitchUnchecked: Story = {
       {
         type: 'unstake',
         token: tokens.USDS,
-        amount: NormalizedUnitNumber(100),
+        amount: NormalizedNumber(100),
         farm: farm.address,
         exit: false,
       },
@@ -281,7 +281,7 @@ export const NoApiData: Story = {
       apy: undefined,
       totalRewarded: undefined,
       depositors: undefined,
-      rewardToken: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
+      rewardToken: tokens.SKY.clone({ unitPriceUsd: NormalizedNumber.ZERO }),
     },
   },
 }
@@ -295,35 +295,35 @@ export const NoApiDataMaxValue: Story = {
       apy: undefined,
       totalRewarded: undefined,
       depositors: undefined,
-      rewardToken: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
+      rewardToken: tokens.SKY.clone({ unitPriceUsd: NormalizedNumber.ZERO }),
     },
     exitFarmSwitchInfo: {
       showSwitch: true,
       onSwitch: () => {},
       checked: false,
       reward: {
-        token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
-        value: NormalizedUnitNumber(2311.34),
+        token: tokens.SKY.clone({ unitPriceUsd: NormalizedNumber.ZERO }),
+        value: NormalizedNumber(2311.34),
       },
     },
     txOverview: {
       status: 'success',
       stakingToken: tokens.USDS,
-      rewardToken: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
+      rewardToken: tokens.SKY.clone({ unitPriceUsd: NormalizedNumber.ZERO }),
       isExiting: false,
-      earnedRewards: NormalizedUnitNumber(2311.34),
+      earnedRewards: NormalizedNumber(2311.34),
       routeToOutcomeToken: [
-        { token: tokens.USDS, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
-        { token: tokens.USDC, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
+        { token: tokens.USDS, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
+        { token: tokens.USDC, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
       ],
     },
     assetsFields: {
       selectedAsset: {
         token: tokens.USDS,
-        balance: NormalizedUnitNumber(50_000),
+        balance: NormalizedNumber(50_000),
         value: '50000',
       },
-      maxValue: NormalizedUnitNumber(50_000),
+      maxValue: NormalizedNumber(50_000),
       maxSelectedFieldName: 'isMaxSelected',
       changeAsset: () => {},
     },
@@ -331,7 +331,7 @@ export const NoApiDataMaxValue: Story = {
       {
         type: 'unstake',
         token: tokens.USDS,
-        amount: NormalizedUnitNumber(100),
+        amount: NormalizedNumber(100),
         farm: farm.address,
         exit: false,
       },

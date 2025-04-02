@@ -1,6 +1,6 @@
 import { infoSkyApiUrl } from '@/config/consts'
 import { Farm } from '@/domain/farms/types'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { UseQueryResult, queryOptions, useQuery } from '@tanstack/react-query'
 import { Address, zeroAddress } from 'viem'
 import { z } from 'zod'
@@ -11,9 +11,9 @@ export interface UseRewardPointsDataParams {
 }
 
 export type UseRewardPointsDataResult = UseQueryResult<{
-  rewardTokensPerSecond: NormalizedUnitNumber
-  rewardBalance: NormalizedUnitNumber
-  balance: NormalizedUnitNumber
+  rewardTokensPerSecond: NormalizedNumber
+  rewardBalance: NormalizedNumber
+  balance: NormalizedNumber
   updateTimestamp: number
 } | null>
 
@@ -70,14 +70,14 @@ const rewardsPointsDataResponseSchema = z.object({
   reward_tokens_per_second: z
     .string()
     .optional()
-    .transform((value) => NormalizedUnitNumber(value ?? '0')),
+    .transform((value) => NormalizedNumber(value ?? '0')),
   reward_balance: z
     .string()
     .optional()
-    .transform((value) => NormalizedUnitNumber(value ?? '0')),
+    .transform((value) => NormalizedNumber(value ?? '0')),
   balance: z
     .string()
     .optional()
-    .transform((value) => NormalizedUnitNumber(value ?? '0')),
+    .transform((value) => NormalizedNumber(value ?? '0')),
   reward_datetime_updated: z.coerce.date().optional(),
 })

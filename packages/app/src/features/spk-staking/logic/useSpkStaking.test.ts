@@ -9,7 +9,7 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupHookRenderer } from '@/test/integration/setupHookRenderer'
-import { CheckedAddress, NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { CheckedAddress, NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { erc20Abi, parseEther } from 'viem'
 import { mainnet } from 'viem/chains'
@@ -227,7 +227,7 @@ describe(useSpkStaking.name, () => {
     await waitFor(() => {
       expect(result.current.chainId).toBe(chainId)
       expect(result.current.generalStats).toMatchObject({
-        tvl: NormalizedUnitNumber(1000000),
+        tvl: NormalizedNumber(1000000),
         stakers: 100,
         apr: Percentage(0.1),
       })
@@ -235,7 +235,7 @@ describe(useSpkStaking.name, () => {
         type: 'active',
         props: {
           apy: Percentage(0.1),
-          stakedAmount: NormalizedUnitNumber(10),
+          stakedAmount: NormalizedNumber(10),
           rewardToken: expect.objectContaining({
             symbol: 'SPK',
             address: spk,
@@ -244,7 +244,7 @@ describe(useSpkStaking.name, () => {
             symbol: 'USDS',
             address: usds,
           }),
-          claimableRewards: NormalizedUnitNumber(1),
+          claimableRewards: NormalizedNumber(1),
           calculateReward: expect.any(Function),
         },
       })
@@ -254,7 +254,7 @@ describe(useSpkStaking.name, () => {
             symbol: 'SPK',
             address: spk,
           }),
-          amount: NormalizedUnitNumber(3),
+          amount: NormalizedNumber(3),
           timeToClaim: 0,
           claimableAt: expect.any(Date),
           action: expect.any(Function),
@@ -266,7 +266,7 @@ describe(useSpkStaking.name, () => {
             symbol: 'SPK',
             address: spk,
           }),
-          amount: NormalizedUnitNumber(4),
+          amount: NormalizedNumber(4),
           timeToClaim: 30,
           claimableAt: expect.any(Date),
           action: expect.any(Function),
@@ -278,7 +278,7 @@ describe(useSpkStaking.name, () => {
             symbol: 'SPK',
             address: spk,
           }),
-          amount: NormalizedUnitNumber(8),
+          amount: NormalizedNumber(8),
           timeToClaim: 90,
           claimableAt: expect.any(Date),
           action: expect.any(Function),
@@ -291,7 +291,7 @@ describe(useSpkStaking.name, () => {
           symbol: 'SPK',
           address: spk,
         }),
-        balance: NormalizedUnitNumber(10),
+        balance: NormalizedNumber(10),
         blockExplorerLink: `https://etherscan.io/address/${spk}`,
         openStakeDialog: expect.any(Function),
       })

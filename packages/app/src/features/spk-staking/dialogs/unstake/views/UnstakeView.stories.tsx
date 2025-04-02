@@ -2,7 +2,7 @@ import { testSpkStakingAbi } from '@/config/contracts-generated'
 import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { useForm } from 'react-hook-form'
 import { encodeFunctionResult } from 'viem'
@@ -36,24 +36,24 @@ const meta: Meta<typeof UnstakeView> = {
     selectableAssets: [
       {
         token: tokens.SPK,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
       },
     ],
     assetsFields: {
       selectedAsset: {
         token: tokens.SPK,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
         value: '2000',
       },
-      maxValue: NormalizedUnitNumber(50000),
+      maxValue: NormalizedNumber(50000),
       changeAsset: () => {},
     },
     objectives: [
       {
         type: 'unstakeSpk',
         spk: tokens.SPK,
-        amount: NormalizedUnitNumber(100),
-        accountActiveShares: NormalizedUnitNumber(100).toBaseUnit(18),
+        amount: NormalizedNumber(100),
+        accountActiveShares: NormalizedNumber(100).toBaseUnit(18),
         unstakeAll: false,
       },
     ],
@@ -101,8 +101,8 @@ export const EmptyInput: Story = {
       {
         type: 'unstakeSpk',
         spk: tokens.SPK,
-        amount: NormalizedUnitNumber.ZERO,
-        accountActiveShares: NormalizedUnitNumber(100).toBaseUnit(18),
+        amount: NormalizedNumber.ZERO,
+        accountActiveShares: NormalizedNumber(100).toBaseUnit(18),
         unstakeAll: false,
       },
     ],

@@ -1,14 +1,14 @@
 import { tokens } from '@sb/tokens'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { sortByUsdValue } from './sorters'
 
 describe(sortByUsdValue, () => {
   it('should sort by increasing usd value', () => {
     const balances = [
-      { token: tokens.DAI, balance: NormalizedUnitNumber('4000') },
-      { token: tokens.USDC, balance: NormalizedUnitNumber('100') },
-      { token: tokens.ETH, balance: NormalizedUnitNumber('1') }, // ~2000 USD
+      { token: tokens.DAI, balance: NormalizedNumber('4000') },
+      { token: tokens.USDC, balance: NormalizedNumber('100') },
+      { token: tokens.ETH, balance: NormalizedNumber('1') }, // ~2000 USD
     ]
 
     const sortedBalances = balances.sort((a, b) => sortByUsdValue(a, b, 'balance'))

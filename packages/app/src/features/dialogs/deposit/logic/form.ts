@@ -3,7 +3,7 @@ import { MarketInfo } from '@/domain/market-info/marketInfo'
 import { depositValidationIssueToMessage, validateDeposit } from '@/domain/market-validators/validateDeposit'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { MarketWalletInfo } from '@/domain/wallet/useMarketWalletInfo'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { UseFormReturn } from 'react-hook-form'
 import { z } from 'zod'
 import { AssetInputSchema } from '../../common/logic/form'
@@ -12,7 +12,7 @@ import { FormFieldsForDialog } from '../../common/types'
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function getDepositDialogFormValidator(walletInfo: MarketWalletInfo, marketInfo: MarketInfo) {
   return AssetInputSchema.superRefine((field, ctx) => {
-    const value = NormalizedUnitNumber(field.value === '' ? '0' : field.value)
+    const value = NormalizedNumber(field.value === '' ? '0' : field.value)
     const balance = walletInfo.findWalletBalanceForSymbol(field.symbol)
     const supplyingReserve = marketInfo.findOneReserveBySymbol(field.symbol)
 
@@ -23,7 +23,7 @@ export function getDepositDialogFormValidator(walletInfo: MarketWalletInfo, mark
         totalLiquidity: supplyingReserve.totalLiquidity,
         supplyCap: supplyingReserve.supplyCap,
       },
-      user: { balance, alreadyDepositedValueUSD: NormalizedUnitNumber('0') },
+      user: { balance, alreadyDepositedValueUSD: NormalizedNumber('0') },
     })
     if (issue) {
       ctx.addIssue({

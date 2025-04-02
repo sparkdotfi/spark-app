@@ -1,7 +1,7 @@
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { mainnet } from 'viem/chains'
 import { ClaimAllPanel } from './ClaimAllPanel'
@@ -17,27 +17,27 @@ const meta: Meta<typeof ClaimAllPanel> = {
       isError: false,
       error: null,
       data: {
-        usdSum: NormalizedUnitNumber(144.46),
+        usdSum: NormalizedNumber(144.46),
         isClaimEnabled: true,
         claimableRewardsWithPrice: [
           {
             token: tokens.wstETH,
-            amountPending: NormalizedUnitNumber(0.01),
-            amountToClaim: NormalizedUnitNumber(0.02),
+            amountPending: NormalizedNumber(0.01),
+            amountToClaim: NormalizedNumber(0.02),
             chainId: mainnet.id,
           },
           {
             token: tokens.sUSDS,
-            amountPending: NormalizedUnitNumber(23),
-            amountToClaim: NormalizedUnitNumber(97),
+            amountPending: NormalizedNumber(23),
+            amountToClaim: NormalizedNumber(97),
             chainId: mainnet.id,
           },
         ],
         claimableRewardsWithoutPrice: [
           {
             token: tokens.RED,
-            amountPending: NormalizedUnitNumber(122),
-            amountToClaim: NormalizedUnitNumber(1721),
+            amountPending: NormalizedNumber(122),
+            amountToClaim: NormalizedNumber(1721),
             chainId: mainnet.id,
           },
         ],
@@ -84,13 +84,13 @@ export const OneTokenWithoutPrice: Story = {
       isError: false,
       error: null,
       data: {
-        usdSum: NormalizedUnitNumber.ZERO,
+        usdSum: NormalizedNumber.ZERO,
         isClaimEnabled: true,
         claimableRewardsWithoutPrice: [
           {
             token: tokens.RED,
-            amountPending: NormalizedUnitNumber(1232),
-            amountToClaim: NormalizedUnitNumber(1721),
+            amountPending: NormalizedNumber(1232),
+            amountToClaim: NormalizedNumber(1721),
             chainId: mainnet.id,
           },
         ],
@@ -108,19 +108,19 @@ export const TwoTokensWithoutPrice: Story = {
       isError: false,
       error: null,
       data: {
-        usdSum: NormalizedUnitNumber.ZERO,
+        usdSum: NormalizedNumber.ZERO,
         isClaimEnabled: true,
         claimableRewardsWithoutPrice: [
           {
             token: tokens.RED,
-            amountPending: NormalizedUnitNumber(1232),
-            amountToClaim: NormalizedUnitNumber(1721),
+            amountPending: NormalizedNumber(1232),
+            amountToClaim: NormalizedNumber(1721),
             chainId: mainnet.id,
           },
           {
             token: tokens.ABC,
-            amountPending: NormalizedUnitNumber(12),
-            amountToClaim: NormalizedUnitNumber(243),
+            amountPending: NormalizedNumber(12),
+            amountToClaim: NormalizedNumber(243),
             chainId: mainnet.id,
           },
         ],
@@ -139,27 +139,27 @@ export const NothingToClaim: Story = {
       isError: false,
       error: null,
       data: {
-        usdSum: NormalizedUnitNumber.ZERO,
+        usdSum: NormalizedNumber.ZERO,
         isClaimEnabled: false,
         claimableRewardsWithPrice: [
           {
             token: tokens.wstETH,
-            amountPending: NormalizedUnitNumber.ZERO,
-            amountToClaim: NormalizedUnitNumber.ZERO,
+            amountPending: NormalizedNumber.ZERO,
+            amountToClaim: NormalizedNumber.ZERO,
             chainId: mainnet.id,
           },
           {
             token: tokens.sUSDS,
-            amountPending: NormalizedUnitNumber.ZERO,
-            amountToClaim: NormalizedUnitNumber.ZERO,
+            amountPending: NormalizedNumber.ZERO,
+            amountToClaim: NormalizedNumber.ZERO,
             chainId: mainnet.id,
           },
         ],
         claimableRewardsWithoutPrice: [
           {
             token: tokens.RED,
-            amountPending: NormalizedUnitNumber.ZERO,
-            amountToClaim: NormalizedUnitNumber.ZERO,
+            amountPending: NormalizedNumber.ZERO,
+            amountToClaim: NormalizedNumber.ZERO,
             chainId: mainnet.id,
           },
         ],

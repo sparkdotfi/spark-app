@@ -2,7 +2,7 @@ import { testSpkStakingAbi } from '@/config/contracts-generated'
 import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { encodeFunctionResult } from 'viem'
 import { FinalizeUnstakeView, FinalizeUnstakeViewProps } from './FinalizeUnstakeView'
@@ -28,7 +28,7 @@ const meta: Meta<typeof FinalizeUnstakeView> = {
       {
         type: 'finalizeSpkUnstake',
         spk: tokens.SPK,
-        amount: NormalizedUnitNumber(100),
+        amount: NormalizedNumber(100),
         epochs: [1, 2, 3, 4, 5],
       },
     ],
@@ -38,7 +38,7 @@ const meta: Meta<typeof FinalizeUnstakeView> = {
       goToSuccessScreen: () => {},
     },
     spk: tokens.SPK,
-    unstakeAmount: NormalizedUnitNumber(100),
+    unstakeAmount: NormalizedNumber(100),
   } satisfies FinalizeUnstakeViewProps,
 }
 

@@ -3,7 +3,7 @@ import { SavingsConverter } from '@/domain/savings-converters/types'
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { QueryKey, useSuspenseQuery } from '@tanstack/react-query'
 import { arbitrum, base } from 'viem/chains'
 import { Config, useConfig } from 'wagmi'
@@ -25,7 +25,7 @@ export interface UseWithdrawFromSavingsValidatorParams {
   chainId: number
   tokenRepository: TokenRepository
   savingsToken: Token
-  savingsTokenBalance: NormalizedUnitNumber
+  savingsTokenBalance: NormalizedNumber
   savingsConverter: SavingsConverter
 }
 
@@ -60,7 +60,7 @@ export interface GetValidatorConfigParams {
   tokenRepository: TokenRepository
   wagmiConfig: Config
   savingsToken: Token
-  savingsTokenBalance: NormalizedUnitNumber
+  savingsTokenBalance: NormalizedNumber
   savingsConverter: SavingsConverter
 }
 export function getValidatorConfig({
@@ -80,7 +80,7 @@ export function getValidatorConfig({
       fetchParamsQueryFn: validatorQuery.queryFn,
       createValidator: ({ usds: usdsBalance, usdc: usdcBalance }) =>
         getSavingsWithdrawDialogFormValidator({ savingsConverter, savingsTokenBalance }).superRefine((field, ctx) => {
-          const value = NormalizedUnitNumber(field.value === '' ? '0' : field.value)
+          const value = NormalizedNumber(field.value === '' ? '0' : field.value)
           const isUsdcWithdraw = field.symbol === usdc.symbol
           const isMaxSelected = field.isMaxSelected
           const usdBalance = savingsConverter.convertToAssets({ shares: savingsTokenBalance })

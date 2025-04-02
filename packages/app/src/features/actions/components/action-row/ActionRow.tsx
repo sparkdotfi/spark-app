@@ -6,7 +6,7 @@ import { HorizontalScroll } from '@/ui/atoms/horizontal-scroll/HorizontalScroll'
 import { IconStack } from '@/ui/molecules/icon-stack/IconStack'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { assert, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { assert, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { cva } from 'class-variance-authority'
 import { ComponentType, ReactNode, createContext, useContext } from 'react'
 import { ActionHandlerState, BatchActionHandlerState } from '../../logic/types'
@@ -108,7 +108,7 @@ function TitleTokens({ tokens }: { tokens: Token[] }) {
 }
 
 // @note: Optional component, displayed only in extended action row layout
-function Amount({ token, amount }: { token: Token; amount: NormalizedUnitNumber }) {
+function Amount({ token, amount }: { token: Token; amount: NormalizedNumber }) {
   const { actionHandlerState, layout } = useActionRowContext()
 
   if (layout === 'compact') {

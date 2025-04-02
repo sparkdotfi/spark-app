@@ -2,7 +2,7 @@ import { SimplifiedQueryResult, transformSimplifiedQueryResult } from '@/domain/
 import { useClaimableRewardsQuery } from '@/domain/spark-rewards/useClaimableRewardsQuery'
 import { useOpenDialog } from '@/domain/state/dialogs'
 import { claimSparkRewardsDialogConfig } from '@/features/dialogs/claim-spark-rewards/ClaimSparkRewardsDialog'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useChainId, useSwitchChain } from 'wagmi'
 import { ClaimableReward } from '../types'
 
@@ -22,7 +22,7 @@ export function useClaimableRewards(): UseClaimableRewardsResult {
   return transformSimplifiedQueryResult(claimableRewardsResult, (data) =>
     data.map(({ rewardToken, cumulativeAmount, pendingAmount, preClaimed, chainId }) => {
       const isConnectedChainReward = chainId === connectedChainId
-      const amountToClaim = NormalizedUnitNumber(cumulativeAmount.minus(preClaimed))
+      const amountToClaim = NormalizedNumber(cumulativeAmount.minus(preClaimed))
       return {
         token: rewardToken,
         amountPending: pendingAmount,

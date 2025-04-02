@@ -2,7 +2,7 @@ import { getChainConfigEntry } from '@/config/chain'
 import { NativeAssetInfo } from '@/config/chain/types'
 import { fromRay } from '@/utils/math'
 import { assert, CheckedAddress, raise } from '@sparkdotfi/common-universal'
-import { BaseUnitNumber, NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { bigNumberify } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { Token } from '../types/Token'
@@ -45,25 +45,25 @@ export interface Reserve {
   eModeCategory?: EModeCategory
 
   // @note: available liquidity respects borrow cap, so it can be negative when the cap is reached and breached (interests)
-  availableLiquidity: NormalizedUnitNumber
-  availableLiquidityUSD: NormalizedUnitNumber
-  unborrowedLiquidity: NormalizedUnitNumber
-  supplyCap?: NormalizedUnitNumber
-  borrowCap?: NormalizedUnitNumber
-  totalLiquidity: NormalizedUnitNumber // = supplied
-  totalLiquidityUSD: NormalizedUnitNumber
-  totalDebt: NormalizedUnitNumber
-  totalDebtUSD: NormalizedUnitNumber
-  totalVariableDebt: NormalizedUnitNumber
-  totalVariableDebtUSD: NormalizedUnitNumber
-  isolationModeTotalDebt: NormalizedUnitNumber // @note: this is already divided by debtCeilingDecimals
-  debtCeiling: NormalizedUnitNumber // @note: this is already divided by debtCeilingDecimals
+  availableLiquidity: NormalizedNumber
+  availableLiquidityUSD: NormalizedNumber
+  unborrowedLiquidity: NormalizedNumber
+  supplyCap?: NormalizedNumber
+  borrowCap?: NormalizedNumber
+  totalLiquidity: NormalizedNumber // = supplied
+  totalLiquidityUSD: NormalizedNumber
+  totalDebt: NormalizedNumber
+  totalDebtUSD: NormalizedNumber
+  totalVariableDebt: NormalizedNumber
+  totalVariableDebtUSD: NormalizedNumber
+  isolationModeTotalDebt: NormalizedNumber // @note: this is already divided by debtCeilingDecimals
+  debtCeiling: NormalizedNumber // @note: this is already divided by debtCeilingDecimals
   supplyAPY: Percentage | undefined
   maxLtv: Percentage
   liquidationThreshold: Percentage
   liquidationBonus: Percentage
   reserveFactor: Percentage
-  aTokenBalance: NormalizedUnitNumber
+  aTokenBalance: NormalizedNumber
 
   lastUpdateTimestamp: number
 
@@ -91,19 +91,19 @@ export interface UserPosition {
   reserve: Reserve
   scaledVariableDebt: BigNumber
   scaledATokenBalance: BigNumber
-  collateralBalance: NormalizedUnitNumber
-  borrowBalance: NormalizedUnitNumber
+  collateralBalance: NormalizedNumber
+  borrowBalance: NormalizedNumber
 }
 
 export interface UserPositionSummary {
   loanToValue: Percentage
   maxLoanToValue: Percentage
   healthFactor: BigNumber | undefined
-  availableBorrowsUSD: NormalizedUnitNumber
-  totalBorrowsUSD: NormalizedUnitNumber
+  availableBorrowsUSD: NormalizedNumber
+  totalBorrowsUSD: NormalizedNumber
   currentLiquidationThreshold: Percentage
-  totalCollateralUSD: NormalizedUnitNumber
-  totalLiquidityUSD: NormalizedUnitNumber
+  totalCollateralUSD: NormalizedNumber
+  totalLiquidityUSD: NormalizedNumber
 }
 
 export type EModeState = { enabled: false } | { enabled: true; category: EModeCategory }
@@ -127,7 +127,7 @@ export type EModeCategories = Record<number, EModeCategory>
 
 export interface UserReward {
   assets: CheckedAddress[]
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   token: Token
   incentiveControllerAddress: CheckedAddress
 }
@@ -288,19 +288,19 @@ export function marketInfoSelectFn({ timeAdvance }: MarketInfoSelectFnParams = {
         isSiloedBorrowing: r.reserve.isSiloedBorrowing,
         isBorrowableInIsolation: r.reserve.borrowableInIsolation,
 
-        availableLiquidity: NormalizedUnitNumber(r.reserve.formattedAvailableLiquidity), // @note: r.reserve.availableLiquidity doesn't respect borrow caps so we use formattedAvailableLiquidity which does
-        availableLiquidityUSD: NormalizedUnitNumber(r.reserve.availableLiquidityUSD),
-        unborrowedLiquidity: NormalizedUnitNumber(r.reserve.unborrowedLiquidity),
-        supplyCap: r.reserve.supplyCap !== '0' ? NormalizedUnitNumber(r.reserve.supplyCap) : undefined,
-        borrowCap: r.reserve.borrowCap !== '0' ? NormalizedUnitNumber(r.reserve.borrowCap) : undefined,
-        totalLiquidity: NormalizedUnitNumber(r.reserve.totalLiquidity),
-        totalLiquidityUSD: NormalizedUnitNumber(r.reserve.totalLiquidityUSD),
-        totalDebt: NormalizedUnitNumber(r.reserve.totalDebt),
-        totalDebtUSD: NormalizedUnitNumber(r.reserve.totalDebtUSD),
-        totalVariableDebt: NormalizedUnitNumber(r.reserve.totalVariableDebt),
-        totalVariableDebtUSD: NormalizedUnitNumber(r.reserve.totalVariableDebtUSD),
-        isolationModeTotalDebt: NormalizedUnitNumber(r.reserve.isolationModeTotalDebtUSD),
-        debtCeiling: NormalizedUnitNumber(r.reserve.debtCeilingUSD),
+        availableLiquidity: NormalizedNumber(r.reserve.formattedAvailableLiquidity), // @note: r.reserve.availableLiquidity doesn't respect borrow caps so we use formattedAvailableLiquidity which does
+        availableLiquidityUSD: NormalizedNumber(r.reserve.availableLiquidityUSD),
+        unborrowedLiquidity: NormalizedNumber(r.reserve.unborrowedLiquidity),
+        supplyCap: r.reserve.supplyCap !== '0' ? NormalizedNumber(r.reserve.supplyCap) : undefined,
+        borrowCap: r.reserve.borrowCap !== '0' ? NormalizedNumber(r.reserve.borrowCap) : undefined,
+        totalLiquidity: NormalizedNumber(r.reserve.totalLiquidity),
+        totalLiquidityUSD: NormalizedNumber(r.reserve.totalLiquidityUSD),
+        totalDebt: NormalizedNumber(r.reserve.totalDebt),
+        totalDebtUSD: NormalizedNumber(r.reserve.totalDebtUSD),
+        totalVariableDebt: NormalizedNumber(r.reserve.totalVariableDebt),
+        totalVariableDebtUSD: NormalizedNumber(r.reserve.totalVariableDebtUSD),
+        isolationModeTotalDebt: NormalizedNumber(r.reserve.isolationModeTotalDebtUSD),
+        debtCeiling: NormalizedNumber(r.reserve.debtCeilingUSD),
         supplyAPY: supplyAvailabilityStatus === 'no' ? undefined : Percentage(r.reserve.supplyAPY), // when supplying is disabled, APY is not available
         maxLtv: parseRawPercentage(r.reserve.baseLTVasCollateral),
         liquidationThreshold: parseRawPercentage(r.reserve.reserveLiquidationThreshold),
@@ -309,7 +309,7 @@ export function marketInfoSelectFn({ timeAdvance }: MarketInfoSelectFnParams = {
           : Percentage(0),
         variableBorrowApy: borrowEligibilityStatus === 'no' ? undefined : Percentage(r.reserve.variableBorrowAPY), // when borrowing is disabled, APY is not available
         reserveFactor: Percentage(r.reserve.reserveFactor),
-        aTokenBalance: NormalizedUnitNumber(r.underlyingBalance),
+        aTokenBalance: NormalizedNumber(r.underlyingBalance),
 
         lastUpdateTimestamp: r.reserve.lastUpdateTimestamp,
 
@@ -344,8 +344,8 @@ export function marketInfoSelectFn({ timeAdvance }: MarketInfoSelectFnParams = {
         reserve,
         scaledATokenBalance: bigNumberify(r.scaledATokenBalance),
         scaledVariableDebt: bigNumberify(r.scaledVariableDebt),
-        collateralBalance: NormalizedUnitNumber(formattedReserve.underlyingBalance),
-        borrowBalance: NormalizedUnitNumber(formattedReserve.variableBorrows),
+        collateralBalance: NormalizedNumber(formattedReserve.underlyingBalance),
+        borrowBalance: NormalizedNumber(formattedReserve.variableBorrows),
       }
     })
 

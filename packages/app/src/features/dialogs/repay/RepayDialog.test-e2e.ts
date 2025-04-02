@@ -4,7 +4,7 @@ import { MyPortfolioPageObject } from '@/pages/MyPortfolio.PageObject'
 import { DEFAULT_BLOCK_NUMBER, TOKENS_ON_FORK } from '@/test/e2e/constants'
 import { TestContext, setup } from '@/test/e2e/setup'
 import { test } from '@playwright/test'
-import { BaseUnitNumber, NormalizedUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, NormalizedNumber, toBigInt } from '@sparkdotfi/common-universal'
 import { mainnet } from 'viem/chains'
 import { DialogPageObject } from '../common/Dialog.PageObject'
 
@@ -201,7 +201,7 @@ test.describe('Repay dialog', () => {
       } as const
 
       await overrideDaiBalance({
-        balance: NormalizedUnitNumber(newBalance),
+        balance: NormalizedNumber(newBalance),
         testContext,
       })
       await page.reload()
@@ -227,9 +227,9 @@ test.describe('Repay dialog', () => {
         asset: 'DAI',
         amount: daiToBorrow,
       } as const
-      const daiDebtIn1Epoch = NormalizedUnitNumber(daiToBorrow).times(daiDebtIncreaseIn1Epoch)
+      const daiDebtIn1Epoch = NormalizedNumber(daiToBorrow).times(daiDebtIncreaseIn1Epoch)
       // newBalance = (daiToBorrow, daiDebtIn1Epoch) / 2 - a number somewhere between daiToBorrow and daiDebtIn1Epoch
-      const newBalance = NormalizedUnitNumber(daiDebtIn1Epoch.plus(daiToBorrow).div(2))
+      const newBalance = NormalizedNumber(daiDebtIn1Epoch.plus(daiToBorrow).div(2))
       await overrideDaiBalance({
         balance: newBalance,
         testContext,
@@ -261,10 +261,10 @@ test.describe('Repay dialog', () => {
         amount: daiToBorrow,
       } as const
 
-      const daiDebtIn1Epoch = NormalizedUnitNumber(daiToBorrow).times(daiDebtIncreaseIn1Epoch)
-      const daiDebtIn2Epochs = NormalizedUnitNumber(daiToBorrow).times(daiDebtIncreaseIn2Epochs)
+      const daiDebtIn1Epoch = NormalizedNumber(daiToBorrow).times(daiDebtIncreaseIn1Epoch)
+      const daiDebtIn2Epochs = NormalizedNumber(daiToBorrow).times(daiDebtIncreaseIn2Epochs)
       // newBalance = (daiDebtIn1Epoch + daiDebtIn2Epochs) / 2 - a number somewhere between daiDebtIn1Epoch and daiDebtIn2Epochs
-      const newBalance = NormalizedUnitNumber(daiDebtIn2Epochs.plus(daiDebtIn1Epoch).div(2))
+      const newBalance = NormalizedNumber(daiDebtIn2Epochs.plus(daiDebtIn1Epoch).div(2))
       await overrideDaiBalance({
         balance: newBalance,
         testContext,
@@ -623,7 +623,7 @@ test.describe('Repay dialog', () => {
 async function overrideDaiBalance({
   balance,
   testContext,
-}: { balance: NormalizedUnitNumber; testContext: TestContext<'connected-random'> }): Promise<void> {
+}: { balance: NormalizedNumber; testContext: TestContext<'connected-random'> }): Promise<void> {
   const dai = TOKENS_ON_FORK[mainnet.id].DAI
   const daiBalance = toBigInt(BaseUnitNumber(balance.shiftedBy(dai.decimals)))
   return testContext.testnetController.client.setErc20Balance(dai.address, testContext.account, daiBalance)

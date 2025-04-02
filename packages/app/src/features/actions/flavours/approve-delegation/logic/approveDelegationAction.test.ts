@@ -7,14 +7,14 @@ import { handlers } from '@/test/integration/mockTransport'
 import { createUpdatableHandler } from '@/test/integration/mockTransport/handlers'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
 import { CheckedAddress, toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { mainnet } from 'viem/chains'
 import { describe, expect, test } from 'vitest'
 import { createApproveDelegationActionConfig } from './approveDelegationAction'
 import { getBorrowAllowanceQueryKey } from './query'
 
-const approveValue = NormalizedUnitNumber(1)
+const approveValue = NormalizedNumber(1)
 const token = getMockToken({ symbol: TokenSymbol('ETH'), address: CheckedAddress.EEEE() })
 const account = testAddresses.alice
 const chainId = mainnet.id

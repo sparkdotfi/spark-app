@@ -1,6 +1,6 @@
 import { getMockReserve, getMockUserPosition, testAddresses } from '@/test/integration/constants'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Token } from '../types/Token'
 import { TokenSymbol } from '../types/TokenSymbol'
 import { determineSiloBorrowingState } from './utils'
@@ -20,7 +20,7 @@ describe(determineSiloBorrowingState.name, () => {
   it('is not siloed when no borrows from siloed reserve', () => {
     const userPositions = [
       getMockUserPosition({ reserve: siloedReserve }),
-      getMockUserPosition({ borrowBalance: NormalizedUnitNumber('10') }),
+      getMockUserPosition({ borrowBalance: NormalizedNumber('10') }),
     ]
 
     expect(determineSiloBorrowingState(userPositions)).toEqual({
@@ -30,8 +30,8 @@ describe(determineSiloBorrowingState.name, () => {
 
   it('is siloed when borrows from siloed reserve', () => {
     const userPositions = [
-      getMockUserPosition({ reserve: siloedReserve, borrowBalance: NormalizedUnitNumber('100') }),
-      getMockUserPosition({ borrowBalance: NormalizedUnitNumber('0') }),
+      getMockUserPosition({ reserve: siloedReserve, borrowBalance: NormalizedNumber('100') }),
+      getMockUserPosition({ borrowBalance: NormalizedNumber('0') }),
     ]
 
     expect(determineSiloBorrowingState(userPositions)).toEqual({

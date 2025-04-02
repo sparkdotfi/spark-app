@@ -3,7 +3,7 @@ import { DepositToSavingsObjective } from '@/features/actions/flavours/deposit-t
 import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { useForm } from 'react-hook-form'
 import { SavingsDepositView } from './SavingsDepositView'
@@ -15,11 +15,11 @@ const susds = tokens.sUSDS
 const usdc = tokens.USDC
 const mockTokenRepository = new TokenRepository(
   [
-    { token: dai, balance: NormalizedUnitNumber(100) },
-    { token: sdai, balance: NormalizedUnitNumber(100) },
-    { token: usds, balance: NormalizedUnitNumber(100) },
-    { token: susds, balance: NormalizedUnitNumber(100) },
-    { token: usdc, balance: NormalizedUnitNumber(100) },
+    { token: dai, balance: NormalizedNumber(100) },
+    { token: sdai, balance: NormalizedNumber(100) },
+    { token: usds, balance: NormalizedNumber(100) },
+    { token: susds, balance: NormalizedNumber(100) },
+    { token: usdc, balance: NormalizedNumber(100) },
   ],
   {
     DAI: dai.symbol,
@@ -41,26 +41,26 @@ const meta: Meta<typeof SavingsDepositView> = {
     selectableAssets: [
       {
         token: tokens.USDC,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
       },
       {
         token: tokens.DAI,
-        balance: NormalizedUnitNumber(1),
+        balance: NormalizedNumber(1),
       },
     ],
     assetsFields: {
       selectedAsset: {
         token: tokens.USDC,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
         value: '2000',
       },
-      maxValue: NormalizedUnitNumber(5000),
+      maxValue: NormalizedNumber(5000),
       changeAsset: () => {},
     },
     objectives: [
       {
         type: 'depositToSavings',
-        value: NormalizedUnitNumber(5000),
+        value: NormalizedNumber(5000),
         token: tokens.USDC,
         savingsToken: tokens.sDAI,
       } satisfies DepositToSavingsObjective,
@@ -74,14 +74,14 @@ const meta: Meta<typeof SavingsDepositView> = {
       underlyingToken: tokens.DAI,
       status: 'success',
       APY: Percentage(0.05),
-      stableEarnRate: NormalizedUnitNumber(542),
+      stableEarnRate: NormalizedNumber(542),
       route: [
-        { token: tokens.USDC, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
-        { token: tokens.DAI, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
-        { token: tokens.sDAI, value: NormalizedUnitNumber(925.75), usdValue: NormalizedUnitNumber(1300.74) },
+        { token: tokens.USDC, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
+        { token: tokens.DAI, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
+        { token: tokens.sDAI, value: NormalizedNumber(925.75), usdValue: NormalizedNumber(1300.74) },
       ],
       skyBadgeToken: tokens.USDC,
-      outTokenAmount: NormalizedUnitNumber(925.75),
+      outTokenAmount: NormalizedNumber(925.75),
     },
     actionsContext: {
       tokenRepository: mockTokenRepository,

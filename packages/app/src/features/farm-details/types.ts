@@ -1,15 +1,15 @@
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface FarmInfo {
   rewardToken: Token
   stakingToken: Token
-  earned: NormalizedUnitNumber
-  staked: NormalizedUnitNumber
-  rewardRate: NormalizedUnitNumber
+  earned: NormalizedNumber
+  staked: NormalizedNumber
+  rewardRate: NormalizedNumber
   earnedTimestamp: number
   periodFinish: number
-  totalSupply: NormalizedUnitNumber
+  totalSupply: NormalizedNumber
 }
 
 export type RewardPointsSyncStatus = 'synced' | 'out-of-sync' | 'sync-failed'

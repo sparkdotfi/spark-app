@@ -1,7 +1,7 @@
 import { TokenConfig } from '@/config/chain/types'
 import { getNativeAssetInfo } from '@/config/chain/utils/getNativeAssetInfo'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { BaseUnitNumber, CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Address, erc20Abi, zeroAddress } from 'viem'
 import { Config as WagmiConfig } from 'wagmi'
 import { getBalance, readContract } from 'wagmi/actions'
@@ -14,7 +14,7 @@ export interface CreateAssetDataFetcherParams {
 }
 
 export interface AssetData {
-  balance: NormalizedUnitNumber
+  balance: NormalizedNumber
   decimals: number
   symbol: TokenSymbol
   name: string
@@ -44,7 +44,7 @@ async function getNativeAssetData({ wagmiConfig, chainId, account }: GetNativeAs
 
   return {
     // if account is undefined, the balance is 0
-    balance: NormalizedUnitNumber(BaseUnitNumber(account ? balance : 0).shiftedBy(-decimals)),
+    balance: NormalizedNumber(BaseUnitNumber(account ? balance : 0).shiftedBy(-decimals)),
     decimals,
     symbol: nativeAssetInfo.nativeAssetSymbol,
     name: nativeAssetInfo.nativeAssetName,
@@ -98,7 +98,7 @@ async function getERC20Data({ wagmiConfig, chainId, tokenConfig, account }: GetE
   ])
 
   return {
-    balance: NormalizedUnitNumber(BaseUnitNumber(balance).shiftedBy(-decimals)),
+    balance: NormalizedNumber(BaseUnitNumber(balance).shiftedBy(-decimals)),
     decimals,
     symbol: TokenSymbol(symbol),
     name,

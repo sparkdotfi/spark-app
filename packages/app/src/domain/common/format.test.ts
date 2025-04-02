@@ -1,6 +1,6 @@
 import { describe } from 'vitest'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
@@ -101,37 +101,37 @@ describe(formatHealthFactor.name, () => {
 
 describe(formFormat.name, () => {
   it('formats bigger numbers', () => {
-    expect(formFormat(NormalizedUnitNumber(100.2), 18)).toBe('100.2')
+    expect(formFormat(NormalizedNumber(100.2), 18)).toBe('100.2')
   })
 
   it('avoids unnecessary zeroes', () => {
-    expect(formFormat(NormalizedUnitNumber.ZERO, 10)).toBe('0')
-    expect(formFormat(NormalizedUnitNumber(1), 10)).toBe('1')
+    expect(formFormat(NormalizedNumber.ZERO, 10)).toBe('0')
+    expect(formFormat(NormalizedNumber(1), 10)).toBe('1')
   })
 
   it('rounds down', () => {
-    expect(formFormat(NormalizedUnitNumber(0.9999), 2)).toBe('0.99')
+    expect(formFormat(NormalizedNumber(0.9999), 2)).toBe('0.99')
   })
 })
 
 describe(findSignificantPrecision.name, () => {
   it('finds precision for stablecoins', () => {
-    expect(findSignificantPrecision(NormalizedUnitNumber(1), 2)).toBe(2)
+    expect(findSignificantPrecision(NormalizedNumber(1), 2)).toBe(2)
   })
 
   it('finds precision for BTC like', () => {
-    expect(findSignificantPrecision(NormalizedUnitNumber(48_000), 2)).toBe(6)
+    expect(findSignificantPrecision(NormalizedNumber(48_000), 2)).toBe(6)
   })
 
   it('finds precision for ETH like', () => {
-    expect(findSignificantPrecision(NormalizedUnitNumber(2_500), 2)).toBe(5)
+    expect(findSignificantPrecision(NormalizedNumber(2_500), 2)).toBe(5)
   })
 
   it('finds precision for coins with tiny prices', () => {
-    expect(findSignificantPrecision(NormalizedUnitNumber(0.0001), 2)).toBe(0)
+    expect(findSignificantPrecision(NormalizedNumber(0.0001), 2)).toBe(0)
   })
 
   it('finds precision for BTC like and whole dollars', () => {
-    expect(findSignificantPrecision(NormalizedUnitNumber(48_000), 0)).toBe(4)
+    expect(findSignificantPrecision(NormalizedNumber(48_000), 0)).toBe(4)
   })
 })

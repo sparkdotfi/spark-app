@@ -5,7 +5,7 @@ import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPr
 import { getMockToken, testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
-import { NormalizedUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, toBigInt } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { mainnet } from 'viem/chains'
 import { describe, test } from 'vitest'
@@ -15,7 +15,7 @@ import { createStakeSpkActionConfig } from './stakeSpkAction'
 const spk = getMockToken({ symbol: TokenSymbol('SPK') })
 const account = testAddresses.alice
 const chainId = mainnet.id
-const amount = NormalizedUnitNumber(1)
+const amount = NormalizedNumber(1)
 const vault = getContractAddress(testSpkStakingConfig.address, chainId)
 
 const hookRenderer = setupUseContractActionRenderer({

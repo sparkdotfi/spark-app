@@ -2,13 +2,13 @@ import { Token } from '@/domain/types/Token'
 import { TxOverviewRouteItem } from '@/features/dialogs/common/types'
 import { TokenAmount } from '@/ui/molecules/token-amount/TokenAmount'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface UnstakeTransactionOutcomeProps {
   outcomeTokenRouteItem: TxOverviewRouteItem
   rewardToken: Token
   isExiting: boolean
-  earnedRewards: NormalizedUnitNumber
+  earnedRewards: NormalizedNumber
 }
 
 export function UnstakeTransactionOutcome({

@@ -1,35 +1,32 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ReserveStatus } from '../market-info/reserve-status'
 
 interface GetDepositMaxValueParams {
   asset: {
     status: ReserveStatus
-    totalLiquidity: NormalizedUnitNumber
+    totalLiquidity: NormalizedNumber
     isNativeAsset: boolean
-    supplyCap?: NormalizedUnitNumber
+    supplyCap?: NormalizedNumber
   }
   user: {
-    balance: NormalizedUnitNumber
+    balance: NormalizedNumber
   }
   chain: {
-    minRemainingNativeAsset: NormalizedUnitNumber
+    minRemainingNativeAsset: NormalizedNumber
   }
 }
 
-export function getDepositMaxValue({ user, asset, chain }: GetDepositMaxValueParams): NormalizedUnitNumber {
+export function getDepositMaxValue({ user, asset, chain }: GetDepositMaxValueParams): NormalizedNumber {
   if (asset.status !== 'active') {
-    return NormalizedUnitNumber.ZERO
+    return NormalizedNumber.ZERO
   }
 
   const marketMaxDeposit = asset.supplyCap
-    ? NormalizedUnitNumber.max(asset.supplyCap.minus(asset.totalLiquidity), NormalizedUnitNumber.ZERO)
-    : NormalizedUnitNumber(Number.POSITIVE_INFINITY)
+    ? NormalizedNumber.max(asset.supplyCap.minus(asset.totalLiquidity), NormalizedNumber.ZERO)
+    : NormalizedNumber(Number.POSITIVE_INFINITY)
   const balanceBasedMaxDeposit = user.balance.minus(
-    asset.isNativeAsset ? chain.minRemainingNativeAsset : NormalizedUnitNumber.ZERO,
+    asset.isNativeAsset ? chain.minRemainingNativeAsset : NormalizedNumber.ZERO,
   )
 
-  return NormalizedUnitNumber.max(
-    NormalizedUnitNumber.min(balanceBasedMaxDeposit, marketMaxDeposit),
-    NormalizedUnitNumber.ZERO,
-  )
+  return NormalizedNumber.max(NormalizedNumber.min(balanceBasedMaxDeposit, marketMaxDeposit), NormalizedNumber.ZERO)
 }

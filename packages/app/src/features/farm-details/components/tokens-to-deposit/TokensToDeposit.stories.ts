@@ -2,7 +2,7 @@ import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { TokensToDeposit } from './TokensToDeposit'
 
@@ -19,23 +19,23 @@ export const Desktop: Story = {
     assets: [
       {
         token: tokens.USDS,
-        balance: NormalizedUnitNumber(10_000),
+        balance: NormalizedNumber(10_000),
       },
       {
         token: tokens.DAI,
-        balance: NormalizedUnitNumber(20_864.56),
+        balance: NormalizedNumber(20_864.56),
       },
       {
         token: tokens.USDC,
-        balance: NormalizedUnitNumber.ZERO,
+        balance: NormalizedNumber.ZERO,
       },
       {
         token: tokens.sDAI,
-        balance: NormalizedUnitNumber.ZERO,
+        balance: NormalizedNumber.ZERO,
       },
       {
         token: tokens.sUSDS,
-        balance: NormalizedUnitNumber.ZERO,
+        balance: NormalizedNumber.ZERO,
       },
     ],
     openStakeDialog: () => {},

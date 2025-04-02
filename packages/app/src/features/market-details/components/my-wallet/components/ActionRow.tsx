@@ -1,12 +1,12 @@
 import { Token } from '@/domain/types/Token'
 import { Button } from '@/ui/atoms/button/Button'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { ActionDetails } from './ActionDetails'
 
 interface ActionRowProps {
   token: Token
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   label: string
   buttonText: string
   onAction: () => void

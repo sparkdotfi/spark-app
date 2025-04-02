@@ -3,7 +3,7 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { CollateralStatusPanel } from './CollateralStatusPanel'
 
@@ -40,8 +40,8 @@ export const CanBeUsedAsCollateralInIsolationMode: Story = {
   args: {
     status: 'only-in-isolation-mode',
     isolationModeInfo: {
-      debtCeiling: NormalizedUnitNumber(50_000_000),
-      debt: NormalizedUnitNumber(37_896_154),
+      debtCeiling: NormalizedNumber(50_000_000),
+      debt: NormalizedNumber(37_896_154),
     },
     maxLtv: Percentage(0.8),
     liquidationThreshold: Percentage(0.825),

@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { queryOptions, skipToken } from '@tanstack/react-query'
 import { z } from 'zod'
@@ -44,7 +44,7 @@ const historicDataResponseSchema = z
       z.object({
         date: z.string().transform((value) => new Date(value)),
         apr: z.string().transform((value) => Percentage(value, { allowMoreThan1: true })),
-        total_staked: z.string().transform((value) => NormalizedUnitNumber(value)),
+        total_staked: z.string().transform((value) => NormalizedNumber(value)),
       }),
     ),
   })

@@ -5,7 +5,7 @@ import { Panel } from '@/ui/atoms/panel/Panel'
 import { BlockExplorerAddressLink } from '@/ui/molecules/block-explorer-address-link/BlockExplorerAddressLink'
 import { Info } from '@/ui/molecules/info/Info'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ProvidersList } from './ProvidersList'
 
 const oracleTestIds = testIds.marketDetails.oraclePanel
@@ -116,7 +116,7 @@ export function YieldingFixedOraclePanel({
   )
 }
 
-function formatUSDPriceWithPrecision(usdPrice: NormalizedUnitNumber): string {
+function formatUSDPriceWithPrecision(usdPrice: NormalizedNumber): string {
   const number = usdPrice.toNumber()
 
   const formatter = new Intl.NumberFormat('en-US', {

@@ -3,13 +3,13 @@ import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { AssetInputSchema } from '@/features/dialogs/common/logic/form'
 import { useDebounce } from '@/utils/useDebounce'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { UseFormReturn } from 'react-hook-form'
 import { FormFieldsForDialog } from '../../types'
 
 export interface TransferFromUserFormNormalizedData {
   token: Token
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   isMaxSelected: boolean
 }
 
@@ -17,7 +17,7 @@ export function normalizeFormValues(
   asset: AssetInputSchema,
   tokenRepository: TokenRepository,
 ): TransferFromUserFormNormalizedData {
-  const value = NormalizedUnitNumber(asset.value === '' ? '0' : asset.value)
+  const value = NormalizedNumber(asset.value === '' ? '0' : asset.value)
   const token = tokenRepository.findOneTokenBySymbol(asset.symbol)
 
   return {
@@ -27,8 +27,8 @@ export function normalizeFormValues(
   }
 }
 
-export function isMaxValue(value: string, maxValue: NormalizedUnitNumber): boolean {
-  const normalizedValue = NormalizedUnitNumber(value === '' ? '0' : value)
+export function isMaxValue(value: string, maxValue: NormalizedNumber): boolean {
+  const normalizedValue = NormalizedNumber(value === '' ? '0' : value)
   return normalizedValue.eq(maxValue)
 }
 

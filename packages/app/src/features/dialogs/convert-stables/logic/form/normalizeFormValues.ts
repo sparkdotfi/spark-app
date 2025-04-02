@@ -1,5 +1,5 @@
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { NormalizedConvertStablesFormValues } from '../../types'
 import type { ConvertStablesFormSchema } from './schema'
 
@@ -14,7 +14,7 @@ export function normalizeFormValues({
 }: NormalizeFormValuesParams): NormalizedConvertStablesFormValues {
   const inToken = tokenRepository.findOneTokenBySymbol(formValues.inTokenSymbol)
   const outToken = tokenRepository.findOneTokenBySymbol(formValues.outTokenSymbol)
-  const amount = NormalizedUnitNumber(formValues.amount === '' ? '0' : formValues.amount)
+  const amount = NormalizedNumber(formValues.amount === '' ? '0' : formValues.amount)
 
   return {
     inToken,

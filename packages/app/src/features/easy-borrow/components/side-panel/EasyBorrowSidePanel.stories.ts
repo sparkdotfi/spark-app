@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { bigNumberify } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { EasyBorrowSidePanel } from './EasyBorrowSidePanel'
 
 const meta: Meta<typeof EasyBorrowSidePanel> = {
@@ -30,9 +30,9 @@ export const WithHFAndLiquidationDetails: Story = {
   args: {
     hf: bigNumberify(1.71341),
     liquidationDetails: {
-      liquidationPrice: NormalizedUnitNumber(1262.9),
+      liquidationPrice: NormalizedNumber(1262.9),
       tokenWithPrice: {
-        priceInUSD: NormalizedUnitNumber(1895.81),
+        priceInUSD: NormalizedNumber(1895.81),
         symbol: TokenSymbol('ETH'),
       },
     },

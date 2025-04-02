@@ -4,7 +4,7 @@ import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPr
 import { getMockToken, testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
-import { Hex, NormalizedUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
+import { Hex, NormalizedNumber, toBigInt } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { times } from 'remeda'
 import { mainnet } from 'viem/chains'
@@ -15,7 +15,7 @@ const account = testAddresses.alice
 const chainId = mainnet.id
 const epoch = 123
 const token = getMockToken()
-const cumulativeAmount = NormalizedUnitNumber(100)
+const cumulativeAmount = NormalizedNumber(100)
 const merkleRoot = Hex.random()
 const merkleProof = times(7, () => Hex.random())
 

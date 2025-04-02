@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { MarketInfo } from '../market-info/marketInfo'
 import { ReserveStatus } from '../market-info/reserve-status'
 import { Token } from '../types/Token'
@@ -8,7 +8,7 @@ import { Token } from '../types/Token'
 export interface ValidateSetUseAsCollateralParams {
   useAsCollateral: boolean
   asset: {
-    balance: NormalizedUnitNumber
+    balance: NormalizedNumber
     status: ReserveStatus
     isUsedAsCollateral: boolean
     maxLtv: Percentage

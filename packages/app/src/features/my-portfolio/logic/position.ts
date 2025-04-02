@@ -3,7 +3,7 @@ import { BigNumber } from 'bignumber.js'
 import { TokenWithValue } from '@/domain/common/types'
 import { MarketInfo, UserPosition } from '@/domain/market-info/marketInfo'
 import { USD_MOCK_TOKEN } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { times } from 'remeda'
 
 import { PositionSummary } from './types'
@@ -22,15 +22,15 @@ type Ticks = (
 interface GetTicksArgs {
   numLabels: number
   ticksPerLabel: number
-  totalCollateralUSD?: NormalizedUnitNumber
-  xAxisFallbackMax?: NormalizedUnitNumber
+  totalCollateralUSD?: NormalizedNumber
+  xAxisFallbackMax?: NormalizedNumber
 }
 
 export function getTicks({
   numLabels,
   ticksPerLabel,
-  totalCollateralUSD = NormalizedUnitNumber.ZERO,
-  xAxisFallbackMax = NormalizedUnitNumber(90_000),
+  totalCollateralUSD = NormalizedNumber.ZERO,
+  xAxisFallbackMax = NormalizedNumber(90_000),
 }: GetTicksArgs): Ticks {
   const maxTickValue = totalCollateralUSD.gt(0) ? totalCollateralUSD : xAxisFallbackMax
 
@@ -47,7 +47,7 @@ export function getTicks({
   return ticks
 }
 
-export function getPositionFormattedValue(value?: NormalizedUnitNumber, fallback = '-'): string {
+export function getPositionFormattedValue(value?: NormalizedNumber, fallback = '-'): string {
   return !value || value.eq(0) ? fallback : USD_MOCK_TOKEN.formatUSD(value, { compact: true })
 }
 
@@ -62,7 +62,7 @@ export function makePositionSummary({ marketInfo }: MakePositionSummaryParams): 
   const hasDeposits = marketInfo.userPositions.some((position) => position.collateralBalance.gt(0))
 
   const currentBorrow = marketInfo.userPositionSummary.totalBorrowsUSD
-  const maxBorrow = NormalizedUnitNumber(
+  const maxBorrow = NormalizedNumber(
     marketInfo.userPositionSummary.totalBorrowsUSD.plus(marketInfo.userPositionSummary.availableBorrowsUSD),
   )
   const { borrowPercent, restPercent, maxPercent } = getBorrowPercents(currentBorrow, maxBorrow, totalCollateralUSD)
@@ -103,9 +103,9 @@ interface BorrowPercents {
 }
 
 function getBorrowPercents(
-  currentBorrow: NormalizedUnitNumber,
-  maxBorrow: NormalizedUnitNumber,
-  totalCollateralUSD: NormalizedUnitNumber,
+  currentBorrow: NormalizedNumber,
+  maxBorrow: NormalizedNumber,
+  totalCollateralUSD: NormalizedNumber,
 ): BorrowPercents {
   let borrowPercent = currentBorrow.div(totalCollateralUSD).times(100).toNumber()
   let restPercent = new BigNumber(100).minus(borrowPercent).toNumber()

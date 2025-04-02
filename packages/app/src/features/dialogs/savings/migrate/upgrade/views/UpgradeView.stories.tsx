@@ -2,7 +2,7 @@ import { getMockTokenRepository } from '@/test/integration/constants'
 import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { useForm } from 'react-hook-form'
 import { UpgradeView } from './UpgradeView'
@@ -26,29 +26,29 @@ const meta: Meta<typeof UpgradeView> = {
       route: [
         {
           token: tokens.sDAI,
-          value: NormalizedUnitNumber(5000),
-          usdValue: NormalizedUnitNumber(5000),
+          value: NormalizedNumber(5000),
+          usdValue: NormalizedNumber(5000),
         },
         {
           token: tokens.sUSDS,
-          value: NormalizedUnitNumber(5000),
-          usdValue: NormalizedUnitNumber(5000),
+          value: NormalizedNumber(5000),
+          usdValue: NormalizedNumber(5000),
         },
       ],
     },
     selectableAssets: [
       {
         token: tokens.sDAI,
-        balance: NormalizedUnitNumber(5000),
+        balance: NormalizedNumber(5000),
       },
     ],
     assetsFields: {
       selectedAsset: {
         token: tokens.sDAI,
-        balance: NormalizedUnitNumber(5000),
+        balance: NormalizedNumber(5000),
         value: '2000',
       },
-      maxValue: NormalizedUnitNumber(5000),
+      maxValue: NormalizedNumber(5000),
       changeAsset: () => {},
     },
     objectives: [
@@ -56,7 +56,7 @@ const meta: Meta<typeof UpgradeView> = {
         type: 'upgrade',
         fromToken: tokens.sDAI,
         toToken: tokens.sUSDS,
-        amount: NormalizedUnitNumber(1),
+        amount: NormalizedNumber(1),
       },
     ],
     pageStatus: {

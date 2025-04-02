@@ -9,7 +9,7 @@ import { TokenIcon } from '@/ui/atoms/token-icon/TokenIcon'
 import { IconStack } from '@/ui/molecules/icon-stack/IconStack'
 import { Info } from '@/ui/molecules/info/Info'
 import { cn } from '@/ui/utils/style'
-import { NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, raise } from '@sparkdotfi/common-universal'
 import { AlertTriangleIcon, ChevronRightIcon } from 'lucide-react'
 import { UseClaimableRewardsSummaryResult } from '../../logic/useClaimableRewardsSummary'
 import { ClaimableReward } from '../../types'
@@ -153,7 +153,7 @@ function TokenIconOrSymbol({ token, iconClassName }: { token: Token; iconClassNa
 }
 
 interface ClaimableRewardsWithPriceSubPanelProps {
-  usdSum: NormalizedUnitNumber
+  usdSum: NormalizedNumber
   claimableRewardsWithPrice: ClaimableReward[]
   claimableRewardsWithoutPrice: ClaimableReward[]
 }
@@ -192,9 +192,7 @@ function PendingRewardsSubPanel() {
         <div className="typography-label-2 text-tertiary">Total to claim</div>
         <Info>You have nothing to claim at the moment.</Info>
       </div>
-      <div className="typography-heading-2 text-primary-inverse">
-        {USD_MOCK_TOKEN.formatUSD(NormalizedUnitNumber.ZERO)}
-      </div>
+      <div className="typography-heading-2 text-primary-inverse">{USD_MOCK_TOKEN.formatUSD(NormalizedNumber.ZERO)}</div>
     </SubPanel>
   )
 }

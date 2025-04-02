@@ -1,7 +1,7 @@
 import { CapAutomatorInfo } from '@/domain/cap-automator/types'
 import { MarketInfo, Reserve } from '@/domain/market-info/marketInfo'
 import { MarketSparkRewards } from '@/domain/spark-rewards/types'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { MarketOverview } from '../types'
 import { getReserveEModeCategoryTokens } from './getReserveEModeCategoryTokens'
 import { getSparkAirdropDetails } from './getSparkAirdropDetails'
@@ -27,10 +27,10 @@ export function makeMarketOverview({
   })
 
   const instantlyAvailableToSupply =
-    reserve.supplyCap && NormalizedUnitNumber(reserve.supplyCap?.minus(reserve.totalLiquidity))
+    reserve.supplyCap && NormalizedNumber(reserve.supplyCap?.minus(reserve.totalLiquidity))
 
   const capLessThanLiquidity = Boolean(reserve.borrowCap?.lt(reserve.totalLiquidity))
-  const borrowLiquidity = NormalizedUnitNumber(
+  const borrowLiquidity = NormalizedNumber(
     capLessThanLiquidity ? reserve.borrowCap!.minus(reserve.totalDebt) : reserve.availableLiquidity,
   )
 

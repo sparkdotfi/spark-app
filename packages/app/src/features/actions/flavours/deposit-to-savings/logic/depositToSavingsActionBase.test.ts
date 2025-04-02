@@ -11,7 +11,7 @@ import { testAddresses, testTokens } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
 import { bigNumberify, toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { base } from 'viem/chains'
 import { describe, test } from 'vitest'
@@ -19,7 +19,7 @@ import { createDepositToSavingsActionConfig } from './depositToSavingsAction'
 import { formatMinAmountOutForPsm3 } from './formatMinAmountOutForPsm3'
 
 const account = testAddresses.alice
-const depositValue = NormalizedUnitNumber(1)
+const depositValue = NormalizedNumber(1)
 const usds = testTokens.USDS
 const susds = testTokens.sUSDS
 const usdc = testTokens.USDC
@@ -29,9 +29,9 @@ const susdc = testTokens.sUSDC.clone({
 const referralCode = SPARK_UI_REFERRAL_CODE_BIGINT
 const mockTokenRepository = new TokenRepository(
   [
-    { token: usds, balance: NormalizedUnitNumber(100) },
-    { token: susds, balance: NormalizedUnitNumber(100) },
-    { token: usdc, balance: NormalizedUnitNumber(100) },
+    { token: usds, balance: NormalizedNumber(100) },
+    { token: susds, balance: NormalizedNumber(100) },
+    { token: usdc, balance: NormalizedNumber(100) },
   ],
   {
     USDS: usds.symbol,

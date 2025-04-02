@@ -7,7 +7,7 @@ import { getMockMarketInfo, getMockTokenRepository } from '@/test/integration/co
 import { WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import BigNumber from 'bignumber.js'
 import { useForm } from 'react-hook-form'
@@ -27,7 +27,7 @@ interface EasyBorrowViewStoryProps {
   alreadyBorrowed: ExistingPosition
   pageState: PageState
   assets: TokenWithBalance[]
-  assetToMaxValue: Record<TokenSymbol, NormalizedUnitNumber>
+  assetToMaxValue: Record<TokenSymbol, NormalizedNumber>
   updatedPositionSummary: UserPositionSummary
   actions: Objective[]
   guestMode: boolean
@@ -127,58 +127,58 @@ const meta: Meta<typeof EasyBorrowViewStory> = {
     assets: [
       {
         token: tokens.ETH,
-        balance: NormalizedUnitNumber(1),
+        balance: NormalizedNumber(1),
       },
       {
         token: tokens.wstETH,
-        balance: NormalizedUnitNumber(1),
+        balance: NormalizedNumber(1),
       },
       {
         token: tokens.rETH,
-        balance: NormalizedUnitNumber(1),
+        balance: NormalizedNumber(1),
       },
       {
         token: tokens.GNO,
-        balance: NormalizedUnitNumber(1),
+        balance: NormalizedNumber(1),
       },
     ],
     assetToMaxValue: {
-      [TokenSymbol('ETH')]: NormalizedUnitNumber(1),
-      [TokenSymbol('wstETH')]: NormalizedUnitNumber(1),
-      [TokenSymbol('rETH')]: NormalizedUnitNumber(1),
-      [TokenSymbol('GNO')]: NormalizedUnitNumber(1),
+      [TokenSymbol('ETH')]: NormalizedNumber(1),
+      [TokenSymbol('wstETH')]: NormalizedNumber(1),
+      [TokenSymbol('rETH')]: NormalizedNumber(1),
+      [TokenSymbol('GNO')]: NormalizedNumber(1),
     },
     assetsToBorrow: [
       {
         token: tokens.DAI,
-        balance: NormalizedUnitNumber(1000),
+        balance: NormalizedNumber(1000),
         value: '',
       },
     ],
     assetsToDeposit: [
       {
         token: tokens.ETH,
-        balance: NormalizedUnitNumber(10),
+        balance: NormalizedNumber(10),
         value: '',
       },
     ],
     alreadyDeposited: {
       tokens: [],
-      totalValueUSD: NormalizedUnitNumber.ZERO,
+      totalValueUSD: NormalizedNumber.ZERO,
     },
     alreadyBorrowed: {
       tokens: [],
-      totalValueUSD: NormalizedUnitNumber.ZERO,
+      totalValueUSD: NormalizedNumber.ZERO,
     },
     updatedPositionSummary: {
-      availableBorrowsUSD: NormalizedUnitNumber.ZERO,
+      availableBorrowsUSD: NormalizedNumber.ZERO,
       currentLiquidationThreshold: Percentage(0.8),
       loanToValue: Percentage(0),
       healthFactor: undefined,
       maxLoanToValue: Percentage(0.8),
-      totalBorrowsUSD: NormalizedUnitNumber.ZERO,
-      totalCollateralUSD: NormalizedUnitNumber.ZERO,
-      totalLiquidityUSD: NormalizedUnitNumber.ZERO,
+      totalBorrowsUSD: NormalizedNumber.ZERO,
+      totalCollateralUSD: NormalizedNumber.ZERO,
+      totalLiquidityUSD: NormalizedNumber.ZERO,
     },
     guestMode: false,
     borrowDetails: {
@@ -202,26 +202,26 @@ const depositETHArgs: Partial<EasyBorrowViewStoryProps> = {
   assetsToBorrow: [
     {
       token: tokens.DAI,
-      balance: NormalizedUnitNumber(1000),
+      balance: NormalizedNumber(1000),
       value: '1000',
     },
   ],
   assetsToDeposit: [
     {
       token: tokens.ETH,
-      balance: NormalizedUnitNumber(10),
+      balance: NormalizedNumber(10),
       value: '1',
     },
   ],
   updatedPositionSummary: {
-    availableBorrowsUSD: NormalizedUnitNumber(1000),
+    availableBorrowsUSD: NormalizedNumber(1000),
     currentLiquidationThreshold: Percentage(0.8),
     loanToValue: Percentage(0.5),
     healthFactor: new BigNumber(1.5),
     maxLoanToValue: Percentage(0.8),
-    totalBorrowsUSD: NormalizedUnitNumber(10),
-    totalCollateralUSD: NormalizedUnitNumber(1000),
-    totalLiquidityUSD: NormalizedUnitNumber(1000),
+    totalBorrowsUSD: NormalizedNumber(10),
+    totalCollateralUSD: NormalizedNumber(1000),
+    totalLiquidityUSD: NormalizedNumber(1000),
   },
 }
 
@@ -238,26 +238,26 @@ const borrowUsdsArgs: Partial<EasyBorrowViewStoryProps> = {
   assetsToBorrow: [
     {
       token: tokens.USDS,
-      balance: NormalizedUnitNumber(1000),
+      balance: NormalizedNumber(1000),
       value: '1000',
     },
   ],
   assetsToDeposit: [
     {
       token: tokens.ETH,
-      balance: NormalizedUnitNumber(10),
+      balance: NormalizedNumber(10),
       value: '1',
     },
   ],
   updatedPositionSummary: {
-    availableBorrowsUSD: NormalizedUnitNumber(2000),
+    availableBorrowsUSD: NormalizedNumber(2000),
     currentLiquidationThreshold: Percentage(0.8),
     loanToValue: Percentage(0.75),
     healthFactor: new BigNumber(1.1),
     maxLoanToValue: Percentage(0.8),
-    totalBorrowsUSD: NormalizedUnitNumber(10),
-    totalCollateralUSD: NormalizedUnitNumber(2000),
-    totalLiquidityUSD: NormalizedUnitNumber(2000),
+    totalBorrowsUSD: NormalizedNumber(10),
+    totalCollateralUSD: NormalizedNumber(2000),
+    totalLiquidityUSD: NormalizedNumber(2000),
   },
   borrowDetails: {
     borrowRate: Percentage(0.0553),
@@ -265,19 +265,19 @@ const borrowUsdsArgs: Partial<EasyBorrowViewStoryProps> = {
   actions: [
     {
       type: 'deposit',
-      value: NormalizedUnitNumber(1),
+      value: NormalizedNumber(1),
       token: tokens.wstETH,
     },
     {
       type: 'borrow',
-      value: NormalizedUnitNumber(1000),
+      value: NormalizedNumber(1000),
       token: tokens.DAI,
     },
     {
       type: 'upgrade',
       fromToken: tokens.DAI,
       toToken: tokens.USDS,
-      amount: NormalizedUnitNumber(1),
+      amount: NormalizedNumber(1),
     },
   ],
   actionsEnabled: false,
@@ -295,34 +295,34 @@ const depositETHWithExistingPositionArgs: Partial<EasyBorrowViewStoryProps> = {
   assetsToBorrow: [
     {
       token: tokens.DAI,
-      balance: NormalizedUnitNumber(1000),
+      balance: NormalizedNumber(1000),
       value: '1000',
     },
   ],
   assetsToDeposit: [
     {
       token: tokens.ETH,
-      balance: NormalizedUnitNumber(10),
+      balance: NormalizedNumber(10),
       value: '1',
     },
   ],
   alreadyDeposited: {
     tokens: [tokens.ETH, tokens.wstETH, tokens.rETH, tokens.GNO, tokens.WBTC],
-    totalValueUSD: NormalizedUnitNumber(1000),
+    totalValueUSD: NormalizedNumber(1000),
   },
   alreadyBorrowed: {
     tokens: [tokens.DAI],
-    totalValueUSD: NormalizedUnitNumber(500),
+    totalValueUSD: NormalizedNumber(500),
   },
   updatedPositionSummary: {
-    availableBorrowsUSD: NormalizedUnitNumber(2000),
+    availableBorrowsUSD: NormalizedNumber(2000),
     currentLiquidationThreshold: Percentage(0.8),
     loanToValue: Percentage(0.5),
     healthFactor: new BigNumber(1.5),
     maxLoanToValue: Percentage(0.8),
-    totalBorrowsUSD: NormalizedUnitNumber(10),
-    totalCollateralUSD: NormalizedUnitNumber(2000),
-    totalLiquidityUSD: NormalizedUnitNumber(2000),
+    totalBorrowsUSD: NormalizedNumber(10),
+    totalCollateralUSD: NormalizedNumber(2000),
+    totalLiquidityUSD: NormalizedNumber(2000),
   },
 }
 
@@ -339,36 +339,36 @@ const depositETHActionsArgs: Partial<EasyBorrowViewStoryProps> = {
   assetsToBorrow: [
     {
       token: tokens.DAI,
-      balance: NormalizedUnitNumber(1000),
+      balance: NormalizedNumber(1000),
       value: '1000',
     },
   ],
   assetsToDeposit: [
     {
       token: tokens.ETH,
-      balance: NormalizedUnitNumber(10),
+      balance: NormalizedNumber(10),
       value: '1',
     },
   ],
   updatedPositionSummary: {
-    availableBorrowsUSD: NormalizedUnitNumber(2000),
+    availableBorrowsUSD: NormalizedNumber(2000),
     currentLiquidationThreshold: Percentage(0.8),
     loanToValue: Percentage(0.5),
     healthFactor: new BigNumber(1.5),
     maxLoanToValue: Percentage(0.8),
-    totalBorrowsUSD: NormalizedUnitNumber(10),
-    totalCollateralUSD: NormalizedUnitNumber(2000),
-    totalLiquidityUSD: NormalizedUnitNumber(2000),
+    totalBorrowsUSD: NormalizedNumber(10),
+    totalCollateralUSD: NormalizedNumber(2000),
+    totalLiquidityUSD: NormalizedNumber(2000),
   },
   actions: [
     {
       type: 'deposit',
-      value: NormalizedUnitNumber(1),
+      value: NormalizedNumber(1),
       token: tokens.ETH,
     },
     {
       type: 'borrow',
-      value: NormalizedUnitNumber(1000),
+      value: NormalizedNumber(1000),
       token: tokens.DAI,
     },
   ],
@@ -387,36 +387,36 @@ const depositErc20ActionArgs: Partial<EasyBorrowViewStoryProps> = {
   assetsToBorrow: [
     {
       token: tokens.DAI,
-      balance: NormalizedUnitNumber(1000),
+      balance: NormalizedNumber(1000),
       value: '1000',
     },
   ],
   assetsToDeposit: [
     {
       token: tokens.wstETH,
-      balance: NormalizedUnitNumber(10),
+      balance: NormalizedNumber(10),
       value: '1',
     },
   ],
   updatedPositionSummary: {
-    availableBorrowsUSD: NormalizedUnitNumber(2000),
+    availableBorrowsUSD: NormalizedNumber(2000),
     currentLiquidationThreshold: Percentage(0.8),
     loanToValue: Percentage(0.75),
     healthFactor: new BigNumber(1.1),
     maxLoanToValue: Percentage(0.8),
-    totalBorrowsUSD: NormalizedUnitNumber(10),
-    totalCollateralUSD: NormalizedUnitNumber(2000),
-    totalLiquidityUSD: NormalizedUnitNumber(2000),
+    totalBorrowsUSD: NormalizedNumber(10),
+    totalCollateralUSD: NormalizedNumber(2000),
+    totalLiquidityUSD: NormalizedNumber(2000),
   },
   actions: [
     {
       type: 'deposit',
-      value: NormalizedUnitNumber(1),
+      value: NormalizedNumber(1),
       token: tokens.wstETH,
     },
     {
       type: 'borrow',
-      value: NormalizedUnitNumber(1000),
+      value: NormalizedNumber(1000),
       token: tokens.DAI,
     },
   ],
@@ -439,41 +439,41 @@ const depositMultipleArgs: Partial<EasyBorrowViewStoryProps> = {
   assetsToBorrow: [
     {
       token: tokens.DAI,
-      balance: NormalizedUnitNumber(1000),
+      balance: NormalizedNumber(1000),
       value: '1000',
     },
   ],
   assetsToDeposit: [
     {
       token: tokens.ETH,
-      balance: NormalizedUnitNumber(10),
+      balance: NormalizedNumber(10),
       value: '1',
     },
     {
       token: tokens.wstETH,
-      balance: NormalizedUnitNumber(10),
+      balance: NormalizedNumber(10),
       value: '1',
     },
     {
       token: tokens.rETH,
-      balance: NormalizedUnitNumber(10),
+      balance: NormalizedNumber(10),
       value: '1',
     },
     {
       token: tokens.GNO,
-      balance: NormalizedUnitNumber(10),
+      balance: NormalizedNumber(10),
       value: '1',
     },
   ],
   updatedPositionSummary: {
-    availableBorrowsUSD: NormalizedUnitNumber(2000),
+    availableBorrowsUSD: NormalizedNumber(2000),
     currentLiquidationThreshold: Percentage(0.8),
     loanToValue: Percentage(0.5),
     healthFactor: new BigNumber(1.5),
     maxLoanToValue: Percentage(0.8),
-    totalBorrowsUSD: NormalizedUnitNumber(10),
-    totalCollateralUSD: NormalizedUnitNumber(2000),
-    totalLiquidityUSD: NormalizedUnitNumber(2000),
+    totalBorrowsUSD: NormalizedNumber(10),
+    totalCollateralUSD: NormalizedNumber(2000),
+    totalLiquidityUSD: NormalizedNumber(2000),
   },
 }
 

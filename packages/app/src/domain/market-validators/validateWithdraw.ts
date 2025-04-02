@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { EModeCategory, EModeState } from '../market-info/marketInfo'
 import { ReserveStatus } from '../market-info/reserve-status'
 
@@ -12,15 +12,15 @@ export type WithdrawValidationIssue =
   | 'has-zero-ltv-collateral'
 
 export interface ValidateWithdrawArgs {
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   asset: {
     status: ReserveStatus
-    unborrowedLiquidity: NormalizedUnitNumber
+    unborrowedLiquidity: NormalizedNumber
     maxLtv: Percentage
     eModeCategory?: EModeCategory
   }
   user: {
-    deposited: NormalizedUnitNumber
+    deposited: NormalizedNumber
     liquidationThreshold: Percentage
     ltvAfterWithdrawal: Percentage
     eModeState: EModeState

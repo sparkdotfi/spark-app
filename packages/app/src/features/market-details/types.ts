@@ -6,15 +6,15 @@ import {
 } from '@/domain/market-info/reserve-status'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { CapAutomatorConfig } from '@/domain/cap-automator/types'
 import { MarketSparkRewards } from '@/domain/spark-rewards/types'
 import { InterestYieldChartProps } from './components/charts/interest-yield/InterestYieldChart'
 
 export interface DssAutoline {
-  maxDebtCeiling: NormalizedUnitNumber
-  gap: NormalizedUnitNumber
+  maxDebtCeiling: NormalizedNumber
+  gap: NormalizedNumber
   increaseCooldown: number
   lastUpdateBlock: number
   lastIncreaseTimestamp: number
@@ -24,8 +24,8 @@ export type CollateralStatusInfo = (
   | {
       status: Extract<CollateralEligibilityStatus, 'only-in-isolation-mode'>
       isolationModeInfo: {
-        debt: NormalizedUnitNumber
-        debtCeiling: NormalizedUnitNumber
+        debt: NormalizedNumber
+        debtCeiling: NormalizedNumber
       }
     }
   | {
@@ -41,9 +41,9 @@ export interface MarketOverview {
   supply?: {
     hasSparkAirdrop: boolean
     status: SupplyAvailabilityStatus
-    totalSupplied: NormalizedUnitNumber
-    supplyCap?: NormalizedUnitNumber
-    instantlyAvailableToSupply?: NormalizedUnitNumber
+    totalSupplied: NormalizedNumber
+    supplyCap?: NormalizedNumber
+    instantlyAvailableToSupply?: NormalizedNumber
     apy: Percentage | undefined
     capAutomatorInfo?: CapAutomatorConfig
     sparkRewards: MarketSparkRewards[]
@@ -52,10 +52,10 @@ export interface MarketOverview {
   borrow: {
     hasSparkAirdrop: boolean
     status: BorrowEligibilityStatus
-    totalBorrowed: NormalizedUnitNumber
-    borrowLiquidity: NormalizedUnitNumber
+    totalBorrowed: NormalizedNumber
+    borrowLiquidity: NormalizedNumber
     limitedByBorrowCap: boolean
-    borrowCap?: NormalizedUnitNumber
+    borrowCap?: NormalizedNumber
     apy: Percentage | undefined
     reserveFactor: Percentage
     chartProps: InterestYieldChartProps
@@ -65,7 +65,7 @@ export interface MarketOverview {
   lend?: {
     status: 'yes' // only for dai
     token: Token
-    totalLent: NormalizedUnitNumber
+    totalLent: NormalizedNumber
     apy: Percentage | undefined
     sparkRewards: MarketSparkRewards[]
   }
@@ -80,18 +80,18 @@ export interface MarketOverview {
   summary:
     | {
         type: 'default'
-        marketSize: NormalizedUnitNumber
-        borrowed: NormalizedUnitNumber
-        available: NormalizedUnitNumber
+        marketSize: NormalizedNumber
+        borrowed: NormalizedNumber
+        available: NormalizedNumber
         utilizationRate: Percentage
       }
     | {
         type: 'dai'
-        marketSize: NormalizedUnitNumber
-        borrowed: NormalizedUnitNumber
-        instantlyAvailable: NormalizedUnitNumber
-        skyCapacity: NormalizedUnitNumber
-        totalAvailable: NormalizedUnitNumber
+        marketSize: NormalizedNumber
+        borrowed: NormalizedNumber
+        instantlyAvailable: NormalizedNumber
+        skyCapacity: NormalizedNumber
+        totalAvailable: NormalizedNumber
         utilizationRate: Percentage
         dssAutoline: DssAutoline
       }
@@ -100,18 +100,18 @@ export interface MarketOverview {
 export interface WalletOverview {
   guestMode: boolean
   token: Token
-  tokenBalance: NormalizedUnitNumber
+  tokenBalance: NormalizedNumber
   lend?: {
-    available: NormalizedUnitNumber
+    available: NormalizedNumber
     token: Token
   }
   deposit: {
-    available: NormalizedUnitNumber
+    available: NormalizedNumber
     token: Token
   }
   borrow: {
     eligibility: BorrowEligibilityStatus
-    available: NormalizedUnitNumber
+    available: NormalizedNumber
     token: Token
   }
 }

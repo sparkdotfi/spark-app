@@ -1,12 +1,12 @@
 import BigNumber from 'bignumber.js'
 import { assert } from '../assert/assert.js'
 import { BaseUnitNumber } from '../types/BaseUnitNumber.js'
-import { NormalizedUnitNumber } from '../types/NormalizedUnitNumber.js'
+import { NormalizedNumber } from '../types/NormalizedNumber.js'
 
 // Only use scientific notation if number's exponent is greater than 1e9 (so 1e9 decimals of precision)
 BigNumber.config({ EXPONENTIAL_AT: 1e9 })
 
-export type NumberLike = string | number | BigNumber | bigint | NormalizedUnitNumber
+export type NumberLike = string | number | BigNumber | bigint | NormalizedNumber
 
 /**
  * Converts number-like value to BigNumber.

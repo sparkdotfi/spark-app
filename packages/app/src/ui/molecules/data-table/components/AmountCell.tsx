@@ -1,6 +1,6 @@
 import { Token } from '@/domain/types/Token'
 import { cn } from '@/ui/utils/style'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { MobileViewOptions } from '../types'
 
 export interface CompactAmountCellFormattingOptions {
@@ -12,7 +12,7 @@ export interface CompactAmountCellFormattingOptions {
 
 interface AmountCellProps {
   token: Token
-  amount: NormalizedUnitNumber
+  amount: NormalizedNumber
   formattingOptions?: CompactAmountCellFormattingOptions
   mobileViewOptions?: MobileViewOptions
   'data-testid'?: string
@@ -39,7 +39,7 @@ export function AmountCell({
 
 interface CompactValueProps {
   token: Token
-  amount: NormalizedUnitNumber
+  amount: NormalizedNumber
   className?: string
   'data-testid'?: string
   formattingOptions?: CompactAmountCellFormattingOptions

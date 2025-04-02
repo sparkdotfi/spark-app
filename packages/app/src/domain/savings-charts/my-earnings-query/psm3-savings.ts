@@ -1,7 +1,7 @@
 import { infoSkyApiUrl } from '@/config/consts'
 import { normalizedUnitNumberSchema } from '@/domain/common/validation'
 import { dateSchema } from '@/utils/schemas'
-import { CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { QueryKey, queryOptions } from '@tanstack/react-query'
 import { sort } from 'd3-array'
 import { z } from 'zod'
@@ -40,8 +40,8 @@ const myEarningsDataResponseSchema = z
 
     return sortedData.map((item) => ({
       date: item.datetime,
-      balance: item.balance ?? NormalizedUnitNumber.ZERO,
-      susdcBalance: item.susdc_balance ?? NormalizedUnitNumber.ZERO,
+      balance: item.balance ?? NormalizedNumber.ZERO,
+      susdcBalance: item.susdc_balance ?? NormalizedNumber.ZERO,
     }))
   })
 

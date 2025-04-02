@@ -1,7 +1,7 @@
 import { infoSkyApiUrl } from '@/config/consts'
 import { normalizedUnitNumberSchema } from '@/domain/common/validation'
 import { dateSchema } from '@/utils/schemas'
-import { CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { QueryKey, queryOptions } from '@tanstack/react-query'
 import { sort } from 'd3-array'
 import { mainnet } from 'wagmi/chains'
@@ -40,16 +40,16 @@ const myEarningsDataResponseSchema = z
 
     return sortedData.map((item) => ({
       date: item.datetime,
-      sdaiBalance: item.sdai_balance ?? NormalizedUnitNumber.ZERO,
-      susdsBalance: item.susds_balance ?? NormalizedUnitNumber.ZERO,
-      susdcBalance: item.susdc_balance ?? NormalizedUnitNumber.ZERO,
+      sdaiBalance: item.sdai_balance ?? NormalizedNumber.ZERO,
+      susdsBalance: item.susds_balance ?? NormalizedNumber.ZERO,
+      susdcBalance: item.susdc_balance ?? NormalizedNumber.ZERO,
     }))
   })
 
 type MyEarningsDataResponseSchema = z.infer<typeof myEarningsDataResponseSchema>
 
 function sdaiSelectQuery(data: MyEarningsDataResponseSchema): MyEarningsResult {
-  return data.map(({ date, sdaiBalance }) => ({ date, balance: sdaiBalance ?? NormalizedUnitNumber.ZERO }))
+  return data.map(({ date, sdaiBalance }) => ({ date, balance: sdaiBalance ?? NormalizedNumber.ZERO }))
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -61,7 +61,7 @@ export function mainnetSdaiMyEarningsQueryOptions(wallet: CheckedAddress) {
 }
 
 function susdsSelectQuery(data: MyEarningsDataResponseSchema): MyEarningsResult {
-  return data.map(({ date, susdsBalance }) => ({ date, balance: susdsBalance ?? NormalizedUnitNumber.ZERO }))
+  return data.map(({ date, susdsBalance }) => ({ date, balance: susdsBalance ?? NormalizedNumber.ZERO }))
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -73,7 +73,7 @@ export function mainnetSusdsMyEarningsQueryOptions(wallet: CheckedAddress) {
 }
 
 function mainnetSusdcSelectQuery(data: MyEarningsDataResponseSchema): MyEarningsResult {
-  return data.map(({ date, susdcBalance }) => ({ date, balance: susdcBalance ?? NormalizedUnitNumber.ZERO }))
+  return data.map(({ date, susdcBalance }) => ({ date, balance: susdcBalance ?? NormalizedNumber.ZERO }))
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type

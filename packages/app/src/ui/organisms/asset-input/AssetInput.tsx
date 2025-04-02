@@ -5,7 +5,7 @@ import { IconButton } from '@/ui/atoms/icon-button/IconButton'
 import { AssetSelector } from '@/ui/molecules/asset-selector/AssetSelector'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber, parseBigNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, parseBigNumber } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { XIcon } from 'lucide-react'
 import { Control, FieldPath, FieldValues, useController, useFormContext } from 'react-hook-form'
@@ -17,7 +17,7 @@ export interface AssetInputProps<TFieldValues extends FieldValues> {
   selectedAsset: TokenWithBalance
   setSelectedAsset: (selectedAsset: TokenSymbol) => void
   label?: string
-  maxValue?: NormalizedUnitNumber
+  maxValue?: NormalizedNumber
   maxSelectedFieldName?: string
   onRemove?: () => void
   disabled?: boolean
@@ -136,7 +136,7 @@ export function AssetInput<TFieldValues extends FieldValues>({
             }}
           />
           <div className={cn('typography-label-4 truncate text-secondary', disabled && 'opacity-50')}>
-            {token.formatUSD(NormalizedUnitNumber(parseBigNumber(value, 0)))}
+            {token.formatUSD(NormalizedNumber(parseBigNumber(value, 0)))}
           </div>
         </div>
         {maxValue?.gt(0) && (

@@ -6,7 +6,7 @@ import { Link } from '@/ui/atoms/link/Link'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { cva } from 'class-variance-authority'
 import { ChevronRightIcon } from 'lucide-react'
 import { SavingsOverview } from '../../logic/makeSavingsOverview'
@@ -19,14 +19,14 @@ import { SidePanelGroup } from './SidePanelGroup'
 export interface AccountMainPanelGroupProps {
   underlyingToken: Token
   savingsToken: Token
-  savingsTokenBalance: NormalizedUnitNumber
+  savingsTokenBalance: NormalizedNumber
   calculateUnderlyingTokenBalance: (timestampInMs: number) => SavingsOverview
   balanceRefreshIntervalInMs: number | undefined
   openDepositDialog: () => void
   openSendDialog: () => void
   openWithdrawDialog: () => void
-  oneYearProjection: NormalizedUnitNumber
-  sparkRewardsOneYearProjection: NormalizedUnitNumber
+  oneYearProjection: NormalizedNumber
+  sparkRewardsOneYearProjection: NormalizedNumber
   apy: Percentage
   apyExplainer: string
   apyExplainerDocsLink: string

@@ -3,7 +3,7 @@ import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { mainnet } from 'viem/chains'
 import { SuccessView, SuccessViewProps } from './SuccessView'
 
@@ -15,11 +15,11 @@ const meta: Meta<typeof SuccessView> = {
     claimedRewards: [
       {
         token: tokens.RED,
-        amountToClaim: NormalizedUnitNumber(0.00157),
+        amountToClaim: NormalizedNumber(0.00157),
       },
       {
         token: tokens.wstETH,
-        amountToClaim: NormalizedUnitNumber(0.0003498),
+        amountToClaim: NormalizedNumber(0.0003498),
       },
     ],
     chainId: mainnet.id,

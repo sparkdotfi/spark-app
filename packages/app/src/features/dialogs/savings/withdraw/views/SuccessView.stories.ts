@@ -1,7 +1,7 @@
 import { WithClassname, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
@@ -14,7 +14,7 @@ const meta: Meta<typeof SuccessView> = {
   args: {
     tokenToWithdraw: {
       token: tokens.DAI,
-      value: NormalizedUnitNumber(2000),
+      value: NormalizedNumber(2000),
     },
     closeDialog: () => {},
   },

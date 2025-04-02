@@ -1,6 +1,6 @@
 import { TokenWithBalance } from '@/domain/common/types'
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { MigrationInfo } from '../../logic/makeMigrationInfo'
 import { ChartsData, InterestData, SavingsAccountSupportedStablecoin } from '../../logic/useSavings'
 import { AccountMetadata, AccountSparkRewardsSummary } from '../../types'
@@ -13,7 +13,7 @@ import { UpgradeSavingsBanner } from '../upgrade-savings-baner/UpgradeSavingsBan
 
 export interface SavingsAccountProps {
   savingsToken: Token
-  savingsTokenBalance: NormalizedUnitNumber
+  savingsTokenBalance: NormalizedNumber
   underlyingToken: Token
   interestData: InterestData
   supportedStablecoins: SavingsAccountSupportedStablecoin[]

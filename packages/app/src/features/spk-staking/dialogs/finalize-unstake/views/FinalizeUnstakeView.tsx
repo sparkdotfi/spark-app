@@ -6,13 +6,13 @@ import { MultiPanelDialog } from '@/features/dialogs/common/components/MultiPane
 import { PageStatus } from '@/features/dialogs/common/types'
 import { DialogTitle } from '@/ui/atoms/dialog/Dialog'
 import { TransactionOverview } from '@/ui/organisms/transaction-overview/TransactionOverview'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface FinalizeUnstakeViewProps {
   objectives: Objective[]
   pageStatus: PageStatus
   spk: Token
-  unstakeAmount: NormalizedUnitNumber
+  unstakeAmount: NormalizedNumber
 }
 
 export function FinalizeUnstakeView({ objectives, pageStatus, spk, unstakeAmount }: FinalizeUnstakeViewProps) {

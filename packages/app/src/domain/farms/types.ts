@@ -1,13 +1,13 @@
 import { AssetsGroup, FarmConfig } from '@/config/chain/types'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Token } from '../types/Token'
 
 export interface FarmApiDetails {
   apy: Percentage
   depositors: number
-  rewardTokenPriceUsd?: NormalizedUnitNumber
-  totalRewarded: NormalizedUnitNumber
+  rewardTokenPriceUsd?: NormalizedNumber
+  totalRewarded: NormalizedNumber
 }
 
 export interface FarmBlockchainDetails {
@@ -17,12 +17,12 @@ export interface FarmBlockchainDetails {
   name: string
   rewardToken: Token
   stakingToken: Token
-  rewardRate: NormalizedUnitNumber
+  rewardRate: NormalizedNumber
   earnedTimestamp: number
   periodFinish: number
-  totalSupply: NormalizedUnitNumber
-  earned: NormalizedUnitNumber
-  staked: NormalizedUnitNumber
+  totalSupply: NormalizedNumber
+  earned: NormalizedNumber
+  staked: NormalizedNumber
 }
 
 export type Farm = Partial<FarmApiDetails> & FarmBlockchainDetails

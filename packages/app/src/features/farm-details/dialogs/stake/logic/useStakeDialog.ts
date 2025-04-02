@@ -13,7 +13,7 @@ import {
 import { getTransferFromUserFormValidator } from '@/features/dialogs/common/logic/transfer-from-user/validation'
 import { FormFieldsForDialog, PageState, PageStatus } from '@/features/dialogs/common/types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { assert, NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
+import { assert, NormalizedNumber, raise } from '@sparkdotfi/common-universal'
 import { useState } from 'react'
 import { UseFormReturn, useForm } from 'react-hook-form'
 import { useChainId } from 'wagmi'
@@ -88,7 +88,7 @@ export function useStakeDialog({ farm, initialToken }: UseStakeDialogParams): Us
       : undefined
   const stakedToken = {
     token: farm.stakingToken,
-    value: stakingTokenRouteItem?.value ?? NormalizedUnitNumber.ZERO,
+    value: stakingTokenRouteItem?.value ?? NormalizedNumber.ZERO,
   }
 
   const actionsEnabled = formValues.value.gt(0) && isFormValid && !isDebouncing

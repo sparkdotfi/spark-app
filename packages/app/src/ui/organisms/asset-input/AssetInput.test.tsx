@@ -3,7 +3,7 @@ import { Form } from '@/ui/atoms/form/Form'
 import { testIds } from '@/ui/utils/testIds'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { tokens } from '@sb/tokens'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { act, fireEvent, render, waitFor } from '@testing-library/react'
 import { useForm } from 'react-hook-form'
 import { describe, expect, test } from 'vitest'
@@ -33,7 +33,7 @@ const FormInputSchema = z
   })
 
 interface AssetInputTestWrapperProps {
-  max?: NormalizedUnitNumber
+  max?: NormalizedNumber
   token?: Token
   maxSelectedFieldName?: string
 }
@@ -61,7 +61,7 @@ function AssetInputTestWrapper({
         fieldName="value"
         selectorAssets={[]}
         setSelectedAsset={() => {}}
-        selectedAsset={{ token, balance: NormalizedUnitNumber(1) }}
+        selectedAsset={{ token, balance: NormalizedNumber(1) }}
         maxSelectedFieldName={maxSelectedFieldName}
         maxValue={max}
       />
@@ -71,7 +71,7 @@ function AssetInputTestWrapper({
 
 describe(AssetInput.name, () => {
   test('Changes value in input', async () => {
-    const value = NormalizedUnitNumber(12345)
+    const value = NormalizedNumber(12345)
 
     const { getByRole } = render(<AssetInputTestWrapper />)
 
@@ -81,7 +81,7 @@ describe(AssetInput.name, () => {
   })
 
   test('Validation fails if input value is erased', async () => {
-    const value = NormalizedUnitNumber(12345)
+    const value = NormalizedNumber(12345)
 
     const { getByRole, getByTestId } = render(<AssetInputTestWrapper />)
 
@@ -94,7 +94,7 @@ describe(AssetInput.name, () => {
   })
 
   test('Unable to put non-number input', async () => {
-    const value = NormalizedUnitNumber(12345)
+    const value = NormalizedNumber(12345)
 
     const { getByRole, queryByTestId } = render(<AssetInputTestWrapper />)
 
@@ -107,7 +107,7 @@ describe(AssetInput.name, () => {
   })
 
   test('Sets input value to max value if it is provided', async () => {
-    const max = NormalizedUnitNumber(1234)
+    const max = NormalizedNumber(1234)
 
     const { getByRole } = render(<AssetInputTestWrapper max={max} />)
 
@@ -116,7 +116,7 @@ describe(AssetInput.name, () => {
   })
 
   test('Rounds max value to 6 decimal points', async () => {
-    const max = NormalizedUnitNumber('1234.56789123456789')
+    const max = NormalizedNumber('1234.56789123456789')
 
     const { getByRole } = render(<AssetInputTestWrapper max={max} />)
 
@@ -125,8 +125,8 @@ describe(AssetInput.name, () => {
   })
 
   test('Able to alter input after clicking max', async () => {
-    const max = NormalizedUnitNumber(1234)
-    const value = NormalizedUnitNumber(123) // simulates hitting backspace
+    const max = NormalizedNumber(1234)
+    const value = NormalizedNumber(123) // simulates hitting backspace
 
     const { getByRole } = render(<AssetInputTestWrapper max={max} />)
 
@@ -138,7 +138,7 @@ describe(AssetInput.name, () => {
   })
 
   test('MAX button is disabled after clicking max', async () => {
-    const max = NormalizedUnitNumber(1234)
+    const max = NormalizedNumber(1234)
 
     const { getByRole } = render(<AssetInputTestWrapper max={max} />)
 
@@ -148,7 +148,7 @@ describe(AssetInput.name, () => {
   })
 
   test('Able to use arbitrary path as maxSelectedFieldName', async () => {
-    const max = NormalizedUnitNumber(1234)
+    const max = NormalizedNumber(1234)
 
     const { getByRole } = render(<AssetInputTestWrapper max={max} maxSelectedFieldName="assets.0.isMaxSelected" />)
 
@@ -159,7 +159,7 @@ describe(AssetInput.name, () => {
 
   test('Able to paste value with white spaces', async () => {
     const input = '123 . 456'
-    const max = NormalizedUnitNumber(input.replace(/\s/g, ''))
+    const max = NormalizedNumber(input.replace(/\s/g, ''))
 
     const { getByRole } = render(<AssetInputTestWrapper />)
 

@@ -5,7 +5,7 @@ import { SavingsRateChartData } from '@/domain/savings-charts/savings-rate-query
 import { SavingsConverterQueryOptions, SavingsConverterQueryParams } from '@/domain/savings-converters/types'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { UseQueryOptions } from '@tanstack/react-query'
 import { SUPPORTED_CHAIN_IDS } from './constants'
@@ -23,7 +23,7 @@ export interface NativeAssetInfo {
   nativeAssetSymbol: TokenSymbol
   wrappedNativeAssetSymbol: TokenSymbol
   wrappedNativeAssetAddress: CheckedAddress
-  minRemainingNativeAssetBalance: NormalizedUnitNumber
+  minRemainingNativeAssetBalance: NormalizedNumber
 }
 
 export interface ChainMeta {
@@ -39,8 +39,8 @@ export type TokenSymbolToNameReplacement = Record<TokenSymbol, { name: string; s
 
 export interface TokenToAirdropAmounts {
   [token: TokenSymbol]: {
-    deposit?: NormalizedUnitNumber
-    borrow?: NormalizedUnitNumber
+    deposit?: NormalizedNumber
+    borrow?: NormalizedNumber
   }
 }
 

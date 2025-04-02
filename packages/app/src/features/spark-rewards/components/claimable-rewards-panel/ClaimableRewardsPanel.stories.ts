@@ -1,7 +1,7 @@
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, raise } from '@sparkdotfi/common-universal'
 import type { Meta, StoryObj } from '@storybook/react'
 import { userEvent, within } from '@storybook/test'
 import { base, mainnet } from 'viem/chains'
@@ -20,8 +20,8 @@ type Story = StoryObj<typeof ClaimableRewardsPanel>
 const data: ClaimableRewardWithAction[] = [
   {
     token: tokens.RED,
-    amountPending: NormalizedUnitNumber(123.4323),
-    amountToClaim: NormalizedUnitNumber(224_093.23423),
+    amountPending: NormalizedNumber(123.4323),
+    amountToClaim: NormalizedNumber(224_093.23423),
     chainId: mainnet.id,
     actionName: 'Claim',
     action: () => {},
@@ -29,8 +29,8 @@ const data: ClaimableRewardWithAction[] = [
   },
   {
     token: tokens.SPK,
-    amountPending: NormalizedUnitNumber(44_224.22),
-    amountToClaim: NormalizedUnitNumber(12_213.21),
+    amountPending: NormalizedNumber(44_224.22),
+    amountToClaim: NormalizedNumber(12_213.21),
     chainId: mainnet.id,
     actionName: 'Claim',
     action: () => {},
@@ -38,8 +38,8 @@ const data: ClaimableRewardWithAction[] = [
   },
   {
     token: tokens.USDS,
-    amountPending: NormalizedUnitNumber(11.22),
-    amountToClaim: NormalizedUnitNumber.ZERO,
+    amountPending: NormalizedNumber(11.22),
+    amountToClaim: NormalizedNumber.ZERO,
     chainId: base.id,
     actionName: 'Switch',
     action: () => {},
@@ -106,8 +106,8 @@ export const ZeroAmounts: Story = {
       data: [
         {
           token: tokens.RED,
-          amountPending: NormalizedUnitNumber.ZERO,
-          amountToClaim: NormalizedUnitNumber.ZERO,
+          amountPending: NormalizedNumber.ZERO,
+          amountToClaim: NormalizedNumber.ZERO,
           chainId: mainnet.id,
           actionName: 'Claim',
           action: () => {},
@@ -115,8 +115,8 @@ export const ZeroAmounts: Story = {
         },
         {
           token: tokens.SPK,
-          amountPending: NormalizedUnitNumber.ZERO,
-          amountToClaim: NormalizedUnitNumber.ZERO,
+          amountPending: NormalizedNumber.ZERO,
+          amountToClaim: NormalizedNumber.ZERO,
           chainId: mainnet.id,
           actionName: 'Claim',
           action: () => {},
@@ -124,8 +124,8 @@ export const ZeroAmounts: Story = {
         },
         {
           token: tokens.USDS,
-          amountPending: NormalizedUnitNumber.ZERO,
-          amountToClaim: NormalizedUnitNumber.ZERO,
+          amountPending: NormalizedNumber.ZERO,
+          amountToClaim: NormalizedNumber.ZERO,
           chainId: base.id,
           actionName: 'Switch',
           action: () => {},

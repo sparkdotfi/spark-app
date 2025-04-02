@@ -1,7 +1,7 @@
 import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import BigNumber from 'bignumber.js'
 import { useForm } from 'react-hook-form'
@@ -19,32 +19,32 @@ const meta: Meta<typeof BorrowView> = {
     selectableAssets: [
       {
         token: tokens.DAI,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
       },
       {
         token: tokens.ETH,
-        balance: NormalizedUnitNumber(10),
+        balance: NormalizedNumber(10),
       },
     ],
     assetsFields: {
       selectedAsset: {
         token: tokens.DAI,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
         value: '2000',
       },
-      maxValue: NormalizedUnitNumber(5000),
+      maxValue: NormalizedNumber(5000),
       changeAsset: () => {},
     },
     objectives: [
       {
         type: 'borrow',
         token: tokens.DAI,
-        value: NormalizedUnitNumber(2000),
+        value: NormalizedNumber(2000),
       },
     ],
     borrowAsset: {
       token: tokens.DAI,
-      value: NormalizedUnitNumber(2000),
+      value: NormalizedNumber(2000),
     },
     pageStatus: {
       state: 'form',

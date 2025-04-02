@@ -1,6 +1,6 @@
 import { WithClassname } from '@sb/decorators'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import type { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { StakeSpkCTAPanel, StakeSpkCTAPanelProps } from './StakeSpkCTAPanel'
@@ -20,7 +20,7 @@ export const Desktop: StoryObj<StakeSpkCTAPanelProps & { type: 'connected' }> = 
   args: {
     type: 'connected',
     stake: () => {},
-    spkBalance: NormalizedUnitNumber(100),
+    spkBalance: NormalizedNumber(100),
   },
 }
 export const Mobile = getMobileStory(Desktop)
@@ -37,6 +37,6 @@ export const Disconnected: Story = {
 export const NothingToStake: Story = {
   args: {
     type: 'connected',
-    spkBalance: NormalizedUnitNumber.ZERO,
+    spkBalance: NormalizedNumber.ZERO,
   },
 }

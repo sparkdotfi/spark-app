@@ -4,7 +4,7 @@ import { MarketInfo } from '@/domain/market-info/marketInfo'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { testAddresses } from '@/test/integration/constants'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { getLiquidationDetails } from './getLiquidationDetails'
 
@@ -23,7 +23,7 @@ describe(getLiquidationDetails.name, () => {
 
   it('returns undefined when no borrows', () => {
     const marketInfo = getMockedMarketInfo()
-    const collaterals = [{ token: ethLike, value: NormalizedUnitNumber(1) }]
+    const collaterals = [{ token: ethLike, value: NormalizedNumber(1) }]
 
     const result = getLiquidationDetails({
       collaterals,
@@ -36,8 +36,8 @@ describe(getLiquidationDetails.name, () => {
 
   it('returns undefined when borrow is not dai', () => {
     const marketInfo = getMockedMarketInfo()
-    const collaterals = [{ token: ethLike, value: NormalizedUnitNumber(1) }]
-    const borrows = [{ token: wstETHLike, value: NormalizedUnitNumber(0.5) }]
+    const collaterals = [{ token: ethLike, value: NormalizedNumber(1) }]
+    const borrows = [{ token: wstETHLike, value: NormalizedNumber(0.5) }]
 
     const result = getLiquidationDetails({
       collaterals,
@@ -50,10 +50,10 @@ describe(getLiquidationDetails.name, () => {
 
   it('returns undefined when multiple borrows', () => {
     const marketInfo = getMockedMarketInfo()
-    const collaterals = [{ token: ethLike, value: NormalizedUnitNumber(1) }]
+    const collaterals = [{ token: ethLike, value: NormalizedNumber(1) }]
     const borrows = [
-      { token: daiLike, value: NormalizedUnitNumber(20000) },
-      { token: btcLike, value: NormalizedUnitNumber(1) },
+      { token: daiLike, value: NormalizedNumber(20000) },
+      { token: btcLike, value: NormalizedNumber(1) },
     ]
 
     const result = getLiquidationDetails({
@@ -68,10 +68,10 @@ describe(getLiquidationDetails.name, () => {
   it('returns undefined when mixed collaterals', () => {
     const marketInfo = getMockedMarketInfo()
     const collaterals = [
-      { token: btcLike, value: NormalizedUnitNumber(1) },
-      { token: ethLike, value: NormalizedUnitNumber(1) },
+      { token: btcLike, value: NormalizedNumber(1) },
+      { token: ethLike, value: NormalizedNumber(1) },
     ]
-    const borrows = [{ token: daiLike, value: NormalizedUnitNumber(20000) }]
+    const borrows = [{ token: daiLike, value: NormalizedNumber(20000) }]
 
     const result = getLiquidationDetails({
       collaterals,
@@ -84,8 +84,8 @@ describe(getLiquidationDetails.name, () => {
 
   it('calculates liquidation price for btc like', () => {
     const marketInfo = getMockedMarketInfo()
-    const collaterals = [{ token: btcLike, value: NormalizedUnitNumber(1) }]
-    const borrows = [{ token: daiLike, value: NormalizedUnitNumber(20000) }]
+    const collaterals = [{ token: btcLike, value: NormalizedNumber(1) }]
+    const borrows = [{ token: daiLike, value: NormalizedNumber(20000) }]
 
     const result = getLiquidationDetails({
       collaterals,
@@ -94,9 +94,9 @@ describe(getLiquidationDetails.name, () => {
       liquidationThreshold: Percentage(0.8),
     })
     expect(result).toStrictEqual({
-      liquidationPrice: NormalizedUnitNumber(25000),
+      liquidationPrice: NormalizedNumber(25000),
       tokenWithPrice: {
-        priceInUSD: NormalizedUnitNumber(40000),
+        priceInUSD: NormalizedNumber(40000),
         symbol: TokenSymbol('BTC'),
       },
     })
@@ -105,10 +105,10 @@ describe(getLiquidationDetails.name, () => {
   it('calculates liquidation price for eth correlated assets', () => {
     const marketInfo = getMockedMarketInfo()
     const collaterals = [
-      { token: ethLike, value: NormalizedUnitNumber(2) },
-      { token: wstETHLike, value: NormalizedUnitNumber(2) },
+      { token: ethLike, value: NormalizedNumber(2) },
+      { token: wstETHLike, value: NormalizedNumber(2) },
     ]
-    const borrows = [{ token: daiLike, value: NormalizedUnitNumber(4000) }]
+    const borrows = [{ token: daiLike, value: NormalizedNumber(4000) }]
 
     const result = getLiquidationDetails({
       collaterals,
@@ -117,9 +117,9 @@ describe(getLiquidationDetails.name, () => {
       liquidationThreshold: Percentage(0.8),
     })
     expect(result).toStrictEqual({
-      liquidationPrice: NormalizedUnitNumber(1000),
+      liquidationPrice: NormalizedNumber(1000),
       tokenWithPrice: {
-        priceInUSD: NormalizedUnitNumber(2000),
+        priceInUSD: NormalizedNumber(2000),
         symbol: TokenSymbol('ETH'),
       },
     })

@@ -7,14 +7,14 @@ import { testAddresses, testTokens } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
 import { toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { mainnet } from 'viem/chains'
 import { describe, test } from 'vitest'
 import { createUpgradeActionConfig } from './upgradeAction'
 
 const account = testAddresses.alice
-const upgradeAmount = NormalizedUnitNumber(1)
+const upgradeAmount = NormalizedNumber(1)
 const DAI = testTokens.DAI
 const USDS = testTokens.USDS
 const sDAI = testTokens.sDAI
@@ -23,10 +23,10 @@ const chainId = mainnet.id
 
 const mockTokenRepository = new TokenRepository(
   [
-    { token: DAI, balance: NormalizedUnitNumber(100) },
-    { token: sDAI, balance: NormalizedUnitNumber(100) },
-    { token: USDS, balance: NormalizedUnitNumber(100) },
-    { token: sUSDS, balance: NormalizedUnitNumber(100) },
+    { token: DAI, balance: NormalizedNumber(100) },
+    { token: sDAI, balance: NormalizedNumber(100) },
+    { token: USDS, balance: NormalizedNumber(100) },
+    { token: sUSDS, balance: NormalizedNumber(100) },
   ],
   {
     DAI: DAI.symbol,

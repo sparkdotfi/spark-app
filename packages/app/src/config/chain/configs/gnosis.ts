@@ -2,7 +2,7 @@ import { fetchSdaiOracleInfoGnosis } from '@/domain/oracles/oracleInfoFetchers'
 import { gnosisSavingsDaiConverterQuery } from '@/domain/savings-converters/gnosisSavingsConverter'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { assets } from '@/ui/assets'
-import { CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { gnosis } from 'viem/chains'
 import { commonTokenSymbolToReplacedName } from '../common'
 import { ChainConfigEntry } from '../types'
@@ -56,7 +56,7 @@ export const gnosisConfig: ChainConfigEntry = {
       wrappedNativeAssetSymbol: TokenSymbol('WXDAI'),
       wrappedNativeAssetAddress: CheckedAddress('0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d'),
       nativeAssetSymbol: TokenSymbol('XDAI'),
-      minRemainingNativeAssetBalance: NormalizedUnitNumber(0.1),
+      minRemainingNativeAssetBalance: NormalizedNumber(0.1),
     },
     tokenSymbolToReplacedName: {
       ...commonTokenSymbolToReplacedName,

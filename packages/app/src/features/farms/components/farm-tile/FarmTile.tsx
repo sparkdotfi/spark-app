@@ -6,14 +6,14 @@ import { LinkDecorator } from '@/ui/atoms/link-decorator/LinkDecorator'
 import { IconStack } from '@/ui/molecules/icon-stack/IconStack'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { useState } from 'react'
 
 export interface FarmTileProps {
   entryAssetsGroup: AssetsGroup
   apy?: Percentage
   stakingToken: Token
-  staked: NormalizedUnitNumber
+  staked: NormalizedNumber
   rewardToken: Token
   detailsLink: string
   isPointsFarm: boolean

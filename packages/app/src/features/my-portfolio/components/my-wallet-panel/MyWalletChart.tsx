@@ -4,7 +4,7 @@ import { getTokenColor, getTokenImage } from '@/ui/assets'
 import { getArcs, getSeparators } from '@/ui/utils/chart-math'
 import { getRandomColor } from '@/ui/utils/get-random-color'
 import { cn } from '@/ui/utils/style'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useState } from 'react'
 
 export interface MyWalletChartProps {
@@ -14,8 +14,8 @@ export interface MyWalletChartProps {
 
 export function MyWalletChart({ assets, className }: MyWalletChartProps) {
   const totalUsd = assets.reduce(
-    (acc, asset) => NormalizedUnitNumber(acc.plus(asset.token.toUSD(asset.balance))),
-    NormalizedUnitNumber.ZERO,
+    (acc, asset) => NormalizedNumber(acc.plus(asset.token.toUSD(asset.balance))),
+    NormalizedNumber.ZERO,
   )
   const displayedAssets = assets.filter((asset) => asset.token.toUSD(asset.balance).div(totalUsd).gt(0.005)) // @note: filter out values that are smaller than 0.5% of total
   const data = displayedAssets.map((asset) => ({

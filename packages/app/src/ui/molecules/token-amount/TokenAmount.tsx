@@ -1,11 +1,11 @@
 import { Token, USD_MOCK_TOKEN } from '@/domain/types/Token'
 import { TokenIcon } from '@/ui/atoms/token-icon/TokenIcon'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface TokenAmountProps {
   token: Token
-  amount: NormalizedUnitNumber
-  usdAmount?: NormalizedUnitNumber
+  amount: NormalizedNumber
+  usdAmount?: NormalizedNumber
   variant?: 'vertical' | 'horizontal'
   showZeroUsdAmount?: boolean
   amountDataTestId?: string

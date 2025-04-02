@@ -1,10 +1,10 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { TopbarAirdropDropdown } from './TopbarAirdropDropdown'
 import { TopbarDynamicAirdrop } from './TopbarDynamicAirdrop'
 
 export interface Airdrop {
-  tokenReward: NormalizedUnitNumber
-  tokenRatePerSecond: NormalizedUnitNumber
+  tokenReward: NormalizedNumber
+  tokenRatePerSecond: NormalizedNumber
   timestampInMs: number
   tokenRatePrecision: number
   refreshIntervalInMs: number

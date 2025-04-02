@@ -2,7 +2,7 @@ import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { Meta, StoryObj } from '@storybook/react'
 
 import { tokens } from '@sb/tokens'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { userEvent, within } from '@storybook/test'
 import { TopbarRewards } from './TopbarRewards'
 
@@ -14,15 +14,15 @@ const meta: Meta<typeof TopbarRewards> = {
     rewards: [
       {
         token: tokens.wstETH,
-        amount: NormalizedUnitNumber(0.00157),
+        amount: NormalizedNumber(0.00157),
       },
       {
         token: tokens.WBTC,
-        amount: NormalizedUnitNumber(0.0003498),
+        amount: NormalizedNumber(0.0003498),
       },
     ],
     onClaim: () => {},
-    totalClaimableReward: NormalizedUnitNumber(0.0029198),
+    totalClaimableReward: NormalizedNumber(0.0029198),
   },
   play: async ({ canvasElement }) => {
     const button = await within(canvasElement).findByRole('button')

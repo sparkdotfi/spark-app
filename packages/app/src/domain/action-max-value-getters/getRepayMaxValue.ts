@@ -1,28 +1,28 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ReserveStatus } from '../market-info/reserve-status'
 
 export interface GetRepayMaxValueParams {
   user: {
-    debt: NormalizedUnitNumber
-    balance: NormalizedUnitNumber
+    debt: NormalizedNumber
+    balance: NormalizedNumber
   }
   asset: {
     status: ReserveStatus
     isNativeAsset: boolean
   }
   chain: {
-    minRemainingNativeAsset: NormalizedUnitNumber
+    minRemainingNativeAsset: NormalizedNumber
   }
 }
 
-export function getRepayMaxValue({ user, asset, chain }: GetRepayMaxValueParams): NormalizedUnitNumber {
+export function getRepayMaxValue({ user, asset, chain }: GetRepayMaxValueParams): NormalizedNumber {
   if (asset.status === 'paused') {
-    return NormalizedUnitNumber.ZERO
+    return NormalizedNumber.ZERO
   }
 
-  const maxRepay = NormalizedUnitNumber.min(
+  const maxRepay = NormalizedNumber.min(
     user.debt,
-    user.balance.minus(asset.isNativeAsset ? chain.minRemainingNativeAsset : NormalizedUnitNumber.ZERO),
+    user.balance.minus(asset.isNativeAsset ? chain.minRemainingNativeAsset : NormalizedNumber.ZERO),
   )
-  return NormalizedUnitNumber.max(maxRepay, NormalizedUnitNumber.ZERO)
+  return NormalizedNumber.max(maxRepay, NormalizedNumber.ZERO)
 }

@@ -1,25 +1,25 @@
 import { D3MInfo } from '@/domain/d3m-info/types'
 import { daiLikeReserve, getMockMarketInfo, getMockReserve, wethLikeReserve } from '@/test/integration/constants'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { aggregateStats } from './aggregate-stats'
 
 describe('aggregateStats', () => {
   test('calculates stats correctly ', () => {
     const daiReserve = getMockReserve({
       ...daiLikeReserve,
-      totalLiquidityUSD: NormalizedUnitNumber(1000),
-      totalDebtUSD: NormalizedUnitNumber(400),
-      totalLiquidity: NormalizedUnitNumber(1000),
+      totalLiquidityUSD: NormalizedNumber(1000),
+      totalDebtUSD: NormalizedNumber(400),
+      totalLiquidity: NormalizedNumber(1000),
     })
     const wethReserve = getMockReserve({
       ...wethLikeReserve,
-      totalLiquidityUSD: NormalizedUnitNumber(500),
-      totalDebtUSD: NormalizedUnitNumber(200),
+      totalLiquidityUSD: NormalizedNumber(500),
+      totalDebtUSD: NormalizedNumber(200),
     })
     const marketInfo = getMockMarketInfo([daiReserve, wethReserve])
 
     const d3mInfo: D3MInfo = {
-      D3MCurrentDebtUSD: NormalizedUnitNumber(970), // 97% of dai liquidity
+      D3MCurrentDebtUSD: NormalizedNumber(970), // 97% of dai liquidity
     } as D3MInfo
 
     const result = aggregateStats(marketInfo, d3mInfo)
@@ -33,13 +33,13 @@ describe('aggregateStats', () => {
   test('calculates stats correctly when D3M is not present', () => {
     const daiReserve = getMockReserve({
       ...daiLikeReserve,
-      totalLiquidityUSD: NormalizedUnitNumber(1000),
-      totalDebtUSD: NormalizedUnitNumber(400),
+      totalLiquidityUSD: NormalizedNumber(1000),
+      totalDebtUSD: NormalizedNumber(400),
     })
     const wethReserve = getMockReserve({
       ...wethLikeReserve,
-      totalLiquidityUSD: NormalizedUnitNumber(500),
-      totalDebtUSD: NormalizedUnitNumber(200),
+      totalLiquidityUSD: NormalizedNumber(500),
+      totalDebtUSD: NormalizedNumber(200),
     })
     const marketInfo = getMockMarketInfo([daiReserve, wethReserve])
 
@@ -54,19 +54,19 @@ describe('aggregateStats', () => {
   test('handles case when value of D3M debt is returned higher that DAI reserve total liquidity', () => {
     const daiReserve = getMockReserve({
       ...daiLikeReserve,
-      totalLiquidityUSD: NormalizedUnitNumber(1000),
-      totalDebtUSD: NormalizedUnitNumber(400),
-      totalLiquidity: NormalizedUnitNumber(1000),
+      totalLiquidityUSD: NormalizedNumber(1000),
+      totalDebtUSD: NormalizedNumber(400),
+      totalLiquidity: NormalizedNumber(1000),
     })
     const wethReserve = getMockReserve({
       ...wethLikeReserve,
-      totalLiquidityUSD: NormalizedUnitNumber(500),
-      totalDebtUSD: NormalizedUnitNumber(200),
+      totalLiquidityUSD: NormalizedNumber(500),
+      totalDebtUSD: NormalizedNumber(200),
     })
     const marketInfo = getMockMarketInfo([daiReserve, wethReserve])
 
     const d3mInfo: D3MInfo = {
-      D3MCurrentDebtUSD: NormalizedUnitNumber(1500), // 150% of dai liquidity
+      D3MCurrentDebtUSD: NormalizedNumber(1500), // 150% of dai liquidity
     } as D3MInfo
 
     const result = aggregateStats(marketInfo, d3mInfo)
@@ -82,14 +82,14 @@ describe('aggregateStats', () => {
   test('calculates stats correctly when DAI reserve totalLiquidity is 0', () => {
     const daiReserve = getMockReserve({
       ...daiLikeReserve,
-      totalLiquidity: NormalizedUnitNumber.ZERO,
-      totalLiquidityUSD: NormalizedUnitNumber.ZERO,
-      totalDebtUSD: NormalizedUnitNumber.ZERO,
+      totalLiquidity: NormalizedNumber.ZERO,
+      totalLiquidityUSD: NormalizedNumber.ZERO,
+      totalDebtUSD: NormalizedNumber.ZERO,
     })
     const wethReserve = getMockReserve({
       ...wethLikeReserve,
-      totalLiquidityUSD: NormalizedUnitNumber(500),
-      totalDebtUSD: NormalizedUnitNumber(200),
+      totalLiquidityUSD: NormalizedNumber(500),
+      totalDebtUSD: NormalizedNumber(200),
     })
     const marketInfo = getMockMarketInfo([daiReserve, wethReserve])
 
@@ -104,15 +104,15 @@ describe('aggregateStats', () => {
   test('calculates stats correctly when market has all zero values', () => {
     const daiReserve = getMockReserve({
       ...daiLikeReserve,
-      totalLiquidity: NormalizedUnitNumber.ZERO,
-      totalLiquidityUSD: NormalizedUnitNumber.ZERO,
-      totalDebtUSD: NormalizedUnitNumber.ZERO,
+      totalLiquidity: NormalizedNumber.ZERO,
+      totalLiquidityUSD: NormalizedNumber.ZERO,
+      totalDebtUSD: NormalizedNumber.ZERO,
     })
     const wethReserve = getMockReserve({
       ...wethLikeReserve,
-      totalLiquidity: NormalizedUnitNumber.ZERO,
-      totalLiquidityUSD: NormalizedUnitNumber.ZERO,
-      totalDebtUSD: NormalizedUnitNumber.ZERO,
+      totalLiquidity: NormalizedNumber.ZERO,
+      totalLiquidityUSD: NormalizedNumber.ZERO,
+      totalDebtUSD: NormalizedNumber.ZERO,
     })
     const marketInfo = getMockMarketInfo([daiReserve, wethReserve])
 

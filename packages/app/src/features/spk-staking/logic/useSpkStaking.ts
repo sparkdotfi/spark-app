@@ -7,7 +7,7 @@ import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { sandboxDialogConfig } from '@/features/dialogs/sandbox/SandboxDialog'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { CheckedAddress, UnixTime } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useAccount, useConfig } from 'wagmi'
 import { AvailableToStakeRow } from '../components/available-to-stake-panel/AvailableToStakePanel'
 import { WithdrawalsTableRow } from '../components/withdrawals-table/WithdrawalsTablePanel'
@@ -90,7 +90,7 @@ export function useSpkStaking(): UseSpkStakingResult {
       } satisfies MainPanelData
     }
 
-    function calculateReward(timestampInMs: number): NormalizedUnitNumber {
+    function calculateReward(timestampInMs: number): NormalizedNumber {
       return spkStakingData.pendingAmount.plus(
         spkStakingData.pendingAmountRate.times(timestampInMs / 1000 - spkStakingData.pendingAmountTimestamp),
       )

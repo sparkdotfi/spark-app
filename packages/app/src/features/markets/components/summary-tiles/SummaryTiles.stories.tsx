@@ -2,7 +2,7 @@ import { WithTooltipProvider } from '@sb/decorators'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { SummaryTiles } from './SummaryTiles'
 
@@ -18,10 +18,10 @@ type Story = StoryObj<typeof SummaryTiles>
 export const Desktop: Story = {
   args: {
     marketStats: {
-      totalMarketSizeUSD: NormalizedUnitNumber(2.2 * 10 ** 12),
-      totalValueLockedUSD: NormalizedUnitNumber(1.5 * 10 ** 12),
-      totalAvailableUSD: NormalizedUnitNumber(1.4 * 10 ** 12),
-      totalBorrowsUSD: NormalizedUnitNumber(828.48 * 10 ** 9),
+      totalMarketSizeUSD: NormalizedNumber(2.2 * 10 ** 12),
+      totalValueLockedUSD: NormalizedNumber(1.5 * 10 ** 12),
+      totalAvailableUSD: NormalizedNumber(1.4 * 10 ** 12),
+      totalBorrowsUSD: NormalizedNumber(828.48 * 10 ** 9),
     },
   },
 }

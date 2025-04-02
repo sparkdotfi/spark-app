@@ -1,29 +1,29 @@
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { EModeCategory, EModeState } from '../market-info/marketInfo'
 import { ReserveStatus } from '../market-info/reserve-status'
 
 interface GetWithdrawMaxValueParams {
   user: {
-    deposited: NormalizedUnitNumber
+    deposited: NormalizedNumber
     healthFactor: BigNumber | undefined
-    totalBorrowsUSD: NormalizedUnitNumber
+    totalBorrowsUSD: NormalizedNumber
     eModeState: EModeState
   }
   asset: {
     status: ReserveStatus
-    unborrowedLiquidity: NormalizedUnitNumber
+    unborrowedLiquidity: NormalizedNumber
     liquidationThreshold: Percentage
-    unitPriceUsd: NormalizedUnitNumber
+    unitPriceUsd: NormalizedNumber
     decimals: number
     usageAsCollateralEnabledOnUser: boolean
     eModeCategory?: EModeCategory
   }
 }
 
-export function getWithdrawMaxValue({ user, asset }: GetWithdrawMaxValueParams): NormalizedUnitNumber {
+export function getWithdrawMaxValue({ user, asset }: GetWithdrawMaxValueParams): NormalizedNumber {
   if (asset.status === 'paused') {
-    return NormalizedUnitNumber.ZERO
+    return NormalizedNumber.ZERO
   }
 
   const ceilings = [user.deposited, asset.unborrowedLiquidity]
@@ -37,16 +37,16 @@ export function getWithdrawMaxValue({ user, asset }: GetWithdrawMaxValueParams):
           : asset.liquidationThreshold
 
       if (liquidationThreshold.gt(0) && user.totalBorrowsUSD.gt(0)) {
-        const maxCollateralToWithdraw = NormalizedUnitNumber(excessHF)
+        const maxCollateralToWithdraw = NormalizedNumber(excessHF)
           .times(user.totalBorrowsUSD)
-          .div(NormalizedUnitNumber(liquidationThreshold))
+          .div(NormalizedNumber(liquidationThreshold))
           .div(asset.unitPriceUsd)
         ceilings.push(maxCollateralToWithdraw)
       }
     } else {
-      ceilings.push(NormalizedUnitNumber.ZERO)
+      ceilings.push(NormalizedNumber.ZERO)
     }
   }
 
-  return NormalizedUnitNumber.min(...ceilings).decimalPlaces(asset.decimals, BigNumber.ROUND_DOWN)
+  return NormalizedNumber.min(...ceilings).decimalPlaces(asset.decimals, BigNumber.ROUND_DOWN)
 }

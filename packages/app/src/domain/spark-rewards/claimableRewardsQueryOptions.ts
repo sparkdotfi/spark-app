@@ -1,6 +1,6 @@
 import { spark2ApiUrl } from '@/config/consts'
 import { testSparkRewardsConfig } from '@/config/contracts-generated'
-import { BaseUnitNumber, Hex, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, Hex, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { QueryKey, queryOptions, skipToken } from '@tanstack/react-query'
 import { Address, erc20Abi } from 'viem'
 import { mainnet } from 'viem/chains'
@@ -52,10 +52,10 @@ export interface ClaimableRewardData {
   merkleRoot: Hex
   epoch: number
   rewardToken: Token
-  cumulativeAmount: NormalizedUnitNumber
-  pendingAmount: NormalizedUnitNumber
+  cumulativeAmount: NormalizedNumber
+  pendingAmount: NormalizedNumber
   restrictedCountryCodes: string[]
-  preClaimed: NormalizedUnitNumber
+  preClaimed: NormalizedNumber
   merkleProof: Hex[]
   chainId: number
 }

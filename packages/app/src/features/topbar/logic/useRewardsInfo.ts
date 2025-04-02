@@ -3,7 +3,7 @@ import { aaveDataLayer, aaveDataLayerQueryKey } from '@/domain/market-info/aave-
 import { marketInfoSelectFn } from '@/domain/market-info/marketInfo'
 import { useOpenDialog } from '@/domain/state/dialogs'
 import { claimRewardsDialogConfig } from '@/features/dialogs/claim-rewards/ClaimRewardsDialog'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { skipToken, useQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
@@ -33,8 +33,8 @@ export function useRewardsInfo({ chainId, address }: UseRewardsInfoParams): Topb
   }))
 
   const totalClaimableReward = rewards.reduce(
-    (acc, { token, amount }) => NormalizedUnitNumber(acc.plus(token.toUSD(amount))),
-    NormalizedUnitNumber.ZERO,
+    (acc, { token, amount }) => NormalizedNumber(acc.plus(token.toUSD(amount))),
+    NormalizedNumber.ZERO,
   )
 
   return {

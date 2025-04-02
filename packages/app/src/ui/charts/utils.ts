@@ -1,5 +1,5 @@
 import { USD_MOCK_TOKEN } from '@/domain/types/Token'
-import { NormalizedUnitNumber, assertNever } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, assertNever } from '@sparkdotfi/common-universal'
 import { Timeframe } from './defaults'
 
 export function formatTooltipDate(date: Date): string {
@@ -19,7 +19,7 @@ export function formatPercentageTick(value: { valueOf(): number }): string {
 }
 
 export function formatUSDTicks(value: { valueOf(): number }): string {
-  return USD_MOCK_TOKEN.formatUSD(NormalizedUnitNumber(value.valueOf()), { compact: true })
+  return USD_MOCK_TOKEN.formatUSD(NormalizedNumber(value.valueOf()), { compact: true })
 }
 
 interface FilterDataByTimeframeParams<Data extends { date: Date }> {

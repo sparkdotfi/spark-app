@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber, Percentage, raise } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage, raise } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { MarketInfo } from '../market-info/marketInfo'
 
@@ -9,7 +9,7 @@ export interface ValidateSetUserEModeParams {
   }
   user: {
     eModeCategoryId: number
-    reserves: { eModeCategoryId?: number; borrowBalance: NormalizedUnitNumber }[]
+    reserves: { eModeCategoryId?: number; borrowBalance: NormalizedNumber }[]
     healthFactorAfterChangingEMode?: BigNumber
   }
 }

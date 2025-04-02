@@ -1,7 +1,7 @@
 import { SavingsAccount } from '@/domain/savings-converters/types'
 import { TransferFromUserFormNormalizedData } from '@/features/dialogs/common/logic/transfer-from-user/form'
 import { TxOverviewRouteItem } from '@/features/dialogs/common/types'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { SavingsDialogTxOverview } from '../../common/types'
 
 export interface CreateTxOverviewParams {
@@ -17,7 +17,7 @@ export function createTxOverview({ formValues, savingsAccount }: CreateTxOvervie
   }
 
   const savingsTokenOutAmount = savingsAccount.converter.convertToShares({ assets: value })
-  const stableEarnRate = value.times(NormalizedUnitNumber(savingsAccount.converter.apy))
+  const stableEarnRate = value.times(NormalizedNumber(savingsAccount.converter.apy))
 
   const route: TxOverviewRouteItem[] = getDepositRoute({
     formValues,
@@ -39,7 +39,7 @@ export function createTxOverview({ formValues, savingsAccount }: CreateTxOvervie
 export interface GetDepositRouteParams {
   formValues: TransferFromUserFormNormalizedData
   savingsAccount: SavingsAccount
-  savingsTokenOutAmount: NormalizedUnitNumber
+  savingsTokenOutAmount: NormalizedNumber
 }
 function getDepositRoute({
   formValues,

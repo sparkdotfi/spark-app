@@ -6,7 +6,7 @@ import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupHookRenderer } from '@/test/integration/setupHookRenderer'
-import { Hex, NormalizedUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
+import { Hex, NormalizedNumber, toBigInt } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { times } from 'remeda'
 import { erc20Abi } from 'viem'
@@ -41,9 +41,9 @@ describe(useClaimableRewards.name, () => {
   })
 
   test('fetches claimable rewards', async () => {
-    const cumulativeAmountNormalized = NormalizedUnitNumber(123.45)
-    const pendingAmountNormalized = NormalizedUnitNumber(10.23)
-    const preClaimed = NormalizedUnitNumber(98.7654321)
+    const cumulativeAmountNormalized = NormalizedNumber(123.45)
+    const pendingAmountNormalized = NormalizedNumber(10.23)
+    const preClaimed = NormalizedNumber(98.7654321)
 
     vi.stubGlobal('fetch', (...args: Parameters<typeof fetch>) => {
       if (args[0] === `${spark2ApiUrl}/rewards/roots/${chainId}/${merkleRoot}/${account}/`) {
@@ -109,7 +109,7 @@ describe(useClaimableRewards.name, () => {
       {
         token: rewardToken,
         amountPending: pendingAmountNormalized,
-        amountToClaim: NormalizedUnitNumber(cumulativeAmountNormalized.minus(preClaimed)),
+        amountToClaim: NormalizedNumber(cumulativeAmountNormalized.minus(preClaimed)),
         action: expect.any(Function),
         actionName: 'Claim',
         isActionEnabled: true,

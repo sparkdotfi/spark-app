@@ -2,13 +2,13 @@ import { Farm } from '@/domain/farms/types'
 import { Token } from '@/domain/types/Token'
 import { TransferFromUserFormNormalizedData } from '@/features/dialogs/common/logic/transfer-from-user/form'
 import { TxOverviewRouteItem } from '@/features/dialogs/common/types'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface CreateTxOverviewParams {
   formValues: TransferFromUserFormNormalizedData
   farm: Farm
   isExiting: boolean
-  earnedRewards: NormalizedUnitNumber
+  earnedRewards: NormalizedNumber
 }
 
 export type TxOverview =
@@ -17,7 +17,7 @@ export type TxOverview =
       status: 'success'
       stakingToken: Token
       rewardToken: Token
-      earnedRewards: NormalizedUnitNumber
+      earnedRewards: NormalizedNumber
       isExiting: boolean
       routeToOutcomeToken: TxOverviewRouteItem[]
     }

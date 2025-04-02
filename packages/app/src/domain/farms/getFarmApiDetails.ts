@@ -1,7 +1,7 @@
 import { FarmConfig } from '@/config/chain/types'
 import { infoSkyApiUrl } from '@/config/consts'
 import { FarmApiDetails } from '@/domain/farms/types'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { z } from 'zod'
 import { normalizedUnitNumberSchema, percentageAboveOneSchema } from '../common/validation'
 
@@ -28,8 +28,8 @@ interface GetFarmBADataParams {
 interface GetFarmBADataResult {
   apy: Percentage
   depositors: number
-  rewardTokenPriceUsd: NormalizedUnitNumber
-  totalRewarded: NormalizedUnitNumber
+  rewardTokenPriceUsd: NormalizedNumber
+  totalRewarded: NormalizedNumber
 }
 
 async function getBAFarmData({ farmConfig }: GetFarmBADataParams): Promise<GetFarmBADataResult> {
@@ -51,6 +51,6 @@ const baFarmDataResponseSchema = z
   .transform(({ apy, depositors, price, total_farmed }) => ({
     apy,
     depositors,
-    rewardTokenPriceUsd: NormalizedUnitNumber(price),
+    rewardTokenPriceUsd: NormalizedNumber(price),
     totalRewarded: total_farmed,
   }))

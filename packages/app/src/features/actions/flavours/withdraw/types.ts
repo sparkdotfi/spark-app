@@ -1,17 +1,17 @@
 import { Reserve } from '@/domain/market-info/marketInfo'
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface WithdrawObjective {
   type: 'withdraw'
   reserve: Reserve
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   all: boolean
-  gatewayApprovalValue?: NormalizedUnitNumber
+  gatewayApprovalValue?: NormalizedNumber
 }
 
 export interface WithdrawAction {
   type: 'withdraw'
   token: Token
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
 }

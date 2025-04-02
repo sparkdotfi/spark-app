@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { validateSetUserEMode } from './validateSetUserEMode'
 
@@ -30,7 +30,7 @@ describe(validateSetUserEMode.name, () => {
           requestedEModeCategory,
           user: {
             eModeCategoryId: 0,
-            reserves: [{ eModeCategoryId: 2, borrowBalance: NormalizedUnitNumber(1) }],
+            reserves: [{ eModeCategoryId: 2, borrowBalance: NormalizedNumber(1) }],
           },
         }),
       ).toBe('borrowed-assets-emode-category-mismatch')
@@ -41,8 +41,8 @@ describe(validateSetUserEMode.name, () => {
           user: {
             eModeCategoryId: 0,
             reserves: [
-              { eModeCategoryId: 1, borrowBalance: NormalizedUnitNumber(2) },
-              { eModeCategoryId: 2, borrowBalance: NormalizedUnitNumber(1) },
+              { eModeCategoryId: 1, borrowBalance: NormalizedNumber(2) },
+              { eModeCategoryId: 2, borrowBalance: NormalizedNumber(1) },
             ],
           },
         }),
@@ -94,9 +94,9 @@ describe(validateSetUserEMode.name, () => {
           user: {
             eModeCategoryId: 0,
             reserves: [
-              { eModeCategoryId: 1, borrowBalance: NormalizedUnitNumber(1) },
-              { eModeCategoryId: 1, borrowBalance: NormalizedUnitNumber(2) },
-              { eModeCategoryId: 2, borrowBalance: NormalizedUnitNumber.ZERO },
+              { eModeCategoryId: 1, borrowBalance: NormalizedNumber(1) },
+              { eModeCategoryId: 1, borrowBalance: NormalizedNumber(2) },
+              { eModeCategoryId: 2, borrowBalance: NormalizedNumber.ZERO },
             ],
           },
         }),
@@ -115,8 +115,8 @@ describe(validateSetUserEMode.name, () => {
           user: {
             eModeCategoryId: 1,
             reserves: [
-              { eModeCategoryId: 1, borrowBalance: NormalizedUnitNumber(1) },
-              { eModeCategoryId: 1, borrowBalance: NormalizedUnitNumber(2) },
+              { eModeCategoryId: 1, borrowBalance: NormalizedNumber(1) },
+              { eModeCategoryId: 1, borrowBalance: NormalizedNumber(2) },
             ],
           },
         }),

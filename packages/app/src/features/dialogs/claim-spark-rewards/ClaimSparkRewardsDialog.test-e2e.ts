@@ -4,7 +4,7 @@ import { mainnet } from 'viem/chains'
 
 import { SparkRewardsPageObject } from '@/pages/SparkRewards.PageObject'
 import { SPARK_REWARDS_ACTIVE_BLOCK_NUMBER } from '@/test/e2e/constants'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ClaimSparkRewardsDialogPageObject } from './ClaimSparkRewardsDialog.PageObject'
 
 test.describe('Spark Rewards', () => {
@@ -21,7 +21,7 @@ test.describe('Spark Rewards', () => {
           sparkRewards: [
             {
               rewardTokenSymbol: 'USDS',
-              cumulativeAmount: NormalizedUnitNumber(101),
+              cumulativeAmount: NormalizedNumber(101),
             },
           ],
         },
@@ -67,11 +67,11 @@ test.describe('Spark Rewards', () => {
             sparkRewards: [
               {
                 rewardTokenSymbol: 'USDS',
-                cumulativeAmount: NormalizedUnitNumber(101),
+                cumulativeAmount: NormalizedNumber(101),
               },
               {
                 rewardTokenSymbol: 'USDC',
-                cumulativeAmount: NormalizedUnitNumber(202),
+                cumulativeAmount: NormalizedNumber(202),
               },
             ],
           },
@@ -141,11 +141,11 @@ test.describe('Spark Rewards', () => {
             sparkRewards: [
               {
                 rewardTokenSymbol: 'USDS',
-                cumulativeAmount: NormalizedUnitNumber(101),
+                cumulativeAmount: NormalizedNumber(101),
               },
               {
                 rewardTokenSymbol: 'USDC',
-                cumulativeAmount: NormalizedUnitNumber(202),
+                cumulativeAmount: NormalizedNumber(202),
               },
             ],
           },

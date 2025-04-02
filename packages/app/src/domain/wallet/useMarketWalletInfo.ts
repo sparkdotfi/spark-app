@@ -2,14 +2,14 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { useAccount, useConfig } from 'wagmi'
 
 import { CheckedAddress } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useMarketInfo } from '../market-info/useMarketInfo'
 import { Token } from '../types/Token'
 import { TokenSymbol } from '../types/TokenSymbol'
 import { marketBalances } from './marketBalances'
 
 export interface WalletBalance {
-  balance: NormalizedUnitNumber
+  balance: NormalizedNumber
   token: Token
 }
 
@@ -21,8 +21,8 @@ export interface MarketWalletInfo {
   isConnected: boolean
   walletBalances: WalletBalance[]
 
-  findWalletBalanceForToken: (token: Token) => NormalizedUnitNumber
-  findWalletBalanceForSymbol: (symbol: TokenSymbol) => NormalizedUnitNumber
+  findWalletBalanceForToken: (token: Token) => NormalizedNumber
+  findWalletBalanceForSymbol: (symbol: TokenSymbol) => NormalizedNumber
 }
 
 export function useMarketWalletInfo({ chainId }: MarketWalletInfoParams): MarketWalletInfo {
@@ -61,16 +61,16 @@ export function useMarketWalletInfo({ chainId }: MarketWalletInfoParams): Market
     }))
 
   /* eslint-disable func-style */
-  const findWalletBalanceForToken = (token: Token): NormalizedUnitNumber => {
+  const findWalletBalanceForToken = (token: Token): NormalizedNumber => {
     return findWalletBalanceForSymbol(token.symbol)
   }
-  const findWalletBalanceForSymbol = (symbol: TokenSymbol): NormalizedUnitNumber => {
+  const findWalletBalanceForSymbol = (symbol: TokenSymbol): NormalizedNumber => {
     const aTokenReserve = marketInfo.findReserveByATokenSymbol(symbol)
     if (aTokenReserve) {
       return aTokenReserve.aTokenBalance
     }
 
-    return walletBalances.find((wb) => wb.token.symbol === symbol)?.balance ?? NormalizedUnitNumber.ZERO
+    return walletBalances.find((wb) => wb.token.symbol === symbol)?.balance ?? NormalizedNumber.ZERO
   }
   /* eslint-enable func-style */
 

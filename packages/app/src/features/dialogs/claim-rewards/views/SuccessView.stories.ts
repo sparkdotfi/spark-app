@@ -3,7 +3,7 @@ import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { SuccessView } from './SuccessView'
 
 const meta: Meta<typeof SuccessView> = {
@@ -14,11 +14,11 @@ const meta: Meta<typeof SuccessView> = {
     claimedRewards: [
       {
         token: tokens.wstETH,
-        amount: NormalizedUnitNumber(0.00157),
+        amount: NormalizedNumber(0.00157),
       },
       {
         token: tokens.WBTC,
-        amount: NormalizedUnitNumber(0.0003498),
+        amount: NormalizedNumber(0.0003498),
       },
     ],
   },

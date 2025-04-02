@@ -1,7 +1,7 @@
 import { WithClassname, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { ClaimView } from './ClaimView'
 
@@ -13,7 +13,7 @@ const meta: Meta<typeof ClaimView> = {
     txOverview: {
       reward: {
         token: tokens.SKY,
-        value: NormalizedUnitNumber(500.89),
+        value: NormalizedNumber(500.89),
       },
     },
     objectives: [
@@ -21,7 +21,7 @@ const meta: Meta<typeof ClaimView> = {
         type: 'claimFarmRewards',
         farm: tokens.USDS.address,
         rewardToken: tokens.SKY,
-        rewardAmount: NormalizedUnitNumber(500.89),
+        rewardAmount: NormalizedNumber(500.89),
       },
     ],
     pageStatus: {
@@ -44,8 +44,8 @@ export const NoApiData: Story = {
   args: {
     txOverview: {
       reward: {
-        token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber.ZERO }),
-        value: NormalizedUnitNumber(500.89),
+        token: tokens.SKY.clone({ unitPriceUsd: NormalizedNumber.ZERO }),
+        value: NormalizedNumber(500.89),
       },
     },
   },

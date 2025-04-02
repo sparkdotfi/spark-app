@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { Address } from 'viem'
 import { getDefaultAppConfig } from './appConfig.default'
@@ -14,8 +14,8 @@ export interface AppConfig {
     originChainId: number
     chainName: string
     mintBalances: {
-      etherAmt: NormalizedUnitNumber
-      tokenAmt: NormalizedUnitNumber
+      etherAmt: NormalizedNumber
+      tokenAmt: NormalizedNumber
       tokens: {
         [name: string]: {
           address: Address

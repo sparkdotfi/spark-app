@@ -1,12 +1,12 @@
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { BorrowEligibilityStatus } from '@/domain/market-info/reserve-status'
 import { ActionRow } from './ActionRow'
 
 interface BorrowRowProps {
   token: Token
-  availableToBorrow: NormalizedUnitNumber
+  availableToBorrow: NormalizedNumber
   eligibility: BorrowEligibilityStatus
   onAction: () => void
 }

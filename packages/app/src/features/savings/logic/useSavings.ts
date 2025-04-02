@@ -17,7 +17,7 @@ import { convertStablesDialogConfig } from '@/features/dialogs/convert-stables/C
 import { savingsDepositDialogConfig } from '@/features/dialogs/savings/deposit/SavingsDepositDialog'
 import { savingsWithdrawDialogConfig } from '@/features/dialogs/savings/withdraw/SavingsWithdrawDialog'
 import { useTimestamp } from '@/utils/useTimestamp'
-import { NormalizedUnitNumber, Percentage, raise } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage, raise } from '@sparkdotfi/common-universal'
 import { useCallback, useState } from 'react'
 import { AccountMetadata, AccountSparkRewardsSummary, PsmSupplier } from '../types'
 import { getAccountMetadata } from '../utils/getAccountMetadata'
@@ -31,8 +31,8 @@ import { useSparkRewardsSummary } from './useSparkRewardsSummary'
 
 export interface InterestData {
   APY: Percentage
-  oneYearProjection: NormalizedUnitNumber
-  sparkRewardsOneYearProjection: NormalizedUnitNumber
+  oneYearProjection: NormalizedNumber
+  sparkRewardsOneYearProjection: NormalizedNumber
   calculateUnderlyingTokenBalance: (timestampInMs: number) => SavingsOverview
   balanceRefreshIntervalInMs: number | undefined
 }
@@ -41,13 +41,13 @@ export type ChartsData = UseSavingsChartsDataResult
 
 export interface SavingsAccountSupportedStablecoin {
   token: Token
-  balance: NormalizedUnitNumber
+  balance: NormalizedNumber
   blockExplorerLink: string | undefined
 }
 
 export interface AccountDefinition {
   savingsToken: Token
-  savingsTokenBalance: NormalizedUnitNumber
+  savingsTokenBalance: NormalizedNumber
   underlyingToken: Token
   supportedStablecoins: SavingsAccountSupportedStablecoin[]
   mostValuableAsset: TokenWithBalance
@@ -62,7 +62,7 @@ export interface AccountDefinition {
 export interface ShortAccountDefinition {
   savingsToken: Token
   underlyingToken: Token
-  underlyingTokenDeposit: NormalizedUnitNumber
+  underlyingTokenDeposit: NormalizedNumber
 }
 export interface UseSavingsResults {
   allAccounts: ShortAccountDefinition[]

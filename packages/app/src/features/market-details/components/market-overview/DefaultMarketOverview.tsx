@@ -1,14 +1,14 @@
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Legend } from './components/LegendItem'
 import { MarketOverviewChart, colors } from './components/MarketOverviewChart'
 import { MarketOverviewContent } from './components/MarketOvierviewContent'
 
 export interface DefaultMarketOverviewProps {
   token: Token
-  marketSize: NormalizedUnitNumber
-  borrowed: NormalizedUnitNumber
-  available: NormalizedUnitNumber
+  marketSize: NormalizedNumber
+  borrowed: NormalizedNumber
+  available: NormalizedNumber
   utilizationRate: Percentage
 }
 

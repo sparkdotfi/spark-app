@@ -5,13 +5,13 @@ import { Token } from '@/domain/types/Token'
 import { FinalizeSpkUnstakeObjective } from '@/features/actions/flavours/finalize-spk-unstake/types'
 import { PageState, PageStatus } from '@/features/dialogs/common/types'
 import { useSpkStakingData } from '@/features/spk-staking/logic/useSpkStakingData'
-import { assert, CheckedAddress, NormalizedUnitNumber, UnixTime, raise } from '@sparkdotfi/common-universal'
+import { assert, CheckedAddress, NormalizedNumber, UnixTime, raise } from '@sparkdotfi/common-universal'
 import { useState } from 'react'
 import { useAccount, useChainId, useConfig } from 'wagmi'
 
 export interface UseFinishUnstakeDialogResult {
   spk: Token
-  unstakeAmount: NormalizedUnitNumber
+  unstakeAmount: NormalizedNumber
   objectives: FinalizeSpkUnstakeObjective[]
   pageStatus: PageStatus
 }

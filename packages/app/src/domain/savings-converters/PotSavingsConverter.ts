@@ -1,6 +1,6 @@
 import { fromRay, pow } from '@/utils/math'
 import { bigNumberify } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { SavingsConverter } from './types'
 
@@ -38,27 +38,21 @@ export class PotSavingsConverter implements SavingsConverter {
     return fromRay(pow(fromRay(dsr), bigNumberify(timestamp).minus(rho)).times(chi))
   }
 
-  convertToShares({ assets }: { assets: NormalizedUnitNumber }): NormalizedUnitNumber {
+  convertToShares({ assets }: { assets: NormalizedNumber }): NormalizedNumber {
     return this.predictSharesAmount({ timestamp: this.currentTimestamp, assets })
   }
 
-  convertToAssets({ shares }: { shares: NormalizedUnitNumber }): NormalizedUnitNumber {
+  convertToAssets({ shares }: { shares: NormalizedNumber }): NormalizedNumber {
     return this.predictAssetsAmount({ timestamp: this.currentTimestamp, shares })
   }
 
-  predictAssetsAmount({
-    timestamp,
-    shares,
-  }: { timestamp: number; shares: NormalizedUnitNumber }): NormalizedUnitNumber {
+  predictAssetsAmount({ timestamp, shares }: { timestamp: number; shares: NormalizedNumber }): NormalizedNumber {
     const updatedChi = this.getUpdatedChi(timestamp)
-    return shares.times(NormalizedUnitNumber(updatedChi))
+    return shares.times(NormalizedNumber(updatedChi))
   }
 
-  predictSharesAmount({
-    timestamp,
-    assets,
-  }: { timestamp: number; assets: NormalizedUnitNumber }): NormalizedUnitNumber {
+  predictSharesAmount({ timestamp, assets }: { timestamp: number; assets: NormalizedNumber }): NormalizedNumber {
     const updatedChi = this.getUpdatedChi(timestamp)
-    return assets.div(NormalizedUnitNumber(updatedChi))
+    return assets.div(NormalizedNumber(updatedChi))
   }
 }

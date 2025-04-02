@@ -1,6 +1,6 @@
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import type { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { EntryAssetsPanel } from './EntryAssetsPanel'
@@ -19,17 +19,17 @@ export const Desktop: Story = {
     assets: [
       {
         token: tokens.DAI,
-        balance: NormalizedUnitNumber(22727),
+        balance: NormalizedNumber(22727),
         blockExplorerLink: '/',
       },
       {
         token: tokens.USDS,
-        balance: NormalizedUnitNumber(22720),
+        balance: NormalizedNumber(22720),
         blockExplorerLink: '/',
       },
       {
         token: tokens.USDC,
-        balance: NormalizedUnitNumber.ZERO,
+        balance: NormalizedNumber.ZERO,
         blockExplorerLink: '/',
       },
     ],

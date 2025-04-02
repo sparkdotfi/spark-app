@@ -2,7 +2,7 @@ import { SimplifiedQueryResult, transformSimplifiedQueryResult } from '@/domain/
 import { useClaimableRewardsQuery } from '@/domain/spark-rewards/useClaimableRewardsQuery'
 import { useOpenDialog } from '@/domain/state/dialogs'
 import { claimSparkRewardsDialogConfig } from '@/features/dialogs/claim-spark-rewards/ClaimSparkRewardsDialog'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { pipe, sumBy } from 'remeda'
 import { useChainId } from 'wagmi'
 import { ClaimableReward } from '../types'
@@ -10,7 +10,7 @@ import { ClaimableReward } from '../types'
 export type UseClaimableRewardsSummaryResult = SimplifiedQueryResult<ClaimableRewardsSummary>
 
 export interface ClaimableRewardsSummary {
-  usdSum: NormalizedUnitNumber
+  usdSum: NormalizedNumber
   isClaimEnabled: boolean
   claimableRewardsWithPrice: ClaimableReward[]
   claimableRewardsWithoutPrice: ClaimableReward[]
@@ -27,7 +27,7 @@ export function useClaimableRewardsSummary(): UseClaimableRewardsSummaryResult {
     const claimableRewards = data
       .filter((reward) => reward.chainId === chainId)
       .map(({ rewardToken, cumulativeAmount, pendingAmount, preClaimed, chainId }) => {
-        const amountToClaim = NormalizedUnitNumber(cumulativeAmount.minus(preClaimed))
+        const amountToClaim = NormalizedNumber(cumulativeAmount.minus(preClaimed))
         return {
           token: rewardToken,
           amountPending: pendingAmount,
@@ -43,7 +43,7 @@ export function useClaimableRewardsSummary(): UseClaimableRewardsSummaryResult {
     const usdSum = pipe(
       claimableRewardsWithPrice,
       sumBy(({ token, amountToClaim }) => token.toUSD(amountToClaim).toNumber()),
-      NormalizedUnitNumber,
+      NormalizedNumber,
     )
 
     const isClaimEnabled = pipe(

@@ -13,17 +13,17 @@ import {
   DropdownMenuTrigger,
 } from '@/ui/atoms/dropdown/DropdownMenu'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface Reward {
   token: Token
-  amount: NormalizedUnitNumber
+  amount: NormalizedNumber
 }
 
 export interface TopbarRewardsProps {
   rewards: Reward[]
   onClaim: () => void
-  totalClaimableReward: NormalizedUnitNumber
+  totalClaimableReward: NormalizedNumber
 }
 export function TopbarRewards({ rewards, onClaim, totalClaimableReward }: TopbarRewardsProps) {
   if (totalClaimableReward.isZero()) {

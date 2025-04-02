@@ -3,7 +3,7 @@ import { describe, it } from 'mocha'
 
 import BigNumber from 'bignumber.js'
 
-import { NormalizedUnitNumber } from '../types/NormalizedUnitNumber.js'
+import { NormalizedNumber } from '../types/NormalizedNumber.js'
 import { bigNumberify, parseBigNumber } from './bigNumber.js'
 
 describe(`${BigNumber.name}.${BigNumber.toString.name}`, () => {
@@ -46,8 +46,8 @@ describe(bigNumberify.name, () => {
     expect(bigNumberify(BigNumber(1))).toEqual(BigNumber(1))
   })
 
-  it(`returns correct value for ${NormalizedUnitNumber.name} arguments`, () => {
-    expect(bigNumberify(NormalizedUnitNumber(1))).toEqual(BigNumber(1))
+  it(`returns correct value for ${NormalizedNumber.name} arguments`, () => {
+    expect(bigNumberify(NormalizedNumber(1))).toEqual(BigNumber(1))
   })
 })
 

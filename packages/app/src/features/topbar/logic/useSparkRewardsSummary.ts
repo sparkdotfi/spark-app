@@ -1,6 +1,6 @@
 import { transformSimplifiedQueryResult } from '@/domain/common/query'
 import { useClaimableRewardsQuery } from '@/domain/spark-rewards/useClaimableRewardsQuery'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { SparkRewardsSummary } from '../types'
 
 export function useSparkRewardsSummary(): SparkRewardsSummary {
@@ -8,9 +8,9 @@ export function useSparkRewardsSummary(): SparkRewardsSummary {
 
   const { data } = transformSimplifiedQueryResult(claimableRewardsResult, (data) => {
     const totalUsdAmount = data.reduce((acc, { rewardToken, cumulativeAmount, preClaimed }) => {
-      const amountToClaim = NormalizedUnitNumber(cumulativeAmount.minus(preClaimed))
-      return NormalizedUnitNumber(acc.plus(rewardToken.toUSD(amountToClaim)))
-    }, NormalizedUnitNumber.ZERO)
+      const amountToClaim = NormalizedNumber(cumulativeAmount.minus(preClaimed))
+      return NormalizedNumber(acc.plus(rewardToken.toUSD(amountToClaim)))
+    }, NormalizedNumber.ZERO)
 
     return {
       totalUsdAmount,

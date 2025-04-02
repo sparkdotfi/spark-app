@@ -2,7 +2,7 @@ import { Farm } from '@/domain/farms/types'
 import { Token } from '@/domain/types/Token'
 import { TransferFromUserFormNormalizedData } from '@/features/dialogs/common/logic/transfer-from-user/form'
 import { TxOverviewRouteItem } from '@/features/dialogs/common/types'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 const SECONDS_PER_YEAR = 60 * 60 * 24 * 365
 
@@ -18,7 +18,7 @@ export type TxOverview = { showEstimatedRewards: boolean } & (
       apy: Percentage
       stakingToken: Token
       rewardToken: Token
-      rewardsPerYear: NormalizedUnitNumber
+      rewardsPerYear: NormalizedNumber
       routeToStakingToken: TxOverviewRouteItem[]
     }
 )

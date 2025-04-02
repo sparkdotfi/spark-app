@@ -4,7 +4,7 @@ import { DEFAULT_BLOCK_NUMBER } from '@/test/e2e/constants'
 import { overrideInfoSkyRouteWithHAR } from '@/test/e2e/info-sky'
 import { setup } from '@/test/e2e/setup'
 import { test } from '@playwright/test'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Address } from 'viem'
 import { mainnet } from 'viem/chains'
 import { ClaimDialogPageObject } from '../../ClaimDialog.PageObject'
@@ -78,7 +78,7 @@ test.describe('Claim SKY rewards', () => {
     await farmDetailsPage.expectTokenBalance({
       address: account,
       symbol: 'SKY',
-      balance: NormalizedUnitNumber('49.4365427929088'),
+      balance: NormalizedNumber('49.4365427929088'),
     })
     await farmDetailsPage.expectStaked({ amount: '10,000.00', asset: 'USDS' })
   })

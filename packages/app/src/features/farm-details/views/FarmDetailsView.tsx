@@ -7,7 +7,7 @@ import { ChartTabsPanel, createChartTab } from '@/ui/charts/components/ChartTabs
 import { TvlChart } from '@/ui/charts/tvl-chart/TvlChart'
 import { PageLayout } from '@/ui/layouts/PageLayout'
 import { ConnectOrSandboxCTAPanel } from '@/ui/organisms/connect-or-sandbox-cta-panel/ConnectOrSandboxCTAPanel'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { BackNav } from '../components/back-nav/BackNav'
 import { ActiveFarmInfoPanel } from '../components/farm-info-panel/active/ActiveFarmInfoPanel'
 import { InactiveFarmInfoPanel } from '../components/farm-info-panel/inactive/InactiveFarmInfoPanel'
@@ -27,7 +27,7 @@ export interface FarmDetailsViewProps {
   hasTokensToDeposit: boolean
   canClaim: boolean
   showApyChart: boolean
-  calculateReward: (timestampInMs: number) => NormalizedUnitNumber
+  calculateReward: (timestampInMs: number) => NormalizedNumber
   refreshGrowingRewardIntervalInMs: number | undefined
   openStakeDialog: (token: Token) => void
   openDefaultedStakeDialog: () => void

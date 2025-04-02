@@ -1,6 +1,6 @@
 import { calculateGemConversionFactor } from '@/features/actions/utils/savings'
 import { BaseUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 
 export interface CalculateGemMinAmountOutParams {
@@ -14,9 +14,9 @@ export function calculateGemMinAmountOut({
   assetsTokenDecimals,
   assetsAmount,
 }: CalculateGemMinAmountOutParams): bigint {
-  const gemConversionFactor = NormalizedUnitNumber(calculateGemConversionFactor({ gemDecimals, assetsTokenDecimals }))
+  const gemConversionFactor = NormalizedNumber(calculateGemConversionFactor({ gemDecimals, assetsTokenDecimals }))
   const gemMinAmountOut = BaseUnitNumber(
-    NormalizedUnitNumber(assetsAmount).div(gemConversionFactor).integerValue(BigNumber.ROUND_DOWN),
+    NormalizedNumber(assetsAmount).div(gemConversionFactor).integerValue(BigNumber.ROUND_DOWN),
   )
   return toBigInt(gemMinAmountOut)
 }

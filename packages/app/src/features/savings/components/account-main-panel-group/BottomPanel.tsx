@@ -5,7 +5,7 @@ import { Panel } from '@/ui/atoms/panel/Panel'
 import { TokenIcon } from '@/ui/atoms/token-icon/TokenIcon'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { AccountSparkRewardsSummary } from '../../types'
 import { AdditionalInfo } from './AdditionalInfo'
 import { PlusSparkRewards } from './PlusSparkRewards'
@@ -13,12 +13,12 @@ import { PlusSparkRewards } from './PlusSparkRewards'
 export interface BottomPanelProps {
   underlyingToken: Token
   savingsToken: Token
-  savingsTokenBalance: NormalizedUnitNumber
+  savingsTokenBalance: NormalizedNumber
   apy: Percentage
   apyExplainer: string
   apyExplainerDocsLink: string
-  oneYearProjection: NormalizedUnitNumber
-  sparkRewardsOneYearProjection: NormalizedUnitNumber
+  oneYearProjection: NormalizedNumber
+  sparkRewardsOneYearProjection: NormalizedNumber
   sparkRewardsSummary: AccountSparkRewardsSummary
   className?: string
 }

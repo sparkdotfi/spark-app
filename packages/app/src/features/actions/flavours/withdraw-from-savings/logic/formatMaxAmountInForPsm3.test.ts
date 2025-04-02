@@ -1,5 +1,5 @@
 import { testTokens } from '@/test/integration/constants'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { describe, expect, test } from 'vitest'
 import { formatMaxAmountInForPsm3 } from './formatMaxAmountInForPsm3'
 
@@ -12,7 +12,7 @@ describe(formatMaxAmountInForPsm3.name, () => {
     expect(
       formatMaxAmountInForPsm3({
         susds,
-        susdsAmount: NormalizedUnitNumber('99.123456789012345678'),
+        susdsAmount: NormalizedNumber('99.123456789012345678'),
         assetOut: usdc,
       }),
     ).toBe(99123457000000000000n)
@@ -20,7 +20,7 @@ describe(formatMaxAmountInForPsm3.name, () => {
     expect(
       formatMaxAmountInForPsm3({
         susds,
-        susdsAmount: NormalizedUnitNumber('99.123456000000000001'),
+        susdsAmount: NormalizedNumber('99.123456000000000001'),
         assetOut: usdc,
       }),
     ).toBe(99123457000000000000n)
@@ -28,7 +28,7 @@ describe(formatMaxAmountInForPsm3.name, () => {
     expect(
       formatMaxAmountInForPsm3({
         susds,
-        susdsAmount: NormalizedUnitNumber('99.1234567890123456789012345678'),
+        susdsAmount: NormalizedNumber('99.1234567890123456789012345678'),
         assetOut: usdc,
       }),
     ).toBe(99123457000000000000n)
@@ -36,7 +36,7 @@ describe(formatMaxAmountInForPsm3.name, () => {
     expect(
       formatMaxAmountInForPsm3({
         susds,
-        susdsAmount: NormalizedUnitNumber('99.123456'),
+        susdsAmount: NormalizedNumber('99.123456'),
         assetOut: usdc,
       }),
     ).toBe(99123456000000000000n)
@@ -44,7 +44,7 @@ describe(formatMaxAmountInForPsm3.name, () => {
     expect(
       formatMaxAmountInForPsm3({
         susds,
-        susdsAmount: NormalizedUnitNumber('0.123456'),
+        susdsAmount: NormalizedNumber('0.123456'),
         assetOut: usdc,
       }),
     ).toBe(123456000000000000n)
@@ -52,7 +52,7 @@ describe(formatMaxAmountInForPsm3.name, () => {
     expect(
       formatMaxAmountInForPsm3({
         susds,
-        susdsAmount: NormalizedUnitNumber('0.000123'),
+        susdsAmount: NormalizedNumber('0.000123'),
         assetOut: usdc,
       }),
     ).toBe(123000000000000n)
@@ -60,7 +60,7 @@ describe(formatMaxAmountInForPsm3.name, () => {
     expect(
       formatMaxAmountInForPsm3({
         susds,
-        susdsAmount: NormalizedUnitNumber('0.000123456'),
+        susdsAmount: NormalizedNumber('0.000123456'),
         assetOut: usdc,
       }),
     ).toBe(124000000000000n)
@@ -70,7 +70,7 @@ describe(formatMaxAmountInForPsm3.name, () => {
     expect(
       formatMaxAmountInForPsm3({
         susds,
-        susdsAmount: NormalizedUnitNumber('99.123456789012345678'),
+        susdsAmount: NormalizedNumber('99.123456789012345678'),
         assetOut: usds,
       }),
     ).toBe(99123456789012345678n)
@@ -78,7 +78,7 @@ describe(formatMaxAmountInForPsm3.name, () => {
     expect(
       formatMaxAmountInForPsm3({
         susds,
-        susdsAmount: NormalizedUnitNumber('99.1234567890123456789012345678'),
+        susdsAmount: NormalizedNumber('99.1234567890123456789012345678'),
         assetOut: usds,
       }),
     ).toBe(99123456789012345679n)
@@ -86,7 +86,7 @@ describe(formatMaxAmountInForPsm3.name, () => {
     expect(
       formatMaxAmountInForPsm3({
         susds,
-        susdsAmount: NormalizedUnitNumber('99.123456'),
+        susdsAmount: NormalizedNumber('99.123456'),
         assetOut: usds,
       }),
     ).toBe(99123456000000000000n)
@@ -94,7 +94,7 @@ describe(formatMaxAmountInForPsm3.name, () => {
     expect(
       formatMaxAmountInForPsm3({
         susds,
-        susdsAmount: NormalizedUnitNumber('0.000123'),
+        susdsAmount: NormalizedNumber('0.000123'),
         assetOut: usds,
       }),
     ).toBe(123000000000000n)
@@ -102,7 +102,7 @@ describe(formatMaxAmountInForPsm3.name, () => {
     expect(
       formatMaxAmountInForPsm3({
         susds,
-        susdsAmount: NormalizedUnitNumber('0.000123456'),
+        susdsAmount: NormalizedNumber('0.000123456'),
         assetOut: usds,
       }),
     ).toBe(123456000000000n)

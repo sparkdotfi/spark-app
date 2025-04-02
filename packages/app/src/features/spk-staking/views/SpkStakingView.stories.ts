@@ -1,7 +1,7 @@
 import { WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { mainnet } from 'viem/chains'
@@ -21,14 +21,14 @@ const meta: Meta<typeof SpkStakingView> = {
     generalStats: {
       apr: Percentage(0.05),
       stakers: 100,
-      tvl: NormalizedUnitNumber(1000000),
+      tvl: NormalizedNumber(1000000),
     },
     mainPanelData: {
       type: 'cta',
       props: {
         type: 'connected',
         apy: Percentage(0.05),
-        spkBalance: NormalizedUnitNumber(5000),
+        spkBalance: NormalizedNumber(5000),
         stake: () => {},
       },
     },
@@ -46,7 +46,7 @@ const meta: Meta<typeof SpkStakingView> = {
       {
         action: () => {},
         actionName: 'Claim',
-        amount: NormalizedUnitNumber(1000),
+        amount: NormalizedNumber(1000),
         claimableAt: new Date(),
         isActionEnabled: true,
         timeToClaim: 1000,
@@ -55,7 +55,7 @@ const meta: Meta<typeof SpkStakingView> = {
     ],
     availableToStakeRow: {
       token: tokens.SPK,
-      balance: NormalizedUnitNumber(5000),
+      balance: NormalizedNumber(5000),
       blockExplorerLink: 'https://etherscan.io/token/0x0000000000000000000000000000000000000000',
       openStakeDialog: () => {},
     },
@@ -75,12 +75,12 @@ export const Active: Story = {
       type: 'active',
       props: {
         apy: Percentage(0.05),
-        stakedAmount: NormalizedUnitNumber(1000),
+        stakedAmount: NormalizedNumber(1000),
         rewardToken: tokens.USDS,
         stakingToken: tokens.SPK,
-        claimableRewards: NormalizedUnitNumber(1000),
+        claimableRewards: NormalizedNumber(1000),
         refreshGrowingRewardIntervalInMs: undefined,
-        calculateReward: () => NormalizedUnitNumber(1000),
+        calculateReward: () => NormalizedNumber(1000),
         openClaimDialog: () => {},
         openUnstakeDialog: () => {},
         openStakeDialog: () => {},

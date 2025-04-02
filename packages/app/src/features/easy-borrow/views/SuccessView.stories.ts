@@ -3,7 +3,7 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { SuccessView } from './SuccessView'
 
@@ -15,17 +15,17 @@ const meta: Meta<typeof SuccessView> = {
     deposited: [
       {
         token: tokens.ETH,
-        value: NormalizedUnitNumber(13.74),
+        value: NormalizedNumber(13.74),
       },
       {
         token: tokens.stETH,
-        value: NormalizedUnitNumber(34.21),
+        value: NormalizedNumber(34.21),
       },
     ],
     borrowed: [
       {
         token: tokens.DAI,
-        value: NormalizedUnitNumber(50000),
+        value: NormalizedNumber(50000),
       },
     ],
     runConfetti: false,
@@ -52,13 +52,13 @@ export const Usds: Story = {
     deposited: [
       {
         token: tokens.stETH,
-        value: NormalizedUnitNumber(34.21),
+        value: NormalizedNumber(34.21),
       },
     ],
     borrowed: [
       {
         token: tokens.USDS,
-        value: NormalizedUnitNumber(10_000),
+        value: NormalizedNumber(10_000),
       },
     ],
   },

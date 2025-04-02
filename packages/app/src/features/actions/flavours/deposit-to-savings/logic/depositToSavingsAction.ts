@@ -21,7 +21,7 @@ import { allowanceQueryKey } from '@/features/actions/flavours/approve/logic/que
 import { ActionConfig, ActionContext, GetWriteConfigResult } from '@/features/actions/logic/types'
 import { calculateGemConversionFactor } from '@/features/actions/utils/savings'
 import { BaseUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
-import { assert, CheckedAddress, NormalizedUnitNumber, assertNever, raise } from '@sparkdotfi/common-universal'
+import { assert, CheckedAddress, NormalizedNumber, assertNever, raise } from '@sparkdotfi/common-universal'
 import { QueryKey } from '@tanstack/react-query'
 import { Address, erc4626Abi } from 'viem'
 import { gnosis } from 'viem/chains'
@@ -249,7 +249,7 @@ interface GetUsdcDepositConfigParams {
   psmActionsAddress: CheckedAddress
   token: Token
   savingsToken: Token
-  actionValue: NormalizedUnitNumber
+  actionValue: NormalizedNumber
   account: Address
   assetsAmount: bigint
 }
@@ -279,12 +279,12 @@ function getUsdcDepositConfig({
 interface CalculateMinSharesAmountOutParams {
   savingsConverter: SavingsConverter
   savingsToken: Token
-  amountIn: NormalizedUnitNumber
+  amountIn: NormalizedNumber
 }
 function calculateMinSharesAmountOut({
   savingsConverter,
   amountIn,
-}: CalculateMinSharesAmountOutParams): NormalizedUnitNumber {
+}: CalculateMinSharesAmountOutParams): NormalizedNumber {
   const currentTimestamp = savingsConverter.currentTimestamp
   // We don't know when the block with transaction will be mined so
   // we calculate the minimal amount of sUSDS to receive as the amount

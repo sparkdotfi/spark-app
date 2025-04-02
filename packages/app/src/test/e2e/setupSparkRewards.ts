@@ -1,5 +1,5 @@
 import { setSparkRewards } from '@/domain/spark-rewards/setSparkRewards'
-import { CheckedAddress, NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
+import { CheckedAddress, NormalizedNumber, raise } from '@sparkdotfi/common-universal'
 import { mainnet } from 'viem/chains'
 import { TOKENS_ON_FORK } from './constants'
 import { TestContext } from './setup'
@@ -9,8 +9,8 @@ export interface SetupSparkRewardsParams {
   account: CheckedAddress
   rewardsConfig: {
     rewardTokenSymbol: keyof (typeof TOKENS_ON_FORK)[typeof mainnet.id]
-    cumulativeAmount: NormalizedUnitNumber
-    rewardTokenPrice?: NormalizedUnitNumber
+    cumulativeAmount: NormalizedNumber
+    rewardTokenPrice?: NormalizedNumber
   }[]
 }
 

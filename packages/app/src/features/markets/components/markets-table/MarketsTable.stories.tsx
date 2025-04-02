@@ -2,7 +2,7 @@ import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage, raise } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage, raise } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/test'
 import { withRouter } from 'storybook-addon-remix-react-router'
@@ -21,8 +21,8 @@ const meta: Meta<typeof MarketsTable> = {
         depositApyDetails: {
           baseApy: Percentage(0.157),
         },
-        totalBorrowed: NormalizedUnitNumber.ZERO,
-        totalSupplied: NormalizedUnitNumber(11.99),
+        totalBorrowed: NormalizedNumber.ZERO,
+        totalSupplied: NormalizedNumber(11.99),
         marketStatus: {
           supplyAvailabilityStatus: 'no',
           collateralEligibilityStatus: 'no',
@@ -36,8 +36,8 @@ const meta: Meta<typeof MarketsTable> = {
         depositApyDetails: {
           baseApy: Percentage(0.157),
         },
-        totalBorrowed: NormalizedUnitNumber.ZERO,
-        totalSupplied: NormalizedUnitNumber(11.99),
+        totalBorrowed: NormalizedNumber.ZERO,
+        totalSupplied: NormalizedNumber(11.99),
         marketStatus: {
           supplyAvailabilityStatus: 'no',
           collateralEligibilityStatus: 'no',
@@ -67,8 +67,8 @@ const meta: Meta<typeof MarketsTable> = {
           baseApy: Percentage(0.157),
           airdrops: [TokenSymbol('SPK')],
         },
-        totalBorrowed: NormalizedUnitNumber.ZERO,
-        totalSupplied: NormalizedUnitNumber(11.99),
+        totalBorrowed: NormalizedNumber.ZERO,
+        totalSupplied: NormalizedNumber(11.99),
         marketStatus: {
           supplyAvailabilityStatus: 'yes',
           collateralEligibilityStatus: 'yes',
@@ -96,8 +96,8 @@ const meta: Meta<typeof MarketsTable> = {
             },
           ],
         },
-        totalBorrowed: NormalizedUnitNumber.ZERO,
-        totalSupplied: NormalizedUnitNumber(11.99),
+        totalBorrowed: NormalizedNumber.ZERO,
+        totalSupplied: NormalizedNumber(11.99),
         marketStatus: {
           supplyAvailabilityStatus: 'yes',
           collateralEligibilityStatus: 'yes',
@@ -111,8 +111,8 @@ const meta: Meta<typeof MarketsTable> = {
           baseApy: Percentage(0.0553),
         },
         depositApyDetails: { baseApy: Percentage(0.05) },
-        totalBorrowed: NormalizedUnitNumber(1257),
-        totalSupplied: NormalizedUnitNumber.ZERO,
+        totalBorrowed: NormalizedNumber(1257),
+        totalSupplied: NormalizedNumber.ZERO,
         marketStatus: {
           supplyAvailabilityStatus: 'yes',
           collateralEligibilityStatus: 'yes',

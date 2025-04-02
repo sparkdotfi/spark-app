@@ -1,6 +1,6 @@
 import { formatUserSummary } from '@aave/math-utils'
 import { assert, CheckedAddress } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { bigNumberify } from '@sparkdotfi/common-universal'
 import { AaveBaseCurrency, AaveFormattedReserve, AaveUserSummary, RawAaveUserReserve } from './aave-data-layer/query'
 import type {
@@ -52,11 +52,11 @@ export function normalizeUserSummary(formattedUserSummary: AaveUserSummary): Use
     loanToValue: Percentage(loanToValue, { allowMoreThan1: true }),
     healthFactor,
     maxLoanToValue: Percentage(formattedUserSummary.currentLoanToValue),
-    availableBorrowsUSD: NormalizedUnitNumber(formattedUserSummary.availableBorrowsUSD),
-    totalBorrowsUSD: NormalizedUnitNumber(formattedUserSummary.totalBorrowsUSD),
+    availableBorrowsUSD: NormalizedNumber(formattedUserSummary.availableBorrowsUSD),
+    totalBorrowsUSD: NormalizedNumber(formattedUserSummary.totalBorrowsUSD),
     currentLiquidationThreshold: Percentage(formattedUserSummary.currentLiquidationThreshold, { allowMoreThan1: true }),
-    totalCollateralUSD: NormalizedUnitNumber(formattedUserSummary.totalCollateralUSD),
-    totalLiquidityUSD: NormalizedUnitNumber(formattedUserSummary.totalLiquidityUSD),
+    totalCollateralUSD: NormalizedNumber(formattedUserSummary.totalCollateralUSD),
+    totalLiquidityUSD: NormalizedNumber(formattedUserSummary.totalLiquidityUSD),
   }
 }
 

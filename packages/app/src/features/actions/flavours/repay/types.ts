@@ -1,17 +1,17 @@
 import { Reserve } from '@/domain/market-info/marketInfo'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface RepayObjective {
   type: 'repay'
   reserve: Reserve
   useAToken: boolean
-  value: NormalizedUnitNumber
-  requiredApproval: NormalizedUnitNumber
+  value: NormalizedNumber
+  requiredApproval: NormalizedNumber
 }
 
 export interface RepayAction {
   type: 'repay'
   reserve: Reserve
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   useAToken: boolean
 }

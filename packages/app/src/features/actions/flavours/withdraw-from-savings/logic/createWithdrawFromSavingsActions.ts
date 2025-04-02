@@ -13,7 +13,7 @@ import {
   assert,
   BaseUnitNumber,
   CheckedAddress,
-  NormalizedUnitNumber,
+  NormalizedNumber,
   assertNever,
   raise,
 } from '@sparkdotfi/common-universal'
@@ -132,7 +132,7 @@ function createApproveActionFromSavingsConverter({
       spender,
       value: objective.isRedeem
         ? objective.amount
-        : NormalizedUnitNumber(
+        : NormalizedNumber(
             savingTokenApprovalAmountEstimate.toFixed(objective.savingsToken.decimals, BigNumber.ROUND_UP),
           ),
     }

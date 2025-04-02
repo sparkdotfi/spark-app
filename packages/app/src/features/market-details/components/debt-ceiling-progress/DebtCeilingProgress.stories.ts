@@ -3,7 +3,7 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { DebtCeilingProgress } from './DebtCeilingProgress'
 
@@ -18,15 +18,15 @@ type Story = StoryObj<typeof DebtCeilingProgress>
 
 export const Default: Story = {
   args: {
-    debt: NormalizedUnitNumber(37_896_154),
-    debtCeiling: NormalizedUnitNumber(50_000_000),
+    debt: NormalizedNumber(37_896_154),
+    debtCeiling: NormalizedNumber(50_000_000),
   },
 }
 
 export const Full: Story = {
   args: {
-    debt: NormalizedUnitNumber(50_000_000),
-    debtCeiling: NormalizedUnitNumber(50_000_000),
+    debt: NormalizedNumber(50_000_000),
+    debtCeiling: NormalizedNumber(50_000_000),
   },
 }
 

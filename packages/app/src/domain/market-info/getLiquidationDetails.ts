@@ -2,13 +2,13 @@ import { getChainConfigEntry } from '@/config/chain'
 import { TokenWithValue } from '@/domain/common/types'
 import { MarketInfo } from '@/domain/market-info/marketInfo'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber, Percentage, raise } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage, raise } from '@sparkdotfi/common-universal'
 import { eModeCategoryIdToName } from '../e-mode/constants'
 
 export interface LiquidationDetails {
-  liquidationPrice: NormalizedUnitNumber
+  liquidationPrice: NormalizedNumber
   tokenWithPrice: {
-    priceInUSD: NormalizedUnitNumber
+    priceInUSD: NormalizedNumber
     symbol: TokenSymbol
   }
 }
@@ -45,7 +45,7 @@ export function getLiquidationDetails({
     const totalCollateralInWETH = collaterals.reduce((sum, collateral) => {
       const collateralPrice = marketInfo.findOneTokenBySymbol(collateral.token.symbol).unitPriceUsd
       return sum.plus(collateral.value.times(collateralPrice).div(WETHPrice))
-    }, NormalizedUnitNumber.ZERO)
+    }, NormalizedNumber.ZERO)
     const liquidationPrice = calculateLiquidationPrice({
       borrowInUSD,
       depositAmount: totalCollateralInWETH,
@@ -55,7 +55,7 @@ export function getLiquidationDetails({
     return {
       liquidationPrice,
       tokenWithPrice: {
-        priceInUSD: NormalizedUnitNumber(WETHPrice),
+        priceInUSD: NormalizedNumber(WETHPrice),
         symbol: TokenSymbol('ETH'),
       },
     }
@@ -77,15 +77,15 @@ export function getLiquidationDetails({
   return {
     liquidationPrice,
     tokenWithPrice: {
-      priceInUSD: NormalizedUnitNumber(collateralPrice),
+      priceInUSD: NormalizedNumber(collateralPrice),
       symbol: collateral.token.symbol,
     },
   }
 }
 
 interface CalculateLiquidationPriceArguments {
-  borrowInUSD: NormalizedUnitNumber
-  depositAmount: NormalizedUnitNumber
+  borrowInUSD: NormalizedNumber
+  depositAmount: NormalizedNumber
   liquidationThreshold: Percentage
 }
 
@@ -93,10 +93,10 @@ function calculateLiquidationPrice({
   borrowInUSD,
   depositAmount,
   liquidationThreshold,
-}: CalculateLiquidationPriceArguments): NormalizedUnitNumber {
-  const denominator = depositAmount.times(NormalizedUnitNumber(liquidationThreshold))
+}: CalculateLiquidationPriceArguments): NormalizedNumber {
+  const denominator = depositAmount.times(NormalizedNumber(liquidationThreshold))
   if (denominator.isZero()) {
-    return NormalizedUnitNumber.ZERO
+    return NormalizedNumber.ZERO
   }
 
   return borrowInUSD.div(denominator)

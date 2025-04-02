@@ -4,7 +4,7 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { LendStatusPanel } from './LendStatusPanel'
 
@@ -22,7 +22,7 @@ export const CanBeLent: Story = {
   args: {
     status: 'yes',
     token: tokens.DAI,
-    totalLent: NormalizedUnitNumber(72_000),
+    totalLent: NormalizedNumber(72_000),
     apy: Percentage(0.05),
     sparkRewards: [],
   },

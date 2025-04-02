@@ -2,7 +2,7 @@ import { AssetsGroup } from '@/config/chain/types'
 import { WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { mainnet } from 'viem/chains'
@@ -17,7 +17,7 @@ const entryAssetsGroup: AssetsGroup = {
 const inactiveFarms = [
   {
     apy: Percentage(0.051),
-    staked: NormalizedUnitNumber.ZERO,
+    staked: NormalizedNumber.ZERO,
     rewardToken: tokens.wstETH,
     stakingToken: tokens.DAI,
     detailsLink: 'farm-details/1/0x1234567890123456789012345678901234567890',
@@ -26,7 +26,7 @@ const inactiveFarms = [
   },
   {
     apy: Percentage(0),
-    staked: NormalizedUnitNumber.ZERO,
+    staked: NormalizedNumber.ZERO,
     rewardToken: tokens.CLE,
     stakingToken: tokens.USDS,
     detailsLink: 'farm-details/1/0x1234567890123456789012345678901234567891',
@@ -38,7 +38,7 @@ const inactiveFarms = [
 const activeFarms = [
   {
     apy: Percentage(0.034),
-    staked: NormalizedUnitNumber(100),
+    staked: NormalizedNumber(100),
     rewardToken: tokens.weETH,
     stakingToken: tokens.USDS,
     detailsLink: 'farm-details/1/0x1234567890123456789012345678901234567892',

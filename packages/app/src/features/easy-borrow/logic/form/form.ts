@@ -4,7 +4,7 @@ import { ReserveWithValue, TokenWithBalance } from '@/domain/common/types'
 import { MarketInfo, UserPositionSummary } from '@/domain/market-info/marketInfo'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { MarketWalletInfo } from '@/domain/wallet/useMarketWalletInfo'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { UseFormReturn, useFieldArray } from 'react-hook-form'
 import { EasyBorrowFormSchema } from './validation'
@@ -26,7 +26,7 @@ export function getDefaultFormValues(
 export interface FormFieldsForAssetClass {
   selectedAssets: TokenWithBalance[]
   assets: TokenWithBalance[]
-  assetToMaxValue: Record<TokenSymbol, NormalizedUnitNumber>
+  assetToMaxValue: Record<TokenSymbol, NormalizedNumber>
   changeAsset: (index: number, newSymbol: TokenSymbol) => void
   addAsset: () => void
   removeAsset: (index: number) => void
@@ -93,7 +93,7 @@ export function useFormFieldsForAssetClass({
             acc[asset.token.symbol] = maxValue
             return acc
           },
-          {} as Record<TokenSymbol, NormalizedUnitNumber>,
+          {} as Record<TokenSymbol, NormalizedNumber>,
         )
 
   // eslint-disable-next-line func-style
@@ -134,9 +134,9 @@ export function setDesiredLoanToValue({
 }: SetDesiredLoanToValueProps): void {
   const borrowedAsset = formValues.borrows[0]!
   const toAdd = userPositionSummary.totalCollateralUSD
-    .times(NormalizedUnitNumber(desiredLtv))
+    .times(NormalizedNumber(desiredLtv))
     .minus(userPositionSummary.totalBorrowsUSD)
-    .div(NormalizedUnitNumber(borrowedAsset.reserve.priceInUSD))
+    .div(NormalizedNumber(borrowedAsset.reserve.priceInUSD))
 
   const current = borrowedAsset.value
   const result = current.plus(toAdd)

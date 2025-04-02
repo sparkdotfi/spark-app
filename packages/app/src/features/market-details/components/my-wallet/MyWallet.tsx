@@ -3,7 +3,7 @@ import { OpenDialogFunction } from '@/domain/state/dialogs'
 import { Token } from '@/domain/types/Token'
 import { borrowDialogConfig } from '@/features/dialogs/borrow/BorrowDialog'
 import { depositDialogConfig } from '@/features/dialogs/deposit/DepositDialog'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ActionRow } from './components/ActionRow'
 import { BorrowRow } from './components/BorrowRow'
 import { TokenBalance } from './components/TokenBalance'
@@ -11,17 +11,17 @@ import { WalletPanelContent } from './components/WalletPanelContent'
 
 export interface MyWalletProps {
   token: Token
-  tokenBalance: NormalizedUnitNumber
+  tokenBalance: NormalizedNumber
   lend?: {
-    available: NormalizedUnitNumber
+    available: NormalizedNumber
     token: Token
   }
   deposit: {
-    available: NormalizedUnitNumber
+    available: NormalizedNumber
     token: Token
   }
   borrow: {
-    available: NormalizedUnitNumber
+    available: NormalizedNumber
     token: Token
     eligibility: BorrowEligibilityStatus
   }

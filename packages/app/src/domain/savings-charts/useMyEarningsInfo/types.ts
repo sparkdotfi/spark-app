@@ -1,11 +1,11 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface MyEarningsInfoDataItem {
   date: Date
-  balance: NormalizedUnitNumber
+  balance: NormalizedNumber
 }
 
 export interface MyEarningsInfoItem {
   date: Date
-  balance: NormalizedUnitNumber
+  balance: NormalizedNumber
 }

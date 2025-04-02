@@ -3,7 +3,7 @@ import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { MyWallet } from './MyWallet'
 
@@ -22,15 +22,15 @@ type Story = StoryObj<typeof MyWallet>
 export const Default: Story = {
   name: 'Default',
   args: {
-    tokenBalance: NormalizedUnitNumber(10000),
+    tokenBalance: NormalizedNumber(10000),
     borrow: {
       token: tokens.wstETH,
       eligibility: 'yes',
-      available: NormalizedUnitNumber(20000),
+      available: NormalizedNumber(20000),
     },
     deposit: {
       token: tokens.wstETH,
-      available: NormalizedUnitNumber(40000),
+      available: NormalizedNumber(40000),
     },
   },
 }
@@ -41,15 +41,15 @@ export const Tablet = getTabletStory(Default)
 export const NoDeposits: Story = {
   name: 'No Deposits',
   args: {
-    tokenBalance: NormalizedUnitNumber(10000),
+    tokenBalance: NormalizedNumber(10000),
     borrow: {
       token: tokens.wstETH,
       eligibility: 'yes',
-      available: NormalizedUnitNumber.ZERO,
+      available: NormalizedNumber.ZERO,
     },
     deposit: {
       token: tokens.wstETH,
-      available: NormalizedUnitNumber(40000),
+      available: NormalizedNumber(40000),
     },
   },
 }
@@ -57,15 +57,15 @@ export const NoDeposits: Story = {
 export const ZeroBalance: Story = {
   name: 'Zero Balance',
   args: {
-    tokenBalance: NormalizedUnitNumber.ZERO,
+    tokenBalance: NormalizedNumber.ZERO,
     borrow: {
       token: tokens.wstETH,
       eligibility: 'yes',
-      available: NormalizedUnitNumber(2000),
+      available: NormalizedNumber(2000),
     },
     deposit: {
       token: tokens.wstETH,
-      available: NormalizedUnitNumber.ZERO,
+      available: NormalizedNumber.ZERO,
     },
   },
 }
@@ -73,15 +73,15 @@ export const ZeroBalance: Story = {
 export const NoDepositsZeroBalance: Story = {
   name: 'No deposits Zero Balance',
   args: {
-    tokenBalance: NormalizedUnitNumber.ZERO,
+    tokenBalance: NormalizedNumber.ZERO,
     borrow: {
       token: tokens.wstETH,
       eligibility: 'yes',
-      available: NormalizedUnitNumber.ZERO,
+      available: NormalizedNumber.ZERO,
     },
     deposit: {
       token: tokens.wstETH,
-      available: NormalizedUnitNumber.ZERO,
+      available: NormalizedNumber.ZERO,
     },
   },
 }
@@ -89,15 +89,15 @@ export const NoDepositsZeroBalance: Story = {
 export const AssetCannotBeBorrowed: Story = {
   name: 'Asset cannot be borrowed',
   args: {
-    tokenBalance: NormalizedUnitNumber.ZERO,
+    tokenBalance: NormalizedNumber.ZERO,
     borrow: {
       token: tokens.wstETH,
       eligibility: 'no',
-      available: NormalizedUnitNumber.ZERO,
+      available: NormalizedNumber.ZERO,
     },
     deposit: {
       token: tokens.wstETH,
-      available: NormalizedUnitNumber.ZERO,
+      available: NormalizedNumber.ZERO,
     },
   },
 }
@@ -106,19 +106,19 @@ export const Dai: Story = {
   name: 'DAI',
   args: {
     token: tokens.DAI,
-    tokenBalance: NormalizedUnitNumber(10000),
+    tokenBalance: NormalizedNumber(10000),
     deposit: {
       token: tokens.DAI,
-      available: NormalizedUnitNumber(10000),
+      available: NormalizedNumber(10000),
     },
     borrow: {
       token: tokens.DAI,
       eligibility: 'yes',
-      available: NormalizedUnitNumber(20000),
+      available: NormalizedNumber(20000),
     },
     lend: {
       token: tokens.DAI,
-      available: NormalizedUnitNumber(10000),
+      available: NormalizedNumber(10000),
     },
     openDialog: () => {},
   },
@@ -138,19 +138,19 @@ export const DaiNoDeposits: Story = {
   args: {
     token: tokens.DAI,
 
-    tokenBalance: NormalizedUnitNumber(10000),
+    tokenBalance: NormalizedNumber(10000),
     deposit: {
       token: tokens.DAI,
-      available: NormalizedUnitNumber(10000),
+      available: NormalizedNumber(10000),
     },
     borrow: {
       token: tokens.DAI,
       eligibility: 'yes',
-      available: NormalizedUnitNumber(10000),
+      available: NormalizedNumber(10000),
     },
     lend: {
       token: tokens.DAI,
-      available: NormalizedUnitNumber.ZERO,
+      available: NormalizedNumber.ZERO,
     },
     openDialog: () => {},
   },
@@ -161,19 +161,19 @@ export const DaiZeroBalance: Story = {
   args: {
     token: tokens.DAI,
 
-    tokenBalance: NormalizedUnitNumber.ZERO,
+    tokenBalance: NormalizedNumber.ZERO,
     deposit: {
       token: tokens.DAI,
-      available: NormalizedUnitNumber.ZERO,
+      available: NormalizedNumber.ZERO,
     },
     borrow: {
       token: tokens.DAI,
       eligibility: 'yes',
-      available: NormalizedUnitNumber(2000),
+      available: NormalizedNumber(2000),
     },
     lend: {
       token: tokens.DAI,
-      available: NormalizedUnitNumber.ZERO,
+      available: NormalizedNumber.ZERO,
     },
     openDialog: () => {},
   },
@@ -183,19 +183,19 @@ export const DaiNoDepositsZeroBalance: Story = {
   name: 'DAI no deposits zero balance',
   args: {
     token: tokens.DAI,
-    tokenBalance: NormalizedUnitNumber.ZERO,
+    tokenBalance: NormalizedNumber.ZERO,
     deposit: {
       token: tokens.DAI,
-      available: NormalizedUnitNumber.ZERO,
+      available: NormalizedNumber.ZERO,
     },
     borrow: {
       token: tokens.DAI,
       eligibility: 'yes',
-      available: NormalizedUnitNumber.ZERO,
+      available: NormalizedNumber.ZERO,
     },
     lend: {
       token: tokens.DAI,
-      available: NormalizedUnitNumber.ZERO,
+      available: NormalizedNumber.ZERO,
     },
     openDialog: () => {},
   },

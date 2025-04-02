@@ -1,12 +1,12 @@
 import { Token } from '@/domain/types/Token'
 import { TokenAmount } from '@/ui/molecules/token-amount/TokenAmount'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { MoveRightIcon } from 'lucide-react'
 
 export interface TransactionOverviewTokenAmountChangeProps {
   token: Token
-  currentAmount: NormalizedUnitNumber
-  updatedAmount?: NormalizedUnitNumber
+  currentAmount: NormalizedNumber
+  updatedAmount?: NormalizedNumber
 }
 
 export function TransactionOverviewTokenAmountChange({

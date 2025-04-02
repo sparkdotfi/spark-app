@@ -4,7 +4,7 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { PositionView } from './PositionView'
 
@@ -14,23 +14,23 @@ const meta: Meta<typeof PositionView> = {
   decorators: [withRouter, WithTooltipProvider()],
   args: {
     positionSummary: {
-      totalCollateralUSD: NormalizedUnitNumber(167_600),
+      totalCollateralUSD: NormalizedNumber(167_600),
       hasCollaterals: true,
       hasDeposits: true,
       healthFactor: undefined,
       collaterals: [
         {
           token: tokens.ETH,
-          value: NormalizedUnitNumber(50),
+          value: NormalizedNumber(50),
         },
         {
           token: tokens.stETH,
-          value: NormalizedUnitNumber(25),
+          value: NormalizedNumber(25),
         },
       ],
       borrow: {
-        current: NormalizedUnitNumber(50_000),
-        max: NormalizedUnitNumber(75_000),
+        current: NormalizedNumber(50_000),
+        max: NormalizedNumber(75_000),
         percents: {
           borrowed: 29,
           max: 44,
@@ -42,39 +42,39 @@ const meta: Meta<typeof PositionView> = {
       {
         token: tokens.ETH,
         reserveStatus: 'active',
-        balance: NormalizedUnitNumber('84.330123431'),
-        deposit: NormalizedUnitNumber('13.74'),
+        balance: NormalizedNumber('84.330123431'),
+        deposit: NormalizedNumber('13.74'),
         supplyAPY: Percentage(0.0145),
         isUsedAsCollateral: true,
       },
       {
         token: tokens.stETH,
         reserveStatus: 'active',
-        balance: NormalizedUnitNumber('16.76212348'),
-        deposit: NormalizedUnitNumber('34.21'),
+        balance: NormalizedNumber('16.76212348'),
+        deposit: NormalizedNumber('34.21'),
         supplyAPY: Percentage(0.0145),
         isUsedAsCollateral: true,
       },
       {
         token: tokens.DAI,
         reserveStatus: 'active',
-        balance: NormalizedUnitNumber('48.9234234'),
-        deposit: NormalizedUnitNumber('9.37'),
+        balance: NormalizedNumber('48.9234234'),
+        deposit: NormalizedNumber('9.37'),
         supplyAPY: Percentage(0.0145),
         isUsedAsCollateral: false,
       },
       {
         token: tokens.GNO,
-        balance: NormalizedUnitNumber('299.9234234'),
-        deposit: NormalizedUnitNumber('1.37'),
+        balance: NormalizedNumber('299.9234234'),
+        deposit: NormalizedNumber('1.37'),
         supplyAPY: Percentage(0.0345),
         isUsedAsCollateral: false,
         reserveStatus: 'frozen',
       },
       {
         token: tokens.wstETH,
-        balance: NormalizedUnitNumber('89.923'),
-        deposit: NormalizedUnitNumber('5.37'),
+        balance: NormalizedNumber('89.923'),
+        deposit: NormalizedNumber('5.37'),
         supplyAPY: Percentage(0.012),
         isUsedAsCollateral: false,
         reserveStatus: 'paused',
@@ -84,35 +84,35 @@ const meta: Meta<typeof PositionView> = {
       {
         token: tokens.DAI,
         reserveStatus: 'active',
-        available: NormalizedUnitNumber('22727'),
-        debt: NormalizedUnitNumber('50000'),
+        available: NormalizedNumber('22727'),
+        debt: NormalizedNumber('50000'),
         borrowAPY: Percentage(0.11),
       },
       {
         token: tokens.ETH,
         reserveStatus: 'active',
-        available: NormalizedUnitNumber('11.99'),
-        debt: NormalizedUnitNumber.ZERO,
+        available: NormalizedNumber('11.99'),
+        debt: NormalizedNumber.ZERO,
         borrowAPY: Percentage(0.157),
       },
       {
         token: tokens.stETH,
         reserveStatus: 'active',
-        available: NormalizedUnitNumber('14.68'),
-        debt: NormalizedUnitNumber.ZERO,
+        available: NormalizedNumber('14.68'),
+        debt: NormalizedNumber.ZERO,
         borrowAPY: Percentage(0.145),
       },
       {
         token: tokens.GNO,
-        available: NormalizedUnitNumber('0'),
-        debt: NormalizedUnitNumber(10),
+        available: NormalizedNumber('0'),
+        debt: NormalizedNumber(10),
         borrowAPY: Percentage(0.345),
         reserveStatus: 'frozen',
       },
       {
         token: tokens.wstETH,
-        available: NormalizedUnitNumber('0'),
-        debt: NormalizedUnitNumber(2),
+        available: NormalizedNumber('0'),
+        debt: NormalizedNumber(2),
         borrowAPY: Percentage(0.32),
         reserveStatus: 'paused',
       },
@@ -122,19 +122,19 @@ const meta: Meta<typeof PositionView> = {
       assets: [
         {
           token: tokens.ETH,
-          balance: NormalizedUnitNumber(132.28),
+          balance: NormalizedNumber(132.28),
         },
         {
           token: tokens.USDC,
-          balance: NormalizedUnitNumber(90000),
+          balance: NormalizedNumber(90000),
         },
         {
           token: tokens.stETH,
-          balance: NormalizedUnitNumber(34.21),
+          balance: NormalizedNumber(34.21),
         },
         {
           token: tokens.DAI,
-          balance: NormalizedUnitNumber(50000),
+          balance: NormalizedNumber(50000),
         },
       ],
       includeDeposits: true,
