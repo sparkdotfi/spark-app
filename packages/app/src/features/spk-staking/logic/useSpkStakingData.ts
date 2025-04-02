@@ -123,17 +123,27 @@ export function spkStakingDataQueryOptions({
           range(Math.max(0, Number(currentEpoch) - 25), Number(currentEpoch) + 1).map(async (i) => {
             const epoch = BigInt(i) + 1n
 
-            const amount = await readContract(wagmiConfig, {
-              address: getContractAddress(testSpkStakingAddress, chainId),
-              abi: testSpkStakingAbi,
-              functionName: 'withdrawalSharesOf',
-              args: [epoch, account],
-              chainId,
-            })
+            const [amount, isWithdrawalsClaimed] = await Promise.all([
+              readContract(wagmiConfig, {
+                address: getContractAddress(testSpkStakingAddress, chainId),
+                abi: testSpkStakingAbi,
+                functionName: 'withdrawalSharesOf',
+                args: [epoch, account],
+                chainId,
+              }),
+              readContract(wagmiConfig, {
+                address: getContractAddress(testSpkStakingAddress, chainId),
+                abi: testSpkStakingAbi,
+                functionName: 'isWithdrawalsClaimed',
+                args: [epoch, account],
+                chainId,
+              }),
+            ])
 
             return {
               epoch,
               amount: BaseUnitNumber.toNormalizedUnit(BaseUnitNumber(amount), spk.decimals),
+              isWithdrawalsClaimed,
             }
           }),
         )
@@ -148,9 +158,11 @@ export function spkStakingDataQueryOptions({
           ),
         }))
 
-        const formattedPreviousWithdrawals = {
+        const aggregatedPreviousWithdrawals = {
           ...withdrawals
             .filter((w) => w.epoch < currentEpoch)
+            .filter((w) => w.amount.gt(0))
+            .filter((w) => !w.isWithdrawalsClaimed)
             .reduce(
               (acc, curr) => ({
                 epochs: [...acc.epochs, curr.epoch],
@@ -165,7 +177,9 @@ export function spkStakingDataQueryOptions({
 
         return {
           nextEpochEnd,
-          withdrawals: [...formattedPendingWithdrawals, formattedPreviousWithdrawals].filter((w) => !w.amount.isZero()),
+          withdrawals: [...formattedPendingWithdrawals, aggregatedPreviousWithdrawals].filter(
+            (w) => !w.amount.isZero(),
+          ),
         }
       }
 
