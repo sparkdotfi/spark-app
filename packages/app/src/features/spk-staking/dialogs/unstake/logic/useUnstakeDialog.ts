@@ -2,14 +2,10 @@ import { TokenWithBalance } from '@/domain/common/types'
 import { useChainConfigEntry } from '@/domain/hooks/useChainConfigEntry'
 import { useTokenRepositoryForFeature } from '@/domain/token-repository/useTokenRepositoryForFeature'
 import { Token } from '@/domain/types/Token'
-import { StakeSpkObjective } from '@/features/actions/flavours/stake-spk/types'
+import { UnstakeSpkObjective } from '@/features/actions/flavours/unstake-spk/types'
 import { Objective } from '@/features/actions/logic/types'
 import { AssetInputSchema } from '@/features/dialogs/common/logic/form'
-import {
-  getFieldsForTransferFromUserForm,
-  useDebouncedFormValues,
-} from '@/features/dialogs/common/logic/transfer-from-user/form'
-import { getTransferFromUserFormValidator } from '@/features/dialogs/common/logic/transfer-from-user/validation'
+import { useDebouncedFormValues } from '@/features/dialogs/common/logic/transfer-from-user/form'
 import { FormFieldsForDialog, PageState, PageStatus } from '@/features/dialogs/common/types'
 import { useSpkStakingData } from '@/features/spk-staking/logic/useSpkStakingData'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -18,9 +14,10 @@ import { useState } from 'react'
 import { UseFormReturn, useForm } from 'react-hook-form'
 import { useAccount, useChainId, useConfig } from 'wagmi'
 import { TxOverview, createTxOverview } from './createTxOverview'
-import { validationIssueToMessage } from './validation'
+import { getFormFieldsForUnstakeDialog } from './getFormFieldsForUnstakeDialog'
+import { getUnstakeDialogFormValidator } from './validation'
 
-export interface UseStakeDialogResult {
+export interface UseUnstakeDialogResult {
   selectableAssets: TokenWithBalance[]
   assetsFields: FormFieldsForDialog
   form: UseFormReturn<AssetInputSchema>
@@ -31,7 +28,7 @@ export interface UseStakeDialogResult {
   txOverview: TxOverview
 }
 
-export function useStakeDialog(): UseStakeDialogResult {
+export function useUnstakeDialog(): UseUnstakeDialogResult {
   const [pageStatus, setPageStatus] = useState<PageState>('form')
   const chainId = useChainId()
   const account = useAccount().address
@@ -41,7 +38,6 @@ export function useStakeDialog(): UseStakeDialogResult {
   assert(sparkTokenFeatureConfig, 'Spark token config should be defined')
   const { tokenRepository } = useTokenRepositoryForFeature({ featureGroup: 'sparkToken' })
   const spkWithBalance = tokenRepository.findOneTokenWithBalanceBySymbol(sparkTokenFeatureConfig.spkSymbol)
-  const usds = tokenRepository.findOneTokenBySymbol(sparkTokenFeatureConfig.usdsSymbol)
 
   const { spkStakingData } = useSpkStakingData({
     chainId,
@@ -51,7 +47,7 @@ export function useStakeDialog(): UseStakeDialogResult {
   })
 
   const form = useForm<AssetInputSchema>({
-    resolver: zodResolver(getTransferFromUserFormValidator(tokenRepository, validationIssueToMessage)),
+    resolver: zodResolver(getUnstakeDialogFormValidator({ stakedAmount: spkStakingData.amountStaked })),
     defaultValues: {
       symbol: spkWithBalance.token.symbol,
       value: '',
@@ -67,29 +63,36 @@ export function useStakeDialog(): UseStakeDialogResult {
     tokenRepository,
   })
 
-  const objectives: StakeSpkObjective[] = [
+  const objectives: UnstakeSpkObjective[] = [
     {
-      type: 'stakeSpk',
+      type: 'unstakeSpk',
       spk: spkWithBalance.token,
       amount: formValues.value,
+      accountActiveShares: spkWithBalance.token.toBaseUnit(spkStakingData.amountStaked),
+      unstakeAll: formValues.isMaxSelected,
     },
   ]
 
   const txOverview = createTxOverview({
     apy: spkStakingData.generalStats.apr,
-    usds,
+    amountStaked: spkStakingData.amountStaked,
     nextEpochEnd: Number(spkStakingData.nextEpochEnd),
-    timestamp: Number(spkStakingData.timestamp),
     formValues,
   })
 
   const actionsEnabled = formValues.value.gt(0) && isFormValid && !isDebouncing
 
+  const assetsFields = getFormFieldsForUnstakeDialog({
+    form,
+    tokenRepository,
+    stakedAmount: spkStakingData.amountStaked,
+  })
+
   return {
     spk: spkWithBalance.token,
     staked: formValues.value,
     selectableAssets: [spkWithBalance],
-    assetsFields: getFieldsForTransferFromUserForm({ form, tokenRepository }),
+    assetsFields,
     form,
     objectives,
     txOverview,

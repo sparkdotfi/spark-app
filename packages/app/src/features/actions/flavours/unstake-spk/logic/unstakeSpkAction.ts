@@ -2,6 +2,7 @@ import { testSpkStakingAddress, testSpkStakingConfig } from '@/config/contracts-
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
+import { spkStakingDataQueryKey } from '@/features/spk-staking/logic/useSpkStakingData'
 import { toBigInt } from '@sparkdotfi/common-universal'
 import { UnstakeSpkAction } from '../types'
 
@@ -31,9 +32,7 @@ export function createUnstakeSpkActionConfig(action: UnstakeSpkAction, context: 
     },
 
     invalidates: () => {
-      return [
-        // @todo: spk staking - add related query keys after they are implemented
-      ]
+      return [spkStakingDataQueryKey({ account, chainId })]
     },
   }
 }
