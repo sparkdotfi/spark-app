@@ -3,7 +3,7 @@ import { infoSkyApiUrl } from '@/config/consts'
 import { FarmApiDetails } from '@/domain/farms/types'
 import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { z } from 'zod'
-import { normalizedUnitNumberSchema, percentageAboveOneSchema } from '../common/validation'
+import { normalizedNumberSchema, percentageAboveOneSchema } from '../common/validation'
 
 export interface GetFarmParams {
   farmConfig: FarmConfig
@@ -45,8 +45,8 @@ const baFarmDataResponseSchema = z
   .object({
     apy: percentageAboveOneSchema,
     depositors: z.number(),
-    price: normalizedUnitNumberSchema,
-    total_farmed: normalizedUnitNumberSchema,
+    price: normalizedNumberSchema,
+    total_farmed: normalizedNumberSchema,
   })
   .transform(({ apy, depositors, price, total_farmed }) => ({
     apy,

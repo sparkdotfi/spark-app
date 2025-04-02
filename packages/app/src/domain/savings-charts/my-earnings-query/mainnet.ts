@@ -1,5 +1,5 @@
 import { infoSkyApiUrl } from '@/config/consts'
-import { normalizedUnitNumberSchema } from '@/domain/common/validation'
+import { normalizedNumberSchema } from '@/domain/common/validation'
 import { dateSchema } from '@/utils/schemas'
 import { CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { QueryKey, queryOptions } from '@tanstack/react-query'
@@ -30,9 +30,9 @@ const myEarningsDataResponseSchema = z
   .array(
     z.object({
       datetime: dateSchema,
-      sdai_balance: normalizedUnitNumberSchema.optional(),
-      susds_balance: normalizedUnitNumberSchema.optional(),
-      susdc_balance: normalizedUnitNumberSchema.optional(),
+      sdai_balance: normalizedNumberSchema.optional(),
+      susds_balance: normalizedNumberSchema.optional(),
+      susdc_balance: normalizedNumberSchema.optional(),
     }),
   )
   .transform((data) => {

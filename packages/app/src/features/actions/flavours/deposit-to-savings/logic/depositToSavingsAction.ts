@@ -290,7 +290,7 @@ function calculateMinSharesAmountOut({
   // we calculate the minimal amount of sUSDS to receive as the amount
   // the user would receive in 1 epoch (30 minutes)
   const minimalSharesAmount = savingsConverter.predictSharesAmount({
-    assets: amountIn, // we pass NormalizedUnitNumber, so decimals don't matter
+    assets: amountIn, // we pass NormalizedNumber, so decimals don't matter
     timestamp: currentTimestamp + EPOCH_LENGTH,
   })
 

@@ -7,7 +7,7 @@ import { mainnet } from 'viem/chains'
 import { Config } from 'wagmi'
 import { readContract } from 'wagmi/actions'
 import { z } from 'zod'
-import { checkedAddressSchema, hexSchema, normalizedUnitNumberSchema } from '../common/validation'
+import { checkedAddressSchema, hexSchema, normalizedNumberSchema } from '../common/validation'
 import { getContractAddress } from '../hooks/useContractAddress'
 import { Token } from '../types/Token'
 import { TokenSymbol } from '../types/TokenSymbol'
@@ -144,9 +144,9 @@ const claimableRewardsResponseSchema = z.array(
     epoch: z.number(),
     wallet_address: checkedAddressSchema,
     token_address: checkedAddressSchema,
-    token_price: normalizedUnitNumberSchema.nullish(),
-    pending_amount_normalized: normalizedUnitNumberSchema,
-    claimable_amount_normalized: normalizedUnitNumberSchema,
+    token_price: normalizedNumberSchema.nullish(),
+    pending_amount_normalized: normalizedNumberSchema,
+    claimable_amount_normalized: normalizedNumberSchema,
     proof: z.array(hexSchema),
     restricted_country_codes: z.array(z.string()),
   }),

@@ -5,7 +5,7 @@ import {
   testStakingRewardsAbi,
   testStakingRewardsAddress,
 } from '@/config/contracts-generated'
-import { normalizedUnitNumberSchema, percentageSchema } from '@/domain/common/validation'
+import { normalizedNumberSchema, percentageSchema } from '@/domain/common/validation'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
@@ -252,16 +252,16 @@ export function spkStakingDataQueryKey({ account, chainId }: SpkStakingDataQuery
 }
 
 const baDataResponseSchema = z.object({
-  amount_staked: normalizedUnitNumberSchema,
-  pending_amount_normalized: normalizedUnitNumberSchema,
-  pending_amount_rate: normalizedUnitNumberSchema,
-  cumulative_amount_normalized: normalizedUnitNumberSchema,
+  amount_staked: normalizedNumberSchema,
+  pending_amount_normalized: normalizedNumberSchema,
+  pending_amount_rate: normalizedNumberSchema,
+  cumulative_amount_normalized: normalizedNumberSchema,
   timestamp: z.number(),
 })
 
 const generalStatsResponseSchema = z
   .object({
-    tvl: normalizedUnitNumberSchema,
+    tvl: normalizedNumberSchema,
     number_of_wallets: z.number(),
     apr: percentageSchema,
   })

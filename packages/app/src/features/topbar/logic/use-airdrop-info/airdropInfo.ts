@@ -3,12 +3,12 @@ import { z } from 'zod'
 
 import { blockAnaliticaApiUrl } from '@/config/consts'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
-import { normalizedUnitNumberSchema } from '../../../../domain/common/validation'
+import { normalizedNumberSchema } from '../../../../domain/common/validation'
 
 const airdropInfoResponseSchema = z
   .object({
-    token_reward_total: normalizedUnitNumberSchema,
-    token_rate: normalizedUnitNumberSchema,
+    token_reward_total: normalizedNumberSchema,
+    token_rate: normalizedNumberSchema,
     timestamp: z.number(),
   })
   .transform((o) => ({

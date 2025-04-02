@@ -15,7 +15,7 @@ export const numberLikeSchema = z.union([
 ])
 export const percentageSchema = numberLikeSchema.transform((a) => Percentage(a))
 export const percentageAboveOneSchema = numberLikeSchema.transform((a) => Percentage(a, { allowMoreThan1: true }))
-export const normalizedUnitNumberSchema = numberLikeSchema.transform((a) => NormalizedNumber(a))
+export const normalizedNumberSchema = numberLikeSchema.transform((a) => NormalizedNumber(a))
 
 // address schemas
 export const checkedAddressSchema = z.string().transform((a) => CheckedAddress(a))
