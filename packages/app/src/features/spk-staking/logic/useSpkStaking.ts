@@ -1,6 +1,6 @@
 import { useGetBlockExplorerAddressLink } from '@/domain/hooks/useGetBlockExplorerAddressLink'
 import { usePageChainId } from '@/domain/hooks/usePageChainId'
-import { useOpenDialog } from '@/domain/state/dialogs'
+import { OpenDialogFunction, useOpenDialog } from '@/domain/state/dialogs'
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { useTokenRepositoryForFeature } from '@/domain/token-repository/useTokenRepositoryForFeature'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
@@ -11,6 +11,7 @@ import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useAccount, useConfig } from 'wagmi'
 import { AvailableToStakeRow } from '../components/available-to-stake-panel/AvailableToStakePanel'
 import { WithdrawalsTableRow } from '../components/withdrawals-table/WithdrawalsTablePanel'
+import { finalizeUnstakeDialogConfig } from '../dialogs/finalize-unstake/FinalizeUnstakeDialog'
 import { stakeDialogConfig } from '../dialogs/stake/StakeDialog'
 import { unstakeDialogConfig } from '../dialogs/unstake/UnstakeDialog'
 import { ChartDetails, GeneralStats, MainPanelData } from '../types'
@@ -112,7 +113,7 @@ export function useSpkStaking(): UseSpkStakingResult {
         claimableRewards: spkStakingData.claimableAmount,
         refreshGrowingRewardIntervalInMs,
         calculateReward,
-        openClaimDialog: () => {},
+        openClaimDialog: () => openDialog(finalizeUnstakeDialogConfig, {}),
         openUnstakeDialog: () => openDialog(unstakeDialogConfig, {}),
         openStakeDialog: () => openDialog(stakeDialogConfig, {}),
       },
@@ -123,6 +124,7 @@ export function useSpkStaking(): UseSpkStakingResult {
     withdrawals: spkStakingData.withdrawals,
     timestamp: spkStakingData.timestamp,
     tokenRepository,
+    openDialog,
   })
 
   const availableToStakeRow: AvailableToStakeRow = {
@@ -148,7 +150,13 @@ function formatWithdrawals({
   withdrawals,
   timestamp,
   tokenRepository,
-}: { withdrawals: Withdrawal[]; timestamp: UnixTime; tokenRepository: TokenRepository }): WithdrawalsTableRow[] {
+  openDialog,
+}: {
+  withdrawals: Withdrawal[]
+  timestamp: UnixTime
+  tokenRepository: TokenRepository
+  openDialog: OpenDialogFunction
+}): WithdrawalsTableRow[] {
   return withdrawals
     .map((withdrawal) => {
       const timeToClaim = Math.max(0, Number(UnixTime.fromDate(withdrawal.claimableAt) - timestamp))
@@ -159,8 +167,8 @@ function formatWithdrawals({
         amount: withdrawal.amount,
         timeToClaim,
         claimableAt: withdrawal.claimableAt,
-        action: () => {},
-        actionName: 'Claim',
+        action: () => openDialog(finalizeUnstakeDialogConfig, {}),
+        actionName: 'Finalize',
         isActionEnabled,
       }
     })

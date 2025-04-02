@@ -162,9 +162,23 @@ describe(useSpkStaking.name, () => {
         handlers.contractCall({
           to: getContractAddress(testSpkStakingAddress, chainId),
           abi: testSpkStakingAbi,
+          functionName: 'isWithdrawalsClaimed',
+          args: [1n, account],
+          result: false,
+        }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
           functionName: 'withdrawalSharesOf',
           args: [2n, account],
           result: parseEther('1'),
+        }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
+          functionName: 'isWithdrawalsClaimed',
+          args: [2n, account],
+          result: false,
         }),
         handlers.contractCall({
           to: getContractAddress(testSpkStakingAddress, chainId),
@@ -176,6 +190,13 @@ describe(useSpkStaking.name, () => {
         handlers.contractCall({
           to: getContractAddress(testSpkStakingAddress, chainId),
           abi: testSpkStakingAbi,
+          functionName: 'isWithdrawalsClaimed',
+          args: [3n, account],
+          result: false,
+        }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
           functionName: 'withdrawalSharesOf',
           args: [4n, account],
           result: parseEther('4'),
@@ -183,9 +204,23 @@ describe(useSpkStaking.name, () => {
         handlers.contractCall({
           to: getContractAddress(testSpkStakingAddress, chainId),
           abi: testSpkStakingAbi,
+          functionName: 'isWithdrawalsClaimed',
+          args: [4n, account],
+          result: false,
+        }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
           functionName: 'withdrawalSharesOf',
           args: [5n, account],
           result: parseEther('8'),
+        }),
+        handlers.contractCall({
+          to: getContractAddress(testSpkStakingAddress, chainId),
+          abi: testSpkStakingAbi,
+          functionName: 'isWithdrawalsClaimed',
+          args: [5n, account],
+          result: false,
         }),
       ],
     })
@@ -223,7 +258,7 @@ describe(useSpkStaking.name, () => {
           timeToClaim: 0,
           claimableAt: expect.any(Date),
           action: expect.any(Function),
-          actionName: 'Claim',
+          actionName: 'Finalize',
           isActionEnabled: true,
         },
         {
@@ -235,7 +270,7 @@ describe(useSpkStaking.name, () => {
           timeToClaim: 30,
           claimableAt: expect.any(Date),
           action: expect.any(Function),
-          actionName: 'Claim',
+          actionName: 'Finalize',
           isActionEnabled: false,
         },
         {
@@ -247,7 +282,7 @@ describe(useSpkStaking.name, () => {
           timeToClaim: 90,
           claimableAt: expect.any(Date),
           action: expect.any(Function),
-          actionName: 'Claim',
+          actionName: 'Finalize',
           isActionEnabled: false,
         },
       ])

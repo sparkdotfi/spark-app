@@ -3,6 +3,7 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
 import { ActionConfig, ActionContext } from '@/features/actions/logic/types'
+import { spkStakingDataQueryKey } from '@/features/spk-staking/logic/useSpkStakingData'
 import { FinalizeSpkUnstakeAction } from '../types'
 
 export function createFinalizeSpkUnstakeActionConfig(
@@ -25,7 +26,7 @@ export function createFinalizeSpkUnstakeActionConfig(
     },
 
     invalidates: () => {
-      return [getBalancesQueryKeyPrefix({ account, chainId })]
+      return [getBalancesQueryKeyPrefix({ account, chainId }), spkStakingDataQueryKey({ account, chainId })]
     },
   }
 }

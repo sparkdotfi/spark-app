@@ -14,14 +14,14 @@ export function FinalizeSpkUnstakeActionRow({ action: { spk, amount }, ...props 
 
       <ActionRow.Title>
         <ActionRow.Title.Tokens tokens={[spk]} />
-        Claim {spk.symbol}
+        Finalize {spk.symbol} unstake
       </ActionRow.Title>
 
       <ActionRow.Amount token={spk} amount={amount} />
 
       <ActionRow.ErrorWarning />
 
-      <ActionRow.Trigger>Claim</ActionRow.Trigger>
+      <ActionRow.Trigger>Finalize</ActionRow.Trigger>
     </ActionRow>
   )
 }
