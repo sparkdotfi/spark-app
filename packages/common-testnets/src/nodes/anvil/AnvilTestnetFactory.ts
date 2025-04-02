@@ -1,4 +1,7 @@
 import { assert } from '@sparkdotfi/common-universal'
+import getPort from 'get-port'
+import { http, createPublicClient } from 'viem'
+import { arbitrum, base, gnosis, mainnet } from 'viem/chains'
 import { TestnetClient } from '../../TestnetClient.js'
 import {
   CreateClientFromUrlParams,
@@ -6,13 +9,10 @@ import {
   TestnetCreateResult,
   TestnetFactory,
 } from '../../TestnetFactory.js'
-
-import { createAnvil } from '@viem/anvil'
-import getPort from 'get-port'
-import { http, createPublicClient } from 'viem'
-import { arbitrum, base, gnosis, mainnet } from 'viem/chains'
 import { getAnvilClient } from './AnvilClient.js'
+import { Anvil } from './instance/Anvil.js'
 
+// Set TESTNETS_ANVIL_NO_STORAGE_CACHING or TESTNETS_ANVIL_VERBOSE env variables to configure Anvil server
 export class AnvilTestnetFactory implements TestnetFactory {
   constructor(private readonly opts: { alchemyApiKey: string }) {}
 
@@ -31,7 +31,7 @@ export class AnvilTestnetFactory implements TestnetFactory {
     })()
     const port = await getPort({ port: 8545 })
 
-    const anvil = createAnvil({
+    const anvil = new Anvil({
       forkUrl,
       autoImpersonate: true,
       forkBlockNumber,
@@ -43,9 +43,9 @@ export class AnvilTestnetFactory implements TestnetFactory {
 
     await anvil.start()
 
-    const rpcUrl = `http://${anvil.host}:${anvil.port}`
+    const rpcUrl = `http://${anvil.config.host}:${anvil.config.port}`
 
-    assert(anvil.status === 'listening', `Anvil failed to start: ${anvil.status}`)
+    assert(anvil.status === 'running', `Anvil failed to start: ${anvil.status}`)
 
     const client = getAnvilClient({
       rpcUrl,
