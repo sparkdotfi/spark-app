@@ -18,6 +18,37 @@ export class HttpClient {
     schema: T,
     headers?: Record<string, string>,
   ): Promise<z.infer<T>> {
+    const result = await this.rawPost(url, body, headers)
+
+    if (isZodString(schema)) {
+      return await result.text()
+    }
+    return schema.parse(await result.json())
+  }
+
+  async get<T extends z.ZodTypeAny>(url: string, schema: T, headers?: Record<string, string>): Promise<z.infer<T>> {
+    const result = await this.rawGet(url, headers)
+
+    if (isZodString(schema)) {
+      return schema.parse(await result.text())
+    }
+    return schema.parse(await result.json())
+  }
+
+  async rawGet(url: string, headers?: Record<string, string>): Promise<Response> {
+    this.logger.trace(`[HttpClient] GET request - ${url}`, { url })
+    const result = await this.fetchWithRetries(url, {
+      method: 'GET',
+      headers,
+    })
+    if (!result.ok) {
+      throw new HttpError('GET', url, result.status, await result.text())
+    }
+
+    return result
+  }
+
+  async rawPost(url: string, body: object, headers?: Record<string, string>): Promise<Response> {
     this.logger.trace(`[HttpClient] POST request - ${url}`, { url, body })
 
     const result = await this.fetchWithRetries(url, {
@@ -29,26 +60,7 @@ export class HttpClient {
       throw new HttpError('POST', url, result.status, await result.text())
     }
 
-    if (isZodString(schema)) {
-      return await result.text()
-    }
-    return schema.parse(await result.json())
-  }
-
-  async get<T extends z.ZodTypeAny>(url: string, schema: T, headers?: Record<string, string>): Promise<z.infer<T>> {
-    this.logger.trace(`[HttpClient] GET request - ${url}`, { url })
-    const result = await this.fetchWithRetries(url, {
-      method: 'GET',
-      headers,
-    })
-    if (!result.ok) {
-      throw new HttpError('GET', url, result.status, await result.text())
-    }
-
-    if (isZodString(schema)) {
-      return schema.parse(await result.text())
-    }
-    return schema.parse(await result.json())
+    return result
   }
 }
 
