@@ -107,6 +107,14 @@ function getBorrowPercents(
   maxBorrow: NormalizedNumber,
   totalCollateralUSD: NormalizedNumber,
 ): BorrowPercents {
+  if (totalCollateralUSD.isZero()) {
+    return {
+      borrowPercent: 0,
+      maxPercent: 0,
+      restPercent: 0,
+    }
+  }
+
   let borrowPercent = currentBorrow.div(totalCollateralUSD).times(100).toNumber()
   let restPercent = new BigNumber(100).minus(borrowPercent).toNumber()
   const maxPercent = maxBorrow.div(totalCollateralUSD).times(100).toNumber()
