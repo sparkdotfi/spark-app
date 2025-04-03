@@ -141,6 +141,7 @@ export async function setupSparkRewards({
   const { merkleRoot, proofs } = await setSparkRewards({
     testnetClient,
     account,
+    rewardsContract: CheckedAddress(testSparkRewardsAddress[mainnet.id]),
     rewards: rewards.map(({ tokenAddress, cumulativeAmountBaseUnit }) => ({
       token: tokenAddress,
       cumulativeAmount: cumulativeAmountBaseUnit,

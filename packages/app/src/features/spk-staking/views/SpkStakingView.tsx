@@ -7,6 +7,7 @@ import {
 } from '../components/available-to-stake-panel/AvailableToStakePanel'
 import { ChartsPanel } from '../components/charts-panel/ChartsPanel'
 import { GeneralStatsBar } from '../components/general-stats-bar/GeneralStatsBar'
+import { GetRewardsButton } from '../components/get-rewards-button/GetRewardsButton'
 import { StakeSpkCTAPanel } from '../components/stake-cta-panel/StakeSpkCTAPanel'
 import { StakingRewardsPanel } from '../components/staking-rewards-panel/StakingRewardsPanel'
 import { WithdrawalsTablePanel, WithdrawalsTableRow } from '../components/withdrawals-table/WithdrawalsTablePanel'
@@ -53,6 +54,7 @@ export function SpkStakingView({
         {withdrawalsTableRows.length > 0 && <WithdrawalsTablePanel rows={withdrawalsTableRows} />}
         <AvailableToStakePanel {...availableToStakeRow} />
       </div>
+      {(import.meta.env.MODE === 'development' || import.meta.env.MODE === 'staging') && <GetRewardsButton />}
     </PageLayout>
   )
 }
