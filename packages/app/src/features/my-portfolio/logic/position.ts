@@ -62,8 +62,8 @@ export function makePositionSummary({ marketInfo }: MakePositionSummaryParams): 
   const hasDeposits = marketInfo.userPositions.some((position) => position.collateralBalance.gt(0))
 
   const currentBorrow = marketInfo.userPositionSummary.totalBorrowsUSD
-  const maxBorrow = NormalizedNumber(
-    marketInfo.userPositionSummary.totalBorrowsUSD.plus(marketInfo.userPositionSummary.availableBorrowsUSD),
+  const maxBorrow = marketInfo.userPositionSummary.totalBorrowsUSD.plus(
+    marketInfo.userPositionSummary.availableBorrowsUSD,
   )
   const { borrowPercent, restPercent, maxPercent } = getBorrowPercents(currentBorrow, maxBorrow, totalCollateralUSD)
 

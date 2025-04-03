@@ -55,7 +55,7 @@ export class NormalizedNumberClass implements NormalizedNumber {
   private readonly asString: string
 
   constructor(value: NumberLike) {
-    this.value = BigNumber(bigNumberify(value))
+    this.value = bigNumberify(value)
     this.asString = this.value.toString()
   }
 

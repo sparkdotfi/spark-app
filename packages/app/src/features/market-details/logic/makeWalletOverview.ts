@@ -165,11 +165,9 @@ function makeWalletNativeAssetOverview({
 
   const baseOverview = makeBaseWalletOverview({ reserve, nativeAssetInfo, walletInfo, ...rest })
 
-  const tokenBalance = NormalizedNumber(
-    walletInfo
-      .findWalletBalanceForToken(reserve.token)
-      .plus(walletInfo.findWalletBalanceForSymbol(nativeAssetInfo.nativeAssetSymbol)),
-  )
+  const tokenBalance = walletInfo
+    .findWalletBalanceForToken(reserve.token)
+    .plus(walletInfo.findWalletBalanceForSymbol(nativeAssetInfo.nativeAssetSymbol))
 
   const availableToDeposit = getDepositMaxValue({
     asset: {

@@ -14,7 +14,5 @@ export function calculateOneYearProjection({
   savingsConverter,
 }: CalculateProjectionsParams): NormalizedNumber {
   const base = savingsConverter.convertToAssets({ shares })
-  return NormalizedNumber(
-    savingsConverter.predictAssetsAmount({ timestamp: timestamp + 365 * SECONDS_PER_DAY, shares }).minus(base),
-  )
+  return savingsConverter.predictAssetsAmount({ timestamp: timestamp + 365 * SECONDS_PER_DAY, shares }).minus(base)
 }

@@ -60,11 +60,9 @@ function transformNativeAssetDeposit({
 
   return {
     ...deposit,
-    balance: NormalizedNumber(
-      walletInfo
-        .findWalletBalanceForToken(position.reserve.token)
-        .plus(walletInfo.findWalletBalanceForSymbol(nativeAssetInfo.nativeAssetSymbol)),
-    ),
+    balance: walletInfo
+      .findWalletBalanceForToken(position.reserve.token)
+      .plus(walletInfo.findWalletBalanceForSymbol(nativeAssetInfo.nativeAssetSymbol)),
   }
 }
 
