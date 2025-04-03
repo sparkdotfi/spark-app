@@ -92,9 +92,12 @@ export function useSpkStaking(): UseSpkStakingResult {
     }
 
     function calculateReward(timestampInMs: number): NormalizedUnitNumber {
+      const timestampInSec = timestampInMs / 1000
+      const timestamp =
+        timestampInSec > spkStakingData.pendingAmountTimestamp ? timestampInSec : spkStakingData.pendingAmountTimestamp
       return NormalizedUnitNumber(
         spkStakingData.pendingAmount.plus(
-          spkStakingData.pendingAmountRate.multipliedBy(timestampInMs / 1000 - spkStakingData.pendingAmountTimestamp),
+          spkStakingData.pendingAmountRate.multipliedBy(timestamp - spkStakingData.pendingAmountTimestamp),
         ),
       )
     }
@@ -112,6 +115,7 @@ export function useSpkStaking(): UseSpkStakingResult {
         rewardToken: tokenRepository.findOneTokenBySymbol(TokenSymbol('SPK')),
         stakingToken: tokenRepository.findOneTokenBySymbol(TokenSymbol('USDS')),
         claimableRewards: spkStakingData.rewardsClaimableAmount,
+        isRewardOutOfSync: spkStakingData.isOutOfSync,
         refreshGrowingRewardIntervalInMs,
         calculateReward,
         openClaimDialog: () => openDialog(claimRewardsDialogConfig, {}),
