@@ -74,6 +74,8 @@ import snowflake from './snowflake.svg'
 import discord from './social-platforms/discord.svg'
 import x from './social-platforms/x.svg'
 import sparkIcon from './spark-icon.svg'
+import spkRewardsInSyncStatusIcon from './spark-staking/in-sync-status-icon.svg'
+import spkRewardsSyncingStatusIcon from './spark-staking/syncing-status-icon.svg'
 import success from './success.svg'
 import threeDots from './three-dots.svg'
 import timer from './timer.svg'
@@ -232,6 +234,10 @@ export const assets = {
     daiUpgrade,
     sdaiUpgrade,
     savingsWelcome,
+  },
+  spkStaking: {
+    syncingStatusIcon: spkRewardsSyncingStatusIcon,
+    inSyncStatusIcon: spkRewardsInSyncStatusIcon,
   },
   rewards: {
     guestModePanelIcon,

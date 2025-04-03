@@ -415,7 +415,7 @@ export default {
         'sprinkle-spin': 'sprinkle-spin 1s linear',
         'sprinkle-come-in-out': 'sprinkle-come-in-out 700ms forwards',
         reveal: 'reveal 0.25s ease-out',
-        'pulse-opacity': 'pulse-opacity 2.5s ease-out infinite',
+        'pulse-opacity': 'pulse-opacity 2s ease-out infinite',
       },
     },
   },
