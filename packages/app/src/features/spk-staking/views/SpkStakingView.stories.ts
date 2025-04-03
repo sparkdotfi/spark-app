@@ -47,7 +47,7 @@ const meta: Meta<typeof SpkStakingView> = {
         action: () => {},
         actionName: 'Claim',
         amount: NormalizedUnitNumber(1000),
-        claimableAt: new Date(),
+        claimableAt: new Date('2025-04-03'),
         isActionEnabled: true,
         timeToClaim: 1000,
         token: tokens.SPK,
