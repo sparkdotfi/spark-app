@@ -1,3 +1,4 @@
+import { testSparkRewardsAddress } from '@/config/contracts-generated'
 import { setSparkRewards } from '@/domain/spark-rewards/setSparkRewards'
 import { CheckedAddress, NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
 import { mainnet } from 'viem/chains'
@@ -37,6 +38,7 @@ export async function setupSparkRewards({
   const { merkleRoot, proofs } = await setSparkRewards({
     testnetClient: testnetController.client,
     account,
+    rewardsContract: CheckedAddress(testSparkRewardsAddress[mainnet.id]),
     rewards: rewards.map(({ tokenAddress, cumulativeAmountBaseUnit }) => ({
       token: tokenAddress,
       cumulativeAmount: cumulativeAmountBaseUnit,

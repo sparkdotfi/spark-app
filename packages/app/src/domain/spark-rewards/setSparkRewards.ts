@@ -3,11 +3,11 @@ import { TestnetClient } from '@/features/dialogs/sandbox/tenderly/TenderlyClien
 import { StandardMerkleTree } from '@openzeppelin/merkle-tree'
 import { BaseUnitNumber, CheckedAddress, Hex, toBigInt } from '@sparkdotfi/common-universal'
 import { Hash, encodeFunctionData, erc20Abi } from 'viem'
-import { mainnet } from 'viem/chains'
 
 export interface SetSparkRewardsParams {
   testnetClient: TestnetClient
   account: CheckedAddress
+  rewardsContract: CheckedAddress
   rewards: {
     token: CheckedAddress
     cumulativeAmount: BaseUnitNumber
@@ -27,6 +27,7 @@ export interface SetSparkRewardsResult {
 export async function setSparkRewards({
   testnetClient,
   account,
+  rewardsContract,
   rewards,
   afterTx,
 }: SetSparkRewardsParams): Promise<SetSparkRewardsResult> {
@@ -45,13 +46,13 @@ export async function setSparkRewards({
       functionName: 'setMerkleRoot',
       args: [merkleRoot],
     }),
-    to: testSparkRewardsConfig.address[mainnet.id],
+    to: rewardsContract,
     chain: null,
   })
   await afterTx?.()
 
   const wallet = await testnetClient.readContract({
-    address: testSparkRewardsConfig.address[mainnet.id],
+    address: rewardsContract,
     abi: testSparkRewardsConfig.abi,
     functionName: 'wallet',
   })
@@ -67,7 +68,7 @@ export async function setSparkRewards({
       data: encodeFunctionData({
         abi: erc20Abi,
         functionName: 'approve',
-        args: [testSparkRewardsConfig.address[mainnet.id], cumulativeAmountBigInt],
+        args: [rewardsContract, cumulativeAmountBigInt],
       }),
       to: token,
       chain: null,

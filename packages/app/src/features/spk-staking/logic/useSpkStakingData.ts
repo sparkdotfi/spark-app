@@ -5,12 +5,12 @@ import {
   testStakingRewardsAbi,
   testStakingRewardsAddress,
 } from '@/config/contracts-generated'
-import { normalizedUnitNumberSchema, percentageSchema } from '@/domain/common/validation'
+import { hexSchema, normalizedUnitNumberSchema, percentageSchema } from '@/domain/common/validation'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { SuspenseQueryWith } from '@/utils/types'
-import { BaseUnitNumber, CheckedAddress, NormalizedUnitNumber, UnixTime } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, CheckedAddress, Hex, NormalizedUnitNumber, UnixTime } from '@sparkdotfi/common-universal'
 import { QueryKey, queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 import { range } from 'remeda'
 import { Address } from 'viem'
@@ -69,7 +69,7 @@ export function spkStakingDataQueryOptions({
         return BaseUnitNumber.toNormalizedUnit(BaseUnitNumber(balance), usds.decimals)
       }
 
-      async function fetchBaData(): Promise<z.infer<typeof baDataResponseSchema>> {
+      async function fetchWalletRewardsData(): Promise<z.infer<typeof baDataResponseSchema> & { merkle_root: Hex }> {
         if (!account) {
           return {
             amount_staked: NormalizedUnitNumber(0),
@@ -77,15 +77,28 @@ export function spkStakingDataQueryOptions({
             pending_amount_rate: NormalizedUnitNumber(0),
             cumulative_amount_normalized: NormalizedUnitNumber(0),
             timestamp: 0,
+            epoch: 0,
+            proof: [],
+            merkle_root: Hex.random(),
           }
         }
 
-        const res = await fetch(`${spark2ApiUrl}/spk-staking/${chainId}/${account}/`)
+        const merkleRoot = await readContract(wagmiConfig, {
+          address: getContractAddress(testStakingRewardsAddress, chainId),
+          abi: testStakingRewardsAbi,
+          functionName: 'merkleRoot',
+          chainId,
+        })
+
+        const res = await fetch(`${spark2ApiUrl}/spk-staking/${chainId}/${merkleRoot}/${account}/`)
         if (!res.ok) {
           throw new Error('Failed to fetch rewards')
         }
 
-        return baDataResponseSchema.parse(await res.json())
+        return {
+          ...baDataResponseSchema.parse(await res.json()),
+          merkle_root: Hex(merkleRoot),
+        }
       }
 
       async function fetchVaultData(): Promise<VaultData> {
@@ -206,30 +219,42 @@ export function spkStakingDataQueryOptions({
         }
       }
 
-      const [amountStaked, preclaimedRewards, baData, { withdrawals, nextEpochEnd }, timestamp, generalStats] =
-        await Promise.all([
-          fetchAmountStaked(),
-          fetchPreclaimedRewards(),
-          fetchBaData(),
-          fetchVaultData(),
-          fetchTimestamp(),
-          fetchGeneralStats(),
-        ])
+      const [
+        amountStaked,
+        preclaimedRewards,
+        walletRewardsData,
+        { withdrawals, nextEpochEnd },
+        timestamp,
+        generalStats,
+      ] = await Promise.all([
+        fetchAmountStaked(),
+        fetchPreclaimedRewards(),
+        fetchWalletRewardsData(),
+        fetchVaultData(),
+        fetchTimestamp(),
+        fetchGeneralStats(),
+      ])
 
-      const pendingAmount = NormalizedUnitNumber(baData.pending_amount_normalized.minus(preclaimedRewards))
-      const claimableAmount = NormalizedUnitNumber(baData.cumulative_amount_normalized.minus(preclaimedRewards))
+      const pendingAmount = NormalizedUnitNumber(walletRewardsData.pending_amount_normalized.minus(preclaimedRewards))
+      const rewardsClaimableAmount = NormalizedUnitNumber(
+        walletRewardsData.cumulative_amount_normalized.minus(preclaimedRewards),
+      )
 
       return {
         amountStaked,
         pendingAmount,
-        pendingAmountRate: baData.pending_amount_rate,
-        pendingAmountTimestamp: baData.timestamp,
-        claimableAmount,
+        pendingAmountRate: walletRewardsData.pending_amount_rate,
+        pendingAmountTimestamp: walletRewardsData.timestamp,
         withdrawals,
         generalStats,
         timestamp,
         nextEpochEnd,
-        isOutOfSync: !amountStaked.eq(baData.amount_staked),
+        rewardsEpoch: walletRewardsData.epoch,
+        rewardsProof: walletRewardsData.proof,
+        rewardsRoot: walletRewardsData.merkle_root,
+        rewardsCumulativeAmount: walletRewardsData.cumulative_amount_normalized,
+        rewardsClaimableAmount,
+        isOutOfSync: !amountStaked.eq(walletRewardsData.amount_staked),
       }
     },
     refetchInterval: (query) => {
@@ -257,6 +282,8 @@ const baDataResponseSchema = z.object({
   pending_amount_rate: normalizedUnitNumberSchema,
   cumulative_amount_normalized: normalizedUnitNumberSchema,
   timestamp: z.number(),
+  epoch: z.number(),
+  proof: z.array(hexSchema),
 })
 
 const generalStatsResponseSchema = z
@@ -287,11 +314,15 @@ export interface SpkStakingData {
   pendingAmount: NormalizedUnitNumber
   pendingAmountRate: NormalizedUnitNumber
   pendingAmountTimestamp: number
-  claimableAmount: NormalizedUnitNumber
   generalStats: GeneralStats
   withdrawals: Withdrawal[]
   timestamp: UnixTime
   nextEpochEnd: UnixTime
+  rewardsEpoch: number
+  rewardsProof: Hex[]
+  rewardsRoot: Hex
+  rewardsCumulativeAmount: NormalizedUnitNumber
+  rewardsClaimableAmount: NormalizedUnitNumber
   isOutOfSync: boolean
 }
 

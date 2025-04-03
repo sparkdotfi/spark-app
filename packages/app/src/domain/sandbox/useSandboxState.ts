@@ -8,6 +8,7 @@ export interface UseSandboxStateResult {
   isSandboxEnabled: boolean
   isDevSandboxEnabled: boolean
   isInSandbox: boolean
+  rpcUrl?: string
   sandboxChainId?: number
   originChainId?: number
   isEphemeralAccount: (address: Address) => boolean
@@ -42,6 +43,7 @@ export function useSandboxState(): UseSandboxStateResult {
     isSandboxEnabled,
     isDevSandboxEnabled,
     isInSandbox: network?.forkChainId === chainId,
+    rpcUrl: network?.forkUrl,
     sandboxChainId: network?.forkChainId,
     originChainId: network?.originChainId,
     isEphemeralAccount: (address: Address) => ephemeralAccountAddress === address,

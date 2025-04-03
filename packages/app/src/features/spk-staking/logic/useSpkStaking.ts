@@ -11,6 +11,7 @@ import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
 import { useAccount, useConfig } from 'wagmi'
 import { AvailableToStakeRow } from '../components/available-to-stake-panel/AvailableToStakePanel'
 import { WithdrawalsTableRow } from '../components/withdrawals-table/WithdrawalsTablePanel'
+import { claimRewardsDialogConfig } from '../dialogs/claim-rewards/ClaimRewardsDialog'
 import { finalizeUnstakeDialogConfig } from '../dialogs/finalize-unstake/FinalizeUnstakeDialog'
 import { stakeDialogConfig } from '../dialogs/stake/StakeDialog'
 import { unstakeDialogConfig } from '../dialogs/unstake/UnstakeDialog'
@@ -110,10 +111,10 @@ export function useSpkStaking(): UseSpkStakingResult {
         stakedAmount: spkStakingData.amountStaked,
         rewardToken: tokenRepository.findOneTokenBySymbol(TokenSymbol('SPK')),
         stakingToken: tokenRepository.findOneTokenBySymbol(TokenSymbol('USDS')),
-        claimableRewards: spkStakingData.claimableAmount,
+        claimableRewards: spkStakingData.rewardsClaimableAmount,
         refreshGrowingRewardIntervalInMs,
         calculateReward,
-        openClaimDialog: () => openDialog(finalizeUnstakeDialogConfig, {}),
+        openClaimDialog: () => openDialog(claimRewardsDialogConfig, {}),
         openUnstakeDialog: () => openDialog(unstakeDialogConfig, {}),
         openStakeDialog: () => openDialog(stakeDialogConfig, {}),
       },
