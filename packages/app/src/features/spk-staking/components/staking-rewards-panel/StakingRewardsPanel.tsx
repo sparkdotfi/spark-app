@@ -98,21 +98,16 @@ export function StakingRewardsPanel({
             {rewardToken.format(claimableRewards, { style: 'auto' })}
           </div>
         </DetailsItem>
-        <DetailsItem label="Rewards amount" className="hidden sm:flex">
-          <div className="typography-label-1 flex items-center gap-1.5 text-primary-inverse">
-            {isRewardOutOfSync ? (
+        {isRewardOutOfSync && (
+          <DetailsItem label="Rewards amount" className="hidden sm:flex">
+            <div className="typography-label-1 flex items-center gap-1.5 text-primary-inverse">
               <div className="flex items-center gap-1.5">
                 <img src={assets.spkStaking.syncingStatusIcon} className="h-4" alt="syncing SPK staking rewards icon" />
                 Updating
               </div>
-            ) : (
-              <div className="flex items-center gap-1.5">
-                <img src={assets.spkStaking.inSyncStatusIcon} className="h-4" alt="in sync SPK staking rewards icon" />
-                Up to date
-              </div>
-            )}
-          </div>
-        </DetailsItem>
+            </div>
+          </DetailsItem>
+        )}
       </div>
     </Panel>
   )
