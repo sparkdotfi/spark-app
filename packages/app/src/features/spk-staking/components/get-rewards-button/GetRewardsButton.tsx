@@ -16,6 +16,7 @@ import { spkStakingDataQueryKey } from '../../logic/useSpkStakingData'
 
 const AMOUNT_TO_TOP_UP = NormalizedUnitNumber(100)
 
+// @todo: remove this button when testing is done
 export function GetRewardsButton() {
   const { isInSandbox, sandboxChainId, rpcUrl } = useSandboxState()
   const { address: account } = useAccount()
