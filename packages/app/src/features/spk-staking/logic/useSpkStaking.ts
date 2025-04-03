@@ -93,8 +93,7 @@ export function useSpkStaking(): UseSpkStakingResult {
 
     function calculateReward(timestampInMs: number): NormalizedUnitNumber {
       const timestampInSec = timestampInMs / 1000
-      const timestamp =
-        timestampInSec > spkStakingData.pendingAmountTimestamp ? timestampInSec : spkStakingData.pendingAmountTimestamp
+      const timestamp = Math.max(timestampInSec, spkStakingData.pendingAmountTimestamp)
       return NormalizedUnitNumber(
         spkStakingData.pendingAmount.plus(
           spkStakingData.pendingAmountRate.multipliedBy(timestamp - spkStakingData.pendingAmountTimestamp),
