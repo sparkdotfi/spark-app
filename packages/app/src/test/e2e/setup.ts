@@ -9,6 +9,7 @@ import { z } from 'zod'
 import { AssetsInTests, TOKENS_ON_FORK } from './constants'
 import { getTestnetContext } from './getTestnetContext'
 import { injectFlags, injectNetworkConfiguration, injectWalletConfiguration, overrideRoutes } from './injectSetup'
+import { SetSpkStakingBaDataParams, setSpkStakingBaData } from './setSpkStakingBaData'
 import { SetupSparkRewardsParams, setupSparkRewards } from './setupSparkRewards'
 import { generateAccount } from './utils'
 
@@ -40,6 +41,7 @@ export type AccountOptions<T extends ConnectionType> = T extends 'not-connected'
       atomicBatchSupported?: boolean
       assetBalances?: Partial<Record<AssetsInTests, number>>
       sparkRewards?: SetupSparkRewardsParams['rewardsConfig']
+      spkStaking?: Pick<SetSpkStakingBaDataParams, 'stats' | 'walletData'>
     }
 
 export interface BlockchainOptions {
@@ -132,6 +134,16 @@ export async function setup<K extends Path, T extends ConnectionType>(
       testContext,
       account: CheckedAddress(address),
       rewardsConfig: options.account.sparkRewards,
+    })
+  }
+
+  if (options.account.type !== 'not-connected' && options.account.spkStaking && address) {
+    await setSpkStakingBaData({
+      page,
+      testnetClient,
+      account: CheckedAddress(address),
+      stats: options.account.spkStaking.stats,
+      walletData: options.account.spkStaking.walletData,
     })
   }
 

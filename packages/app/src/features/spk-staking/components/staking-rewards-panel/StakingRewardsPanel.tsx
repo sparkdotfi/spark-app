@@ -6,6 +6,7 @@ import { Panel } from '@/ui/atoms/panel/Panel'
 import { GrowingReward } from '@/ui/molecules/growing-reward/GrowingReward'
 import { Info } from '@/ui/molecules/info/Info'
 import { cn } from '@/ui/utils/style'
+import { testIds } from '@/ui/utils/testIds'
 import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { ReactNode } from 'react'
 
@@ -82,7 +83,10 @@ export function StakingRewardsPanel({
       />
       <div className="flex divide-x divide-fg-secondary">
         <DetailsItem label="My Stake" tooltip="My stake tooltip text">
-          <div className="typography-label-1 flex items-center gap-1.5 text-primary-inverse">
+          <div
+            className="typography-label-1 flex items-center gap-1.5 text-primary-inverse"
+            data-testid={testIds.spkStaking.rewardsPanel.staked}
+          >
             <img src={getTokenImage(stakingToken.symbol)} className="h-4" alt={stakingToken.symbol} />
             {stakingToken.format(stakedAmount, { style: 'auto' })}
           </div>

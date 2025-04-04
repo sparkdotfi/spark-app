@@ -315,6 +315,23 @@ export const testIds = makeTestIds({
       startButton: true,
     },
   },
+  spkStaking: {
+    ctaPanel: {
+      stakeButton: true,
+    },
+    rewardsPanel: {
+      staked: true,
+    },
+    stakeDialog: {
+      transactionOverview: {
+        estimatedRewards: {
+          apy: true,
+          description: true,
+        },
+        unstakingDelay: true,
+      },
+    },
+  },
 })
 
 function makeTestIds<T extends Object>(obj: T, prefix?: string): MapValuesToString<T> {

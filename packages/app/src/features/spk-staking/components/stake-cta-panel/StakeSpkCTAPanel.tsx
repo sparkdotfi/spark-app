@@ -6,6 +6,7 @@ import { Link } from '@/ui/atoms/link/Link'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { links } from '@/ui/constants/links'
 import { cn } from '@/ui/utils/style'
+import { testIds } from '@/ui/utils/testIds'
 import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { VariantProps, cva } from 'class-variance-authority'
 import { ExternalLinkIcon } from 'lucide-react'
@@ -100,7 +101,14 @@ function TokenBadge({ variant }: TokenBadgeProps) {
 function Actions(props: StakeSpkActionProps) {
   if (props.type === 'connected') {
     return (
-      <Button variant="primary" size="l" className="w-full" onClick={props.stake} disabled={props.spkBalance.isZero()}>
+      <Button
+        variant="primary"
+        size="l"
+        className="w-full"
+        onClick={props.stake}
+        disabled={props.spkBalance.isZero()}
+        data-testid={testIds.spkStaking.ctaPanel.stakeButton}
+      >
         Stake
       </Button>
     )

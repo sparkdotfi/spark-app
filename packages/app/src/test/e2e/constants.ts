@@ -66,7 +66,11 @@ const TOKENS_ON_MAINNET = {
   },
   LBTC: {
     address: '0x8236a87084f8B84306f72007F36F2618A5634494',
-    decimals: 8,
+    decimals: 18,
+  },
+  SPK: {
+    address: '0xf94473bf6ef648638a7b1eeef354fe440721ef41', // @todo: add correct address
+    decimals: 18,
   },
 } as const
 
@@ -165,6 +169,7 @@ export const GNO_ACTIVE_BLOCK_NUMBER = 18365842n
 export const SUSDC_ACTIVE_BLOCK_NUMBER = 21978000n
 export const USDS_RESERVE_ACTIVE_BLOCK_NUMBER = 22043300n
 export const SPARK_REWARDS_ACTIVE_BLOCK_NUMBER = 21926420n
+export const SPK_STAKING_ACTIVE_BLOCK_NUMBER = 22088000n
 
 export const BASE_DEFAULT_BLOCK_NUMBER = 23000000n
 export const BASE_SUSDC_ACTIVE_BLOCK_NUMBER = 27183000n
