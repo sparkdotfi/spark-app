@@ -40,7 +40,7 @@ export async function setSparkRewards({
   const merkleRoot = Hex(merkleTree.root)
 
   await testnetClient.assertSendTransaction({
-    account: '0x4b340357aadd38403e5c8e64368fd502ed38df6a',
+    account: '0xF649956f43825d4d7295a50EDdBe1EDC814A3a83',
     data: encodeFunctionData({
       abi: testSparkRewardsConfig.abi,
       functionName: 'setMerkleRoot',
@@ -64,7 +64,7 @@ export async function setSparkRewards({
     await afterTx?.()
 
     await testnetClient.assertSendTransaction({
-      account: '0x4b340357aadd38403e5c8e64368fd502ed38df6a',
+      account: '0xF649956f43825d4d7295a50EDdBe1EDC814A3a83',
       data: encodeFunctionData({
         abi: erc20Abi,
         functionName: 'approve',

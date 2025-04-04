@@ -4234,7 +4234,7 @@ export const savingsXDaiAdapterConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xaf76856f788519704a9411839614e144fed52d8a)
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbaf21A27622Db71041Bd336a573DDEdC8eB65122)
  */
 export const testSparkRewardsAbi = [
   {
@@ -4547,14 +4547,14 @@ export const testSparkRewardsAbi = [
 ] as const
 
 /**
- * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xaf76856f788519704a9411839614e144fed52d8a)
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbaf21A27622Db71041Bd336a573DDEdC8eB65122)
  */
 export const testSparkRewardsAddress = {
-  1: '0xAf76856f788519704a9411839614e144FEd52d8a',
+  1: '0xbaf21A27622Db71041Bd336a573DDEdC8eB65122',
 } as const
 
 /**
- * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xaf76856f788519704a9411839614e144fed52d8a)
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbaf21A27622Db71041Bd336a573DDEdC8eB65122)
  */
 export const testSparkRewardsConfig = {
   address: testSparkRewardsAddress,

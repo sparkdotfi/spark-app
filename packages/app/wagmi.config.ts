@@ -154,7 +154,7 @@ export default defineConfig({
         {
           name: 'TestSparkRewards',
           address: {
-            [mainnet.id]: '0xaf76856f788519704a9411839614e144fed52d8a',
+            [mainnet.id]: '0xbaf21A27622Db71041Bd336a573DDEdC8eB65122',
           },
         },
         {
