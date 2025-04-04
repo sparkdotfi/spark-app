@@ -6,7 +6,7 @@ import { Link } from '@/ui/atoms/link/Link'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { links } from '@/ui/constants/links'
 import { cn } from '@/ui/utils/style'
-import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage, UnixTime } from '@sparkdotfi/common-universal'
 import { VariantProps, cva } from 'class-variance-authority'
 import { ExternalLinkIcon } from 'lucide-react'
 
@@ -24,6 +24,7 @@ type StakeSpkActionProps =
 
 export type StakeSpkCTAPanelProps = {
   apy: Percentage
+  epochDuration: UnixTime
   className?: string
 } & StakeSpkActionProps
 
@@ -45,8 +46,8 @@ export function StakeSpkCTAPanel({ apy, className, ...actionsProps }: StakeSpkCT
           Earn rewards in <TokenBadge variant="usds" />
         </div>
         <div className="typography-body-3 max-w-[48ch] text-tertiary">
-          Deposit Spark Token listed below and start staking SPK to earn USDS rewards. Withdrawal delay up to 2 weeks.{' '}
-          {/* @todo: spk staking - replace with proper docs link */}
+          Deposit Spark Token listed below and start staking SPK to earn USDS rewards. Withdrawal delay up to{' '}
+          {formatEpochDuration(actionsProps.epochDuration)}. {/* @todo: spk staking - replace with proper docs link */}
           <Link to={links.docs.spkStaking} className="inline-flex items-center gap-1" external>
             Learn more <ExternalLinkIcon className="icon-xxs text-farms-600" />
           </Link>
@@ -118,4 +119,23 @@ function Actions(props: StakeSpkActionProps) {
       </div>
     )
   }
+}
+
+function formatEpochDuration(epochDuration: UnixTime): string {
+  const twoEpochs = epochDuration * 2n
+  const weeks = twoEpochs / UnixTime.SEVEN_DAYS()
+  const days = twoEpochs / UnixTime.ONE_DAY()
+  const hours = twoEpochs / UnixTime.ONE_HOUR()
+  const minutes = twoEpochs / UnixTime.ONE_MINUTE()
+
+  if (weeks > 0) {
+    return weeks === 1n ? '1 week' : `${weeks} weeks`
+  }
+  if (days > 0) {
+    return days === 1n ? '1 day' : `${days} days`
+  }
+  if (hours > 0) {
+    return hours === 1n ? '1 hour' : `${hours} hours`
+  }
+  return minutes === 1n ? '1 minute' : `${Math.ceil(Number(minutes))} minutes`
 }
