@@ -1,6 +1,7 @@
 import { poolAbi } from '@/config/abis/poolAbi'
 import { SPARK_UI_REFERRAL_CODE } from '@/config/consts'
 import { lendingPoolAddress, wethGatewayConfig } from '@/config/contracts-generated'
+import { trackTransactionConfirmation } from '@/domain/analytics/cookie3'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { aaveDataLayerQueryKey } from '@/domain/market-info/aave-data-layer/query'
@@ -55,6 +56,14 @@ export function createDepositActionConfig(action: DepositAction, context: Action
         abi: poolAbi,
         functionName: 'supply',
         args: [token, value, context.account, SPARK_UI_REFERRAL_CODE],
+      })
+    },
+
+    onSuccessfulAction: () => {
+      trackTransactionConfirmation({
+        name: 'Borrow_Deposit_Confirmation',
+        value: action.token.toUSD(action.value).toNumber(),
+        isInSandbox: Boolean(context.isInSandbox),
       })
     },
 

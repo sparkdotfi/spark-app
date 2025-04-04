@@ -1,3 +1,4 @@
+import { useSandboxState } from '@/domain/sandbox/useSandboxState'
 import { useConnectedAddress } from '@/domain/wallet/useConnectedAddress'
 import { useMemo, useRef } from 'react'
 import { TransactionReceipt } from 'viem'
@@ -11,6 +12,7 @@ export function useActionsContext(injectedContext?: InjectedActionsContext): Act
   const chainId = useChainId()
   const { account } = useConnectedAddress()
   const wagmiConfig = useConfig()
+  const { isInSandbox } = useSandboxState()
 
   return {
     ...injectedContext,
@@ -19,5 +21,6 @@ export function useActionsContext(injectedContext?: InjectedActionsContext): Act
     wagmiConfig,
     account,
     chainId,
+    isInSandbox,
   }
 }

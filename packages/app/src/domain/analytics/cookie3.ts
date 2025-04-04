@@ -1,25 +1,20 @@
-import { useSandboxState } from '../sandbox/useSandboxState'
-
-export interface UseCookie3Result {
-  trackButtonClick: (name: string) => void
+export interface TrackTransactionConfirmationParams {
+  name: string
+  value: number
+  isInSandbox: boolean
 }
-export function useCookie3(): UseCookie3Result {
-  const { isInSandbox } = useSandboxState()
 
-  return {
-    trackButtonClick(name: string) {
-      if (isInSandbox) {
-        return
-      }
-      if (!('cookie3' in window)) {
-        return
-      }
-      ;(window.cookie3 as any).trackEvent({
-        category: 'Button',
-        action: 'Click',
-        name,
-        value: 0,
-      })
-    },
+export function trackTransactionConfirmation({ name, value, isInSandbox }: TrackTransactionConfirmationParams): void {
+  if (isInSandbox) {
+    return
   }
+  if (!('cookie3' in window)) {
+    return
+  }
+  ;(window.cookie3 as any).trackEvent({
+    category: 'Transaction',
+    action: 'Confirmation',
+    name,
+    value,
+  })
 }

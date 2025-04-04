@@ -111,6 +111,7 @@ export interface ActionContext extends InjectedActionsContext {
   wagmiConfig: Config
   account: Address
   chainId: number
+  isInSandbox?: boolean
   permitStore?: PermitStore
 }
 
