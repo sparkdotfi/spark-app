@@ -1,7 +1,7 @@
 import { infoSkyApiUrl, spark2ApiUrl } from '@/config/consts'
-import { testSpkStakingAddress } from '@/config/contracts-generated'
+import { testSpkStakingAddress, testStakingRewardsAbi, testStakingRewardsAddress } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
-import { CheckedAddress, Hash, UnixTime } from '@sparkdotfi/common-universal'
+import { CheckedAddress, Hash, Hex, UnixTime } from '@sparkdotfi/common-universal'
 import { http, HttpResponse } from 'msw'
 import type { SetupWorker } from 'msw/browser'
 import { mergeDeep } from 'remeda'
@@ -16,6 +16,9 @@ const DEFAULT_WALLET_DATA = {
   pending_amount_rate: '0',
   cumulative_amount_normalized: '0',
   timestamp: Math.ceil(Date.now() / 1000),
+  epoch: 1,
+  merkle_root: Hex.random(),
+  proof: [] as Hex[],
 }
 
 const DEFAULT_STATS_DATA = {
@@ -57,15 +60,25 @@ export async function setupSpkStaking({
     Number(UnixTime.ONE_MINUTE()),
   )
 
+  const merkleRoot = await testnetClient.readContract({
+    address: getContractAddress(testStakingRewardsAddress, mainnet.id),
+    abi: testStakingRewardsAbi,
+    functionName: 'merkleRoot',
+    args: [],
+  })
+
   currentConfig = {
-    walletData: DEFAULT_WALLET_DATA,
+    walletData: {
+      ...DEFAULT_WALLET_DATA,
+      merkle_root: Hex(merkleRoot),
+    },
     statsData: DEFAULT_STATS_DATA,
     sandboxChainId,
     account,
   }
 
   msw.use(
-    http.get(`${spark2ApiUrl}/spk-staking/${sandboxChainId}/${account}/`, () => {
+    http.get(`${spark2ApiUrl}/spk-staking/${sandboxChainId}/${merkleRoot}/${account}/`, () => {
       return HttpResponse.json(currentConfig.walletData)
     }),
     http.get(`${infoSkyApiUrl}/spk-staking/stats/`, () => {
@@ -90,9 +103,12 @@ export function updateEndpoints(msw: SetupWorker, newConfig: RecursivePartial<Sp
   currentConfig = mergeDeep(currentConfig, newConfig) as SpkStakingEndpointsConfig
 
   msw.resetHandlers(
-    http.get(`${spark2ApiUrl}/spk-staking/${currentConfig.sandboxChainId}/${currentConfig.account}/`, () => {
-      return HttpResponse.json(currentConfig.walletData)
-    }),
+    http.get(
+      `${spark2ApiUrl}/spk-staking/${currentConfig.sandboxChainId}/${currentConfig.walletData.merkle_root}/${currentConfig.account}/`,
+      () => {
+        return HttpResponse.json(currentConfig.walletData)
+      },
+    ),
     http.get(`${infoSkyApiUrl}/spk-staking/stats/`, () => {
       return HttpResponse.json(currentConfig.statsData)
     }),

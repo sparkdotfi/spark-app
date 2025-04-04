@@ -14,6 +14,7 @@ const meta: Meta<typeof StakingRewardsPanel> = {
     apy: Percentage(0.12),
     claimableRewards: NormalizedNumber(25),
     stakedAmount: NormalizedNumber(10_000),
+    isRewardOutOfSync: false,
     rewardToken: tokens.USDS,
     stakingToken: tokens.SPK,
     calculateReward: () => NormalizedNumber(71.2345892),
@@ -39,5 +40,11 @@ export const OnlyPendingRewards: Story = {
 export const NoStake: Story = {
   args: {
     stakedAmount: NormalizedNumber.ZERO,
+  },
+}
+
+export const OutOfSync: Story = {
+  args: {
+    isRewardOutOfSync: true,
   },
 }

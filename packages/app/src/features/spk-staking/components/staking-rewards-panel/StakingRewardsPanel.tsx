@@ -1,6 +1,6 @@
 import { formatPercentage } from '@/domain/common/format'
 import { Token } from '@/domain/types/Token'
-import { getTokenImage } from '@/ui/assets'
+import { assets, getTokenImage } from '@/ui/assets'
 import { Button } from '@/ui/atoms/button/Button'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { GrowingReward } from '@/ui/molecules/growing-reward/GrowingReward'
@@ -16,6 +16,7 @@ export interface StakingRewardsPanelProps {
   stakingToken: Token
   calculateReward: (timestampInMs: number) => NormalizedNumber
   refreshGrowingRewardIntervalInMs: number | undefined
+  isRewardOutOfSync: boolean
   openClaimDialog: () => void
   openUnstakeDialog: () => void
   openStakeDialog: () => void
@@ -30,6 +31,7 @@ export function StakingRewardsPanel({
   stakingToken,
   calculateReward,
   refreshGrowingRewardIntervalInMs,
+  isRewardOutOfSync,
   openClaimDialog,
   openUnstakeDialog,
   openStakeDialog,
@@ -72,6 +74,7 @@ export function StakingRewardsPanel({
         rewardToken={rewardToken}
         calculateReward={calculateReward}
         refreshIntervalInMs={refreshGrowingRewardIntervalInMs}
+        isOutOfSync={isRewardOutOfSync}
         wholePartTextBgGradientClass={cn(
           'bg-[radial-gradient(160.27%_160.27%_at_50.08%_115.91%,_#FFD232_0%,_#FF6D6D_100%)]',
         )}
@@ -95,16 +98,32 @@ export function StakingRewardsPanel({
             {rewardToken.format(claimableRewards, { style: 'auto' })}
           </div>
         </DetailsItem>
+        {isRewardOutOfSync && (
+          <DetailsItem label="Rewards amount" className="hidden sm:flex">
+            <div className="typography-label-1 flex items-center gap-1.5 text-primary-inverse">
+              <div className="flex items-center gap-1.5">
+                <img src={assets.spkStaking.syncingStatusIcon} className="h-4" alt="syncing SPK staking rewards icon" />
+                Updating
+              </div>
+            </div>
+          </DetailsItem>
+        )}
       </div>
     </Panel>
   )
 }
 
-function DetailsItem({ label, tooltip, children }: { label: string; tooltip: string; children: ReactNode }) {
+function DetailsItem({
+  label,
+  tooltip,
+  children,
+  className,
+}: { label: string; tooltip?: string; children: ReactNode; className?: string }) {
   return (
-    <div className="flex flex-col gap-1 px-3 first:pl-0 last:pr-0 xl:px-6">
+    <div className={cn('flex flex-col gap-1 px-3 first:pl-0 last:pr-0 xl:px-6', className)}>
       <div className="typography-label-3 flex items-center gap-1 text-tertiary">
-        {label} <Info className="icon-secondary">{tooltip}</Info>
+        {label}
+        {tooltip && <Info className="icon-secondary">{tooltip}</Info>}
       </div>
       <div className="typography-label-1 flex items-center gap-1.5 text-primary-inverse">{children}</div>
     </div>

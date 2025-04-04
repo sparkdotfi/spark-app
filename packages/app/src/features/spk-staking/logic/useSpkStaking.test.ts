@@ -9,7 +9,7 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupHookRenderer } from '@/test/integration/setupHookRenderer'
-import { CheckedAddress, NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
+import { CheckedAddress, Hex, NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { erc20Abi, parseEther } from 'viem'
 import { mainnet } from 'viem/chains'
@@ -20,6 +20,7 @@ const chainId = mainnet.id
 const usds = CheckedAddress('0xdC035D45d973E3EC169d2276DDab16f1e407384F')
 const spk = CheckedAddress('0xf94473bf6ef648638a7b1eeef354fe440721ef41')
 const account = testAddresses.alice
+const merkleRoot = Hex.random()
 
 const chainIdCall = handlers.chainIdCall({ chainId })
 
@@ -49,7 +50,7 @@ describe(useSpkStaking.name, () => {
         })
       }
 
-      if (args[0] === `${spark2ApiUrl}/spk-staking/${chainId}/${account}/`) {
+      if (args[0] === `${spark2ApiUrl}/spk-staking/${chainId}/${merkleRoot}/${account}/`) {
         return Promise.resolve({
           ok: true,
           json: () =>
@@ -60,6 +61,8 @@ describe(useSpkStaking.name, () => {
               timestamp: 10000000,
               cumulative_amount_normalized: '1',
               apy: '0.1',
+              epoch: 1,
+              proof: [],
             }),
         })
       }
@@ -67,6 +70,12 @@ describe(useSpkStaking.name, () => {
 
     const { result } = hookRenderer({
       extraHandlers: [
+        handlers.contractCall({
+          to: getContractAddress(testStakingRewardsAddress, chainId),
+          abi: testStakingRewardsAbi,
+          functionName: 'merkleRoot',
+          result: merkleRoot,
+        }),
         handlers.contractCall({
           to: getContractAddress(testSpkStakingAddress, chainId),
           abi: testSpkStakingAbi,

@@ -3,6 +3,7 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
 import { claimableRewardsQueryKey } from '@/domain/spark-rewards/claimableRewardsQueryOptions'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
+import { spkStakingDataQueryKey } from '@/features/spk-staking/logic/useSpkStakingData'
 import { toBigInt } from '@sparkdotfi/common-universal'
 import { ActionConfig, ActionContext } from '../../../logic/types'
 import { ClaimSparkRewardsAction } from '../types'
@@ -34,6 +35,11 @@ export function createClaimSparkRewardsActionConfig(
       })
     },
 
-    invalidates: () => [getBalancesQueryKeyPrefix({ chainId, account }), claimableRewardsQueryKey({ account })],
+    invalidates: () => [
+      getBalancesQueryKeyPrefix({ chainId, account }),
+      action.source === 'campaigns'
+        ? claimableRewardsQueryKey({ account })
+        : spkStakingDataQueryKey({ account, chainId }),
+    ],
   }
 }

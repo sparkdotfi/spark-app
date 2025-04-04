@@ -11,6 +11,7 @@ import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useAccount, useConfig } from 'wagmi'
 import { AvailableToStakeRow } from '../components/available-to-stake-panel/AvailableToStakePanel'
 import { WithdrawalsTableRow } from '../components/withdrawals-table/WithdrawalsTablePanel'
+import { claimRewardsDialogConfig } from '../dialogs/claim-rewards/ClaimRewardsDialog'
 import { finalizeUnstakeDialogConfig } from '../dialogs/finalize-unstake/FinalizeUnstakeDialog'
 import { stakeDialogConfig } from '../dialogs/stake/StakeDialog'
 import { unstakeDialogConfig } from '../dialogs/unstake/UnstakeDialog'
@@ -90,9 +91,11 @@ export function useSpkStaking(): UseSpkStakingResult {
       } satisfies MainPanelData
     }
 
-    function calculateReward(timestampInMs: number): NormalizedNumber {
+    function calculateReward(timestampInMs: number): NormalizedUnitNumber {
+      const timestampInSec = timestampInMs / 1000
+      const timestamp = Math.max(timestampInSec, spkStakingData.pendingAmountTimestamp)
       return spkStakingData.pendingAmount.plus(
-        spkStakingData.pendingAmountRate.times(timestampInMs / 1000 - spkStakingData.pendingAmountTimestamp),
+        spkStakingData.pendingAmountRate.times(timestamp - spkStakingData.pendingAmountTimestamp)
       )
     }
 
@@ -108,10 +111,11 @@ export function useSpkStaking(): UseSpkStakingResult {
         stakedAmount: spkStakingData.amountStaked,
         rewardToken: tokenRepository.findOneTokenBySymbol(TokenSymbol('SPK')),
         stakingToken: tokenRepository.findOneTokenBySymbol(TokenSymbol('USDS')),
-        claimableRewards: spkStakingData.claimableAmount,
+        claimableRewards: spkStakingData.rewardsClaimableAmount,
+        isRewardOutOfSync: spkStakingData.isOutOfSync,
         refreshGrowingRewardIntervalInMs,
         calculateReward,
-        openClaimDialog: () => openDialog(finalizeUnstakeDialogConfig, {}),
+        openClaimDialog: () => openDialog(claimRewardsDialogConfig, {}),
         openUnstakeDialog: () => openDialog(unstakeDialogConfig, {}),
         openStakeDialog: () => openDialog(stakeDialogConfig, {}),
       },

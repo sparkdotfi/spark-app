@@ -403,6 +403,11 @@ export default {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        'pulse-opacity': {
+          '0%': { opacity: '1' },
+          '50%': { opacity: '0.3' },
+          '100%': { opacity: '1' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -410,6 +415,7 @@ export default {
         'sprinkle-spin': 'sprinkle-spin 1s linear',
         'sprinkle-come-in-out': 'sprinkle-come-in-out 700ms forwards',
         reveal: 'reveal 0.25s ease-out',
+        'pulse-opacity': 'pulse-opacity 2s ease-out infinite',
       },
     },
   },

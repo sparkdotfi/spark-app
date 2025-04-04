@@ -5,6 +5,7 @@ import { testIds } from '@/ui/utils/testIds'
 import { getFractionalPart, getWholePart } from '@/utils/bigNumber'
 import { useTimestamp } from '@/utils/useTimestamp'
 import { NormalizedNumber } from '@sparkdotfi/common-universal'
+import { useMemo } from 'react'
 
 const STEP_IN_MS = 50
 
@@ -14,6 +15,7 @@ export interface GrowingRewardProps {
   refreshIntervalInMs: number | undefined
   wholePartTextBgGradientClass: string
   fractionalPartTextColorClass: string
+  isOutOfSync?: boolean
 }
 
 export function GrowingReward({
@@ -22,14 +24,22 @@ export function GrowingReward({
   refreshIntervalInMs,
   wholePartTextBgGradientClass,
   fractionalPartTextColorClass,
+  isOutOfSync,
 }: GrowingRewardProps) {
   const { timestampInMs } = useTimestamp({
     refreshIntervalInMs,
+    stopRefetching: isOutOfSync,
   })
 
   const currentReward = calculateReward(timestampInMs)
-  const rewardIn1Step = calculateReward(timestampInMs + STEP_IN_MS)
-  const precision = calculatePrecision({ currentReward, rewardIn1Step })
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
+  const precision = useMemo(() => {
+    const baseTime = isOutOfSync ? timestampInMs : Date.now()
+    const currentReward = calculateReward(baseTime)
+    const rewardIn1Step = calculateReward(baseTime + STEP_IN_MS)
+    return calculatePrecision({ currentReward, rewardIn1Step })
+  }, [calculateReward, isOutOfSync])
 
   return (
     <div className="isolate grid grid-cols-[auto_1fr] items-center gap-x-2 lg:gap-x-4 lg:gap-y-2">
@@ -50,6 +60,7 @@ export function GrowingReward({
               className={cn(
                 'typography-heading-4 text-feature-farms-primary [text-shadow:_0_1px_4px_rgb(0_0_0)]',
                 fractionalPartTextColorClass,
+                isOutOfSync && 'animate-pulse-opacity',
               )}
             >
               {getFractionalPart(currentReward, precision)}
