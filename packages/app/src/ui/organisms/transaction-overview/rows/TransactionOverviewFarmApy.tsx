@@ -13,7 +13,7 @@ export interface TransactionOverviewFarmApyProps {
 export function TransactionOverviewFarmApy({ apy, rewardsPerYear, rewardToken }: TransactionOverviewFarmApyProps) {
   return (
     <HorizontalScroll>
-      <div className="flex items-baseline gap-2">
+      <div className="flex h-[18px] items-baseline gap-2">
         {apy.gt(0) && (
           <div
             data-testid={testIds.farmDetails.stakeDialog.transactionOverview.estimatedRewards.apy}

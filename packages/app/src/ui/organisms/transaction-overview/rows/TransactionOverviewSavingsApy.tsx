@@ -17,7 +17,7 @@ export function TransactionOverviewSavingsApy({
 }: TransactionOverviewSavingsApyProps) {
   return (
     <HorizontalScroll>
-      <div className="flex items-baseline gap-2">
+      <div className="flex h-[18px] items-baseline gap-2">
         {apy.gt(0) && (
           <div
             data-testid={testIds.dialog.savings.transactionOverview.apy.value}
