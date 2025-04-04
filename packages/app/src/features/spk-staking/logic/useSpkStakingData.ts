@@ -102,7 +102,7 @@ export function spkStakingDataQueryOptions({
       }
 
       async function fetchVaultData(): Promise<VaultData> {
-        const [currentEpoch, epochDuration, epochDurationInit] = await Promise.all([
+        const [currentEpoch, _epochDuration, epochDurationInit] = await Promise.all([
           readContract(wagmiConfig, {
             address: getContractAddress(testSpkStakingAddress, chainId),
             abi: testSpkStakingAbi,
@@ -123,11 +123,13 @@ export function spkStakingDataQueryOptions({
           }),
         ])
 
-        const nextEpochEnd = UnixTime(Number(currentEpoch + 2n) * epochDuration + epochDurationInit)
+        const nextEpochEnd = UnixTime(Number(currentEpoch + 2n) * _epochDuration + epochDurationInit)
+        const epochDuration = UnixTime(_epochDuration)
 
         if (!account) {
           return {
             nextEpochEnd,
+            epochDuration,
             withdrawals: [],
           }
         }
@@ -167,7 +169,7 @@ export function spkStakingDataQueryOptions({
           epochs: [w.epoch],
           amount: w.amount,
           claimableAt: new Date(
-            UnixTime.toMilliseconds(UnixTime(Number(w.epoch + 1n) * epochDuration + epochDurationInit)),
+            UnixTime.toMilliseconds(UnixTime(Number(w.epoch + 1n) * _epochDuration + epochDurationInit)),
           ),
         }))
 
@@ -184,12 +186,13 @@ export function spkStakingDataQueryOptions({
               { epochs: [] as bigint[], amount: NormalizedNumber.ZERO },
             ),
           claimableAt: new Date(
-            UnixTime.toMilliseconds(UnixTime(Number(currentEpoch) * epochDuration + epochDurationInit)),
+            UnixTime.toMilliseconds(UnixTime(Number(currentEpoch) * _epochDuration + epochDurationInit)),
           ),
         }
 
         return {
           nextEpochEnd,
+          epochDuration,
           withdrawals: [...formattedPendingWithdrawals, aggregatedPreviousWithdrawals].filter(
             (w) => !w.amount.isZero(),
           ),
@@ -223,7 +226,7 @@ export function spkStakingDataQueryOptions({
         amountStaked,
         preclaimedRewards,
         walletRewardsData,
-        { withdrawals, nextEpochEnd },
+        { withdrawals, nextEpochEnd, epochDuration },
         timestamp,
         generalStats,
       ] = await Promise.all([
@@ -247,6 +250,7 @@ export function spkStakingDataQueryOptions({
         generalStats,
         timestamp,
         nextEpochEnd,
+        epochDuration,
         rewardsEpoch: walletRewardsData.epoch,
         rewardsProof: walletRewardsData.proof,
         rewardsRoot: walletRewardsData.merkle_root,
@@ -304,6 +308,7 @@ export interface Withdrawal {
 
 export interface VaultData {
   nextEpochEnd: UnixTime
+  epochDuration: UnixTime
   withdrawals: Withdrawal[]
 }
 
@@ -316,6 +321,7 @@ export interface SpkStakingData {
   withdrawals: Withdrawal[]
   timestamp: UnixTime
   nextEpochEnd: UnixTime
+  epochDuration: UnixTime
   rewardsEpoch: number
   rewardsProof: Hex[]
   rewardsRoot: Hex

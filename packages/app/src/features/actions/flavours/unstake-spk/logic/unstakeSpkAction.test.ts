@@ -1,6 +1,7 @@
 import { testSpkStakingConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
+import { spkStakingDataQueryKey } from '@/features/spk-staking/logic/useSpkStakingData'
 import { getMockToken, testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
@@ -35,7 +36,7 @@ const hookRenderer = setupUseContractActionRenderer({
 
 describe(createUnstakeSpkActionConfig.name, () => {
   test('unstakes spark token', async () => {
-    const { result } = hookRenderer({
+    const { result, queryInvalidationManager } = hookRenderer({
       extraHandlers: [
         handlers.contractCall({
           to: vault,
@@ -58,10 +59,12 @@ describe(createUnstakeSpkActionConfig.name, () => {
     await waitFor(() => {
       expect(result.current.state.status).toBe('success')
     })
+
+    await expect(queryInvalidationManager).toHaveReceivedInvalidationCall(spkStakingDataQueryKey({ account, chainId }))
   })
 
   test('unstakes all spark tokens', async () => {
-    const { result } = hookRenderer({
+    const { result, queryInvalidationManager } = hookRenderer({
       args: {
         action: {
           type: 'unstakeSpk',
@@ -95,6 +98,6 @@ describe(createUnstakeSpkActionConfig.name, () => {
       expect(result.current.state.status).toBe('success')
     })
 
-    // @todo: spk staking - test for query invalidations when applicable
+    await expect(queryInvalidationManager).toHaveReceivedInvalidationCall(spkStakingDataQueryKey({ account, chainId }))
   })
 })

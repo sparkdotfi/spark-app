@@ -28,6 +28,7 @@ const meta: Meta<typeof SpkStakingView> = {
       props: {
         type: 'connected',
         apy: Percentage(0.05),
+        epochDuration: 24 * 60 * 60 * 7, // 7 days
         spkBalance: NormalizedNumber(5000),
         stake: () => {},
       },

@@ -2,6 +2,7 @@ import { testSpkStakingConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
+import { spkStakingDataQueryKey } from '@/features/spk-staking/logic/useSpkStakingData'
 import { getMockToken, testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
@@ -59,7 +60,6 @@ describe(createStakeSpkActionConfig.name, () => {
 
     await expect(queryInvalidationManager).toHaveReceivedInvalidationCall(
       getBalancesQueryKeyPrefix({ account, chainId }),
-      // @todo: spk staking - add missing keys after new queries implemented
     )
     await expect(queryInvalidationManager).toHaveReceivedInvalidationCall(
       allowanceQueryKey({
@@ -69,5 +69,6 @@ describe(createStakeSpkActionConfig.name, () => {
         chainId,
       }),
     )
+    await expect(queryInvalidationManager).toHaveReceivedInvalidationCall(spkStakingDataQueryKey({ account, chainId }))
   })
 })

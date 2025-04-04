@@ -1,6 +1,8 @@
 import { testSpkStakingConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
+import { getBalancesQueryKeyPrefix } from '@/domain/wallet/getBalancesQueryKeyPrefix'
+import { spkStakingDataQueryKey } from '@/features/spk-staking/logic/useSpkStakingData'
 import { getMockToken, testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
@@ -32,7 +34,7 @@ const hookRenderer = setupUseContractActionRenderer({
 
 describe(createFinalizeSpkUnstakeActionConfig.name, () => {
   test('finalizes spark token unstake', async () => {
-    const { result } = hookRenderer({
+    const { result, queryInvalidationManager } = hookRenderer({
       extraHandlers: [
         handlers.contractCall({
           to: vault,
@@ -55,5 +57,10 @@ describe(createFinalizeSpkUnstakeActionConfig.name, () => {
     await waitFor(() => {
       expect(result.current.state.status).toBe('success')
     })
+
+    await expect(queryInvalidationManager).toHaveReceivedInvalidationCall(
+      getBalancesQueryKeyPrefix({ account, chainId }),
+    )
+    await expect(queryInvalidationManager).toHaveReceivedInvalidationCall(spkStakingDataQueryKey({ account, chainId }))
   })
 })
