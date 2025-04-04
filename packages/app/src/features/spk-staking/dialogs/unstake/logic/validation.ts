@@ -1,15 +1,15 @@
 import { AssetInputSchema } from '@/features/dialogs/common/logic/form'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { z } from 'zod'
 
 export interface GetUnstakeDialogFormValidatorParams {
-  stakedAmount: NormalizedUnitNumber
+  stakedAmount: NormalizedNumber
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function getUnstakeDialogFormValidator({ stakedAmount }: GetUnstakeDialogFormValidatorParams) {
   return AssetInputSchema.superRefine((field, ctx) => {
-    const value = NormalizedUnitNumber(field.value === '' ? '0' : field.value)
+    const value = NormalizedNumber(field.value === '' ? '0' : field.value)
     const isMaxSelected = field.isMaxSelected
 
     const issue = validateUnstake({
@@ -30,10 +30,10 @@ export function getUnstakeDialogFormValidator({ stakedAmount }: GetUnstakeDialog
 export type WithdrawValidationIssue = 'exceeds-staked-amount' | 'value-not-positive'
 
 export interface ValidateWithdrawArgs {
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   isMaxSelected: boolean
   user: {
-    staked: NormalizedUnitNumber
+    staked: NormalizedNumber
   }
 }
 
@@ -46,7 +46,7 @@ export function validateUnstake({
     return undefined
   }
 
-  if (value.isLessThanOrEqualTo(0)) {
+  if (value.lte(0)) {
     return 'value-not-positive'
   }
 

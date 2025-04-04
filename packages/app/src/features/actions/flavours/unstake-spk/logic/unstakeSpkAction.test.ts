@@ -4,7 +4,7 @@ import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { getMockToken, testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
-import { BaseUnitNumber, NormalizedUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, NormalizedNumber, toBigInt } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { parseEther } from 'viem'
 import { mainnet } from 'viem/chains'
@@ -14,7 +14,7 @@ import { createUnstakeSpkActionConfig } from './unstakeSpkAction'
 const spk = getMockToken({ symbol: TokenSymbol('SPK') })
 const account = testAddresses.alice
 const chainId = mainnet.id
-const amount = NormalizedUnitNumber(1)
+const amount = NormalizedNumber(1)
 const accountActiveShares = BaseUnitNumber(parseEther('1'))
 const vault = getContractAddress(testSpkStakingConfig.address, chainId)
 

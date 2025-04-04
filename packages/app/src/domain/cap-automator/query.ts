@@ -1,5 +1,5 @@
 import { capAutomatorConfig } from '@/config/contracts-generated'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { queryOptions } from '@tanstack/react-query'
 import { Config } from 'wagmi'
 import { readContract } from 'wagmi/actions'
@@ -62,8 +62,8 @@ function formatCapStructToConfig(
   }
 
   return {
-    maxCap: NormalizedUnitNumber(max),
-    gap: NormalizedUnitNumber(gap),
+    maxCap: NormalizedNumber(max),
+    gap: NormalizedNumber(gap),
     increaseCooldown,
     lastUpdateBlock,
     lastIncreaseTimestamp: lastIncreaseTime,

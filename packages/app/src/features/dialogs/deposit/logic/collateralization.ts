@@ -34,7 +34,7 @@ export function getCollateralType({ position, summary, userConfiguration }: GetC
     // Note: is debt ceiling only used for isolated assets?
     const debtCeiling = position.reserve.debtCeiling
     const isolationModeTotalDebt = position.reserve.isolationModeTotalDebt
-    const debtCeilingUsage = isolationModeTotalDebt.dividedBy(debtCeiling).multipliedBy(100)
+    const debtCeilingUsage = isolationModeTotalDebt.div(debtCeiling).times(100)
     const isMaxed = debtCeiling.eq(0) ? false : debtCeilingUsage.gte(99.99)
 
     if (isMaxed) {

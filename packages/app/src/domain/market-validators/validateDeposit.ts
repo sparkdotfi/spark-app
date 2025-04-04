@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ReserveStatus } from '../market-info/reserve-status'
 
 export type DepositValidationIssue =
@@ -8,15 +8,15 @@ export type DepositValidationIssue =
   | 'reserve-not-active'
 
 export interface ValidateDepositArgs {
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   asset: {
     status: ReserveStatus
-    totalLiquidity: NormalizedUnitNumber
-    supplyCap?: NormalizedUnitNumber
+    totalLiquidity: NormalizedNumber
+    supplyCap?: NormalizedNumber
   }
   user: {
-    balance: NormalizedUnitNumber
-    alreadyDepositedValueUSD: NormalizedUnitNumber
+    balance: NormalizedNumber
+    alreadyDepositedValueUSD: NormalizedNumber
   }
 }
 
@@ -25,7 +25,7 @@ export function validateDeposit({
   asset: { status, totalLiquidity, supplyCap },
   user: { balance, alreadyDepositedValueUSD },
 }: ValidateDepositArgs): DepositValidationIssue | undefined {
-  if (value.isLessThanOrEqualTo(0) && alreadyDepositedValueUSD.eq(0)) {
+  if (value.lte(0) && alreadyDepositedValueUSD.eq(0)) {
     return 'value-not-positive'
   }
 

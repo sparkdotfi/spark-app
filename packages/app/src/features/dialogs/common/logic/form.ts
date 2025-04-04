@@ -5,7 +5,7 @@ import { MarketInfo, Reserve, UserPosition } from '@/domain/market-info/marketIn
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { useDebounce } from '@/utils/useDebounce'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export const AssetInputSchema = z.object({
   symbol: z.string().transform(TokenSymbol),
@@ -26,14 +26,14 @@ export interface DialogFormNormalizedData {
   position: UserPosition
   reserve: Reserve
   token: Token
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   isMaxSelected: boolean
 }
 
 export function normalizeDialogFormValues(asset: AssetInputSchema, marketInfo: MarketInfo): DialogFormNormalizedData {
   const token = marketInfo.findOneTokenBySymbol(asset.symbol)
   const position = marketInfo.findOnePositionBySymbol(asset.symbol)
-  const value = NormalizedUnitNumber(asset.value === '' ? '0' : asset.value)
+  const value = NormalizedNumber(asset.value === '' ? '0' : asset.value)
 
   return {
     position,
@@ -44,8 +44,8 @@ export function normalizeDialogFormValues(asset: AssetInputSchema, marketInfo: M
   }
 }
 
-export function isMaxValue(value: string, maxValue: NormalizedUnitNumber): boolean {
-  const normalizedValue = NormalizedUnitNumber(value === '' ? '0' : value)
+export function isMaxValue(value: string, maxValue: NormalizedNumber): boolean {
+  const normalizedValue = NormalizedNumber(value === '' ? '0' : value)
   return normalizedValue.eq(maxValue)
 }
 
@@ -56,7 +56,7 @@ function getNormalizedDialogFormValuesKey(values: DialogFormNormalizedData): str
 export interface UseDebouncedDialogFormValuesArgs {
   form: UseFormReturn<AssetInputSchema>
   marketInfo: MarketInfo
-  capValue?: NormalizedUnitNumber
+  capValue?: NormalizedNumber
 }
 export interface UseDebouncedDialogFormValuesResult {
   debouncedFormValues: DialogFormNormalizedData

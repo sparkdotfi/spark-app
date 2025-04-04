@@ -1,7 +1,7 @@
 import { TokenWithFormValue } from '@/domain/common/types'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ComponentType } from 'react'
 
 export interface CommonDialogProps {
@@ -28,15 +28,15 @@ export interface PageStatus {
 
 export interface FormFieldsForDialog {
   selectedAsset: TokenWithFormValue
-  maxValue?: NormalizedUnitNumber
+  maxValue?: NormalizedNumber
   maxSelectedFieldName?: string // can't be used with maxValue
   changeAsset: (newSymbol: TokenSymbol) => void
 }
 
 export interface TxOverviewRouteItem {
   token: Token
-  value: NormalizedUnitNumber
-  usdValue: NormalizedUnitNumber
+  value: NormalizedNumber
+  usdValue: NormalizedNumber
 }
 
 // types/DialogConfig.ts

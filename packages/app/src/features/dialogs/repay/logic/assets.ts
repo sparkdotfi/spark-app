@@ -4,7 +4,7 @@ import { MarketInfo } from '@/domain/market-info/marketInfo'
 import { Token } from '@/domain/types/Token'
 import { MarketWalletInfo } from '@/domain/wallet/useMarketWalletInfo'
 import { applyTransformers } from '@/utils/applyTransformers'
-import { assert, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { assert, NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface GetDepositOptionsParams {
   token: Token
@@ -73,7 +73,7 @@ function getDefaultRepayOptions({ token, marketInfo, walletInfo }: GetDepositOpt
   ]
 }
 
-export function getTokenDebt(marketInfo: MarketInfo, repayAsset: TokenWithValue): NormalizedUnitNumber {
+export function getTokenDebt(marketInfo: MarketInfo, repayAsset: TokenWithValue): NormalizedNumber {
   const position = marketInfo.findOnePositionBySymbol(repayAsset.token.symbol)
-  return NormalizedUnitNumber(position.borrowBalance.minus(repayAsset.value))
+  return position.borrowBalance.minus(repayAsset.value)
 }

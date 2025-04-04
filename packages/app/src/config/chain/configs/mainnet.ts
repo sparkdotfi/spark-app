@@ -23,7 +23,7 @@ import {
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { assets } from '@/ui/assets'
-import { CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { mainnet } from 'viem/chains'
 import { infoSkyApiUrl } from '../../consts'
 import { usdcVaultAddress } from '../../contracts-generated'
@@ -130,7 +130,7 @@ export const mainnetConfig: ChainConfigEntry = {
       wrappedNativeAssetSymbol: TokenSymbol('WETH'),
       wrappedNativeAssetAddress: CheckedAddress('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'),
       nativeAssetSymbol: TokenSymbol('ETH'),
-      minRemainingNativeAssetBalance: NormalizedUnitNumber(0.001),
+      minRemainingNativeAssetBalance: NormalizedNumber(0.001),
     },
     tokenSymbolToReplacedName: {
       ...commonTokenSymbolToReplacedName,

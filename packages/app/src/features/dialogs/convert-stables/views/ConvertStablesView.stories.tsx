@@ -2,7 +2,7 @@ import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { useForm } from 'react-hook-form'
 import { getConvertStablesFormFields } from '../logic/form/getConvertStablesFormFields'
@@ -13,9 +13,9 @@ const usds = tokens.USDS
 const usdc = tokens.USDC
 const mockTokenRepository = new TokenRepository(
   [
-    { token: dai, balance: NormalizedUnitNumber(2000) },
-    { token: usds, balance: NormalizedUnitNumber(0) },
-    { token: usdc, balance: NormalizedUnitNumber(500) },
+    { token: dai, balance: NormalizedNumber(2000) },
+    { token: usds, balance: NormalizedNumber.ZERO },
+    { token: usdc, balance: NormalizedNumber(500) },
   ],
   {
     DAI: dai.symbol,
@@ -48,7 +48,7 @@ const meta: Meta<typeof ConvertStablesView> = {
         type: 'convertStables',
         inToken: tokens.DAI,
         outToken: tokens.USDC,
-        amount: NormalizedUnitNumber(2000),
+        amount: NormalizedNumber(2000),
       },
     ],
     pageStatus: {
@@ -59,10 +59,10 @@ const meta: Meta<typeof ConvertStablesView> = {
     txOverview: {
       status: 'success',
       inToken: tokens.DAI,
-      outcome: { token: tokens.USDC, value: NormalizedUnitNumber(2000), usdValue: NormalizedUnitNumber(2000) },
+      outcome: { token: tokens.USDC, value: NormalizedNumber(2000), usdValue: NormalizedNumber(2000) },
       route: [
-        { token: tokens.DAI, value: NormalizedUnitNumber(2000), usdValue: NormalizedUnitNumber(2000) },
-        { token: tokens.USDC, value: NormalizedUnitNumber(2000), usdValue: NormalizedUnitNumber(2000) },
+        { token: tokens.DAI, value: NormalizedNumber(2000), usdValue: NormalizedNumber(2000) },
+        { token: tokens.USDC, value: NormalizedNumber(2000), usdValue: NormalizedNumber(2000) },
       ],
     },
     actionsContext: {

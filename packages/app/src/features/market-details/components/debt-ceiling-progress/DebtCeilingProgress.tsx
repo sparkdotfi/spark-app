@@ -5,16 +5,16 @@ import { links } from '@/ui/constants/links'
 import { Info } from '@/ui/molecules/info/Info'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 interface DebtCeilingProgressProps {
-  debt: NormalizedUnitNumber
-  debtCeiling: NormalizedUnitNumber
+  debt: NormalizedNumber
+  debtCeiling: NormalizedNumber
   className?: string
 }
 
 export function DebtCeilingProgress({ debt, debtCeiling }: DebtCeilingProgressProps) {
-  const value = debt.dividedBy(debtCeiling).multipliedBy(100).toNumber()
+  const value = debt.div(debtCeiling).times(100).toNumber()
 
   const hasCeilingBeenReached = value === 100
 

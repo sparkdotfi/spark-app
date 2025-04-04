@@ -4,7 +4,7 @@ import { colors as colorsPreset } from '@/ui/charts/colors'
 import { Margins, defaultMargins } from '@/ui/charts/defaults'
 import { formatTooltipDate, formatUSDTicks, getVerticalDomainWithPadding } from '@/ui/charts/utils'
 import { cn } from '@/ui/utils/style'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { AxisBottom, AxisLeft } from '@visx/axis'
 import { curveCardinal } from '@visx/curve'
 import { localPoint } from '@visx/event'
@@ -20,7 +20,7 @@ import { Fragment, MouseEvent, TouchEvent, useId } from 'react'
 
 export interface ChartDataPoint {
   date: Date
-  tvl: NormalizedUnitNumber
+  tvl: NormalizedNumber
 }
 
 export interface ChartProps {

@@ -7,14 +7,14 @@ import { getEndpointsConfig, updateEndpoints } from '@/features/dialogs/sandbox/
 import { getWorker } from '@/features/dialogs/sandbox/logic/worker'
 import { getTenderlyClient } from '@/features/dialogs/sandbox/tenderly/TenderlyClient'
 import { Button } from '@/ui/atoms/button/Button'
-import { CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { raise } from '@sparkdotfi/common-universal'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { mainnet } from 'viem/chains'
 import { useAccount, useChainId } from 'wagmi'
 import { spkStakingDataQueryKey } from '../../logic/useSpkStakingData'
 
-const AMOUNT_TO_TOP_UP = NormalizedUnitNumber(100)
+const AMOUNT_TO_TOP_UP = NormalizedNumber(100)
 
 // @todo: remove this button when testing is done
 export function GetRewardsButton() {
@@ -40,11 +40,11 @@ export function GetRewardsButton() {
       }
 
       const endpointsConfig = getEndpointsConfig()
-      const previousPendingAmount = NormalizedUnitNumber(endpointsConfig.walletData.pending_amount_normalized)
-      const previousCumulativeAmount = NormalizedUnitNumber(endpointsConfig.walletData.cumulative_amount_normalized)
+      const previousPendingAmount = NormalizedNumber(endpointsConfig.walletData.pending_amount_normalized)
+      const previousCumulativeAmount = NormalizedNumber(endpointsConfig.walletData.cumulative_amount_normalized)
 
-      const newCumulativeAmount = NormalizedUnitNumber(previousCumulativeAmount.plus(AMOUNT_TO_TOP_UP))
-      const newPendingAmount = NormalizedUnitNumber(previousPendingAmount.plus(AMOUNT_TO_TOP_UP))
+      const newCumulativeAmount = previousCumulativeAmount.plus(AMOUNT_TO_TOP_UP)
+      const newPendingAmount = previousPendingAmount.plus(AMOUNT_TO_TOP_UP)
 
       const testnetClient = getTenderlyClient({
         rpcUrl,

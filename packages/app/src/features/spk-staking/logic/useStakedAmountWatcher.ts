@@ -1,15 +1,15 @@
 import { getEndpointsConfig, updateEndpoints } from '@/features/dialogs/sandbox/logic/setupSpkStaking'
 import { getWorker } from '@/features/dialogs/sandbox/logic/worker'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useEffect, useRef } from 'react'
 import { useChainId } from 'wagmi'
 
 interface UseStakedAmountWatcherProps {
-  amountStaked: NormalizedUnitNumber
+  amountStaked: NormalizedNumber
 }
 
 export function useStakedAmountWatcher({ amountStaked }: UseStakedAmountWatcherProps): void {
-  const previousAmountRef = useRef(NormalizedUnitNumber(0))
+  const previousAmountRef = useRef(NormalizedNumber.ZERO)
   const timeoutRef = useRef<NodeJS.Timeout>()
   const chainId = useChainId()
 
@@ -22,20 +22,20 @@ export function useStakedAmountWatcher({ amountStaked }: UseStakedAmountWatcherP
     }
     const previousAmount = previousAmountRef.current
 
-    if (!previousAmount.isEqualTo(amountStaked)) {
+    if (!previousAmount.eq(amountStaked)) {
       clearTimeout(timeoutRef.current)
       timeoutRef.current = setTimeout(() => {
         const endpointsConfig = getEndpointsConfig()
-        const previousPendingAmount = NormalizedUnitNumber(endpointsConfig.walletData.pending_amount_normalized)
-        const previousPendingAmountRate = NormalizedUnitNumber(endpointsConfig.walletData.pending_amount_rate)
+        const previousPendingAmount = NormalizedNumber(endpointsConfig.walletData.pending_amount_normalized)
+        const previousPendingAmountRate = NormalizedNumber(endpointsConfig.walletData.pending_amount_rate)
         const previousTimestamp = endpointsConfig.walletData.timestamp
         const currentTimestamp = Math.ceil(Date.now() / 1000)
 
         const pendingAmount = previousPendingAmount.plus(
-          previousPendingAmountRate.multipliedBy(currentTimestamp - previousTimestamp),
+          previousPendingAmountRate.times(currentTimestamp - previousTimestamp),
         )
 
-        const rate = amountStaked.multipliedBy(0.00000001)
+        const rate = amountStaked.times(0.00000001)
 
         updateEndpoints(msw, {
           walletData: {

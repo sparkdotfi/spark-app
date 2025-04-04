@@ -50,7 +50,7 @@ export function ClaimableRewardsPanel({ claimableRewardsResult }: ClaimableRewar
                 mobileViewOptions={mobileViewOptions}
                 formattingOptions={{
                   zeroAmountHandling: 'show-zero',
-                  showUsdValue: token.unitPriceUsd.isGreaterThan(0),
+                  showUsdValue: token.unitPriceUsd.gt(0),
                 }}
               />
             ),
@@ -66,7 +66,7 @@ export function ClaimableRewardsPanel({ claimableRewardsResult }: ClaimableRewar
                 data-testid={testIds.sparkRewards.claimableRewardsPanel.amountToClaim}
                 formattingOptions={{
                   zeroAmountHandling: 'show-zero',
-                  showUsdValue: token.unitPriceUsd.isGreaterThan(0),
+                  showUsdValue: token.unitPriceUsd.gt(0),
                 }}
               />
             ),

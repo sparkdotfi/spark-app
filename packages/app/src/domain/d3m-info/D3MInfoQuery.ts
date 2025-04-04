@@ -8,7 +8,7 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { fromRad, fromWad } from '@/utils/math'
 import { bigNumberify } from '@sparkdotfi/common-universal'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { getIsChainSupported } from './getIsChainSupported'
 import { D3MInfo } from './types'
 
@@ -50,13 +50,13 @@ export function D3MInfoQuery({ wagmiConfig, chainId }: D3MInfoQueryParams) {
       ],
     })
     const D3MCurrentDebt = rayMul(bigNumberify(vatArt), bigNumberify(vatRate))
-    const D3MCurrentDebtUSD = NormalizedUnitNumber(fromWad(D3MCurrentDebt))
-    const maxDebtCeiling = NormalizedUnitNumber(fromRad(bigNumberify(max)))
+    const D3MCurrentDebtUSD = NormalizedNumber(fromWad(D3MCurrentDebt))
+    const maxDebtCeiling = NormalizedNumber(fromRad(bigNumberify(max)))
 
     return {
       D3MCurrentDebtUSD,
       maxDebtCeiling,
-      gap: NormalizedUnitNumber(fromRad(bigNumberify(gap))),
+      gap: NormalizedNumber(fromRad(bigNumberify(gap))),
       increaseCooldown: ttl,
       lastUpdateBlock: last,
       lastIncreaseTimestamp: lastInc,

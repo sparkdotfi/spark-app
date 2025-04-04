@@ -3,7 +3,7 @@ import { Farm } from '@/domain/farms/types'
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { mainnet } from 'viem/chains'
 import { ActiveFarmInfoPanel } from './ActiveFarmInfoPanel'
@@ -19,13 +19,13 @@ const mockFarm: Farm = {
   name: 'SKY Farm',
   rewardToken: tokens.SKY,
   stakingToken: tokens.USDS,
-  earned: NormalizedUnitNumber(71.2345783),
-  staked: NormalizedUnitNumber(10_000),
-  totalRewarded: NormalizedUnitNumber(24520),
-  rewardRate: NormalizedUnitNumber(0.0000000003756),
+  earned: NormalizedNumber(71.2345783),
+  staked: NormalizedNumber(10_000),
+  totalRewarded: NormalizedNumber(24520),
+  rewardRate: NormalizedNumber(0.0000000003756),
   earnedTimestamp: 1724337615,
   periodFinish: 2677721600,
-  totalSupply: NormalizedUnitNumber(100_000),
+  totalSupply: NormalizedNumber(100_000),
   depositors: 6,
   rewardType: 'token',
 }
@@ -37,7 +37,7 @@ const meta: Meta<typeof ActiveFarmInfoPanel> = {
   args: {
     farm: mockFarm,
     canClaim: true,
-    calculateReward: () => NormalizedUnitNumber(71.2345783),
+    calculateReward: () => NormalizedNumber(71.2345783),
     chainId: mainnet.id,
   },
 }

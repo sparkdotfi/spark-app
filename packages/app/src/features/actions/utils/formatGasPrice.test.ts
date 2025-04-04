@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { formatGasPrice } from './formatGasPrice'
 
@@ -15,7 +15,7 @@ describe(formatGasPrice.name, () => {
 
     // biome-ignore lint/complexity/noForEach: <explanation>
     tests.forEach(([value, expected]) => {
-      expect(formatGasPrice(NormalizedUnitNumber(value))).toEqual(expected)
+      expect(formatGasPrice(NormalizedNumber(value))).toEqual(expected)
     })
   })
 })

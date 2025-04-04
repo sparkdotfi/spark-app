@@ -1,5 +1,5 @@
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { DssAutoline } from '../../types'
 import { DaiMarketOverview } from './DaiMarketOverview'
@@ -8,18 +8,18 @@ import { DefaultMarketOverview } from './DefaultMarketOverview'
 export type MarketOverviewProps = { token: Token } & (
   | {
       type: 'default'
-      marketSize: NormalizedUnitNumber
-      borrowed: NormalizedUnitNumber
-      available: NormalizedUnitNumber
+      marketSize: NormalizedNumber
+      borrowed: NormalizedNumber
+      available: NormalizedNumber
       utilizationRate: Percentage
     }
   | {
       type: 'dai'
-      marketSize: NormalizedUnitNumber
-      borrowed: NormalizedUnitNumber
-      instantlyAvailable: NormalizedUnitNumber
-      skyCapacity: NormalizedUnitNumber
-      totalAvailable: NormalizedUnitNumber
+      marketSize: NormalizedNumber
+      borrowed: NormalizedNumber
+      instantlyAvailable: NormalizedNumber
+      skyCapacity: NormalizedNumber
+      totalAvailable: NormalizedNumber
       utilizationRate: Percentage
       dssAutoline: DssAutoline
     }

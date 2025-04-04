@@ -3,7 +3,7 @@ import { TokenIcon } from '@/ui/atoms/token-icon/TokenIcon'
 import { testIds } from '@/ui/utils/testIds'
 import { getFractionalPart, getWholePart } from '@/utils/bigNumber'
 import { useTimestamp } from '@/utils/useTimestamp'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { cva } from 'class-variance-authority'
 import { SavingsOverview } from '../../logic/makeSavingsOverview'
 import { savingsTokenToAccountType } from '../common/utils'
@@ -23,7 +23,7 @@ export function GrowingBalance({
 }: GrowingBalanceProps) {
   const { timestampInMs } = useTimestamp({ refreshIntervalInMs: balanceRefreshIntervalInMs })
   const { depositedAssets: _depositedAssets, depositedAssetsPrecision } = calculateUnderlyingTokenBalance(timestampInMs)
-  const depositedAssets = NormalizedUnitNumber(_depositedAssets.toFixed(depositedAssetsPrecision))
+  const depositedAssets = NormalizedNumber(_depositedAssets.toFixed(depositedAssetsPrecision))
   const accountType = savingsTokenToAccountType(savingsToken)
 
   return (

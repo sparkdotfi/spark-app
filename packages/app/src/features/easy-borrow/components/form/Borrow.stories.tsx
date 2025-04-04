@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Form } from '@/ui/atoms/form/Form'
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useForm } from 'react-hook-form'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { Borrow } from './Borrow'
@@ -18,23 +18,23 @@ function BorrowWrapper() {
         selectedAssets={[
           {
             token: tokens.DAI,
-            balance: NormalizedUnitNumber(1),
+            balance: NormalizedNumber(1),
           },
         ]}
         changeAsset={() => {}}
         allAssets={[
           {
             token: tokens.DAI,
-            balance: NormalizedUnitNumber(1),
+            balance: NormalizedNumber(1),
           },
           {
             token: tokens.USDS,
-            balance: NormalizedUnitNumber(2),
+            balance: NormalizedNumber(2),
           },
         ]}
         alreadyBorrowed={{
           tokens: [tokens.DAI],
-          totalValueUSD: NormalizedUnitNumber(3000),
+          totalValueUSD: NormalizedNumber(3000),
         }}
         pageStatus={{
           state: 'confirmation',

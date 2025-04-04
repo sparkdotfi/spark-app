@@ -1,13 +1,13 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { validateRepay } from './validateRepay'
 
 describe(validateRepay.name, () => {
   it('validates that value is positive', () => {
     expect(
       validateRepay({
-        value: NormalizedUnitNumber(0),
+        value: NormalizedNumber.ZERO,
         asset: { status: 'active' },
-        user: { debt: NormalizedUnitNumber(10), balance: NormalizedUnitNumber(10) },
+        user: { debt: NormalizedNumber(10), balance: NormalizedNumber(10) },
       }),
     ).toBe('value-not-positive')
   })
@@ -15,9 +15,9 @@ describe(validateRepay.name, () => {
   it('works with active reserves', () => {
     expect(
       validateRepay({
-        value: NormalizedUnitNumber(10),
+        value: NormalizedNumber(10),
         asset: { status: 'frozen' },
-        user: { debt: NormalizedUnitNumber(10), balance: NormalizedUnitNumber(10) },
+        user: { debt: NormalizedNumber(10), balance: NormalizedNumber(10) },
       }),
     ).toBe(undefined)
   })
@@ -25,9 +25,9 @@ describe(validateRepay.name, () => {
   it('works with frozen reserves', () => {
     expect(
       validateRepay({
-        value: NormalizedUnitNumber(10),
+        value: NormalizedNumber(10),
         asset: { status: 'frozen' },
-        user: { debt: NormalizedUnitNumber(10), balance: NormalizedUnitNumber(10) },
+        user: { debt: NormalizedNumber(10), balance: NormalizedNumber(10) },
       }),
     ).toBe(undefined)
   })
@@ -35,9 +35,9 @@ describe(validateRepay.name, () => {
   it('validates that reserve is not paused', () => {
     expect(
       validateRepay({
-        value: NormalizedUnitNumber(10),
+        value: NormalizedNumber(10),
         asset: { status: 'paused' },
-        user: { debt: NormalizedUnitNumber(10), balance: NormalizedUnitNumber(10) },
+        user: { debt: NormalizedNumber(10), balance: NormalizedNumber(10) },
       }),
     ).toBe('reserve-paused')
   })
@@ -45,9 +45,9 @@ describe(validateRepay.name, () => {
   it('validates that reserve is active', () => {
     expect(
       validateRepay({
-        value: NormalizedUnitNumber(10),
+        value: NormalizedNumber(10),
         asset: { status: 'not-active' },
-        user: { debt: NormalizedUnitNumber(10), balance: NormalizedUnitNumber(10) },
+        user: { debt: NormalizedNumber(10), balance: NormalizedNumber(10) },
       }),
     ).toBe('reserve-not-active')
   })
@@ -55,9 +55,9 @@ describe(validateRepay.name, () => {
   it('validates debt', () => {
     expect(
       validateRepay({
-        value: NormalizedUnitNumber(10),
+        value: NormalizedNumber(10),
         asset: { status: 'active' },
-        user: { debt: NormalizedUnitNumber(1), balance: NormalizedUnitNumber(10) },
+        user: { debt: NormalizedNumber(1), balance: NormalizedNumber(10) },
       }),
     ).toBe('exceeds-debt')
   })
@@ -65,9 +65,9 @@ describe(validateRepay.name, () => {
   it('validates balance', () => {
     expect(
       validateRepay({
-        value: NormalizedUnitNumber(10),
+        value: NormalizedNumber(10),
         asset: { status: 'active' },
-        user: { debt: NormalizedUnitNumber(10), balance: NormalizedUnitNumber(1) },
+        user: { debt: NormalizedNumber(10), balance: NormalizedNumber(1) },
       }),
     ).toBe('exceeds-balance')
   })

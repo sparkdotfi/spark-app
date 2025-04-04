@@ -1,10 +1,10 @@
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 interface ActionDetailsProps {
   label: string
   token: Token
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
 }
 
 export function ActionDetails({ label, token, value }: ActionDetailsProps) {

@@ -1,19 +1,19 @@
 import { Timeframe } from '@/ui/charts/defaults'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { UseQueryResult } from '@tanstack/react-query'
 import { StakeSpkCTAPanelProps } from './components/stake-cta-panel/StakeSpkCTAPanel'
 import { StakingRewardsPanelProps } from './components/staking-rewards-panel/StakingRewardsPanel'
 
 export interface GeneralStats {
   stakers: number
-  tvl: NormalizedUnitNumber
+  tvl: NormalizedNumber
   apr: Percentage
 }
 
 export interface SparkStakingHistoryItem {
   date: Date
   apy: Percentage
-  tvl: NormalizedUnitNumber
+  tvl: NormalizedNumber
 }
 
 export type SparkStakingHistoryQueryResult = UseQueryResult<SparkStakingHistoryItem[]>

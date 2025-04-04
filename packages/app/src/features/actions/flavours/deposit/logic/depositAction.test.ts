@@ -6,7 +6,7 @@ import { getMockToken, testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
 import { CheckedAddress, UnixTime, toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { generatePrivateKey } from 'viem/accounts'
 import { mainnet } from 'viem/chains'
@@ -14,7 +14,7 @@ import { describe, test } from 'vitest'
 import { createPermitStore } from '../../../logic/permits'
 import { createDepositActionConfig } from './depositAction'
 
-const depositValue = NormalizedUnitNumber(1)
+const depositValue = NormalizedNumber(1)
 const depositToken = getMockToken({ symbol: TokenSymbol('TEST') })
 const nativeAsset = getMockToken({ address: CheckedAddress.EEEE() })
 const account = testAddresses.alice

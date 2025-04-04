@@ -16,11 +16,11 @@ import { links } from '@/ui/constants/links'
 import { text } from '@/ui/constants/text'
 import { testIds } from '@/ui/utils/testIds'
 import { DropdownMenuGroup } from '@radix-ui/react-dropdown-menu'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ExternalLinkIcon, LibraryIcon } from 'lucide-react'
 
 export interface TopbarAirdropDropdownProps {
-  amount?: NormalizedUnitNumber
+  amount?: NormalizedNumber
   precision?: number
   isLoading?: boolean
   isGrowing?: boolean
@@ -28,7 +28,7 @@ export interface TopbarAirdropDropdownProps {
 }
 
 export function TopbarAirdropDropdown({
-  amount = NormalizedUnitNumber(0),
+  amount = NormalizedNumber.ZERO,
   precision = 0,
   isLoading,
   isGrowing = false,
@@ -86,7 +86,7 @@ export function TopbarAirdropDropdown({
 }
 
 export interface FormatAirdropAmountParams {
-  amount: NormalizedUnitNumber
+  amount: NormalizedNumber
   precision: number
   isGrowing?: boolean
 }

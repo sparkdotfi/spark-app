@@ -1,5 +1,5 @@
 import { CheckedAddress, Hex } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { Address, Hex as ViemHex, isAddress, isHex } from 'viem'
 import * as z from 'zod'
@@ -15,7 +15,7 @@ export const numberLikeSchema = z.union([
 ])
 export const percentageSchema = numberLikeSchema.transform((a) => Percentage(a))
 export const percentageAboveOneSchema = numberLikeSchema.transform((a) => Percentage(a, { allowMoreThan1: true }))
-export const normalizedUnitNumberSchema = numberLikeSchema.transform((a) => NormalizedUnitNumber(a))
+export const normalizedNumberSchema = numberLikeSchema.transform((a) => NormalizedNumber(a))
 
 // address schemas
 export const checkedAddressSchema = z.string().transform((a) => CheckedAddress(a))

@@ -5,7 +5,7 @@ import { ClaimSparkRewardsObjective } from '@/features/actions/flavours/claim-sp
 import { Objective } from '@/features/actions/logic/types'
 import { PageState, PageStatus } from '@/features/dialogs/common/types'
 import { useSpkStakingData } from '@/features/spk-staking/logic/useSpkStakingData'
-import { assert, CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { assert, CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useState } from 'react'
 import { useAccount, useChainId, useConfig } from 'wagmi'
 
@@ -13,7 +13,7 @@ export interface UseClaimRewardsDialogResult {
   pageStatus: PageStatus
   objectives: Objective[]
   rewardToken: Token
-  rewardAmount: NormalizedUnitNumber
+  rewardAmount: NormalizedNumber
 }
 
 export function useClaimRewardsDialog(): UseClaimRewardsDialogResult {

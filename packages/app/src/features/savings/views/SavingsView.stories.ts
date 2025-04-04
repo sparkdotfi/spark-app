@@ -6,7 +6,7 @@ import { links } from '@/ui/constants/links'
 import { WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import {
@@ -83,36 +83,36 @@ const migrationInfo = {
 const interestData = {
   APY: Percentage(0.12),
   balanceRefreshIntervalInMs: 50,
-  oneYearProjection: NormalizedUnitNumber(1250),
-  sparkRewardsOneYearProjection: NormalizedUnitNumber(0),
+  oneYearProjection: NormalizedNumber(1250),
+  sparkRewardsOneYearProjection: NormalizedNumber.ZERO,
   calculateUnderlyingTokenBalance: () => ({
-    depositedAssets: NormalizedUnitNumber(10365.7654),
+    depositedAssets: NormalizedNumber(10365.7654),
     depositedAssetsPrecision: 2,
   }),
 } satisfies InterestData
 
 const savingsUsdsAccountDefinition = {
   savingsToken: tokens.sUSDS,
-  savingsTokenBalance: NormalizedUnitNumber(10_000),
+  savingsTokenBalance: NormalizedNumber(10_000),
   underlyingToken: tokens.USDS,
   supportedStablecoins: [
     {
       token: tokens.DAI,
-      balance: NormalizedUnitNumber(2245.43),
+      balance: NormalizedNumber(2245.43),
       blockExplorerLink: '/',
     },
     {
       token: tokens.USDC,
-      balance: NormalizedUnitNumber(1002.01),
+      balance: NormalizedNumber(1002.01),
       blockExplorerLink: '/',
     },
     {
       token: tokens.USDS,
-      balance: NormalizedUnitNumber(10_000),
+      balance: NormalizedNumber(10_000),
       blockExplorerLink: '/',
     },
   ],
-  mostValuableAsset: { token: tokens.USDS, balance: NormalizedUnitNumber(10_000) },
+  mostValuableAsset: { token: tokens.USDS, balance: NormalizedNumber(10_000) },
   chartsData,
   showConvertDialogButton: true,
   interestData,
@@ -133,21 +133,21 @@ const savingsUsdsAccountDefinition = {
 const shortSavingsUsdsAccountDefinition = {
   savingsToken: tokens.sUSDS,
   underlyingToken: tokens.USDS,
-  underlyingTokenDeposit: NormalizedUnitNumber(10_365.7654),
+  underlyingTokenDeposit: NormalizedNumber(10_365.7654),
 } satisfies ShortAccountDefinition
 
 const savingsUsdcAccountDefinition = {
   savingsToken: tokens.sUSDC,
-  savingsTokenBalance: NormalizedUnitNumber(10_000),
+  savingsTokenBalance: NormalizedNumber(10_000),
   underlyingToken: tokens.USDC,
   supportedStablecoins: [
     {
       token: tokens.USDC,
-      balance: NormalizedUnitNumber(10_000),
+      balance: NormalizedNumber(10_000),
       blockExplorerLink: '/',
     },
   ],
-  mostValuableAsset: { token: tokens.USDC, balance: NormalizedUnitNumber(10_000) },
+  mostValuableAsset: { token: tokens.USDC, balance: NormalizedNumber(10_000) },
   chartsData,
   showConvertDialogButton: true,
   interestData,
@@ -168,31 +168,31 @@ const savingsUsdcAccountDefinition = {
 const shortSavingsUsdcAccountDefinition = {
   savingsToken: tokens.sUSDC,
   underlyingToken: tokens.USDC,
-  underlyingTokenDeposit: NormalizedUnitNumber(10_365.7654),
+  underlyingTokenDeposit: NormalizedNumber(10_365.7654),
 } satisfies ShortAccountDefinition
 
 const savingsDaiAccountDefinition = {
   savingsToken: tokens.sDAI,
-  savingsTokenBalance: NormalizedUnitNumber(20_000),
+  savingsTokenBalance: NormalizedNumber(20_000),
   underlyingToken: tokens.DAI,
   supportedStablecoins: [
     {
       token: tokens.DAI,
-      balance: NormalizedUnitNumber(12_000),
+      balance: NormalizedNumber(12_000),
       blockExplorerLink: '/',
     },
     {
       token: tokens.USDS,
-      balance: NormalizedUnitNumber(10_000),
+      balance: NormalizedNumber(10_000),
       blockExplorerLink: '/',
     },
     {
       token: tokens.USDC,
-      balance: NormalizedUnitNumber(1002.01),
+      balance: NormalizedNumber(1002.01),
       blockExplorerLink: '/',
     },
   ],
-  mostValuableAsset: { token: tokens.DAI, balance: NormalizedUnitNumber(12_000) },
+  mostValuableAsset: { token: tokens.DAI, balance: NormalizedNumber(12_000) },
   chartsData: {
     ...chartsData,
     savingsRateInfo: savingsDsrRateInfo,
@@ -217,7 +217,7 @@ const savingsDaiAccountDefinition = {
 const shortSavingsDaiAccountDefinition = {
   savingsToken: tokens.sDAI,
   underlyingToken: tokens.DAI,
-  underlyingTokenDeposit: NormalizedUnitNumber(22_245.43),
+  underlyingTokenDeposit: NormalizedNumber(22_245.43),
 } satisfies ShortAccountDefinition
 
 const savingsViewSusdsArgs = {
@@ -234,7 +234,7 @@ const savingsViewSusdsArgs = {
   allAccounts: [shortSavingsUsdcAccountDefinition, shortSavingsUsdsAccountDefinition, shortSavingsDaiAccountDefinition],
   generalStats: {
     data: {
-      tvl: NormalizedUnitNumber(2_320_691_847),
+      tvl: NormalizedNumber(2_320_691_847),
       getLiquidityCap: () => undefined,
       users: 4_967,
     },
@@ -268,9 +268,9 @@ export const Dai: Story = {
       ...savingsDaiAccountDefinition,
       interestData: {
         ...interestData,
-        oneYearProjection: NormalizedUnitNumber(2548.827),
+        oneYearProjection: NormalizedNumber(2548.827),
         calculateUnderlyingTokenBalance: () => ({
-          depositedAssets: NormalizedUnitNumber(22_249.7654),
+          depositedAssets: NormalizedNumber(22_249.7654),
           depositedAssetsPrecision: 2,
         }),
       },
@@ -285,7 +285,7 @@ export const DaiNoDeposit: Story = {
     ...savingsViewSusdsArgs,
     selectedAccount: {
       ...savingsDaiAccountDefinition,
-      savingsTokenBalance: NormalizedUnitNumber(0),
+      savingsTokenBalance: NormalizedNumber.ZERO,
     },
   } satisfies SavingsViewProps,
 }
@@ -297,8 +297,8 @@ export const Usdc: Story = {
     ...savingsViewSusdsArgs,
     generalStats: {
       data: {
-        tvl: NormalizedUnitNumber(2_320_691_847),
-        getLiquidityCap: () => NormalizedUnitNumber(4_234_221_093),
+        tvl: NormalizedNumber(2_320_691_847),
+        getLiquidityCap: () => NormalizedNumber(4_234_221_093),
         users: 4_967,
       },
       isPending: false,
@@ -316,12 +316,12 @@ export const NoDeposit: Story = {
     ...savingsViewSusdsArgs,
     allAccounts: [
       shortSavingsUsdcAccountDefinition,
-      { ...shortSavingsUsdsAccountDefinition, underlyingTokenDeposit: NormalizedUnitNumber(0) },
+      { ...shortSavingsUsdsAccountDefinition, underlyingTokenDeposit: NormalizedNumber.ZERO },
       shortSavingsDaiAccountDefinition,
     ],
     selectedAccount: {
       ...savingsUsdsAccountDefinition,
-      savingsTokenBalance: NormalizedUnitNumber(0),
+      savingsTokenBalance: NormalizedNumber.ZERO,
     },
   } satisfies SavingsViewProps,
 }
@@ -336,21 +336,21 @@ export const AllIn: Story = {
       supportedStablecoins: [
         {
           token: tokens.DAI,
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedNumber.ZERO,
           blockExplorerLink: '/',
         },
         {
           token: tokens.USDS,
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedNumber.ZERO,
           blockExplorerLink: '/',
         },
         {
           token: tokens.USDC,
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedNumber.ZERO,
           blockExplorerLink: '/',
         },
       ],
-      mostValuableAsset: { token: tokens.USDS, balance: NormalizedUnitNumber(0) },
+      mostValuableAsset: { token: tokens.USDS, balance: NormalizedNumber.ZERO },
     },
   } satisfies SavingsViewProps,
 }
@@ -361,39 +361,39 @@ export const BigNumbers: Story = {
   args: {
     ...savingsViewSusdsArgs,
     allAccounts: [
-      { ...shortSavingsUsdcAccountDefinition, underlyingTokenDeposit: NormalizedUnitNumber(134_395_765) },
+      { ...shortSavingsUsdcAccountDefinition, underlyingTokenDeposit: NormalizedNumber(134_395_765) },
       shortSavingsUsdsAccountDefinition,
       shortSavingsDaiAccountDefinition,
     ],
     selectedAccount: {
       ...savingsUsdcAccountDefinition,
-      savingsTokenBalance: NormalizedUnitNumber(110_000_000),
+      savingsTokenBalance: NormalizedNumber(110_000_000),
       interestData: {
         ...interestData,
-        oneYearProjection: NormalizedUnitNumber(6345543.32945601),
+        oneYearProjection: NormalizedNumber(6345543.32945601),
         calculateUnderlyingTokenBalance: () => ({
-          depositedAssets: NormalizedUnitNumber('134395765.123482934245'),
+          depositedAssets: NormalizedNumber('134395765.123482934245'),
           depositedAssetsPrecision: 0,
         }),
       },
       supportedStablecoins: [
         {
           token: tokens.DAI,
-          balance: NormalizedUnitNumber(232134925.90911123),
+          balance: NormalizedNumber(232134925.90911123),
           blockExplorerLink: '/',
         },
         {
           token: tokens.USDT,
-          balance: NormalizedUnitNumber(601234014.134234),
+          balance: NormalizedNumber(601234014.134234),
           blockExplorerLink: '/',
         },
         {
           token: tokens.USDC,
-          balance: NormalizedUnitNumber(12312.90345),
+          balance: NormalizedNumber(12312.90345),
           blockExplorerLink: '/',
         },
       ],
-      mostValuableAsset: { token: tokens.USDS, balance: NormalizedUnitNumber(601234014.134234) },
+      mostValuableAsset: { token: tokens.USDS, balance: NormalizedNumber(601234014.134234) },
     },
   } satisfies SavingsViewProps,
 }
@@ -431,7 +431,7 @@ export const WithOneSparkReward: Story = {
       ...savingsUsdsAccountDefinition,
       interestData: {
         ...interestData,
-        sparkRewardsOneYearProjection: NormalizedUnitNumber(10),
+        sparkRewardsOneYearProjection: NormalizedNumber(10),
       },
       sparkRewardsSummary: {
         totalApy: Percentage(0.02),
@@ -453,7 +453,7 @@ export const WithMultipleSparkReward: Story = {
       ...savingsUsdsAccountDefinition,
       interestData: {
         ...interestData,
-        sparkRewardsOneYearProjection: NormalizedUnitNumber(27),
+        sparkRewardsOneYearProjection: NormalizedNumber(27),
       },
       sparkRewardsSummary: {
         totalApy: Percentage(0.045),

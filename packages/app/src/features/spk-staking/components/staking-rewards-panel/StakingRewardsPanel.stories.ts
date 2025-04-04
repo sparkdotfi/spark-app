@@ -1,7 +1,7 @@
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import type { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { StakingRewardsPanel, StakingRewardsPanelProps } from './StakingRewardsPanel'
@@ -12,12 +12,12 @@ const meta: Meta<typeof StakingRewardsPanel> = {
   decorators: [withRouter(), WithClassname('max-w-7xl grid lg:grid-cols-2'), WithTooltipProvider()],
   args: {
     apy: Percentage(0.12),
-    claimableRewards: NormalizedUnitNumber(25),
-    stakedAmount: NormalizedUnitNumber(10_000),
+    claimableRewards: NormalizedNumber(25),
+    stakedAmount: NormalizedNumber(10_000),
     isRewardOutOfSync: false,
     rewardToken: tokens.USDS,
     stakingToken: tokens.SPK,
-    calculateReward: () => NormalizedUnitNumber(71.2345892),
+    calculateReward: () => NormalizedNumber(71.2345892),
     refreshGrowingRewardIntervalInMs: undefined,
     openClaimDialog: () => {},
     openUnstakeDialog: () => {},
@@ -33,13 +33,13 @@ export const Tablet = getTabletStory(Desktop)
 
 export const OnlyPendingRewards: Story = {
   args: {
-    claimableRewards: NormalizedUnitNumber(0),
+    claimableRewards: NormalizedNumber.ZERO,
   },
 }
 
 export const NoStake: Story = {
   args: {
-    stakedAmount: NormalizedUnitNumber(0),
+    stakedAmount: NormalizedNumber.ZERO,
   },
 }
 

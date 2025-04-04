@@ -19,7 +19,7 @@ import { allowanceQueryKey } from '@/features/actions/flavours/approve/logic/que
 import { ActionConfig, ActionContext, GetWriteConfigResult } from '@/features/actions/logic/types'
 import { calculateGemConversionFactor } from '@/features/actions/utils/savings'
 import { BaseUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
-import { assert, CheckedAddress, NormalizedUnitNumber, assertNever, raise } from '@sparkdotfi/common-universal'
+import { assert, CheckedAddress, NormalizedNumber, assertNever, raise } from '@sparkdotfi/common-universal'
 import { QueryKey } from '@tanstack/react-query'
 import { Address, erc4626Abi } from 'viem'
 import { gnosis } from 'viem/chains'
@@ -295,7 +295,7 @@ interface GetUsdcWithdrawConfigParams {
   psmActionsAddress: CheckedAddress
   converter: SavingsConverter
   isRedeem: boolean
-  actionAmount: NormalizedUnitNumber
+  actionAmount: NormalizedNumber
   token: Token
   savingsToken: Token
   receiver: Address
@@ -332,7 +332,7 @@ function getUsdcWithdrawConfig({
     gemDecimals: token.decimals,
     assetsTokenDecimals: savingsToken.decimals,
   })
-  const assetsMaxAmountIn = toBigInt(BaseUnitNumber(token.toBaseUnit(actionAmount).multipliedBy(gemConversionFactor)))
+  const assetsMaxAmountIn = toBigInt(BaseUnitNumber(token.toBaseUnit(actionAmount).times(gemConversionFactor)))
 
   return ensureConfigTypes({
     address: psmActionsAddress,

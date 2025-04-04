@@ -1,31 +1,31 @@
-import { assert, CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { assert, CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { calculateMaxBorrowBasedOnCollateral } from '../action-max-value-getters/calculateMaxBorrowBasedOnCollateral'
 import { MarketInfo, Reserve, UserPositionSummary } from '../market-info/marketInfo'
 import { ReserveStatus } from '../market-info/reserve-status'
 
 export interface ValidateBorrowParams {
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
 
   asset: {
     address: CheckedAddress
     status: ReserveStatus
     borrowingEnabled: boolean
-    availableLiquidity: NormalizedUnitNumber
-    totalDebt: NormalizedUnitNumber
-    borrowCap?: NormalizedUnitNumber
+    availableLiquidity: NormalizedNumber
+    totalDebt: NormalizedNumber
+    borrowCap?: NormalizedNumber
     isSiloed: boolean
     borrowableInIsolation: boolean
     eModeCategory: number
   }
 
   user: {
-    maxBorrowBasedOnCollateral: NormalizedUnitNumber
-    totalBorrowedUSD: NormalizedUnitNumber
+    maxBorrowBasedOnCollateral: NormalizedNumber
+    totalBorrowedUSD: NormalizedNumber
     isInSiloMode: boolean
     siloModeAsset?: CheckedAddress
     inIsolationMode: boolean
-    isolationModeCollateralTotalDebt?: NormalizedUnitNumber
-    isolationModeCollateralDebtCeiling?: NormalizedUnitNumber
+    isolationModeCollateralTotalDebt?: NormalizedNumber
+    isolationModeCollateralDebtCeiling?: NormalizedNumber
     eModeCategory: number
   }
 }
@@ -67,9 +67,9 @@ export function validateBorrow({
     eModeCategory: userEModeCategory,
   },
 }: ValidateBorrowParams): BorrowValidationIssue | undefined {
-  const borrowedAnythingBefore = !totalBorrowedUSD.isEqualTo(0)
+  const borrowedAnythingBefore = !totalBorrowedUSD.eq(0)
 
-  if (value.isLessThanOrEqualTo(0)) {
+  if (value.lte(0)) {
     return 'value-not-positive'
   }
 
@@ -141,7 +141,7 @@ export const borrowValidationIssueToMessage: Record<BorrowValidationIssue, strin
 }
 
 export function getValidateBorrowArgs(
-  value: NormalizedUnitNumber,
+  value: NormalizedNumber,
   reserve: Reserve,
   marketInfo: MarketInfo,
   _userSummary?: UserPositionSummary,
@@ -163,7 +163,7 @@ export function getValidateBorrowArgs(
     },
     user: {
       maxBorrowBasedOnCollateral: calculateMaxBorrowBasedOnCollateral({
-        borrowingAssetPriceUsd: reserve.token.unitPriceUsd,
+        borrowingAssetPriceUsd: reserve.token.unitPriceUsd.toBigNumber(),
         totalCollateralUSD: userSummary.totalCollateralUSD,
         maxLoanToValue: userSummary.maxLoanToValue,
         totalBorrowsUSD: marketInfo.userPositionSummary.totalBorrowsUSD,

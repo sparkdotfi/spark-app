@@ -3,7 +3,7 @@ import { HorizontalScroll } from '@/ui/atoms/horizontal-scroll/HorizontalScroll'
 import { TokenAmount } from '@/ui/molecules/token-amount/TokenAmount'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { MoveRightIcon } from 'lucide-react'
 import { Fragment, HTMLAttributes } from 'react'
 
@@ -11,8 +11,8 @@ export type RouteItem =
   | {
       type: 'token-amount'
       token: Token
-      amount: NormalizedUnitNumber
-      usdAmount?: NormalizedUnitNumber
+      amount: NormalizedNumber
+      usdAmount?: NormalizedNumber
     }
   | {
       type: 'generic'

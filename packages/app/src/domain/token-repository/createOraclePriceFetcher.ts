@@ -3,7 +3,7 @@ import { ssrAuthOracleConfig } from '@/config/contracts-generated'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { fromRay } from '@/utils/math'
 import { bigNumberify } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber, assertNever } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, assertNever } from '@sparkdotfi/common-universal'
 import { erc4626Abi, formatUnits, parseUnits } from 'viem'
 import { Config } from 'wagmi'
 import { readContract } from 'wagmi/actions'
@@ -18,13 +18,13 @@ export function createOraclePriceFetcher({
   tokenConfig,
   wagmiConfig,
   chainId,
-}: CreateOraclePriceFetcherParams): () => Promise<NormalizedUnitNumber> {
+}: CreateOraclePriceFetcherParams): () => Promise<NormalizedNumber> {
   switch (tokenConfig.oracleType) {
     case 'zero-price':
-      return async () => NormalizedUnitNumber(0)
+      return async () => NormalizedNumber.ZERO
 
     case 'fixed-usd':
-      return async () => NormalizedUnitNumber(1)
+      return async () => NormalizedNumber(1)
 
     case 'vault':
       return async () => {
@@ -39,7 +39,7 @@ export function createOraclePriceFetcher({
           chainId,
         })
 
-        return NormalizedUnitNumber(formatUnits(result, assetsDecimals))
+        return NormalizedNumber(formatUnits(result, assetsDecimals))
       }
 
     case 'ssr-auth-oracle':
@@ -51,7 +51,7 @@ export function createOraclePriceFetcher({
           chainId,
         })
 
-        return NormalizedUnitNumber(fromRay(bigNumberify(result)))
+        return NormalizedNumber(fromRay(bigNumberify(result)))
       }
 
     default:

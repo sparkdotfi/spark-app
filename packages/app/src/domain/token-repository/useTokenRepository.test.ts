@@ -2,7 +2,7 @@ import { defineToken } from '@/config/chain/utils/defineToken'
 import { testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupHookRenderer } from '@/test/integration/setupHookRenderer'
-import { BaseUnitNumber, CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { erc20Abi, erc4626Abi, parseEther, zeroAddress } from 'viem'
 import { gnosis, mainnet } from 'viem/chains'
@@ -93,10 +93,10 @@ describe(useTokenRepository.name, () => {
           decimals,
           address: token,
           symbol,
-          unitPriceUsd: NormalizedUnitNumber(BaseUnitNumber(price).shiftedBy(-decimals)),
+          unitPriceUsd: NormalizedNumber(BaseUnitNumber(price).shiftedBy(-decimals)),
           isAToken: false,
         },
-        balance: NormalizedUnitNumber(BaseUnitNumber(balance).shiftedBy(-decimals)),
+        balance: NormalizedNumber(BaseUnitNumber(balance).shiftedBy(-decimals)),
       },
     ])
   })
@@ -155,10 +155,10 @@ describe(useTokenRepository.name, () => {
           decimals,
           address: token,
           symbol,
-          unitPriceUsd: NormalizedUnitNumber(1),
+          unitPriceUsd: NormalizedNumber(1),
           isAToken: false,
         },
-        balance: NormalizedUnitNumber(BaseUnitNumber(balance).shiftedBy(-decimals)),
+        balance: NormalizedNumber(BaseUnitNumber(balance).shiftedBy(-decimals)),
       },
     ])
   })
@@ -223,10 +223,10 @@ describe(useTokenRepository.name, () => {
           decimals,
           address: token,
           symbol,
-          unitPriceUsd: NormalizedUnitNumber(1),
+          unitPriceUsd: NormalizedNumber(1),
           isAToken: false,
         },
-        balance: NormalizedUnitNumber(0),
+        balance: NormalizedNumber.ZERO,
       },
     ])
   })
@@ -268,10 +268,10 @@ describe(useTokenRepository.name, () => {
           decimals,
           address: CheckedAddress.EEEE(),
           symbol,
-          unitPriceUsd: NormalizedUnitNumber(1),
+          unitPriceUsd: NormalizedNumber(1),
           isAToken: false,
         },
-        balance: NormalizedUnitNumber(BaseUnitNumber(balance).shiftedBy(-decimals)),
+        balance: NormalizedNumber(BaseUnitNumber(balance).shiftedBy(-decimals)),
       },
     ])
   })
@@ -316,10 +316,10 @@ describe(useTokenRepository.name, () => {
           decimals,
           address: CheckedAddress.EEEE(),
           symbol,
-          unitPriceUsd: NormalizedUnitNumber(1),
+          unitPriceUsd: NormalizedNumber(1),
           isAToken: false,
         },
-        balance: NormalizedUnitNumber(0),
+        balance: NormalizedNumber.ZERO,
       },
     ])
   })

@@ -3,7 +3,7 @@ import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { STORYBOOK_TIMESTAMP } from '@sb/consts'
 import { DaiMarketOverview } from './DaiMarketOverview'
@@ -21,15 +21,15 @@ export const Default: Story = {
   name: 'Default',
   args: {
     token: tokens.DAI,
-    borrowed: NormalizedUnitNumber(823_000_000),
-    marketSize: NormalizedUnitNumber(1_243_000_000),
-    totalAvailable: NormalizedUnitNumber(420_000_000),
+    borrowed: NormalizedNumber(823_000_000),
+    marketSize: NormalizedNumber(1_243_000_000),
+    totalAvailable: NormalizedNumber(420_000_000),
     utilizationRate: Percentage(0.66),
-    instantlyAvailable: NormalizedUnitNumber(99_000_000),
-    skyCapacity: NormalizedUnitNumber(320_000_000),
+    instantlyAvailable: NormalizedNumber(99_000_000),
+    skyCapacity: NormalizedNumber(320_000_000),
     dssAutoline: {
-      maxDebtCeiling: NormalizedUnitNumber(200_000),
-      gap: NormalizedUnitNumber(0),
+      maxDebtCeiling: NormalizedNumber(200_000),
+      gap: NormalizedNumber.ZERO,
       increaseCooldown: 43200,
       lastIncreaseTimestamp: Math.floor(STORYBOOK_TIMESTAMP / 1000 - 41903),
       lastUpdateBlock: 0,

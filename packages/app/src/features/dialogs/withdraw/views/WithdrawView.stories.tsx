@@ -2,7 +2,7 @@ import { getMockMarketInfo, getMockReserve } from '@/test/integration/constants'
 import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import BigNumber from 'bignumber.js'
 import { useForm } from 'react-hook-form'
@@ -19,25 +19,25 @@ const meta: Meta<typeof WithdrawView> = {
     withdrawOptions: [
       {
         token: tokens.DAI,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
       },
       {
         token: tokens.ETH,
-        balance: NormalizedUnitNumber(10),
+        balance: NormalizedNumber(10),
       },
     ],
     assetsToWithdrawFields: {
       selectedAsset: {
         token: tokens.DAI,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
         value: '2000',
       },
-      maxValue: NormalizedUnitNumber(5000),
+      maxValue: NormalizedNumber(5000),
       changeAsset: () => {},
     },
     withdrawAsset: {
       token: tokens.DAI,
-      value: NormalizedUnitNumber(2000),
+      value: NormalizedNumber(2000),
     },
     objectives: [
       {
@@ -45,8 +45,8 @@ const meta: Meta<typeof WithdrawView> = {
         reserve: getMockReserve({
           token: tokens.DAI,
         }),
-        value: NormalizedUnitNumber(2000),
-        gatewayApprovalValue: NormalizedUnitNumber(2000),
+        value: NormalizedNumber(2000),
+        gatewayApprovalValue: NormalizedNumber(2000),
         all: false,
       },
     ],
@@ -57,12 +57,12 @@ const meta: Meta<typeof WithdrawView> = {
     },
     currentPositionOverview: {
       healthFactor: BigNumber(4),
-      tokenSupply: NormalizedUnitNumber(2000),
+      tokenSupply: NormalizedNumber(2000),
       supplyAPY: Percentage(0.04),
     },
     updatedPositionOverview: {
       healthFactor: BigNumber(1.1),
-      tokenSupply: NormalizedUnitNumber(1000),
+      tokenSupply: NormalizedNumber(1000),
       supplyAPY: Percentage(0.04),
     },
     riskAcknowledgement: {

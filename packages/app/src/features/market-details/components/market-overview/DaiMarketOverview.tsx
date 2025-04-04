@@ -1,6 +1,6 @@
 import { Token } from '@/domain/types/Token'
 import { CooldownTimer } from '@/ui/molecules/cooldown-timer/CooldownTimer'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { DssAutoline } from '../../types'
 import { Legend } from './components/LegendItem'
 import { MarketOverviewChart, colors } from './components/MarketOverviewChart'
@@ -8,11 +8,11 @@ import { MarketOverviewContent } from './components/MarketOvierviewContent'
 
 export interface DaiMarketOverviewProps {
   token: Token
-  borrowed: NormalizedUnitNumber
-  instantlyAvailable: NormalizedUnitNumber
-  skyCapacity: NormalizedUnitNumber
-  marketSize: NormalizedUnitNumber
-  totalAvailable: NormalizedUnitNumber
+  borrowed: NormalizedNumber
+  instantlyAvailable: NormalizedNumber
+  skyCapacity: NormalizedNumber
+  marketSize: NormalizedNumber
+  totalAvailable: NormalizedNumber
   utilizationRate: Percentage
   dssAutoline: DssAutoline
 }

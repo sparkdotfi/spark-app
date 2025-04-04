@@ -1,10 +1,10 @@
 import { Token } from '@/domain/types/Token'
-import { BaseUnitNumber, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface UnstakeSpkObjective {
   type: 'unstakeSpk'
   spk: Token
-  amount: NormalizedUnitNumber
+  amount: NormalizedNumber
   accountActiveShares: BaseUnitNumber
   unstakeAll: boolean
 }
@@ -12,7 +12,7 @@ export interface UnstakeSpkObjective {
 export interface UnstakeSpkAction {
   type: 'unstakeSpk'
   spk: Token
-  amount: NormalizedUnitNumber
+  amount: NormalizedNumber
   accountActiveShares: BaseUnitNumber
   unstakeAll: boolean
 }

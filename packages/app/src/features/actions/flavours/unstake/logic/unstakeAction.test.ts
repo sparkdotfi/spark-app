@@ -8,7 +8,7 @@ import { getMockToken, testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
 import { toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { mainnet } from 'viem/chains'
 import { describe, test } from 'vitest'
@@ -18,7 +18,7 @@ const account = testAddresses.alice
 const chainId = mainnet.id
 const stakingToken = getMockToken({ symbol: TokenSymbol('USDS') })
 const rewardToken = getMockToken({ symbol: TokenSymbol('SKY') })
-const amount = NormalizedUnitNumber(1)
+const amount = NormalizedNumber(1)
 
 const hookRenderer = setupUseContractActionRenderer({
   account,

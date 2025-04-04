@@ -3,7 +3,7 @@ import { assets } from '@/ui/assets'
 import { WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { reactRouterParameters, withRouter } from 'storybook-addon-remix-react-router'
@@ -23,23 +23,23 @@ const args = {
       rewards: [
         {
           token: tokens.wstETH,
-          amount: NormalizedUnitNumber(0.00157),
+          amount: NormalizedNumber(0.00157),
         },
         {
           token: tokens.WBTC,
-          amount: NormalizedUnitNumber(0.0003498),
+          amount: NormalizedNumber(0.0003498),
         },
       ],
       onClaim: () => {},
-      totalClaimableReward: NormalizedUnitNumber(0.0029198),
+      totalClaimableReward: NormalizedNumber(0.0029198),
     },
     sparkRewardsSummary: {
-      totalUsdAmount: NormalizedUnitNumber(100),
+      totalUsdAmount: NormalizedNumber(100),
     },
     airdropInfo: {
       airdrop: {
-        tokenReward: NormalizedUnitNumber(1200345.568),
-        tokenRatePerSecond: NormalizedUnitNumber(1),
+        tokenReward: NormalizedNumber(1200345.568),
+        tokenRatePerSecond: NormalizedNumber(1),
         tokenRatePrecision: 1,
         refreshIntervalInMs: 100,
         timestampInMs: Date.now() - 30 * 1000,
@@ -102,20 +102,20 @@ const args = {
     rewards: [
       {
         token: tokens.wstETH,
-        amount: NormalizedUnitNumber(0.00157),
+        amount: NormalizedNumber(0.00157),
       },
       {
         token: tokens.WBTC,
-        amount: NormalizedUnitNumber(0.0003498),
+        amount: NormalizedNumber(0.0003498),
       },
     ],
     onClaim: () => {},
-    totalClaimableReward: NormalizedUnitNumber(0.0029198),
+    totalClaimableReward: NormalizedNumber(0.0029198),
   },
   airdropInfo: {
     airdrop: {
-      tokenReward: NormalizedUnitNumber(1200345.568),
-      tokenRatePerSecond: NormalizedUnitNumber(1),
+      tokenReward: NormalizedNumber(1200345.568),
+      tokenRatePerSecond: NormalizedNumber(1),
       tokenRatePrecision: 1,
       refreshIntervalInMs: 100,
       timestampInMs: Date.now() - 30 * 1000,
@@ -124,7 +124,7 @@ const args = {
     isError: false,
   },
   sparkRewardsSummary: {
-    totalUsdAmount: NormalizedUnitNumber(100),
+    totalUsdAmount: NormalizedNumber(100),
   },
   isMobileDisplay: false,
 } satisfies TopbarProps

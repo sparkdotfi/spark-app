@@ -1,5 +1,5 @@
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { userEvent, within } from '@storybook/test'
 import { useState } from 'react'
@@ -28,8 +28,8 @@ const meta: Meta<typeof TopbarMenu> = {
         isMobileDisplay={false}
         airdropInfo={{
           airdrop: {
-            tokenReward: NormalizedUnitNumber(1_200_345.568),
-            tokenRatePerSecond: NormalizedUnitNumber(1),
+            tokenReward: NormalizedNumber(1_200_345.568),
+            tokenRatePerSecond: NormalizedNumber(1),
             tokenRatePrecision: 1,
             refreshIntervalInMs: 100,
             timestampInMs: Date.now() - 30 * 1000,
@@ -39,11 +39,11 @@ const meta: Meta<typeof TopbarMenu> = {
         }}
         rewardsInfo={{
           rewards: [],
-          totalClaimableReward: NormalizedUnitNumber(0),
+          totalClaimableReward: NormalizedNumber.ZERO,
           onClaim: () => {},
         }}
         sparkRewardsSummary={{
-          totalUsdAmount: NormalizedUnitNumber(100),
+          totalUsdAmount: NormalizedNumber(100),
         }}
       />
     )

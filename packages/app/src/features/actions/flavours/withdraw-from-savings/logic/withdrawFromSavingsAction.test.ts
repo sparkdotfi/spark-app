@@ -15,7 +15,7 @@ import { testAddresses, testTokens } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
 import { bigNumberify, toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { erc4626Abi } from 'viem'
 import { mainnet } from 'viem/chains'
@@ -24,7 +24,7 @@ import { createWithdrawFromSavingsActionConfig } from './withdrawFromSavingsActi
 
 const account = testAddresses.alice
 const receiver = testAddresses.bob
-const withdrawAmount = NormalizedUnitNumber(1)
+const withdrawAmount = NormalizedNumber(1)
 const dai = testTokens.DAI
 const sdai = testTokens.sDAI
 const usds = testTokens.USDS
@@ -33,11 +33,11 @@ const susdc = testTokens.sUSDC
 const usdc = testTokens.USDC
 const mockTokenRepository = new TokenRepository(
   [
-    { token: dai, balance: NormalizedUnitNumber(100) },
-    { token: sdai, balance: NormalizedUnitNumber(100) },
-    { token: usds, balance: NormalizedUnitNumber(100) },
-    { token: susds, balance: NormalizedUnitNumber(100) },
-    { token: usdc, balance: NormalizedUnitNumber(100) },
+    { token: dai, balance: NormalizedNumber(100) },
+    { token: sdai, balance: NormalizedNumber(100) },
+    { token: usds, balance: NormalizedNumber(100) },
+    { token: susds, balance: NormalizedNumber(100) },
+    { token: usdc, balance: NormalizedNumber(100) },
   ],
   {
     DAI: dai.symbol,
@@ -338,11 +338,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
           to: psmActionsAddress[mainnet.id],
           abi: psmActionsAbi,
           functionName: 'redeemAndSwap',
-          args: [
-            account,
-            toBigInt(sdai.toBaseUnit(withdrawAmount)),
-            toBigInt(usdc.toBaseUnit(NormalizedUnitNumber(1.1))),
-          ],
+          args: [account, toBigInt(sdai.toBaseUnit(withdrawAmount)), toBigInt(usdc.toBaseUnit(NormalizedNumber(1.1)))],
           from: account,
           result: 1n,
         }),
@@ -434,11 +430,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
           to: psmActionsAddress[mainnet.id],
           abi: psmActionsAbi,
           functionName: 'redeemAndSwap',
-          args: [
-            receiver,
-            toBigInt(sdai.toBaseUnit(withdrawAmount)),
-            toBigInt(usdc.toBaseUnit(NormalizedUnitNumber(1.1))),
-          ],
+          args: [receiver, toBigInt(sdai.toBaseUnit(withdrawAmount)), toBigInt(usdc.toBaseUnit(NormalizedNumber(1.1)))],
           from: account,
           result: 1n,
         }),
@@ -533,11 +525,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
           to: getContractAddress(usdsPsmActionsConfig.address, chainId),
           abi: psmActionsAbi,
           functionName: 'redeemAndSwap',
-          args: [
-            account,
-            toBigInt(susds.toBaseUnit(withdrawAmount)),
-            toBigInt(usdc.toBaseUnit(NormalizedUnitNumber(1.1))),
-          ],
+          args: [account, toBigInt(susds.toBaseUnit(withdrawAmount)), toBigInt(usdc.toBaseUnit(NormalizedNumber(1.1)))],
           from: account,
           result: 1n,
         }),
@@ -642,7 +630,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
           args: [
             receiver,
             toBigInt(susds.toBaseUnit(withdrawAmount)),
-            toBigInt(usdc.toBaseUnit(NormalizedUnitNumber(1.1))),
+            toBigInt(usdc.toBaseUnit(NormalizedNumber(1.1))),
           ],
           from: account,
           result: 1n,
@@ -803,7 +791,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
             toBigInt(usdc.toBaseUnit(withdrawAmount)),
             account,
             account,
-            toBigInt(susdc.toBaseUnit(NormalizedUnitNumber('0.90909090909090909091'))),
+            toBigInt(susdc.toBaseUnit(NormalizedNumber('0.90909090909090909091'))),
           ],
           from: account,
           result: 1n,
@@ -852,7 +840,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
             toBigInt(susdc.toBaseUnit(withdrawAmount)),
             account,
             account,
-            toBigInt(usdc.toBaseUnit(NormalizedUnitNumber(1.1))),
+            toBigInt(usdc.toBaseUnit(NormalizedNumber(1.1))),
           ],
           from: account,
           result: 1n,
@@ -902,7 +890,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
             toBigInt(usdc.toBaseUnit(withdrawAmount)),
             receiver,
             account,
-            toBigInt(susdc.toBaseUnit(NormalizedUnitNumber('0.90909090909090909091'))),
+            toBigInt(susdc.toBaseUnit(NormalizedNumber('0.90909090909090909091'))),
           ],
           from: account,
           result: 1n,
@@ -952,7 +940,7 @@ describe(createWithdrawFromSavingsActionConfig.name, () => {
             toBigInt(susdc.toBaseUnit(withdrawAmount)),
             receiver,
             account,
-            toBigInt(usdc.toBaseUnit(NormalizedUnitNumber(1.1))),
+            toBigInt(usdc.toBaseUnit(NormalizedNumber(1.1))),
           ],
           from: account,
           result: 1n,

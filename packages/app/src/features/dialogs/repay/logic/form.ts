@@ -2,7 +2,7 @@ import { MarketInfo } from '@/domain/market-info/marketInfo'
 import { repayValidationIssueToMessage, validateRepay } from '@/domain/market-validators/validateRepay'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { MarketWalletInfo } from '@/domain/wallet/useMarketWalletInfo'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { UseFormReturn } from 'react-hook-form'
 import { z } from 'zod'
 import { AssetInputSchema, normalizeDialogFormValues } from '../../common/logic/form'
@@ -43,7 +43,7 @@ export interface GetFormFieldsForRepayDialogParams {
   form: UseFormReturn<AssetInputSchema>
   marketInfo: MarketInfo
   walletInfo: MarketWalletInfo
-  repayMaxValue: NormalizedUnitNumber
+  repayMaxValue: NormalizedNumber
 }
 export function getFormFieldsForRepayDialog({
   form,

@@ -5,7 +5,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 
 import { bigNumberify } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
@@ -34,23 +34,23 @@ const args: MarketDetailsViewProps = {
   walletOverview: {
     guestMode: false,
     token: tokens.rETH,
-    tokenBalance: NormalizedUnitNumber(10),
+    tokenBalance: NormalizedNumber(10),
     deposit: {
       token: tokens.rETH,
-      available: NormalizedUnitNumber(10),
+      available: NormalizedNumber(10),
     },
     borrow: {
       token: tokens.rETH,
       eligibility: 'yes',
-      available: NormalizedUnitNumber(10),
+      available: NormalizedNumber(10),
     },
   },
   marketOverview: {
     supply: {
       hasSparkAirdrop: true,
       status: 'yes',
-      totalSupplied: NormalizedUnitNumber(72_000),
-      supplyCap: NormalizedUnitNumber(112_000),
+      totalSupplied: NormalizedNumber(72_000),
+      supplyCap: NormalizedNumber(112_000),
       apy: Percentage(0.05),
       capAutomatorInfo: undefined,
       sparkRewards: [],
@@ -65,10 +65,10 @@ const args: MarketDetailsViewProps = {
     borrow: {
       hasSparkAirdrop: true,
       status: 'yes',
-      totalBorrowed: NormalizedUnitNumber(1244),
+      totalBorrowed: NormalizedNumber(1244),
       apy: Percentage(0.01),
-      borrowCap: NormalizedUnitNumber(2244),
-      borrowLiquidity: NormalizedUnitNumber(1244),
+      borrowCap: NormalizedNumber(2244),
+      borrowLiquidity: NormalizedNumber(1244),
       limitedByBorrowCap: true,
       reserveFactor: Percentage(0.05),
       chartProps: {
@@ -84,9 +84,9 @@ const args: MarketDetailsViewProps = {
 
     summary: {
       type: 'default',
-      marketSize: NormalizedUnitNumber(1_243_000_000),
-      borrowed: NormalizedUnitNumber(823_000_000),
-      available: NormalizedUnitNumber(420_000_000),
+      marketSize: NormalizedNumber(1_243_000_000),
+      borrowed: NormalizedNumber(823_000_000),
+      available: NormalizedNumber(420_000_000),
       utilizationRate: Percentage(0.66),
     },
   },
@@ -99,11 +99,11 @@ const args: MarketDetailsViewProps = {
     data: {
       chainId: 1,
       priceOracleAddress: tokens.rETH.address,
-      ratio: NormalizedUnitNumber(1.1),
+      ratio: NormalizedNumber(1.1),
       ratioSourceOracle: CheckedAddress(tokens.rETH.address),
       token: tokens.rETH,
-      price: NormalizedUnitNumber(tokens.rETH.unitPriceUsd.multipliedBy(1.1)),
-      baseAssetPrice: NormalizedUnitNumber(tokens.WETH.unitPriceUsd),
+      price: tokens.rETH.unitPriceUsd.times(1.1),
+      baseAssetPrice: tokens.WETH.unitPriceUsd,
       type: 'yielding-fixed',
       baseAssetSymbol: TokenSymbol('WETH'),
       providedBy: ['chainlink'],

@@ -7,7 +7,7 @@ import { InfoTile } from '@/features/market-details/components/info-tile/InfoTil
 import { ApyTooltip } from '@/ui/molecules/apy-tooltip/ApyTooltip'
 import { CooldownTimer } from '@/ui/molecules/cooldown-timer/CooldownTimer'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { InterestYieldChart, InterestYieldChartProps } from '../charts/interest-yield/InterestYieldChart'
 import { SparkAirdropInfoPanel } from '../spark-airdrop-info-panel/SparkAirdropInfoPanel'
 import { EmptyStatusPanel } from './components/EmptyStatusPanel'
@@ -22,10 +22,10 @@ import { StatusIcon } from './components/status-icon/StatusIcon'
 interface BorrowStatusPanelProps {
   status: BorrowEligibilityStatus
   token: Token
-  totalBorrowed: NormalizedUnitNumber
-  borrowLiquidity: NormalizedUnitNumber
+  totalBorrowed: NormalizedNumber
+  borrowLiquidity: NormalizedNumber
   limitedByBorrowCap: boolean
-  borrowCap?: NormalizedUnitNumber
+  borrowCap?: NormalizedNumber
   reserveFactor: Percentage
   apy: Percentage | undefined
   chartProps: InterestYieldChartProps
@@ -99,7 +99,7 @@ export function BorrowStatusPanel({
 
 interface BorrowCapInfoTileProps {
   token: Token
-  borrowCap: NormalizedUnitNumber
+  borrowCap: NormalizedNumber
   capAutomatorInfo?: CapAutomatorConfig
 }
 
@@ -119,7 +119,7 @@ function BorrowCapInfoTile({ token, borrowCap, capAutomatorInfo }: BorrowCapInfo
 
 interface BorrowLiquidityInfoTileProps {
   token: Token
-  borrowLiquidity: NormalizedUnitNumber
+  borrowLiquidity: NormalizedNumber
   limitedByBorrowCap: boolean
   capAutomatorInfo?: CapAutomatorConfig
 }

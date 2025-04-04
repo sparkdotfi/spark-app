@@ -1,7 +1,7 @@
 import { TokenWithBalance } from '@/domain/common/types'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface ConvertStablesFormFields {
   selectedAssetIn: TokenWithBalance
@@ -16,5 +16,5 @@ export interface ConvertStablesFormFields {
 export interface NormalizedConvertStablesFormValues {
   inToken: Token
   outToken: Token
-  amount: NormalizedUnitNumber
+  amount: NormalizedNumber
 }

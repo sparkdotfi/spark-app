@@ -1,6 +1,6 @@
 import { Token } from '@/domain/types/Token'
 import { TransferFromUserFormNormalizedData } from '@/features/dialogs/common/logic/transfer-from-user/form'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 export interface CreateTxOverviewParams {
   apy: Percentage
@@ -16,7 +16,7 @@ export type TxOverview =
       status: 'success'
       apy: Percentage
       usds: Token
-      rewardsPerYearUsd: NormalizedUnitNumber
+      rewardsPerYearUsd: NormalizedNumber
       unstakingDelay: number
     }
 
@@ -33,7 +33,7 @@ export function createTxOverview({
   }
 
   const stakedAmountUsd = formValues.token.toUSD(amount)
-  const rewardsPerYearUsd = NormalizedUnitNumber(stakedAmountUsd.multipliedBy(apy))
+  const rewardsPerYearUsd = stakedAmountUsd.times(NormalizedNumber(apy))
 
   const unstakingDelay = Math.max(0, nextEpochEnd - timestamp)
 

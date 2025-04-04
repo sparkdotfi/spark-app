@@ -1,12 +1,12 @@
 import { SavingsConverter } from '@/domain/savings-converters/types'
 import { EnsName } from '@/domain/types/EnsName'
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 
 export interface Reward {
   token: Token
-  amount: NormalizedUnitNumber
+  amount: NormalizedNumber
 }
 
 export interface SupportedChain {
@@ -39,8 +39,8 @@ export interface SavingsConverterQueryResults {
 }
 
 export type Airdrop = {
-  tokenReward: NormalizedUnitNumber
-  tokenRatePerSecond: NormalizedUnitNumber
+  tokenReward: NormalizedNumber
+  tokenRatePerSecond: NormalizedNumber
   timestampInMs: number
   tokenRatePrecision: number
   refreshIntervalInMs: number
@@ -53,10 +53,10 @@ export interface AirdropInfo {
 
 export interface RewardsInfo {
   rewards: Reward[]
-  totalClaimableReward: NormalizedUnitNumber
+  totalClaimableReward: NormalizedNumber
   onClaim: () => void
 }
 
 export interface SparkRewardsSummary {
-  totalUsdAmount?: NormalizedUnitNumber
+  totalUsdAmount?: NormalizedNumber
 }

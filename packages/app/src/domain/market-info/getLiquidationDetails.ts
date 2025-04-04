@@ -2,14 +2,13 @@ import { getChainConfigEntry } from '@/config/chain'
 import { TokenWithValue } from '@/domain/common/types'
 import { MarketInfo } from '@/domain/market-info/marketInfo'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber, Percentage, raise } from '@sparkdotfi/common-universal'
-import BigNumber from 'bignumber.js'
+import { NormalizedNumber, Percentage, raise } from '@sparkdotfi/common-universal'
 import { eModeCategoryIdToName } from '../e-mode/constants'
 
 export interface LiquidationDetails {
-  liquidationPrice: NormalizedUnitNumber
+  liquidationPrice: NormalizedNumber
   tokenWithPrice: {
-    priceInUSD: NormalizedUnitNumber
+    priceInUSD: NormalizedNumber
     symbol: TokenSymbol
   }
 }
@@ -33,7 +32,7 @@ export function getLiquidationDetails({
   if (borrows.length !== 1 || borrows[0]!.token.symbol !== defaultAssetToBorrow) {
     return undefined
   }
-  const borrowInUSD = borrows[0]!.value.multipliedBy(marketInfo.findOneTokenBySymbol(defaultAssetToBorrow).unitPriceUsd)
+  const borrowInUSD = borrows[0]!.value.times(marketInfo.findOneTokenBySymbol(defaultAssetToBorrow).unitPriceUsd)
 
   const collateralEModeIds = collaterals.map(
     (collateral) => marketInfo.findOneReserveBySymbol(collateral.token.symbol).eModeCategory?.id,
@@ -45,8 +44,8 @@ export function getLiquidationDetails({
   if (allCollateralsETHCorrelated && WETHPrice) {
     const totalCollateralInWETH = collaterals.reduce((sum, collateral) => {
       const collateralPrice = marketInfo.findOneTokenBySymbol(collateral.token.symbol).unitPriceUsd
-      return NormalizedUnitNumber(sum.plus(collateral.value.multipliedBy(collateralPrice).dividedBy(WETHPrice)))
-    }, NormalizedUnitNumber(0))
+      return sum.plus(collateral.value.times(collateralPrice).div(WETHPrice))
+    }, NormalizedNumber.ZERO)
     const liquidationPrice = calculateLiquidationPrice({
       borrowInUSD,
       depositAmount: totalCollateralInWETH,
@@ -56,7 +55,7 @@ export function getLiquidationDetails({
     return {
       liquidationPrice,
       tokenWithPrice: {
-        priceInUSD: NormalizedUnitNumber(WETHPrice),
+        priceInUSD: WETHPrice,
         symbol: TokenSymbol('ETH'),
       },
     }
@@ -78,15 +77,15 @@ export function getLiquidationDetails({
   return {
     liquidationPrice,
     tokenWithPrice: {
-      priceInUSD: NormalizedUnitNumber(collateralPrice),
+      priceInUSD: collateralPrice,
       symbol: collateral.token.symbol,
     },
   }
 }
 
 interface CalculateLiquidationPriceArguments {
-  borrowInUSD: BigNumber
-  depositAmount: BigNumber
+  borrowInUSD: NormalizedNumber
+  depositAmount: NormalizedNumber
   liquidationThreshold: Percentage
 }
 
@@ -94,12 +93,11 @@ function calculateLiquidationPrice({
   borrowInUSD,
   depositAmount,
   liquidationThreshold,
-}: CalculateLiquidationPriceArguments): NormalizedUnitNumber {
-  const denominator = depositAmount.multipliedBy(liquidationThreshold)
+}: CalculateLiquidationPriceArguments): NormalizedNumber {
+  const denominator = depositAmount.times(NormalizedNumber(liquidationThreshold))
   if (denominator.isZero()) {
-    return NormalizedUnitNumber(0)
+    return NormalizedNumber.ZERO
   }
 
-  const liquidationPrice = borrowInUSD.dividedBy(denominator)
-  return NormalizedUnitNumber(liquidationPrice)
+  return borrowInUSD.div(denominator)
 }

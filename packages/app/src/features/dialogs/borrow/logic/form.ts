@@ -7,7 +7,7 @@ import {
 } from '@/domain/market-validators/validateBorrow'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { MarketWalletInfo } from '@/domain/wallet/useMarketWalletInfo'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { UseFormReturn } from 'react-hook-form'
 import { z } from 'zod'
 import { AssetInputSchema } from '../../common/logic/form'
@@ -16,7 +16,7 @@ import { FormFieldsForDialog } from '../../common/types'
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function getBorrowDialogFormValidator(marketInfo: MarketInfo) {
   return AssetInputSchema.superRefine((field, ctx) => {
-    const value = NormalizedUnitNumber(field.value === '' ? '0' : field.value)
+    const value = NormalizedNumber(field.value === '' ? '0' : field.value)
     const reserve = marketInfo.findOneReserveBySymbol(field.symbol)
 
     const validationIssue = validateBorrow(getValidateBorrowArgs(value, reserve, marketInfo))
@@ -58,7 +58,7 @@ export function getFormFieldsForBorrowDialog({
   // account for interest accrual here.
   const reserveIn1Epoch = marketInfoIn1Epoch.findOneReserveBySymbol(symbol)
 
-  const borrowValidationArgs = getValidateBorrowArgs(NormalizedUnitNumber(0), reserveIn1Epoch, marketInfo)
+  const borrowValidationArgs = getValidateBorrowArgs(NormalizedNumber.ZERO, reserveIn1Epoch, marketInfo)
   const validationIssue = validateBorrow(borrowValidationArgs)
   const borrowMaxValue = getBorrowMaxValue({
     validationIssue,

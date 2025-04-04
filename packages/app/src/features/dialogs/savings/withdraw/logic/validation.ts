@@ -1,7 +1,7 @@
 import { SavingsConverter } from '@/domain/savings-converters/types'
 import { receiverValidationIssueToMessage, validateReceiver } from '@/domain/savings/validateReceiver'
 import { AssetInputSchema } from '@/features/dialogs/common/logic/form'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { Address } from 'viem'
 import { z } from 'zod'
@@ -12,11 +12,11 @@ export function getSavingsWithdrawDialogFormValidator({
   savingsTokenBalance,
   savingsConverter,
 }: {
-  savingsTokenBalance: NormalizedUnitNumber
+  savingsTokenBalance: NormalizedNumber
   savingsConverter: SavingsConverter
 }) {
   return AssetInputSchema.superRefine((field, ctx) => {
-    const value = NormalizedUnitNumber(field.value === '' ? '0' : field.value)
+    const value = NormalizedNumber(field.value === '' ? '0' : field.value)
     const isMaxSelected = field.isMaxSelected
     const usdBalance = savingsConverter.convertToAssets({ shares: savingsTokenBalance })
 
@@ -42,10 +42,10 @@ export type WithdrawValidationIssue =
   | 'usdc-withdraw-cap-reached'
 
 export interface ValidateWithdrawArgs {
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   isMaxSelected: boolean
   user: {
-    balance: NormalizedUnitNumber
+    balance: NormalizedNumber
   }
 }
 
@@ -58,7 +58,7 @@ export function validateWithdraw({
     return undefined
   }
 
-  if (value.isLessThanOrEqualTo(0)) {
+  if (value.lte(0)) {
     return 'value-not-positive'
   }
 
@@ -70,8 +70,8 @@ export function validateWithdraw({
 export interface ValidateWithdrawFromSavingsWithPsm3Args extends ValidateWithdrawArgs {
   isUsdcWithdraw: boolean
   psm3: {
-    usdsBalance: NormalizedUnitNumber
-    usdcBalance: NormalizedUnitNumber
+    usdsBalance: NormalizedNumber
+    usdcBalance: NormalizedNumber
   }
 }
 export function validateWithdrawFromSavingsWithPsm3({

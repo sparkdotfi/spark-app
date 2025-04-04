@@ -12,7 +12,7 @@ import { Token } from '@/domain/types/Token'
 import { sandboxDialogConfig } from '@/features/dialogs/sandbox/SandboxDialog'
 import { Timeframe } from '@/ui/charts/defaults'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
-import { NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, raise } from '@sparkdotfi/common-universal'
 import { useAccount, useChainId } from 'wagmi'
 import { claimDialogConfig } from '../dialogs/claim/ClaimDialog'
 import { stakeDialogConfig } from '../dialogs/stake/StakeDialog'
@@ -44,7 +44,7 @@ export interface UseFarmDetailsResult {
   canClaim: boolean
   showApyChart: boolean
   chartDetails: ChartDetails
-  calculateReward: (timestampInMs: number) => NormalizedUnitNumber
+  calculateReward: (timestampInMs: number) => NormalizedNumber
   refreshGrowingRewardIntervalInMs: number | undefined
   openStakeDialog: (initialToken: Token) => void
   openUnstakeDialog: () => void
@@ -96,15 +96,13 @@ export function useFarmDetails(): UseFarmDetailsResult {
   const mostValuableToken = sortByUsdValueWithUsdsPriority(tokensToDeposit, tokenRepository)[0]
   const canClaim = farm.earned.gt(0) || farm.rewardRate.gt(0)
 
-  function calculateReward(timestampInMs: number): NormalizedUnitNumber {
+  function calculateReward(timestampInMs: number): NormalizedNumber {
     if (farmConfig.rewardType === 'points' && rewardPointsData?.data) {
       const {
         data: { rewardBalance, rewardTokensPerSecond, updateTimestamp },
       } = rewardPointsData
 
-      return NormalizedUnitNumber(
-        rewardBalance.plus(rewardTokensPerSecond.div(1000).multipliedBy(timestampInMs - updateTimestamp)),
-      )
+      return rewardBalance.plus(rewardTokensPerSecond.div(1000).times(timestampInMs - updateTimestamp))
     }
 
     return _calculateReward({

@@ -2,7 +2,7 @@ import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { WithClassname } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { useForm } from 'react-hook-form'
 import { getConvertStablesFormFields } from '../../logic/form/getConvertStablesFormFields'
@@ -13,9 +13,9 @@ const usds = tokens.USDS
 const usdc = tokens.USDC
 const mockTokenRepository = new TokenRepository(
   [
-    { token: dai, balance: NormalizedUnitNumber(2000) },
-    { token: usds, balance: NormalizedUnitNumber(0) },
-    { token: usdc, balance: NormalizedUnitNumber(500) },
+    { token: dai, balance: NormalizedNumber(2000) },
+    { token: usds, balance: NormalizedNumber.ZERO },
+    { token: usdc, balance: NormalizedNumber(500) },
   ],
   {
     DAI: dai.symbol,

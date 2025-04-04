@@ -1,10 +1,10 @@
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber, toBigInt } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, toBigInt } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 
 export interface FormatMinAmountOutForPsm3Params {
   susds: Token
-  susdsAmount: NormalizedUnitNumber
+  susdsAmount: NormalizedNumber
   assetIn: Token
 }
 
@@ -14,7 +14,5 @@ export interface FormatMinAmountOutForPsm3Params {
 // on the assetOut - for instance, for USDC the sUSDS amount is rounded up
 // to 6 decimals.
 export function formatMinAmountOutForPsm3({ susds, susdsAmount, assetIn }: FormatMinAmountOutForPsm3Params): bigint {
-  return toBigInt(
-    susds.toBaseUnit(NormalizedUnitNumber(susdsAmount.decimalPlaces(assetIn.decimals, BigNumber.ROUND_DOWN))),
-  )
+  return toBigInt(susds.toBaseUnit(susdsAmount.decimalPlaces(assetIn.decimals, BigNumber.ROUND_DOWN)))
 }

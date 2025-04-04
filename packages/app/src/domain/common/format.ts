@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 
 import { trimCharEnd } from '@/utils/strings'
 
-import { Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { bigNumberify } from '@sparkdotfi/common-universal'
 
 export interface FormatPercentageOptions {
@@ -26,7 +26,7 @@ export function formatPercentage(
     minimumFractionDigits,
   })
 
-  const value = percentage.multipliedBy(100).toNumber()
+  const value = percentage.times(100).toNumber()
   return `${percentageFormatter.format(value)}${skipSign ? '' : '%'}`
 }
 
@@ -44,7 +44,7 @@ export function formatHealthFactor(healthFactor: BigNumber | undefined): string 
   return healthFactorFormatter.format(bigNumberify(healthFactor).toNumber())
 }
 
-export function formFormat(value: BigNumber, precision = 2): string {
+export function formFormat(value: NormalizedNumber, precision = 2): string {
   const roundedValue = value.toFixed(precision, BigNumber.ROUND_DOWN)
 
   // avoid trailing zeroes
@@ -53,7 +53,7 @@ export function formFormat(value: BigNumber, precision = 2): string {
 }
 
 export function findSignificantPrecision(
-  _unitPriceUsd: BigNumber,
+  _unitPriceUsd: NormalizedNumber,
   desiredPrecisionOfUsd = 2, // 0.01 = cents
 ): number {
   const unitPriceUsd = Number(_unitPriceUsd)

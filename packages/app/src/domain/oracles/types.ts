@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Token } from '../types/Token'
 
 import { OracleFeedProvider } from '@/config/chain/types'
@@ -7,7 +7,7 @@ import { TokenSymbol } from '../types/TokenSymbol'
 
 export interface OracleInfoBase {
   chainId: number
-  price: NormalizedUnitNumber
+  price: NormalizedNumber
   priceOracleAddress: CheckedAddress
   token: Token
 }
@@ -19,10 +19,10 @@ export interface MarketPriceOracleInfo extends OracleInfoBase {
 
 export interface YieldingFixedOracleInfo extends OracleInfoBase {
   type: 'yielding-fixed'
-  ratio: NormalizedUnitNumber
+  ratio: NormalizedNumber
   ratioSourceOracle: CheckedAddress
   baseAssetOracle: CheckedAddress
-  baseAssetPrice: NormalizedUnitNumber
+  baseAssetPrice: NormalizedNumber
   baseAssetSymbol: TokenSymbol
   providedBy: OracleFeedProvider[]
 }

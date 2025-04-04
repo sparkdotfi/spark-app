@@ -2,7 +2,7 @@ import { formatPercentage } from '@/domain/common/format'
 import { MarketSparkRewards } from '@/domain/spark-rewards/types'
 import { Token } from '@/domain/types/Token'
 import { InfoTile } from '@/features/market-details/components/info-tile/InfoTile'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Header } from './components/Header'
 import { InfoTilesGrid } from './components/InfoTilesGrid'
 import { SparkRewardsBadge } from './components/SparkRewardsBadge'
@@ -13,7 +13,7 @@ import { StatusIcon } from './components/status-icon/StatusIcon'
 interface LendStatusPanelProps {
   status: 'yes' // only for dai
   token: Token
-  totalLent: NormalizedUnitNumber
+  totalLent: NormalizedNumber
   apy: Percentage | undefined
   sparkRewards: MarketSparkRewards[]
 }

@@ -8,7 +8,7 @@ import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from 
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { bigNumberify } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { useForm } from 'react-hook-form'
 import { mainnet } from 'viem/chains'
@@ -21,11 +21,11 @@ const susds = tokens.sUSDS
 const usdc = tokens.USDC
 const mockTokenRepository = new TokenRepository(
   [
-    { token: dai, balance: NormalizedUnitNumber(100) },
-    { token: sdai, balance: NormalizedUnitNumber(100) },
-    { token: usds, balance: NormalizedUnitNumber(100) },
-    { token: susds, balance: NormalizedUnitNumber(100) },
-    { token: usdc, balance: NormalizedUnitNumber(100) },
+    { token: dai, balance: NormalizedNumber(100) },
+    { token: sdai, balance: NormalizedNumber(100) },
+    { token: usds, balance: NormalizedNumber(100) },
+    { token: susds, balance: NormalizedNumber(100) },
+    { token: usdc, balance: NormalizedNumber(100) },
   ],
   {
     DAI: dai.symbol,
@@ -79,14 +79,14 @@ const farm: Farm = {
     name: 'Stablecoins',
     assets: [tokens.DAI.symbol, tokens.USDC.symbol],
   },
-  rewardRate: NormalizedUnitNumber(100),
+  rewardRate: NormalizedNumber(100),
   earnedTimestamp: timestamp,
   periodFinish: timestamp * 5,
-  totalSupply: NormalizedUnitNumber(123456),
-  totalRewarded: NormalizedUnitNumber(12345),
+  totalSupply: NormalizedNumber(123456),
+  totalRewarded: NormalizedNumber(12345),
   depositors: 1111,
-  earned: NormalizedUnitNumber(52),
-  staked: NormalizedUnitNumber(100),
+  earned: NormalizedNumber(52),
+  staked: NormalizedNumber(100),
 }
 
 const mockedFarmsInfo = new FarmsInfo([farm])
@@ -103,31 +103,31 @@ const meta: Meta<typeof StakeView> = {
     selectableAssets: [
       {
         token: tokens.USDS,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
       },
       {
         token: tokens.DAI,
-        balance: NormalizedUnitNumber(1),
+        balance: NormalizedNumber(1),
       },
       {
         token: tokens.sDAI,
-        balance: NormalizedUnitNumber(1),
+        balance: NormalizedNumber(1),
       },
     ],
     assetsFields: {
       selectedAsset: {
         token: tokens.USDS,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
         value: '2000',
       },
-      maxValue: NormalizedUnitNumber(50000),
+      maxValue: NormalizedNumber(50000),
       changeAsset: () => {},
     },
     objectives: [
       {
         type: 'stake',
         token: tokens.USDS,
-        amount: NormalizedUnitNumber(100),
+        amount: NormalizedNumber(100),
         farm: farm.address,
       },
     ],
@@ -142,10 +142,10 @@ const meta: Meta<typeof StakeView> = {
       apy: Percentage(0.05),
       stakingToken: tokens.USDS,
       rewardToken: tokens.SKY,
-      rewardsPerYear: NormalizedUnitNumber(542),
+      rewardsPerYear: NormalizedNumber(542),
       routeToStakingToken: [
-        { token: tokens.USDC, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
-        { token: tokens.USDS, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
+        { token: tokens.USDC, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
+        { token: tokens.USDS, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
       ],
     },
     actionsContext: {
@@ -170,17 +170,17 @@ export const SacrificeYield: Story = {
     assetsFields: {
       selectedAsset: {
         token: tokens.sDAI,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
         value: '2000',
       },
-      maxValue: NormalizedUnitNumber(50000),
+      maxValue: NormalizedNumber(50000),
       changeAsset: () => {},
     },
     objectives: [
       {
         type: 'stake',
         token: tokens.sDAI,
-        amount: NormalizedUnitNumber(100),
+        amount: NormalizedNumber(100),
         farm: farm.address,
       },
     ],
@@ -190,10 +190,10 @@ export const SacrificeYield: Story = {
       showEstimatedRewards: true,
       stakingToken: tokens.USDS,
       rewardToken: tokens.SKY,
-      rewardsPerYear: NormalizedUnitNumber(542),
+      rewardsPerYear: NormalizedNumber(542),
       routeToStakingToken: [
-        { token: tokens.sDAI, value: NormalizedUnitNumber(1180.74), usdValue: NormalizedUnitNumber(1300.74) },
-        { token: tokens.USDS, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
+        { token: tokens.sDAI, value: NormalizedNumber(1180.74), usdValue: NormalizedNumber(1300.74) },
+        { token: tokens.USDS, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
       ],
     },
   },
@@ -209,10 +209,10 @@ export const DesktopZeroApy: Story = {
       showEstimatedRewards: true,
       stakingToken: tokens.USDS,
       rewardToken: tokens.SKY,
-      rewardsPerYear: NormalizedUnitNumber(542),
+      rewardsPerYear: NormalizedNumber(542),
       routeToStakingToken: [
-        { token: tokens.USDC, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
-        { token: tokens.USDS, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
+        { token: tokens.USDC, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
+        { token: tokens.USDS, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
       ],
     },
   },

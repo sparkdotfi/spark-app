@@ -4,7 +4,7 @@ import { mainnet } from 'viem/chains'
 
 import { SparkRewardsPageObject } from '@/pages/SparkRewards.PageObject'
 import { SPARK_REWARDS_ACTIVE_BLOCK_NUMBER, TOKENS_ON_FORK } from '@/test/e2e/constants'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 test.describe('Spark Rewards', () => {
   let sparkRewardsPage: SparkRewardsPageObject
@@ -19,7 +19,7 @@ test.describe('Spark Rewards', () => {
         sparkRewards: [
           {
             rewardTokenSymbol: 'USDS',
-            cumulativeAmount: NormalizedUnitNumber(101),
+            cumulativeAmount: NormalizedNumber(101),
           },
         ],
       },

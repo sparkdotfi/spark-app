@@ -5,7 +5,7 @@ import { MarketPriceOracleInfo, YieldingFixedOracleInfo } from '@/domain/oracles
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { OraclePanel } from './OraclePanel'
@@ -28,7 +28,7 @@ export const FixedDesktop: Story = {
     data: {
       type: 'fixed',
       token: tokens.DAI,
-      price: NormalizedUnitNumber(1),
+      price: NormalizedNumber(1),
       chainId: 1,
       priceOracleAddress: CheckedAddress('0x1234567890123456789012345678901234567890'),
     },
@@ -41,7 +41,7 @@ const marketPriceData: MarketPriceOracleInfo = {
   type: 'market-price',
   providedBy: ['chainlink'],
   token: tokens.WETH,
-  price: NormalizedUnitNumber(2235.0672),
+  price: NormalizedNumber(2235.0672),
   chainId: 1,
   priceOracleAddress: CheckedAddress('0x1234567890123456789012345678901234567890'),
 }
@@ -67,7 +67,7 @@ export const UnderlyingAssetDesktop: Story = {
       type: 'underlying-asset',
       asset: 'EUR (FIAT)',
       token: tokens.EURe,
-      price: NormalizedUnitNumber(1.24),
+      price: NormalizedNumber(1.24),
       chainId: 1,
       priceOracleAddress: CheckedAddress('0x1234567890123456789012345678901234567890'),
       providedBy: ['chainlink', 'chronicle', 'redstone'],
@@ -81,9 +81,9 @@ const yieldingFixedData: YieldingFixedOracleInfo = {
   type: 'yielding-fixed',
   baseAssetSymbol: TokenSymbol('ETH'),
   providedBy: ['chainlink'],
-  ratio: NormalizedUnitNumber(2.137),
+  ratio: NormalizedNumber(2.137),
   ratioSourceOracle: CheckedAddress(tokens.weETH.address),
-  price: NormalizedUnitNumber(4776.34),
+  price: NormalizedNumber(4776.34),
   token: tokens.weETH,
   chainId: 1,
   priceOracleAddress: CheckedAddress('0x28897036f8459bFBa886083dD6b4Ce4d2f14a57F'),
@@ -111,7 +111,7 @@ export const UnknownDesktop: Story = {
   args: {
     data: {
       type: 'unknown',
-      price: NormalizedUnitNumber(1.06),
+      price: NormalizedNumber(1.06),
       token: tokens.sDAI,
       chainId: 1,
       priceOracleAddress: CheckedAddress('0x1234567890123456789012345678901234567890'),

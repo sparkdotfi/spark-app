@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { mainnet } from 'viem/chains'
 import { AppConfig } from '.'
 import { clientEnv } from './clientEnv'
@@ -10,8 +10,8 @@ export function getDefaultAppConfig(): AppConfig {
       chainName: 'Sandbox',
 
       mintBalances: {
-        etherAmt: NormalizedUnitNumber(10_000),
-        tokenAmt: NormalizedUnitNumber(10_000),
+        etherAmt: NormalizedNumber(10_000),
+        tokenAmt: NormalizedNumber(10_000),
         tokens: {
           DAI: {
             address: '0x6B175474E89094C44Da98b954EedeAC495271d0F',

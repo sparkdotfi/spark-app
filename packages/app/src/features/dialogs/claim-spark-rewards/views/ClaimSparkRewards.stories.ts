@@ -4,7 +4,7 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 import { encodeFunctionResult, zeroAddress } from 'viem'
 
-import { Hex, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { Hex, NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { incentiveControllerAbi } from '@/config/abis/incentiveControllerAbi'
 import { mainnet } from 'viem/chains'
@@ -34,7 +34,7 @@ const meta: Meta<typeof ClaimSparkRewardsView> = {
         source: 'campaigns',
         token: tokens.RED,
         epoch: 1,
-        cumulativeAmount: NormalizedUnitNumber(1000),
+        cumulativeAmount: NormalizedNumber(1000),
         merkleRoot: Hex.random(),
         merkleProof: Array.from({ length: 7 }, () => Hex.random()),
       },
@@ -43,7 +43,7 @@ const meta: Meta<typeof ClaimSparkRewardsView> = {
         source: 'campaigns',
         token: tokens.USDS,
         epoch: 1,
-        cumulativeAmount: NormalizedUnitNumber(250),
+        cumulativeAmount: NormalizedNumber(250),
         merkleRoot: Hex.random(),
         merkleProof: Array.from({ length: 7 }, () => Hex.random()),
       },
@@ -56,11 +56,11 @@ const meta: Meta<typeof ClaimSparkRewardsView> = {
     claims: [
       {
         token: tokens.RED,
-        amountToClaim: NormalizedUnitNumber(100),
+        amountToClaim: NormalizedNumber(100),
       },
       {
         token: tokens.USDS,
-        amountToClaim: NormalizedUnitNumber(1000),
+        amountToClaim: NormalizedNumber(1000),
       },
     ],
   } satisfies ClaimSparkRewardsViewProps,

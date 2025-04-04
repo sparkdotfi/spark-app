@@ -6,15 +6,15 @@ import { Panel } from '@/ui/atoms/panel/Panel'
 import { GrowingReward } from '@/ui/molecules/growing-reward/GrowingReward'
 import { Info } from '@/ui/molecules/info/Info'
 import { cn } from '@/ui/utils/style'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { ReactNode } from 'react'
 
 export interface StakingRewardsPanelProps {
-  claimableRewards: NormalizedUnitNumber
-  stakedAmount: NormalizedUnitNumber
+  claimableRewards: NormalizedNumber
+  stakedAmount: NormalizedNumber
   rewardToken: Token
   stakingToken: Token
-  calculateReward: (timestampInMs: number) => NormalizedUnitNumber
+  calculateReward: (timestampInMs: number) => NormalizedNumber
   refreshGrowingRewardIntervalInMs: number | undefined
   isRewardOutOfSync: boolean
   openClaimDialog: () => void

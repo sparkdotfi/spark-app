@@ -3,6 +3,7 @@ import { describe, it } from 'mocha'
 
 import BigNumber from 'bignumber.js'
 
+import { NormalizedNumber } from '../types/NormalizedNumber.js'
 import { bigNumberify, parseBigNumber } from './bigNumber.js'
 
 describe(`${BigNumber.name}.${BigNumber.toString.name}`, () => {
@@ -43,6 +44,10 @@ describe(bigNumberify.name, () => {
 
   it('returns correct value for BigNumber arguments', () => {
     expect(bigNumberify(BigNumber(1))).toEqual(BigNumber(1))
+  })
+
+  it(`returns correct value for ${NormalizedNumber.name} arguments`, () => {
+    expect(bigNumberify(NormalizedNumber(1))).toEqual(BigNumber(1))
   })
 })
 

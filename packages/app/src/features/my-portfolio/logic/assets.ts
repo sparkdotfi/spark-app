@@ -5,13 +5,13 @@ import { ReserveStatus } from '@/domain/market-info/reserve-status'
 import { Token } from '@/domain/types/Token'
 import { MarketWalletInfo } from '@/domain/wallet/useMarketWalletInfo'
 import { applyTransformers } from '@/utils/applyTransformers'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 export interface Deposit {
   token: Token
   reserveStatus: ReserveStatus
-  balance: NormalizedUnitNumber
-  deposit: NormalizedUnitNumber
+  balance: NormalizedNumber
+  deposit: NormalizedNumber
   supplyAPY: Percentage | undefined
   isUsedAsCollateral: boolean
 }
@@ -19,8 +19,8 @@ export interface Deposit {
 export interface Borrow {
   token: Token
   reserveStatus: ReserveStatus
-  available: NormalizedUnitNumber
-  debt: NormalizedUnitNumber
+  available: NormalizedNumber
+  debt: NormalizedNumber
   borrowAPY: Percentage | undefined
 }
 
@@ -60,11 +60,9 @@ function transformNativeAssetDeposit({
 
   return {
     ...deposit,
-    balance: NormalizedUnitNumber(
-      walletInfo
-        .findWalletBalanceForToken(position.reserve.token)
-        .plus(walletInfo.findWalletBalanceForSymbol(nativeAssetInfo.nativeAssetSymbol)),
-    ),
+    balance: walletInfo
+      .findWalletBalanceForToken(position.reserve.token)
+      .plus(walletInfo.findWalletBalanceForSymbol(nativeAssetInfo.nativeAssetSymbol)),
   }
 }
 

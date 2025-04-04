@@ -1,7 +1,7 @@
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { tokens } from '@sb/tokens'
 import { ClaimRewardsOverviewPanel } from './ClaimRewardsOverviewPanel'
@@ -13,11 +13,11 @@ const meta: Meta<typeof ClaimRewardsOverviewPanel> = {
     rewards: [
       {
         token: tokens.wstETH,
-        amount: NormalizedUnitNumber(0.00157),
+        amount: NormalizedNumber(0.00157),
       },
       {
         token: tokens.WBTC,
-        amount: NormalizedUnitNumber(0.0003498),
+        amount: NormalizedNumber(0.0003498),
       },
     ],
   },

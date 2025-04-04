@@ -3,7 +3,7 @@ import { DEFAULT_BLOCK_NUMBER } from '@/test/e2e/constants'
 import { overrideInfoSkyRouteWithHAR } from '@/test/e2e/info-sky'
 import { setup } from '@/test/e2e/setup'
 import { test } from '@playwright/test'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Address } from 'viem'
 import { mainnet } from 'viem/chains'
 import { StakeDialogPageObject } from '../../../stake/StakeDialog.PageObject'
@@ -154,7 +154,7 @@ test.describe('Withdraw max DAI from SKY farm', () => {
     await farmDetailsPage.expectTokenBalance({
       address: account,
       symbol: 'SKY',
-      balance: NormalizedUnitNumber('49.4365427929088'),
+      balance: NormalizedNumber('49.4365427929088'),
     })
   })
 })

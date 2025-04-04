@@ -7,7 +7,7 @@ import { InfoTile } from '@/features/market-details/components/info-tile/InfoTil
 import { ApyTooltip } from '@/ui/molecules/apy-tooltip/ApyTooltip'
 import { CooldownTimer } from '@/ui/molecules/cooldown-timer/CooldownTimer'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { SparkAirdropInfoPanel } from '../spark-airdrop-info-panel/SparkAirdropInfoPanel'
 import { EmptyStatusPanel } from './components/EmptyStatusPanel'
 import { Header } from './components/Header'
@@ -21,13 +21,13 @@ import { StatusIcon } from './components/status-icon/StatusIcon'
 interface SupplyStatusPanelProps {
   status: SupplyAvailabilityStatus
   token: Token
-  totalSupplied: NormalizedUnitNumber
+  totalSupplied: NormalizedNumber
   apy: Percentage | undefined
   hasSparkAirdrop: boolean
-  supplyCap?: NormalizedUnitNumber
+  supplyCap?: NormalizedNumber
   capAutomatorInfo?: CapAutomatorConfig
   sparkRewards: MarketSparkRewards[]
-  instantlyAvailableToSupply?: NormalizedUnitNumber
+  instantlyAvailableToSupply?: NormalizedNumber
 }
 
 export function SupplyStatusPanel({
@@ -85,7 +85,7 @@ export function SupplyStatusPanel({
 interface SupplyCapInfoTileProps {
   token: Token
   capAutomatorInfo?: CapAutomatorConfig
-  supplyCap: NormalizedUnitNumber
+  supplyCap: NormalizedNumber
 }
 
 function SupplyCapInfoTile({ token, capAutomatorInfo, supplyCap }: SupplyCapInfoTileProps) {
@@ -104,7 +104,7 @@ function SupplyCapInfoTile({ token, capAutomatorInfo, supplyCap }: SupplyCapInfo
 
 interface InstantlyAvailableToSupplyInfoTileProps {
   token: Token
-  instantlyAvailableToSupply: NormalizedUnitNumber
+  instantlyAvailableToSupply: NormalizedNumber
   capAutomatorInfo?: CapAutomatorConfig
 }
 

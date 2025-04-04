@@ -2,11 +2,11 @@ import { formatPercentage } from '@/domain/common/format'
 import { Token } from '@/domain/types/Token'
 import { HorizontalScroll } from '@/ui/atoms/horizontal-scroll/HorizontalScroll'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 export interface TransactionOverviewFarmApyProps {
   apy: Percentage
-  rewardsPerYear: NormalizedUnitNumber
+  rewardsPerYear: NormalizedNumber
   rewardToken: Token
 }
 

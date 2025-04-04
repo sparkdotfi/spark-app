@@ -13,7 +13,7 @@ import { getTransferFromUserFormValidator } from '@/features/dialogs/common/logi
 import { FormFieldsForDialog, PageState, PageStatus } from '@/features/dialogs/common/types'
 import { useSpkStakingData } from '@/features/spk-staking/logic/useSpkStakingData'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { assert, CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { assert, CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useState } from 'react'
 import { UseFormReturn, useForm } from 'react-hook-form'
 import { useAccount, useChainId, useConfig } from 'wagmi'
@@ -26,7 +26,7 @@ export interface UseStakeDialogResult {
   form: UseFormReturn<AssetInputSchema>
   objectives: Objective[]
   spk: Token
-  staked: NormalizedUnitNumber
+  staked: NormalizedNumber
   pageStatus: PageStatus
   txOverview: TxOverview
 }

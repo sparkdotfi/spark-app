@@ -1,4 +1,5 @@
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
+import BigNumber from 'bignumber.js'
 import { validateSetUserEMode } from './validateSetUserEMode'
 
 describe(validateSetUserEMode.name, () => {
@@ -29,7 +30,7 @@ describe(validateSetUserEMode.name, () => {
           requestedEModeCategory,
           user: {
             eModeCategoryId: 0,
-            reserves: [{ eModeCategoryId: 2, borrowBalance: NormalizedUnitNumber(1) }],
+            reserves: [{ eModeCategoryId: 2, borrowBalance: NormalizedNumber(1) }],
           },
         }),
       ).toBe('borrowed-assets-emode-category-mismatch')
@@ -40,8 +41,8 @@ describe(validateSetUserEMode.name, () => {
           user: {
             eModeCategoryId: 0,
             reserves: [
-              { eModeCategoryId: 1, borrowBalance: NormalizedUnitNumber(2) },
-              { eModeCategoryId: 2, borrowBalance: NormalizedUnitNumber(1) },
+              { eModeCategoryId: 1, borrowBalance: NormalizedNumber(2) },
+              { eModeCategoryId: 2, borrowBalance: NormalizedNumber(1) },
             ],
           },
         }),
@@ -58,7 +59,7 @@ describe(validateSetUserEMode.name, () => {
           user: {
             eModeCategoryId: 1,
             reserves: [],
-            healthFactorAfterChangingEMode: NormalizedUnitNumber(0.9),
+            healthFactorAfterChangingEMode: BigNumber(0.9),
           },
         }),
       ).toBe('exceeds-ltv')
@@ -93,9 +94,9 @@ describe(validateSetUserEMode.name, () => {
           user: {
             eModeCategoryId: 0,
             reserves: [
-              { eModeCategoryId: 1, borrowBalance: NormalizedUnitNumber(1) },
-              { eModeCategoryId: 1, borrowBalance: NormalizedUnitNumber(2) },
-              { eModeCategoryId: 2, borrowBalance: NormalizedUnitNumber(0) },
+              { eModeCategoryId: 1, borrowBalance: NormalizedNumber(1) },
+              { eModeCategoryId: 1, borrowBalance: NormalizedNumber(2) },
+              { eModeCategoryId: 2, borrowBalance: NormalizedNumber.ZERO },
             ],
           },
         }),
@@ -114,8 +115,8 @@ describe(validateSetUserEMode.name, () => {
           user: {
             eModeCategoryId: 1,
             reserves: [
-              { eModeCategoryId: 1, borrowBalance: NormalizedUnitNumber(1) },
-              { eModeCategoryId: 1, borrowBalance: NormalizedUnitNumber(2) },
+              { eModeCategoryId: 1, borrowBalance: NormalizedNumber(1) },
+              { eModeCategoryId: 1, borrowBalance: NormalizedNumber(2) },
             ],
           },
         }),
@@ -132,7 +133,7 @@ describe(validateSetUserEMode.name, () => {
           user: {
             eModeCategoryId: 1,
             reserves: [],
-            healthFactorAfterChangingEMode: NormalizedUnitNumber(1.1),
+            healthFactorAfterChangingEMode: BigNumber(1.1),
           },
         }),
       ).toBe(undefined)

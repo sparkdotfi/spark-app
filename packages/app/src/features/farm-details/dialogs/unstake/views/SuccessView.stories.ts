@@ -1,7 +1,7 @@
 import { WithClassname, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { SuccessView } from './SuccessView'
 
@@ -12,11 +12,11 @@ const meta: Meta<typeof SuccessView> = {
   args: {
     outcome: {
       token: tokens.DAI,
-      value: NormalizedUnitNumber(2000),
+      value: NormalizedNumber(2000),
     },
     reward: {
       token: tokens.SKY,
-      value: NormalizedUnitNumber(500),
+      value: NormalizedNumber(500),
     },
     isExiting: false,
     closeDialog: () => {},
@@ -38,8 +38,8 @@ export const ExitNoApiData: Story = {
   args: {
     isExiting: true,
     reward: {
-      token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber(0) }),
-      value: NormalizedUnitNumber(500),
+      token: tokens.SKY.clone({ unitPriceUsd: NormalizedNumber.ZERO }),
+      value: NormalizedNumber(500),
     },
   },
 }

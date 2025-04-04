@@ -1,10 +1,10 @@
 import BigNumber from 'bignumber.js'
 
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 interface CalculateMaxBorrowBasedOnCollateralParams {
-  totalCollateralUSD: NormalizedUnitNumber
-  totalBorrowsUSD: NormalizedUnitNumber
+  totalCollateralUSD: NormalizedNumber
+  totalBorrowsUSD: NormalizedNumber
   maxLoanToValue: Percentage
   borrowingAssetPriceUsd: BigNumber
 }
@@ -14,11 +14,9 @@ export function calculateMaxBorrowBasedOnCollateral({
   totalBorrowsUSD,
   maxLoanToValue,
   borrowingAssetPriceUsd,
-}: CalculateMaxBorrowBasedOnCollateralParams): NormalizedUnitNumber {
-  const collateralBasedBorrowLimit = totalCollateralUSD
-    .multipliedBy(maxLoanToValue)
+}: CalculateMaxBorrowBasedOnCollateralParams): NormalizedNumber {
+  return totalCollateralUSD
+    .times(NormalizedNumber(maxLoanToValue))
     .minus(totalBorrowsUSD)
-    .dividedBy(borrowingAssetPriceUsd)
-
-  return NormalizedUnitNumber(collateralBasedBorrowLimit)
+    .div(NormalizedNumber(borrowingAssetPriceUsd))
 }

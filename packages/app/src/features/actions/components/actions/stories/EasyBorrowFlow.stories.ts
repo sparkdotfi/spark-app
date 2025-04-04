@@ -5,7 +5,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { zeroAddress } from 'viem'
 
 import { ActionHandler } from '@/features/actions/logic/types'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 
 import { Actions } from '../Actions'
@@ -29,7 +29,7 @@ const actionHandlers: ActionHandler[] = [
       type: 'approve',
       token: tokens.wstETH,
       spender: CheckedAddress(zeroAddress),
-      value: NormalizedUnitNumber(1),
+      value: NormalizedNumber(1),
     },
     state: { status: 'success' },
     onAction: () => {},
@@ -38,7 +38,7 @@ const actionHandlers: ActionHandler[] = [
     action: {
       type: 'deposit',
       token: tokens.wstETH,
-      value: NormalizedUnitNumber(1),
+      value: NormalizedNumber(1),
     },
     state: { status: 'success' },
     onAction: () => {},
@@ -48,7 +48,7 @@ const actionHandlers: ActionHandler[] = [
       type: 'approve',
       token: tokens.rETH,
       spender: CheckedAddress(zeroAddress),
-      value: NormalizedUnitNumber(1),
+      value: NormalizedNumber(1),
     },
     state: { status: 'loading' },
     onAction: () => {},
@@ -57,7 +57,7 @@ const actionHandlers: ActionHandler[] = [
     action: {
       type: 'deposit',
       token: tokens.rETH,
-      value: NormalizedUnitNumber(1),
+      value: NormalizedNumber(1),
     },
     state: { status: 'disabled' },
     onAction: () => {},

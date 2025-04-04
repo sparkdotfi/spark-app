@@ -8,7 +8,7 @@ import { Info } from '@/ui/molecules/info/Info'
 import { AssetInput } from '@/ui/organisms/asset-input/AssetInput'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { PlusIcon } from 'lucide-react'
 import { Control } from 'react-hook-form'
 import { EasyBorrowFormSchema } from '../../logic/form/validation'
@@ -18,7 +18,7 @@ import { TokenSummary } from './TokenSummary'
 export interface DepositsProps {
   selectedAssets: TokenWithBalance[]
   allAssets: TokenWithBalance[]
-  assetToMaxValue: Record<TokenSymbol, NormalizedUnitNumber>
+  assetToMaxValue: Record<TokenSymbol, NormalizedNumber>
   addAsset: () => void
   removeAsset: (index: number) => void
   changeAsset: (index: number, newAssetSymbol: TokenSymbol) => void

@@ -1,5 +1,5 @@
 export * from './types/BaseUnitNumber.js'
-export * from './types/NormalizedUnitNumber.js'
+export * from './types/NormalizedNumber.js'
 export * from './types/Percentage.js'
 export * from './types/CheckedAddress.js'
 export * from './types/Hash.js'

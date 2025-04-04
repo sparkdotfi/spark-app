@@ -2,7 +2,7 @@ import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory } from '@sb/viewports'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 import { AccountsNavigation } from './AccountsNavigation'
@@ -23,17 +23,17 @@ function InteractiveNavigation({ variant }: { variant: 'vertical' | 'horizontal'
     {
       underlyingToken: tokens.USDS,
       savingsToken: tokens.sUSDS,
-      underlyingTokenDeposit: NormalizedUnitNumber(1_000_000_000),
+      underlyingTokenDeposit: NormalizedNumber(1_000_000_000),
     },
     {
       underlyingToken: tokens.USDC,
       savingsToken: tokens.sUSDC,
-      underlyingTokenDeposit: NormalizedUnitNumber(0),
+      underlyingTokenDeposit: NormalizedNumber.ZERO,
     },
     {
       underlyingToken: tokens.DAI,
       savingsToken: tokens.sDAI,
-      underlyingTokenDeposit: NormalizedUnitNumber(200_000),
+      underlyingTokenDeposit: NormalizedNumber(200_000),
     },
   ]
 

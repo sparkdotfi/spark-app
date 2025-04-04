@@ -2,7 +2,7 @@ import { getMockReserve } from '@/test/integration/constants'
 import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import BigNumber from 'bignumber.js'
 import { useForm } from 'react-hook-form'
@@ -20,20 +20,20 @@ const meta: Meta<typeof RepayView> = {
     repayOptions: [
       {
         token: tokens.DAI,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
       },
       {
         token: tokens.ETH,
-        balance: NormalizedUnitNumber(10),
+        balance: NormalizedNumber(10),
       },
     ],
     assetsToRepayFields: {
       selectedAsset: {
         token: tokens.DAI,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
         value: '2000',
       },
-      maxValue: NormalizedUnitNumber(5000),
+      maxValue: NormalizedNumber(5000),
       changeAsset: () => {},
     },
     objectives: [
@@ -41,8 +41,8 @@ const meta: Meta<typeof RepayView> = {
         type: 'repay',
         reserve: getMockReserve({ token: tokens.DAI }),
         useAToken: false,
-        value: NormalizedUnitNumber(2000),
-        requiredApproval: NormalizedUnitNumber(2000),
+        value: NormalizedNumber(2000),
+        requiredApproval: NormalizedNumber(2000),
       },
     ],
     pageStatus: {
@@ -52,11 +52,11 @@ const meta: Meta<typeof RepayView> = {
     },
     currentPositionOverview: {
       healthFactor: BigNumber(4),
-      debt: NormalizedUnitNumber(5000),
+      debt: NormalizedNumber(5000),
     },
     updatedPositionOverview: {
       healthFactor: BigNumber(2),
-      debt: NormalizedUnitNumber(2000),
+      debt: NormalizedNumber(2000),
     },
   },
 }

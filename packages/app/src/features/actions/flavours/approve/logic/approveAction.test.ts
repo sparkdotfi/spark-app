@@ -5,14 +5,14 @@ import { handlers } from '@/test/integration/mockTransport'
 import { createUpdatableHandler } from '@/test/integration/mockTransport/handlers'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
 import { toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { erc20Abi } from 'viem'
 import { mainnet } from 'viem/chains'
 import { describe, test } from 'vitest'
 import { createApproveActionConfig } from './approveAction'
 
-const defaultValue = NormalizedUnitNumber(1)
+const defaultValue = NormalizedNumber(1)
 const token = getMockToken({ symbol: TokenSymbol('TEST') })
 const account = testAddresses.alice
 const spender = testAddresses.bob

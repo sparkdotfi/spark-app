@@ -6,13 +6,13 @@ import { getMockToken, testAddresses } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
 import { CheckedAddress, toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { mainnet } from 'viem/chains'
 import { describe, test } from 'vitest'
 import { createBorrowActionConfig } from './borrowAction'
 
-const borrowValue = NormalizedUnitNumber(1)
+const borrowValue = NormalizedNumber(1)
 const borrowToken = getMockToken({ symbol: TokenSymbol('TEST') })
 const nativeAsset = getMockToken({ address: CheckedAddress.EEEE() })
 const account = testAddresses.alice

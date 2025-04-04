@@ -5,7 +5,7 @@ import { TestnetClient } from '@/features/dialogs/sandbox/tenderly/TenderlyClien
 import { TOKENS_ON_FORK } from '@/test/e2e/constants'
 import { randomHexId } from '@/utils/random'
 import { BaseUnitNumber, Hex } from '@sparkdotfi/common-universal'
-import { CheckedAddress, NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
+import { CheckedAddress, NormalizedNumber, raise } from '@sparkdotfi/common-universal'
 import { http, HttpResponse } from 'msw'
 import type { SetupWorker } from 'msw/browser'
 import { mainnet } from 'viem/chains'
@@ -22,22 +22,22 @@ export interface SetupSparkRewardsParams {
 
 type MockedRewardConfig = {
   rewardTokenSymbol: keyof (typeof TOKENS_ON_FORK)[typeof mainnet.id]
-  cumulativeAmount: NormalizedUnitNumber
-  rewardTokenPrice?: NormalizedUnitNumber
+  cumulativeAmount: NormalizedNumber
+  rewardTokenPrice?: NormalizedNumber
   restrictedCountryCodes: string[]
 }
 
 const REWARDS_CONFIG: MockedRewardConfig[] = [
   {
     rewardTokenSymbol: 'USDC',
-    cumulativeAmount: NormalizedUnitNumber(152),
-    rewardTokenPrice: NormalizedUnitNumber(1),
+    cumulativeAmount: NormalizedNumber(152),
+    rewardTokenPrice: NormalizedNumber(1),
     restrictedCountryCodes: [],
   },
   {
     rewardTokenSymbol: 'wstETH',
-    cumulativeAmount: NormalizedUnitNumber(0.0178),
-    rewardTokenPrice: NormalizedUnitNumber(2893.09),
+    cumulativeAmount: NormalizedNumber(0.0178),
+    rewardTokenPrice: NormalizedNumber(2893.09),
     restrictedCountryCodes: ['US'],
   },
 ]
@@ -45,8 +45,8 @@ const REWARDS_CONFIG: MockedRewardConfig[] = [
 const MAINNET_REWARDS_CONFIG: MockedRewardConfig[] = [
   {
     rewardTokenSymbol: 'USDS',
-    cumulativeAmount: NormalizedUnitNumber(83),
-    rewardTokenPrice: NormalizedUnitNumber(1),
+    cumulativeAmount: NormalizedNumber(83),
+    rewardTokenPrice: NormalizedNumber(1),
     restrictedCountryCodes: [],
   },
 ]
@@ -117,9 +117,9 @@ export async function setupSparkRewards({
   function prepareRewards(config: MockedRewardConfig[]): {
     tokenSymbol: string
     tokenAddress: CheckedAddress
-    cumulativeAmount: NormalizedUnitNumber
+    cumulativeAmount: NormalizedNumber
     cumulativeAmountBaseUnit: BaseUnitNumber
-    rewardTokenPrice?: NormalizedUnitNumber
+    rewardTokenPrice?: NormalizedNumber
     restrictedCountryCodes: string[]
   }[] {
     return config.map(({ rewardTokenSymbol, rewardTokenPrice, cumulativeAmount, restrictedCountryCodes }) => {
@@ -129,7 +129,7 @@ export async function setupSparkRewards({
         tokenSymbol: rewardTokenSymbol,
         tokenAddress: CheckedAddress(tokenConfig.address),
         cumulativeAmount,
-        cumulativeAmountBaseUnit: NormalizedUnitNumber.toBaseUnit(cumulativeAmount, tokenConfig.decimals),
+        cumulativeAmountBaseUnit: cumulativeAmount.toBaseUnit(tokenConfig.decimals),
         rewardTokenPrice,
         restrictedCountryCodes,
       }

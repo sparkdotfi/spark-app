@@ -1,11 +1,11 @@
 import { Token } from '@/domain/types/Token'
 import { TokenIcon } from '@/ui/atoms/token-icon/TokenIcon'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface TransactionOverviewStakedInFarmProps {
   token: Token
-  amount: NormalizedUnitNumber
+  amount: NormalizedNumber
   farmName: string
 }
 

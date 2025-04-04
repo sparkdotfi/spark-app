@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { ValidateSetUseAsCollateralParams, validateSetUseAsCollateral } from './validateSetUseAsCollateral'
 
 describe(validateSetUseAsCollateral.name, () => {
@@ -9,7 +9,7 @@ describe(validateSetUseAsCollateral.name, () => {
       validateSetUseAsCollateral({
         useAsCollateral: true,
         asset: {
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedNumber.ZERO,
           status: 'active',
           isUsedAsCollateral: true,
           maxLtv: Percentage(0.8),
@@ -26,7 +26,7 @@ describe(validateSetUseAsCollateral.name, () => {
       validateSetUseAsCollateral({
         useAsCollateral: false,
         asset: {
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedNumber.ZERO,
           status: 'active',
           isUsedAsCollateral: false,
           maxLtv: Percentage(0.8),
@@ -45,7 +45,7 @@ describe(validateSetUseAsCollateral.name, () => {
       validateSetUseAsCollateral({
         useAsCollateral: true,
         asset: {
-          balance: NormalizedUnitNumber(0),
+          balance: NormalizedNumber.ZERO,
           status: 'active',
           isUsedAsCollateral: false,
           maxLtv: Percentage(0.8),
@@ -63,7 +63,7 @@ describe(validateSetUseAsCollateral.name, () => {
     const args: ValidateSetUseAsCollateralParams = {
       useAsCollateral: true,
       asset: {
-        balance: NormalizedUnitNumber(10),
+        balance: NormalizedNumber(10),
         status: 'not-active',
         isUsedAsCollateral: false,
         maxLtv: Percentage(0.8),
@@ -103,7 +103,7 @@ describe(validateSetUseAsCollateral.name, () => {
         validateSetUseAsCollateral({
           useAsCollateral: true,
           asset: {
-            balance: NormalizedUnitNumber(10),
+            balance: NormalizedNumber(10),
             status: 'active',
             isUsedAsCollateral: false,
             maxLtv: Percentage(0),
@@ -122,7 +122,7 @@ describe(validateSetUseAsCollateral.name, () => {
         validateSetUseAsCollateral({
           useAsCollateral: true,
           asset: {
-            balance: NormalizedUnitNumber(10),
+            balance: NormalizedNumber(10),
             status: 'active',
             isUsedAsCollateral: false,
             maxLtv: Percentage(0.8),
@@ -143,7 +143,7 @@ describe(validateSetUseAsCollateral.name, () => {
         validateSetUseAsCollateral({
           useAsCollateral: false,
           asset: {
-            balance: NormalizedUnitNumber(10),
+            balance: NormalizedNumber(10),
             status: 'active',
             isUsedAsCollateral: true,
             maxLtv: Percentage(0.8),
@@ -162,7 +162,7 @@ describe(validateSetUseAsCollateral.name, () => {
         validateSetUseAsCollateral({
           useAsCollateral: false,
           asset: {
-            balance: NormalizedUnitNumber(10),
+            balance: NormalizedNumber(10),
             status: 'active',
             isUsedAsCollateral: true,
             maxLtv: Percentage(0.8),

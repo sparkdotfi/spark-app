@@ -1,14 +1,14 @@
-import { NormalizedUnitNumber, Percentage, raise } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage, raise } from '@sparkdotfi/common-universal'
 import { UseQueryOptions } from '@tanstack/react-query'
 import { Config } from 'wagmi'
 import { Token } from '../types/Token'
 import { TokenSymbol } from '../types/TokenSymbol'
 
 export interface SavingsConverter {
-  predictAssetsAmount({ timestamp, shares }: { timestamp: number; shares: NormalizedUnitNumber }): NormalizedUnitNumber
-  predictSharesAmount({ timestamp, assets }: { timestamp: number; assets: NormalizedUnitNumber }): NormalizedUnitNumber
-  convertToShares({ assets }: { assets: NormalizedUnitNumber }): NormalizedUnitNumber
-  convertToAssets({ shares }: { shares: NormalizedUnitNumber }): NormalizedUnitNumber
+  predictAssetsAmount({ timestamp, shares }: { timestamp: number; shares: NormalizedNumber }): NormalizedNumber
+  predictSharesAmount({ timestamp, assets }: { timestamp: number; assets: NormalizedNumber }): NormalizedNumber
+  convertToShares({ assets }: { assets: NormalizedNumber }): NormalizedNumber
+  convertToAssets({ shares }: { shares: NormalizedNumber }): NormalizedNumber
   apy: Percentage
   supportsRealTimeInterestAccrual: boolean
   readonly currentTimestamp: number
@@ -23,10 +23,10 @@ export interface SavingsConverterQueryParams {
 export type SavingsConverterQueryOptions = UseQueryOptions<any, any, SavingsConverter>
 
 export interface SavingsConverter {
-  predictAssetsAmount({ timestamp, shares }: { timestamp: number; shares: NormalizedUnitNumber }): NormalizedUnitNumber
-  predictSharesAmount({ timestamp, assets }: { timestamp: number; assets: NormalizedUnitNumber }): NormalizedUnitNumber
-  convertToShares({ assets }: { assets: NormalizedUnitNumber }): NormalizedUnitNumber
-  convertToAssets({ shares }: { shares: NormalizedUnitNumber }): NormalizedUnitNumber
+  predictAssetsAmount({ timestamp, shares }: { timestamp: number; shares: NormalizedNumber }): NormalizedNumber
+  predictSharesAmount({ timestamp, assets }: { timestamp: number; assets: NormalizedNumber }): NormalizedNumber
+  convertToShares({ assets }: { assets: NormalizedNumber }): NormalizedNumber
+  convertToAssets({ shares }: { shares: NormalizedNumber }): NormalizedNumber
   apy: Percentage
   supportsRealTimeInterestAccrual: boolean
   readonly currentTimestamp: number

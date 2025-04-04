@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { TransactionOverview } from './TransactionOverview'
 
@@ -24,7 +24,7 @@ export const Default: Story = {
           <TransactionOverview.Label>APY</TransactionOverview.Label>
           <TransactionOverview.FarmApy
             apy={Percentage(0.05)}
-            rewardsPerYear={NormalizedUnitNumber(100)}
+            rewardsPerYear={NormalizedNumber(100)}
             rewardToken={tokens.USDS}
           />
         </TransactionOverview.Row>
@@ -39,34 +39,34 @@ export const Default: Story = {
               {
                 type: 'token-amount',
                 token: tokens.USDC,
-                amount: NormalizedUnitNumber(100),
-                usdAmount: NormalizedUnitNumber(100),
+                amount: NormalizedNumber(100),
+                usdAmount: NormalizedNumber(100),
               },
               {
                 type: 'token-amount',
                 token: tokens.USDS,
-                amount: NormalizedUnitNumber(100),
-                usdAmount: NormalizedUnitNumber(100),
+                amount: NormalizedNumber(100),
+                usdAmount: NormalizedNumber(100),
               },
               {
                 type: 'token-amount',
                 token: tokens.sUSDS,
-                amount: NormalizedUnitNumber(91.345035308238),
-                usdAmount: NormalizedUnitNumber(100),
+                amount: NormalizedNumber(91.345035308238),
+                usdAmount: NormalizedNumber(100),
               },
             ]}
           />
         </TransactionOverview.Row>
         <TransactionOverview.Row>
           <TransactionOverview.Label>Outcome</TransactionOverview.Label>
-          <TransactionOverview.TokenAmount token={tokens.USDS} amount={NormalizedUnitNumber(100)} />
+          <TransactionOverview.TokenAmount token={tokens.USDS} amount={NormalizedNumber(100)} />
         </TransactionOverview.Row>
         <TransactionOverview.Row>
           <TransactionOverview.Label>Remaining supply</TransactionOverview.Label>
           <TransactionOverview.TokenAmountChange
             token={tokens.USDC}
-            currentAmount={NormalizedUnitNumber(1000000)}
-            updatedAmount={NormalizedUnitNumber(1000000)}
+            currentAmount={NormalizedNumber(1000000)}
+            updatedAmount={NormalizedNumber(1000000)}
           />
         </TransactionOverview.Row>
         <TransactionOverview.Row>

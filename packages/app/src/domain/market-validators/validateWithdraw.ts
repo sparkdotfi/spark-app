@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { EModeCategory, EModeState } from '../market-info/marketInfo'
 import { ReserveStatus } from '../market-info/reserve-status'
 
@@ -12,15 +12,15 @@ export type WithdrawValidationIssue =
   | 'has-zero-ltv-collateral'
 
 export interface ValidateWithdrawArgs {
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   asset: {
     status: ReserveStatus
-    unborrowedLiquidity: NormalizedUnitNumber
+    unborrowedLiquidity: NormalizedNumber
     maxLtv: Percentage
     eModeCategory?: EModeCategory
   }
   user: {
-    deposited: NormalizedUnitNumber
+    deposited: NormalizedNumber
     liquidationThreshold: Percentage
     ltvAfterWithdrawal: Percentage
     eModeState: EModeState
@@ -29,7 +29,7 @@ export interface ValidateWithdrawArgs {
 }
 
 export function validateWithdraw({ value, asset, user }: ValidateWithdrawArgs): WithdrawValidationIssue | undefined {
-  if (value.isLessThanOrEqualTo(0)) {
+  if (value.lte(0)) {
     return 'value-not-positive'
   }
 
@@ -41,11 +41,11 @@ export function validateWithdraw({ value, asset, user }: ValidateWithdrawArgs): 
     return 'reserve-paused'
   }
 
-  if (user.deposited.isLessThan(value)) {
+  if (user.deposited.lt(value)) {
     return 'exceeds-balance'
   }
 
-  if (value.isGreaterThan(asset.unborrowedLiquidity)) {
+  if (value.gt(asset.unborrowedLiquidity)) {
     return 'exceeds-unborrowed-liquidity'
   }
 

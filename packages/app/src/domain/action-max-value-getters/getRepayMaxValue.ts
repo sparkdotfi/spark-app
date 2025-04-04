@@ -1,30 +1,28 @@
-import BigNumber from 'bignumber.js'
-
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ReserveStatus } from '../market-info/reserve-status'
 
 export interface GetRepayMaxValueParams {
   user: {
-    debt: NormalizedUnitNumber
-    balance: NormalizedUnitNumber
+    debt: NormalizedNumber
+    balance: NormalizedNumber
   }
   asset: {
     status: ReserveStatus
     isNativeAsset: boolean
   }
   chain: {
-    minRemainingNativeAsset: NormalizedUnitNumber
+    minRemainingNativeAsset: NormalizedNumber
   }
 }
 
-export function getRepayMaxValue({ user, asset, chain }: GetRepayMaxValueParams): NormalizedUnitNumber {
+export function getRepayMaxValue({ user, asset, chain }: GetRepayMaxValueParams): NormalizedNumber {
   if (asset.status === 'paused') {
-    return NormalizedUnitNumber(0)
+    return NormalizedNumber.ZERO
   }
 
-  const maxRepay = BigNumber.min(
+  const maxRepay = NormalizedNumber.min(
     user.debt,
-    user.balance.minus(asset.isNativeAsset ? chain.minRemainingNativeAsset : NormalizedUnitNumber(0)),
+    user.balance.minus(asset.isNativeAsset ? chain.minRemainingNativeAsset : NormalizedNumber.ZERO),
   )
-  return NormalizedUnitNumber(BigNumber.max(maxRepay, 0))
+  return NormalizedNumber.max(maxRepay, NormalizedNumber.ZERO)
 }

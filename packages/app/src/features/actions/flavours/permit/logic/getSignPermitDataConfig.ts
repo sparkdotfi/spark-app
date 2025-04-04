@@ -3,7 +3,7 @@ import { UseSignTypedDataReturnType } from 'wagmi'
 
 import { Token } from '@/domain/types/Token'
 import { UnixTime, toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 const EIP2612_TYPES = {
   Permit: [
@@ -18,7 +18,7 @@ type EIP2612_TYPES = typeof EIP2612_TYPES
 
 export interface GetSignDataConfigArgs {
   token: Token
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   spender: Address
   account: Address
   deadline: number

@@ -1,13 +1,13 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { validateDeposit } from './validateDeposit'
 
 describe(validateDeposit.name, () => {
   it('validates that value is positive', () => {
     expect(
       validateDeposit({
-        value: NormalizedUnitNumber(0),
-        asset: { status: 'active', totalLiquidity: NormalizedUnitNumber(100) },
-        user: { balance: NormalizedUnitNumber(10), alreadyDepositedValueUSD: NormalizedUnitNumber(0) },
+        value: NormalizedNumber.ZERO,
+        asset: { status: 'active', totalLiquidity: NormalizedNumber(100) },
+        user: { balance: NormalizedNumber(10), alreadyDepositedValueUSD: NormalizedNumber.ZERO },
       }),
     ).toBe('value-not-positive')
   })
@@ -15,9 +15,9 @@ describe(validateDeposit.name, () => {
   it('works with 0 value if deposited already', () => {
     expect(
       validateDeposit({
-        value: NormalizedUnitNumber(0),
-        asset: { status: 'active', totalLiquidity: NormalizedUnitNumber(100) },
-        user: { balance: NormalizedUnitNumber(10), alreadyDepositedValueUSD: NormalizedUnitNumber(10) },
+        value: NormalizedNumber.ZERO,
+        asset: { status: 'active', totalLiquidity: NormalizedNumber(100) },
+        user: { balance: NormalizedNumber(10), alreadyDepositedValueUSD: NormalizedNumber(10) },
       }),
     ).toBe(undefined)
   })
@@ -25,9 +25,9 @@ describe(validateDeposit.name, () => {
   it('validates that reserve is active', () => {
     expect(
       validateDeposit({
-        value: NormalizedUnitNumber(10),
-        asset: { status: 'frozen', totalLiquidity: NormalizedUnitNumber(100) },
-        user: { balance: NormalizedUnitNumber(10), alreadyDepositedValueUSD: NormalizedUnitNumber(0) },
+        value: NormalizedNumber(10),
+        asset: { status: 'frozen', totalLiquidity: NormalizedNumber(100) },
+        user: { balance: NormalizedNumber(10), alreadyDepositedValueUSD: NormalizedNumber.ZERO },
       }),
     ).toBe('reserve-not-active')
   })
@@ -35,9 +35,9 @@ describe(validateDeposit.name, () => {
   it('validates balance', () => {
     expect(
       validateDeposit({
-        value: NormalizedUnitNumber(10),
-        asset: { status: 'active', totalLiquidity: NormalizedUnitNumber(100) },
-        user: { balance: NormalizedUnitNumber(1), alreadyDepositedValueUSD: NormalizedUnitNumber(0) },
+        value: NormalizedNumber(10),
+        asset: { status: 'active', totalLiquidity: NormalizedNumber(100) },
+        user: { balance: NormalizedNumber(1), alreadyDepositedValueUSD: NormalizedNumber.ZERO },
       }),
     ).toBe('exceeds-balance')
   })
@@ -45,9 +45,9 @@ describe(validateDeposit.name, () => {
   it('validates deposit cap', () => {
     expect(
       validateDeposit({
-        value: NormalizedUnitNumber(1),
-        asset: { status: 'active', totalLiquidity: NormalizedUnitNumber(1), supplyCap: NormalizedUnitNumber(1) },
-        user: { balance: NormalizedUnitNumber(10), alreadyDepositedValueUSD: NormalizedUnitNumber(0) },
+        value: NormalizedNumber(1),
+        asset: { status: 'active', totalLiquidity: NormalizedNumber(1), supplyCap: NormalizedNumber(1) },
+        user: { balance: NormalizedNumber(10), alreadyDepositedValueUSD: NormalizedNumber.ZERO },
       }),
     ).toBe('deposit-cap-reached')
   })
@@ -55,9 +55,9 @@ describe(validateDeposit.name, () => {
   it('works when no errors', () => {
     expect(
       validateDeposit({
-        value: NormalizedUnitNumber(1),
-        asset: { status: 'active', totalLiquidity: NormalizedUnitNumber(1) },
-        user: { balance: NormalizedUnitNumber(10), alreadyDepositedValueUSD: NormalizedUnitNumber(0) },
+        value: NormalizedNumber(1),
+        asset: { status: 'active', totalLiquidity: NormalizedNumber(1) },
+        user: { balance: NormalizedNumber(10), alreadyDepositedValueUSD: NormalizedNumber.ZERO },
       }),
     ).toBe(undefined)
   })

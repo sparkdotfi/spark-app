@@ -10,7 +10,7 @@ import {
 } from '@/features/dialogs/common/logic/transfer-from-user/form'
 import { FormFieldsForDialog, PageState, PageStatus } from '@/features/dialogs/common/types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useState } from 'react'
 import { UseFormReturn, useForm } from 'react-hook-form'
 import { useChainId } from 'wagmi'
@@ -31,7 +31,7 @@ export interface UseMigrateDialogResult {
   form: UseFormReturn<AssetInputSchema>
   objectives: Objective[]
   pageStatus: PageStatus
-  migrationAmount: NormalizedUnitNumber
+  migrationAmount: NormalizedNumber
   actionsContext: InjectedActionsContext
   txOverview: MigrateDialogTxOverview
 }

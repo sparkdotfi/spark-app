@@ -1,6 +1,6 @@
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { NormalizedUnitNumber, Opaque } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Opaque } from '@sparkdotfi/common-universal'
 import { QueryKey, useSuspenseQuery } from '@tanstack/react-query'
 import { arbitrum, base } from 'viem/chains'
 import { Config, useConfig } from 'wagmi'
@@ -64,7 +64,7 @@ function getValidatorConfig({
       fetchParamsQueryFn: validatorQuery.queryFn,
       createValidator: ({ usds: usdsBalance, usdc: usdcBalance }) =>
         ConvertStablesFormSchema.superRefine((field, ctx) => {
-          const value = NormalizedUnitNumber(field.amount === '' ? '0' : field.amount)
+          const value = NormalizedNumber(field.amount === '' ? '0' : field.amount)
           const isConvertToUsdc = field.outTokenSymbol === usdc.symbol
           const inTokenBalance = tokenRepository.findOneBalanceBySymbol(TokenSymbol(field.inTokenSymbol))
 

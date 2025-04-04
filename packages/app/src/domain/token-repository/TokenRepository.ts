@@ -1,7 +1,7 @@
 import { TokenWithBalance } from '@/domain/common/types'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { CheckedAddress, NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
+import { CheckedAddress, NormalizedNumber, raise } from '@sparkdotfi/common-universal'
 
 export interface FeaturedTokens {
   DAI?: TokenSymbol
@@ -32,11 +32,11 @@ export class TokenRepository {
     return this.findTokenBySymbol(symbol) ?? raise(`Token with symbol ${symbol} not found`)
   }
 
-  findBalanceBySymbol(symbol: TokenSymbol): NormalizedUnitNumber | undefined {
+  findBalanceBySymbol(symbol: TokenSymbol): NormalizedNumber | undefined {
     return this.tokens.find(({ token }) => token.symbol === symbol)?.balance
   }
 
-  findOneBalanceBySymbol(symbol: TokenSymbol): NormalizedUnitNumber {
+  findOneBalanceBySymbol(symbol: TokenSymbol): NormalizedNumber {
     return this.findBalanceBySymbol(symbol) ?? raise(`Balance for symbol ${symbol} not found`)
   }
 

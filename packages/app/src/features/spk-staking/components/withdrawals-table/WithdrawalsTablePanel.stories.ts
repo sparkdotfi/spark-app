@@ -1,7 +1,7 @@
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, raise } from '@sparkdotfi/common-universal'
 import type { Meta, StoryObj } from '@storybook/react'
 import { userEvent, within } from '@storybook/test'
 import { WithdrawalsTablePanel } from './WithdrawalsTablePanel'
@@ -14,7 +14,7 @@ const meta: Meta<typeof WithdrawalsTablePanel> = {
     rows: [
       {
         token: tokens.SPK,
-        amount: NormalizedUnitNumber(78.8456),
+        amount: NormalizedNumber(78.8456),
         timeToClaim: 703412,
         claimableAt: new Date('2025-04-04T12:34:35.000Z'),
         action: () => {},
@@ -23,7 +23,7 @@ const meta: Meta<typeof WithdrawalsTablePanel> = {
       },
       {
         token: tokens.SPK,
-        amount: NormalizedUnitNumber(123.4323),
+        amount: NormalizedNumber(123.4323),
         timeToClaim: 0,
         claimableAt: new Date('2025-03-21T12:34:35.000Z'),
         action: () => {},

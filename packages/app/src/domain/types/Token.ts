@@ -1,4 +1,4 @@
-import { assert, BaseUnitNumber, CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { assert, BaseUnitNumber, CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { zeroAddress } from 'viem'
 import { findSignificantPrecision } from '../common/format'
@@ -21,7 +21,7 @@ export class Token {
   readonly name: string
   readonly decimals: number
   readonly address: CheckedAddress
-  readonly unitPriceUsd: NormalizedUnitNumber
+  readonly unitPriceUsd: NormalizedNumber
   readonly isAToken: boolean
 
   constructor({
@@ -47,14 +47,11 @@ export class Token {
     this.symbol = symbol
     this.name = name
     this.address = address
-    this.unitPriceUsd = NormalizedUnitNumber(unitPriceUsd)
+    this.unitPriceUsd = NormalizedNumber(unitPriceUsd)
     this.isAToken = isAToken
   }
 
-  public formatUSD(
-    value: NormalizedUnitNumber,
-    { compact = false, showCents = 'always' }: FormatUSDOptions = {},
-  ): string {
+  public formatUSD(value: NormalizedNumber, { compact = false, showCents = 'always' }: FormatUSDOptions = {}): string {
     if (this.unitPriceUsd.isZero()) {
       return ZERO_PRICE_FORMAT_PLACEHOLDER
     }
@@ -82,7 +79,7 @@ export class Token {
     return usdFormatter.format(USDValue.toNumber())
   }
 
-  public format(value: NormalizedUnitNumber, { style }: FormatOptions): string {
+  public format(value: NormalizedNumber, { style }: FormatOptions): string {
     if (style === 'auto') {
       return formatAuto(value, this.unitPriceUsd)
     }
@@ -90,16 +87,16 @@ export class Token {
     return formatCompact(value)
   }
 
-  public toBaseUnit(value: NormalizedUnitNumber): BaseUnitNumber {
-    return NormalizedUnitNumber.toBaseUnit(value, this.decimals)
+  public toBaseUnit(value: NormalizedNumber): BaseUnitNumber {
+    return value.toBaseUnit(this.decimals)
   }
 
-  public fromBaseUnit(value: BaseUnitNumber): NormalizedUnitNumber {
+  public fromBaseUnit(value: BaseUnitNumber): NormalizedNumber {
     return BaseUnitNumber.toNormalizedUnit(value, this.decimals)
   }
 
-  public toUSD(value: NormalizedUnitNumber): NormalizedUnitNumber {
-    return NormalizedUnitNumber(value.multipliedBy(this.unitPriceUsd))
+  public toUSD(value: NormalizedNumber): NormalizedNumber {
+    return value.times(this.unitPriceUsd)
   }
 
   public clone({
@@ -115,7 +112,7 @@ export class Token {
     name?: string
     isAToken?: boolean
     decimals?: number
-    unitPriceUsd?: NormalizedUnitNumber
+    unitPriceUsd?: NormalizedNumber
   }): Token {
     return new Token({
       address: address ?? this.address,
@@ -161,7 +158,7 @@ export const SPK_MOCK_TOKEN = new Token({
   unitPriceUsd: '10',
 })
 
-function formatAuto(value: NormalizedUnitNumber, unitPriceUsd: NormalizedUnitNumber): string {
+function formatAuto(value: NormalizedNumber, unitPriceUsd: NormalizedNumber): string {
   const precision = unitPriceUsd.isZero() ? FALLBACK_FORMAT_PRECISION : findSignificantPrecision(unitPriceUsd)
   const leastSignificantValue = BigNumber(1).shiftedBy(-precision)
   const rounded = BigNumber(value.toFixed(precision))
@@ -177,7 +174,7 @@ function formatAuto(value: NormalizedUnitNumber, unitPriceUsd: NormalizedUnitNum
   return formatter.format(value.toNumber())
 }
 
-function formatCompact(value: NormalizedUnitNumber): string {
+function formatCompact(value: NormalizedNumber): string {
   const n = value.toNumber()
   if (n === 0) return '0'
   if (n < 0.001) return '<0.001'

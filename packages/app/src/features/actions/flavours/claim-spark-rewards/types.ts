@@ -1,12 +1,12 @@
 import { Token } from '@/domain/types/Token'
-import { Hex, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { Hex, NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface ClaimSparkRewardsObjective {
   type: 'claimSparkRewards'
   source: 'campaigns' | 'spark-staking'
   token: Token
   epoch: number
-  cumulativeAmount: NormalizedUnitNumber
+  cumulativeAmount: NormalizedNumber
   merkleRoot: Hex
   merkleProof: Hex[]
 }
@@ -16,7 +16,7 @@ export interface ClaimSparkRewardsAction {
   source: 'campaigns' | 'spark-staking'
   token: Token
   epoch: number
-  cumulativeAmount: NormalizedUnitNumber
+  cumulativeAmount: NormalizedNumber
   merkleRoot: Hex
   merkleProof: Hex[]
 }

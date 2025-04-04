@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Form } from '@/ui/atoms/form/Form'
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useForm } from 'react-hook-form'
 import { withRouter } from 'storybook-addon-remix-react-router'
 import { Deposits } from './Deposits'
@@ -18,11 +18,11 @@ function DepositsWrapper() {
         selectedAssets={[
           {
             token: tokens.ETH,
-            balance: NormalizedUnitNumber(1),
+            balance: NormalizedNumber(1),
           },
           {
             token: tokens.wstETH,
-            balance: NormalizedUnitNumber(1.5),
+            balance: NormalizedNumber(1.5),
           },
         ]}
         changeAsset={() => {}}
@@ -31,25 +31,25 @@ function DepositsWrapper() {
         allAssets={[
           {
             token: tokens.ETH,
-            balance: NormalizedUnitNumber(1),
+            balance: NormalizedNumber(1),
           },
           {
             token: tokens.wstETH,
-            balance: NormalizedUnitNumber(2),
+            balance: NormalizedNumber(2),
           },
           {
             token: tokens.rETH,
-            balance: NormalizedUnitNumber(3),
+            balance: NormalizedNumber(3),
           },
         ]}
         alreadyDeposited={{
           tokens: [tokens.ETH, tokens.wstETH],
-          totalValueUSD: NormalizedUnitNumber(5000),
+          totalValueUSD: NormalizedNumber(5000),
         }}
         assetToMaxValue={{
-          [tokens.ETH.symbol]: NormalizedUnitNumber(1),
-          [tokens.wstETH.symbol]: NormalizedUnitNumber(2),
-          [tokens.rETH.symbol]: NormalizedUnitNumber(3),
+          [tokens.ETH.symbol]: NormalizedNumber(1),
+          [tokens.wstETH.symbol]: NormalizedNumber(2),
+          [tokens.rETH.symbol]: NormalizedNumber(3),
         }}
       />
     </Form>

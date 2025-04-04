@@ -2,7 +2,7 @@ import { stakingRewardsAbi } from '@/config/abis/stakingRewardsAbi'
 import { FarmConfig } from '@/config/chain/types'
 import { FarmBlockchainDetails } from '@/domain/farms/types'
 import { TokenRepository } from '@/domain/token-repository/TokenRepository'
-import { BaseUnitNumber, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { Address } from 'viem'
 import { Config } from 'wagmi'
@@ -36,11 +36,11 @@ export async function getFarmBlockchainDetails({
     name: farmConfig.rewardType === 'points' ? `${rewardToken.name} Points Farm` : `${rewardToken.symbol} Farm`,
     rewardToken, // @todo: Reward token price might not be correct - we don't provide oracles for all tokens in tokens info
     stakingToken,
-    rewardRate: NormalizedUnitNumber(rewardToken.fromBaseUnit(BaseUnitNumber(contractData.rewardRate))),
+    rewardRate: rewardToken.fromBaseUnit(BaseUnitNumber(contractData.rewardRate)),
     periodFinish: Number(contractData.periodFinish),
-    totalSupply: NormalizedUnitNumber(stakingToken.fromBaseUnit(BaseUnitNumber(contractData.totalSupply))),
-    earned: NormalizedUnitNumber(rewardToken.fromBaseUnit(BaseUnitNumber(contractData.earned))),
-    staked: NormalizedUnitNumber(stakingToken.fromBaseUnit(BaseUnitNumber(contractData.staked))),
+    totalSupply: stakingToken.fromBaseUnit(BaseUnitNumber(contractData.totalSupply)),
+    earned: rewardToken.fromBaseUnit(BaseUnitNumber(contractData.earned)),
+    staked: stakingToken.fromBaseUnit(BaseUnitNumber(contractData.staked)),
     earnedTimestamp: Number(contractData.earnedTimestamp),
   }
 }

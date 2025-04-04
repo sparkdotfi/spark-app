@@ -1,7 +1,7 @@
 import { D3MInfo } from '@/domain/d3m-info/types'
 import { MarketInfo, Reserve } from '@/domain/market-info/marketInfo'
 import { MarketSparkRewards } from '@/domain/spark-rewards/types'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 import { MarketOverview } from '../types'
 import { makeMarketOverview } from './makeMarketOverview'
 
@@ -28,9 +28,9 @@ export function makeDaiMarketOverview({
     sparkRewards,
   })
 
-  const skyCapacity = NormalizedUnitNumber(D3MInfo.maxDebtCeiling.minus(D3MInfo.D3MCurrentDebtUSD))
-  const marketSize = NormalizedUnitNumber(reserve.totalLiquidity.plus(skyCapacity))
-  const totalAvailable = NormalizedUnitNumber(marketSize.minus(reserve.totalDebt))
+  const skyCapacity = D3MInfo.maxDebtCeiling.minus(D3MInfo.D3MCurrentDebtUSD)
+  const marketSize = reserve.totalLiquidity.plus(skyCapacity)
+  const totalAvailable = marketSize.minus(reserve.totalDebt)
   const utilizationRate = Percentage(reserve.totalDebt.div(marketSize))
   const lendSparkRewards = sparkRewards.filter((reward) => reward.action === 'supply')
 

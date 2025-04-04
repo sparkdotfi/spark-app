@@ -1,9 +1,9 @@
 import BigNumber from 'bignumber.js'
 
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 export interface PositionOverview {
   healthFactor: BigNumber | undefined
-  tokenSupply: NormalizedUnitNumber
+  tokenSupply: NormalizedNumber
   supplyAPY: Percentage | undefined
 }

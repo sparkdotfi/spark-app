@@ -1,8 +1,8 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface CapAutomatorConfig {
-  maxCap: NormalizedUnitNumber
-  gap: NormalizedUnitNumber
+  maxCap: NormalizedNumber
+  gap: NormalizedNumber
   increaseCooldown: number
   lastUpdateBlock: number
   lastIncreaseTimestamp: number

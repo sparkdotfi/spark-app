@@ -1,7 +1,7 @@
 import { WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage, raise } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage, raise } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/test'
 import { withRouter } from 'storybook-addon-remix-react-router'
@@ -11,36 +11,36 @@ import { BorrowTable } from './BorrowTable'
 const assets: Borrow[] = [
   {
     token: tokens.DAI,
-    available: NormalizedUnitNumber('22727'),
-    debt: NormalizedUnitNumber('50000'),
+    available: NormalizedNumber('22727'),
+    debt: NormalizedNumber('50000'),
     borrowAPY: Percentage(0.11),
     reserveStatus: 'active',
   },
   {
     token: tokens.ETH,
-    available: NormalizedUnitNumber('11.99'),
-    debt: NormalizedUnitNumber(0),
+    available: NormalizedNumber('11.99'),
+    debt: NormalizedNumber.ZERO,
     borrowAPY: Percentage(0.157),
     reserveStatus: 'active',
   },
   {
     token: tokens.stETH,
-    available: NormalizedUnitNumber('14.68'),
-    debt: NormalizedUnitNumber(0),
+    available: NormalizedNumber('14.68'),
+    debt: NormalizedNumber.ZERO,
     borrowAPY: Percentage(0.145),
     reserveStatus: 'active',
   },
   {
     token: tokens.GNO,
-    available: NormalizedUnitNumber('0'),
-    debt: NormalizedUnitNumber(10),
+    available: NormalizedNumber('0'),
+    debt: NormalizedNumber(10),
     borrowAPY: Percentage(0.345),
     reserveStatus: 'frozen',
   },
   {
     token: tokens.wstETH,
-    available: NormalizedUnitNumber('0'),
-    debt: NormalizedUnitNumber(2),
+    available: NormalizedNumber('0'),
+    debt: NormalizedNumber(2),
     borrowAPY: Percentage(0.32),
     reserveStatus: 'paused',
   },

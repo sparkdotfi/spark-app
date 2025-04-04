@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { getDepositMaxValue } from './getDepositMaxValue'
 
 describe(getDepositMaxValue.name, () => {
@@ -6,29 +6,29 @@ describe(getDepositMaxValue.name, () => {
     it('returns 0 for frozen reserve', () => {
       expect(
         getDepositMaxValue({
-          user: { balance: NormalizedUnitNumber(100) },
+          user: { balance: NormalizedNumber(100) },
           asset: {
             status: 'frozen',
-            totalLiquidity: NormalizedUnitNumber(0),
+            totalLiquidity: NormalizedNumber.ZERO,
             isNativeAsset: false,
           },
-          chain: { minRemainingNativeAsset: NormalizedUnitNumber(0) },
+          chain: { minRemainingNativeAsset: NormalizedNumber.ZERO },
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedNumber.ZERO)
     })
 
     it('returns 0 for paused reserve', () => {
       expect(
         getDepositMaxValue({
-          user: { balance: NormalizedUnitNumber(100) },
+          user: { balance: NormalizedNumber(100) },
           asset: {
             status: 'paused',
-            totalLiquidity: NormalizedUnitNumber(0),
+            totalLiquidity: NormalizedNumber.ZERO,
             isNativeAsset: false,
           },
-          chain: { minRemainingNativeAsset: NormalizedUnitNumber(0) },
+          chain: { minRemainingNativeAsset: NormalizedNumber.ZERO },
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedNumber.ZERO)
     })
   })
 
@@ -36,43 +36,43 @@ describe(getDepositMaxValue.name, () => {
     it('returns 0 when no balance', () => {
       expect(
         getDepositMaxValue({
-          user: { balance: NormalizedUnitNumber(0) },
+          user: { balance: NormalizedNumber.ZERO },
           asset: {
             status: 'active',
-            totalLiquidity: NormalizedUnitNumber(10),
+            totalLiquidity: NormalizedNumber(10),
             isNativeAsset: false,
           },
-          chain: { minRemainingNativeAsset: NormalizedUnitNumber(0) },
+          chain: { minRemainingNativeAsset: NormalizedNumber.ZERO },
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedNumber.ZERO)
     })
 
     it('returns balance', () => {
       expect(
         getDepositMaxValue({
-          user: { balance: NormalizedUnitNumber(100) },
+          user: { balance: NormalizedNumber(100) },
           asset: {
             status: 'active',
-            totalLiquidity: NormalizedUnitNumber(0),
+            totalLiquidity: NormalizedNumber.ZERO,
             isNativeAsset: false,
           },
-          chain: { minRemainingNativeAsset: NormalizedUnitNumber(0) },
+          chain: { minRemainingNativeAsset: NormalizedNumber.ZERO },
         }),
-      ).toEqual(NormalizedUnitNumber(100))
+      ).toEqual(NormalizedNumber(100))
     })
 
     it('retains some native asset', () => {
       expect(
         getDepositMaxValue({
-          user: { balance: NormalizedUnitNumber(100) },
+          user: { balance: NormalizedNumber(100) },
           asset: {
             status: 'active',
-            totalLiquidity: NormalizedUnitNumber(0),
+            totalLiquidity: NormalizedNumber.ZERO,
             isNativeAsset: true,
           },
-          chain: { minRemainingNativeAsset: NormalizedUnitNumber(0.01) },
+          chain: { minRemainingNativeAsset: NormalizedNumber(0.01) },
         }),
-      ).toEqual(NormalizedUnitNumber(99.99))
+      ).toEqual(NormalizedNumber(99.99))
     })
   })
 
@@ -80,76 +80,76 @@ describe(getDepositMaxValue.name, () => {
     it('returns 0 when no balance', () => {
       expect(
         getDepositMaxValue({
-          user: { balance: NormalizedUnitNumber(0) },
+          user: { balance: NormalizedNumber.ZERO },
           asset: {
             status: 'active',
-            totalLiquidity: NormalizedUnitNumber(0),
+            totalLiquidity: NormalizedNumber.ZERO,
             isNativeAsset: false,
-            supplyCap: NormalizedUnitNumber(100),
+            supplyCap: NormalizedNumber(100),
           },
-          chain: { minRemainingNativeAsset: NormalizedUnitNumber(0) },
+          chain: { minRemainingNativeAsset: NormalizedNumber.ZERO },
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedNumber.ZERO)
     })
 
     it('returns 0 when supply cap reached', () => {
       expect(
         getDepositMaxValue({
-          user: { balance: NormalizedUnitNumber(100) },
+          user: { balance: NormalizedNumber(100) },
           asset: {
             status: 'active',
-            totalLiquidity: NormalizedUnitNumber(100),
+            totalLiquidity: NormalizedNumber(100),
             isNativeAsset: false,
-            supplyCap: NormalizedUnitNumber(100),
+            supplyCap: NormalizedNumber(100),
           },
-          chain: { minRemainingNativeAsset: NormalizedUnitNumber(0) },
+          chain: { minRemainingNativeAsset: NormalizedNumber.ZERO },
         }),
-      ).toEqual(NormalizedUnitNumber(0))
+      ).toEqual(NormalizedNumber.ZERO)
     })
 
     it('returns supply cap when balance is greater than supply cap', () => {
       expect(
         getDepositMaxValue({
-          user: { balance: NormalizedUnitNumber(100) },
+          user: { balance: NormalizedNumber(100) },
           asset: {
             status: 'active',
-            totalLiquidity: NormalizedUnitNumber(0),
+            totalLiquidity: NormalizedNumber.ZERO,
             isNativeAsset: false,
-            supplyCap: NormalizedUnitNumber(50),
+            supplyCap: NormalizedNumber(50),
           },
-          chain: { minRemainingNativeAsset: NormalizedUnitNumber(0) },
+          chain: { minRemainingNativeAsset: NormalizedNumber.ZERO },
         }),
-      ).toEqual(NormalizedUnitNumber(50))
+      ).toEqual(NormalizedNumber(50))
     })
 
     it('returns available to supply value', () => {
       expect(
         getDepositMaxValue({
-          user: { balance: NormalizedUnitNumber(100) },
+          user: { balance: NormalizedNumber(100) },
           asset: {
             status: 'active',
-            totalLiquidity: NormalizedUnitNumber(25),
+            totalLiquidity: NormalizedNumber(25),
             isNativeAsset: false,
-            supplyCap: NormalizedUnitNumber(50),
+            supplyCap: NormalizedNumber(50),
           },
-          chain: { minRemainingNativeAsset: NormalizedUnitNumber(0) },
+          chain: { minRemainingNativeAsset: NormalizedNumber.ZERO },
         }),
-      ).toEqual(NormalizedUnitNumber(25))
+      ).toEqual(NormalizedNumber(25))
     })
 
     it('returns available to supply value for capped by liquidity', () => {
       expect(
         getDepositMaxValue({
-          user: { balance: NormalizedUnitNumber(100) },
+          user: { balance: NormalizedNumber(100) },
           asset: {
             status: 'active',
-            totalLiquidity: NormalizedUnitNumber(25),
+            totalLiquidity: NormalizedNumber(25),
             isNativeAsset: false,
-            supplyCap: NormalizedUnitNumber(50),
+            supplyCap: NormalizedNumber(50),
           },
-          chain: { minRemainingNativeAsset: NormalizedUnitNumber(0) },
+          chain: { minRemainingNativeAsset: NormalizedNumber.ZERO },
         }),
-      ).toEqual(NormalizedUnitNumber(25))
+      ).toEqual(NormalizedNumber(25))
     })
   })
 })

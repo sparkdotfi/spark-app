@@ -11,7 +11,7 @@ import {
 import { depositValidationIssueToMessage, validateDeposit } from '@/domain/market-validators/validateDeposit'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { MarketWalletInfo } from '@/domain/wallet/useMarketWalletInfo'
-import { NormalizedUnitNumber, parseBigNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, parseBigNumber } from '@sparkdotfi/common-universal'
 import { z } from 'zod'
 import { ExistingPosition } from '../types'
 import { mapFormTokensToReserves } from './mapFormTokensToReserves'
@@ -48,7 +48,7 @@ function getDepositFieldsValidator(
   const schema = alreadyDeposited.totalValueUSD.gt(0) ? BaseAssetInputSchema : AssetInputSchema
   return z.array(
     schema.superRefine((field, ctx) => {
-      const value = NormalizedUnitNumber(parseBigNumber(field.value, 0))
+      const value = NormalizedNumber(parseBigNumber(field.value, 0))
       const balance = walletInfo.findWalletBalanceForSymbol(field.symbol)
       const supplyingReserve = markets.findOneReserveBySymbol(field.symbol)
 

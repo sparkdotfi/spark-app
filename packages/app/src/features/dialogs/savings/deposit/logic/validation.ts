@@ -1,5 +1,5 @@
 import { TransferFromUserValidationIssue } from '@/features/dialogs/common/logic/transfer-from-user/validation'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export type DepositToSavingsValidationIssue = TransferFromUserValidationIssue | 'exceeds-psm3-balance'
 
@@ -10,8 +10,8 @@ export const depositValidationIssueToMessage: Record<DepositToSavingsValidationI
 }
 
 export interface ValidateDepositToSavingsOnBaseParams {
-  psm3SusdsBalance: NormalizedUnitNumber
-  estimatedSusdsReceived: NormalizedUnitNumber
+  psm3SusdsBalance: NormalizedNumber
+  estimatedSusdsReceived: NormalizedNumber
 }
 export function validateDepositToSavingsWithPsm3({
   psm3SusdsBalance,

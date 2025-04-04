@@ -2,7 +2,7 @@ import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { Panel } from '@/ui/atoms/panel/Panel'
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { bigNumberify } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { HealthFactorPanelContent, HealthFactorPanelContentProps } from './HealthFactorPanelContent'
 
@@ -29,9 +29,9 @@ export const WithLiquidationPrice: Story = {
   args: {
     hf: bigNumberify(2.5),
     liquidationDetails: {
-      liquidationPrice: NormalizedUnitNumber(1262.9),
+      liquidationPrice: NormalizedNumber(1262.9),
       tokenWithPrice: {
-        priceInUSD: NormalizedUnitNumber(1895.81),
+        priceInUSD: NormalizedNumber(1895.81),
         symbol: TokenSymbol('ETH'),
       },
     },

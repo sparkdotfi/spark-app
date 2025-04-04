@@ -3,7 +3,7 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { Action, ActionContext } from '@/features/actions/logic/types'
-import { assert, BaseUnitNumber, NormalizedUnitNumber, assertNever, raise } from '@sparkdotfi/common-universal'
+import { assert, BaseUnitNumber, NormalizedNumber, assertNever, raise } from '@sparkdotfi/common-universal'
 import { TransactionReceipt, decodeEventLog, erc4626Abi } from 'viem'
 import { ApproveAction } from '../../approve/types'
 import { PsmConvertAction } from '../../psm-convert/types'
@@ -73,7 +73,7 @@ export function createStakeActions(objective: StakeObjective, context: ActionCon
         mode: 'withdraw',
       }
 
-      let fallbackStakeAmount = NormalizedUnitNumber(0)
+      let fallbackStakeAmount = NormalizedNumber.ZERO
 
       if (actionPath === 'susds-to-usds-to-farm') {
         assert(
@@ -127,7 +127,7 @@ export function createStakeActions(objective: StakeObjective, context: ActionCon
   }
 }
 
-function getStakeAmountFromWithdrawReceipt(token: Token, receipt: TransactionReceipt): NormalizedUnitNumber {
+function getStakeAmountFromWithdrawReceipt(token: Token, receipt: TransactionReceipt): NormalizedNumber {
   for (const log of receipt.logs) {
     try {
       const decodedLog = decodeEventLog({

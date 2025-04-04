@@ -2,13 +2,13 @@ import { formatPercentage } from '@/domain/common/format'
 import { Token } from '@/domain/types/Token'
 import { getArcs, getSeparators } from '@/ui/utils/chart-math'
 import { cn } from '@/ui/utils/style'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 interface MarketOverviewChartProps {
   data: { value: number; color: string }[]
   token: Token
-  marketSize: NormalizedUnitNumber
-  borrowed: NormalizedUnitNumber
+  marketSize: NormalizedNumber
+  borrowed: NormalizedNumber
   utilizationRate: Percentage
   className?: string
 }

@@ -1,7 +1,7 @@
 import { ActionHandler, ActionType } from '@/features/actions/logic/types'
 import { getMockReserve } from '@/test/integration/constants'
 import { tokens } from '@sb/tokens'
-import { BaseUnitNumber, Hex, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { BaseUnitNumber, Hex, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 import { times } from 'remeda'
 import { parseEther, zeroAddress } from 'viem'
@@ -12,7 +12,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
       type: 'approve',
       token: tokens.wstETH,
       spender: CheckedAddress(zeroAddress),
-      value: NormalizedUnitNumber(1),
+      value: NormalizedNumber(1),
     },
     state: { status: 'ready' },
     onAction: () => {},
@@ -22,7 +22,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
       type: 'permit',
       token: tokens.wstETH,
       spender: CheckedAddress(zeroAddress),
-      value: NormalizedUnitNumber(1),
+      value: NormalizedNumber(1),
     },
     state: { status: 'ready' },
     onAction: () => {},
@@ -31,7 +31,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     action: {
       type: 'approveDelegation',
       token: tokens.WETH,
-      value: NormalizedUnitNumber(1),
+      value: NormalizedNumber(1),
     },
     state: { status: 'ready' },
     onAction: () => {},
@@ -40,7 +40,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     action: {
       type: 'borrow',
       token: tokens.DAI,
-      value: NormalizedUnitNumber(1233.34),
+      value: NormalizedNumber(1233.34),
     },
     state: { status: 'ready' },
     onAction: () => {},
@@ -49,7 +49,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     action: {
       type: 'deposit',
       token: tokens.wstETH,
-      value: NormalizedUnitNumber(1),
+      value: NormalizedNumber(1),
     },
     state: { status: 'ready' },
     onAction: () => {},
@@ -60,7 +60,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
       reserve: getMockReserve({
         token: tokens.DAI,
       }),
-      value: NormalizedUnitNumber(1233.34),
+      value: NormalizedNumber(1233.34),
       useAToken: false,
     },
     state: { status: 'ready' },
@@ -87,7 +87,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     action: {
       type: 'withdraw',
       token: tokens.wstETH,
-      value: NormalizedUnitNumber(12),
+      value: NormalizedNumber(12),
     },
     state: { status: 'ready' },
     onAction: () => {},
@@ -97,7 +97,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
       type: 'depositToSavings',
       token: tokens.DAI,
       savingsToken: tokens.sDAI,
-      value: NormalizedUnitNumber(1023),
+      value: NormalizedNumber(1023),
     },
     state: { status: 'ready' },
     onAction: () => {},
@@ -107,7 +107,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
       type: 'withdrawFromSavings',
       savingsToken: tokens.sDAI,
       token: tokens.DAI,
-      amount: NormalizedUnitNumber(1023),
+      amount: NormalizedNumber(1023),
       mode: 'withdraw',
       isRedeem: false,
     },
@@ -129,7 +129,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
       type: 'upgrade',
       fromToken: tokens.DAI,
       toToken: tokens.USDS,
-      amount: NormalizedUnitNumber(1),
+      amount: NormalizedNumber(1),
     },
     state: { status: 'ready' },
     onAction: () => {},
@@ -139,7 +139,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
       type: 'downgrade',
       fromToken: tokens.USDS,
       toToken: tokens.DAI,
-      amount: NormalizedUnitNumber(1),
+      amount: NormalizedNumber(1),
     },
     state: { status: 'ready' },
     onAction: () => {},
@@ -148,7 +148,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     action: {
       type: 'stake',
       stakingToken: tokens.USDS,
-      stakeAmount: NormalizedUnitNumber(1),
+      stakeAmount: NormalizedNumber(1),
       rewardToken: tokens.SKY,
       farm: CheckedAddress(zeroAddress),
     },
@@ -159,7 +159,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     action: {
       type: 'unstake',
       stakingToken: tokens.USDS,
-      amount: NormalizedUnitNumber(1),
+      amount: NormalizedNumber(1),
       rewardToken: tokens.SKY,
       farm: CheckedAddress(zeroAddress),
       exit: false,
@@ -172,7 +172,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
       type: 'psmConvert',
       inToken: tokens.USDC,
       outToken: tokens.DAI,
-      amount: NormalizedUnitNumber(1),
+      amount: NormalizedNumber(1),
     },
     state: { status: 'ready' },
     onAction: () => {},
@@ -182,7 +182,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
       type: 'claimFarmRewards',
       farm: CheckedAddress(zeroAddress),
       rewardToken: tokens.USDS,
-      rewardAmount: NormalizedUnitNumber(1),
+      rewardAmount: NormalizedNumber(1),
     },
     state: { status: 'ready' },
     onAction: () => {},
@@ -193,7 +193,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
       source: 'campaigns',
       token: tokens.USDS,
       epoch: 1,
-      cumulativeAmount: NormalizedUnitNumber(1),
+      cumulativeAmount: NormalizedNumber(1),
       merkleRoot: Hex.random(),
       merkleProof: times(7, () => Hex.random()),
     },
@@ -204,7 +204,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     action: {
       type: 'stakeSpk',
       spk: tokens.SPK,
-      amount: NormalizedUnitNumber(1_232.12),
+      amount: NormalizedNumber(1_232.12),
     },
     state: { status: 'ready' },
     onAction: () => {},
@@ -213,7 +213,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     action: {
       type: 'unstakeSpk',
       spk: tokens.SPK,
-      amount: NormalizedUnitNumber(1_232.12),
+      amount: NormalizedNumber(1_232.12),
       accountActiveShares: BaseUnitNumber(parseEther('1')),
       unstakeAll: false,
     },
@@ -224,7 +224,7 @@ export const allActionHandlers: Record<ActionType, ActionHandler> = {
     action: {
       type: 'finalizeSpkUnstake',
       spk: tokens.SPK,
-      amount: NormalizedUnitNumber(1_232.12),
+      amount: NormalizedNumber(1_232.12),
       epochs: [1, 2],
     },
     state: { status: 'ready' },

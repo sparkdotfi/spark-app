@@ -1,23 +1,21 @@
-import BigNumber from 'bignumber.js'
-
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 interface GetBorrowMaxValueParams {
   asset: {
-    availableLiquidity: NormalizedUnitNumber
-    totalDebt: NormalizedUnitNumber
-    borrowCap?: NormalizedUnitNumber
+    availableLiquidity: NormalizedNumber
+    totalDebt: NormalizedNumber
+    borrowCap?: NormalizedNumber
   }
   user: {
-    maxBorrowBasedOnCollateral: NormalizedUnitNumber
+    maxBorrowBasedOnCollateral: NormalizedNumber
     inIsolationMode?: boolean
-    isolationModeCollateralTotalDebt?: NormalizedUnitNumber
-    isolationModeCollateralDebtCeiling?: NormalizedUnitNumber
+    isolationModeCollateralTotalDebt?: NormalizedNumber
+    isolationModeCollateralDebtCeiling?: NormalizedNumber
   }
   validationIssue?: string
 }
 
-export function getBorrowMaxValue({ asset, user, validationIssue }: GetBorrowMaxValueParams): NormalizedUnitNumber {
+export function getBorrowMaxValue({ asset, user, validationIssue }: GetBorrowMaxValueParams): NormalizedNumber {
   if (
     validationIssue === 'reserve-not-active' ||
     validationIssue === 'reserve-borrowing-disabled' ||
@@ -26,23 +24,23 @@ export function getBorrowMaxValue({ asset, user, validationIssue }: GetBorrowMax
     validationIssue === 'siloed-mode-enabled' ||
     validationIssue === 'emode-category-mismatch'
   ) {
-    return NormalizedUnitNumber(0)
+    return NormalizedNumber.ZERO
   }
 
   const ceilings = [
     asset.availableLiquidity,
-    user.maxBorrowBasedOnCollateral.multipliedBy(0.99), // take 99% of the max borrow value to ensure that liquidation is not triggered right after the borrow
+    user.maxBorrowBasedOnCollateral.times(0.99), // take 99% of the max borrow value to ensure that liquidation is not triggered right after the borrow
   ]
 
   if (asset.borrowCap) {
-    ceilings.push(NormalizedUnitNumber(asset.borrowCap.minus(asset.totalDebt)))
+    ceilings.push(asset.borrowCap.minus(asset.totalDebt))
   }
 
   const { inIsolationMode, isolationModeCollateralTotalDebt, isolationModeCollateralDebtCeiling } = user
 
   if (inIsolationMode && isolationModeCollateralTotalDebt && isolationModeCollateralDebtCeiling) {
-    ceilings.push(NormalizedUnitNumber(isolationModeCollateralDebtCeiling.minus(isolationModeCollateralTotalDebt)))
+    ceilings.push(isolationModeCollateralDebtCeiling.minus(isolationModeCollateralTotalDebt))
   }
 
-  return NormalizedUnitNumber(BigNumber.max(BigNumber.min(...ceilings), 0))
+  return NormalizedNumber.max(NormalizedNumber.min(...ceilings), NormalizedNumber.ZERO)
 }

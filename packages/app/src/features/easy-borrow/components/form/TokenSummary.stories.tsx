@@ -1,7 +1,7 @@
 import { tokens } from '@sb/tokens'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { TokenSummary } from './TokenSummary'
 
@@ -11,7 +11,7 @@ const meta: Meta<typeof TokenSummary> = {
   args: {
     position: {
       tokens: [tokens.ETH, tokens.DAI, tokens.USDC],
-      totalValueUSD: NormalizedUnitNumber(100_000),
+      totalValueUSD: NormalizedNumber(100_000),
     },
   },
 }
@@ -29,7 +29,7 @@ export const ManySymbols: Story = {
   args: {
     position: {
       tokens: [tokens.ETH, tokens.DAI, tokens.USDC, tokens.USDT, tokens.GNO],
-      totalValueUSD: NormalizedUnitNumber(100_000),
+      totalValueUSD: NormalizedNumber(100_000),
     },
   },
 }

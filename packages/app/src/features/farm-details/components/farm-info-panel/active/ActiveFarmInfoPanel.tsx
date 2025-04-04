@@ -11,7 +11,7 @@ import { Panel } from '@/ui/atoms/panel/Panel'
 import { GrowingReward } from '@/ui/molecules/growing-reward/GrowingReward'
 import { cn } from '@/ui/utils/style'
 import { testIds } from '@/ui/utils/testIds'
-import { assert, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { assert, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { mainnet } from 'viem/chains'
 import { ApyTooltip } from '../../apy-tooltip/ApyTooltip'
 import { ChroniclePointsTooltip } from '../../chronicle-points-tooltip/ChroniclePointsTooltip'
@@ -22,7 +22,7 @@ export interface ActiveFarmInfoPanelProps {
   farm: Farm
   chainId: number
   canClaim: boolean
-  calculateReward: (timestampInMs: number) => NormalizedUnitNumber
+  calculateReward: (timestampInMs: number) => NormalizedNumber
   refreshGrowingRewardIntervalInMs: number | undefined
   openClaimDialog: () => void
   openUnstakeDialog: () => void

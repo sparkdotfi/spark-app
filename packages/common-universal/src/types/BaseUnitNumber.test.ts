@@ -3,7 +3,6 @@ import { expect } from 'earl'
 import { describe, it } from 'mocha'
 
 import { BaseUnitNumber } from './BaseUnitNumber.js'
-import { NormalizedUnitNumber } from './NormalizedUnitNumber.js'
 
 describe(BaseUnitNumber.name, () => {
   it('works with an argument correctly representing base value', () => {
@@ -14,7 +13,7 @@ describe(BaseUnitNumber.name, () => {
   })
 
   it('works with negative numbers', () => {
-    expect(NormalizedUnitNumber(-1)).toEqual(new BigNumber(-1) as NormalizedUnitNumber)
+    expect(BaseUnitNumber(-1)).toEqual(new BigNumber(-1) as BaseUnitNumber)
   })
 
   it('throws if value argument has decimal points', () => {

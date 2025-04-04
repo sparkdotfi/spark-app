@@ -6,7 +6,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 
 import { bigNumberify } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { BorrowStatusPanel } from './BorrowStatusPanel'
@@ -33,11 +33,11 @@ export const CanBeBorrowed: Story = {
   args: {
     status: 'yes',
     token: tokens.WBTC,
-    totalBorrowed: NormalizedUnitNumber(1244),
+    totalBorrowed: NormalizedNumber(1244),
     apy: Percentage(0.01),
     reserveFactor: Percentage(0.05),
-    borrowCap: NormalizedUnitNumber(2244),
-    borrowLiquidity: NormalizedUnitNumber(1244),
+    borrowCap: NormalizedNumber(2244),
+    borrowLiquidity: NormalizedNumber(1244),
     limitedByBorrowCap: true,
     chartProps,
     sparkRewards: [],
@@ -58,12 +58,12 @@ export const OnlyInSiloedMode: Story = {
   args: {
     status: 'only-in-siloed-mode',
     token: tokens.WBTC,
-    totalBorrowed: NormalizedUnitNumber(1244),
-    borrowLiquidity: NormalizedUnitNumber(1244),
+    totalBorrowed: NormalizedNumber(1244),
+    borrowLiquidity: NormalizedNumber(1244),
     limitedByBorrowCap: true,
     apy: Percentage(0.01),
     reserveFactor: Percentage(0.05),
-    borrowCap: NormalizedUnitNumber(2244),
+    borrowCap: NormalizedNumber(2244),
     chartProps,
     sparkRewards: [],
   },
@@ -74,11 +74,11 @@ export const BorrowCapReached: Story = {
   args: {
     status: 'borrow-cap-reached',
     token: tokens.WBTC,
-    totalBorrowed: NormalizedUnitNumber(2244),
+    totalBorrowed: NormalizedNumber(2244),
     apy: Percentage(0.01),
     reserveFactor: Percentage(0.05),
-    borrowCap: NormalizedUnitNumber(2244),
-    borrowLiquidity: NormalizedUnitNumber(0),
+    borrowCap: NormalizedNumber(2244),
+    borrowLiquidity: NormalizedNumber.ZERO,
     limitedByBorrowCap: true,
     chartProps,
     sparkRewards: [],
@@ -90,10 +90,10 @@ export const CannotBeBorrowed: Story = {
   args: {
     status: 'no',
     token: tokens.WBTC,
-    totalBorrowed: NormalizedUnitNumber(0),
+    totalBorrowed: NormalizedNumber.ZERO,
     apy: Percentage(0),
     reserveFactor: Percentage(0.05),
-    borrowLiquidity: NormalizedUnitNumber(0),
+    borrowLiquidity: NormalizedNumber.ZERO,
     limitedByBorrowCap: true,
     chartProps,
     sparkRewards: [],
@@ -105,16 +105,16 @@ export const WithCapAutomatorInfo: Story = {
   args: {
     status: 'yes',
     token: tokens.WBTC,
-    totalBorrowed: NormalizedUnitNumber(1244),
+    totalBorrowed: NormalizedNumber(1244),
     apy: Percentage(0.01),
     reserveFactor: Percentage(0.05),
-    borrowCap: NormalizedUnitNumber(2244),
-    borrowLiquidity: NormalizedUnitNumber(1244),
+    borrowCap: NormalizedNumber(2244),
+    borrowLiquidity: NormalizedNumber(1244),
     limitedByBorrowCap: true,
     chartProps,
     capAutomatorInfo: {
-      maxCap: NormalizedUnitNumber(2944),
-      gap: NormalizedUnitNumber(0),
+      maxCap: NormalizedNumber(2944),
+      gap: NormalizedNumber.ZERO,
       increaseCooldown: 43200,
       lastIncreaseTimestamp: Math.floor(STORYBOOK_TIMESTAMP / 1000 - 41903),
       lastUpdateBlock: 0,
@@ -133,11 +133,11 @@ export const DAI: Story = {
   args: {
     status: 'yes',
     token: tokens.DAI,
-    totalBorrowed: NormalizedUnitNumber(1244),
+    totalBorrowed: NormalizedNumber(1244),
     apy: Percentage(0.01),
     reserveFactor: Percentage(0.05),
-    borrowCap: NormalizedUnitNumber(2244),
-    borrowLiquidity: NormalizedUnitNumber(1244),
+    borrowCap: NormalizedNumber(2244),
+    borrowLiquidity: NormalizedNumber(1244),
     limitedByBorrowCap: true,
     chartProps: {
       optimalUtilizationRate: Percentage('1'),
@@ -156,11 +156,11 @@ export const WithOneSparkReward: Story = {
   args: {
     status: 'yes',
     token: tokens.WBTC,
-    totalBorrowed: NormalizedUnitNumber(1244),
+    totalBorrowed: NormalizedNumber(1244),
     apy: Percentage(0.01),
     reserveFactor: Percentage(0.05),
-    borrowCap: NormalizedUnitNumber(2244),
-    borrowLiquidity: NormalizedUnitNumber(1244),
+    borrowCap: NormalizedNumber(2244),
+    borrowLiquidity: NormalizedNumber(1244),
     limitedByBorrowCap: true,
     chartProps,
     sparkRewards: [
@@ -179,11 +179,11 @@ export const WithMultipleSparkReward: Story = {
   args: {
     status: 'yes',
     token: tokens.WBTC,
-    totalBorrowed: NormalizedUnitNumber(1244),
+    totalBorrowed: NormalizedNumber(1244),
     apy: Percentage(0.01),
     reserveFactor: Percentage(0.05),
-    borrowCap: NormalizedUnitNumber(2244),
-    borrowLiquidity: NormalizedUnitNumber(1244),
+    borrowCap: NormalizedNumber(2244),
+    borrowLiquidity: NormalizedNumber(1244),
     limitedByBorrowCap: true,
     chartProps,
     sparkRewards: [

@@ -5,13 +5,13 @@ import { MultiPanelDialog } from '@/features/dialogs/common/components/MultiPane
 import { PageStatus } from '@/features/dialogs/common/types'
 import { DialogTitle } from '@/ui/atoms/dialog/Dialog'
 import { TransactionOverview } from '@/ui/organisms/transaction-overview/TransactionOverview'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 export interface ClaimRewardsViewProps {
   pageStatus: PageStatus
   objectives: Objective[]
   rewardToken: Token
-  rewardAmount: NormalizedUnitNumber
+  rewardAmount: NormalizedNumber
 }
 
 export function ClaimRewardsView({ rewardToken, rewardAmount, pageStatus, objectives }: ClaimRewardsViewProps) {

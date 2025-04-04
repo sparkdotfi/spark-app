@@ -1,15 +1,15 @@
 import { SimplifiedQueryResult, transformSimplifiedQueryResult } from '@/domain/common/query'
 import { useClaimableRewardsQuery } from '@/domain/spark-rewards/useClaimableRewardsQuery'
 import { Token } from '@/domain/types/Token'
-import { Hex, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { Hex, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useChainId } from 'wagmi'
 
 export type UseClaimableRewardsResult = SimplifiedQueryResult<ClaimableReward[]>
 
 export interface ClaimableReward {
   token: Token
-  amountToClaim: NormalizedUnitNumber
-  cumulativeAmount: NormalizedUnitNumber
+  amountToClaim: NormalizedNumber
+  cumulativeAmount: NormalizedNumber
   epoch: number
   merkleRoot: Hex
   merkleProof: Hex[]
@@ -23,7 +23,7 @@ export function useClaimableRewards(): UseClaimableRewardsResult {
     data
       .filter((reward) => reward.chainId === chainId)
       .map(({ rewardToken, cumulativeAmount, epoch, preClaimed, merkleRoot, merkleProof }) => {
-        const amountToClaim = NormalizedUnitNumber(cumulativeAmount.minus(preClaimed))
+        const amountToClaim = cumulativeAmount.minus(preClaimed)
         return {
           token: rewardToken,
           amountToClaim,

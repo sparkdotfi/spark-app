@@ -3,7 +3,7 @@ import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { TokenWithBalance } from '@/domain/common/types'
 import { MyWalletPanel } from './MyWalletPanel'
@@ -24,35 +24,35 @@ type Story = StoryObj<typeof MyWalletPanel>
 const assets: TokenWithBalance[] = [
   {
     token: tokens.ETH,
-    balance: NormalizedUnitNumber(132.28),
+    balance: NormalizedNumber(132.28),
   },
   {
     token: tokens.stETH,
-    balance: NormalizedUnitNumber(48.32),
+    balance: NormalizedNumber(48.32),
   },
   {
     token: tokens.USDC,
-    balance: NormalizedUnitNumber(90000),
+    balance: NormalizedNumber(90000),
   },
   {
     token: tokens.WBTC,
-    balance: NormalizedUnitNumber(2),
+    balance: NormalizedNumber(2),
   },
   {
     token: tokens.sDAI,
-    balance: NormalizedUnitNumber(50000),
+    balance: NormalizedNumber(50000),
   },
   {
     token: tokens.DAI,
-    balance: NormalizedUnitNumber(50000),
+    balance: NormalizedNumber(50000),
   },
   {
     token: tokens.SKY,
-    balance: NormalizedUnitNumber(15),
+    balance: NormalizedNumber(15),
   },
   {
     token: tokens.USDT,
-    balance: NormalizedUnitNumber(7000),
+    balance: NormalizedNumber(7000),
   },
 ]
 

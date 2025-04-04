@@ -7,7 +7,7 @@ import { MenuItem, MenuItemIcon } from '@/ui/atoms/menu-item/MenuItem'
 import { Skeleton } from '@/ui/atoms/skeleton/Skeleton'
 import { links } from '@/ui/constants/links'
 import { text } from '@/ui/constants/text'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ChevronRight, ExternalLinkIcon } from 'lucide-react'
 import { useState } from 'react'
 import { Airdrop, TopbarAirdropProps } from '../../topbar-airdrop/TopbarAirdrop'
@@ -48,7 +48,7 @@ function TopbarDynamicAirdrop({ airdrop }: TopbarDynamicAirdropProps) {
 }
 
 export interface TopbarAirdropDropdownProps {
-  amount?: NormalizedUnitNumber
+  amount?: NormalizedNumber
   precision?: number
   isLoading?: boolean
   isGrowing?: boolean
@@ -56,7 +56,7 @@ export interface TopbarAirdropDropdownProps {
 }
 
 function TopbarMenuAirdropDialog({
-  amount = NormalizedUnitNumber(0),
+  amount = NormalizedNumber.ZERO,
   precision = 0,
   isLoading,
   isGrowing = false,
@@ -71,7 +71,7 @@ function TopbarMenuAirdropDialog({
               <span className="typography-label-3 text-secondary">Spark Airdrop Tokens</span>
               <div className="flex items-center gap-2">
                 <img src={assets.brand.symbolGradient} alt="spark logo" className="icon-md" />
-                {SPK_MOCK_TOKEN.format(amount ?? NormalizedUnitNumber(0), { style: 'compact' })}
+                {SPK_MOCK_TOKEN.format(amount ?? NormalizedNumber.ZERO, { style: 'compact' })}
               </div>
             </div>
             <MenuItemIcon icon={ChevronRight} className="icon-sm ml-auto" />

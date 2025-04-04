@@ -1,7 +1,7 @@
 import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import BigNumber from 'bignumber.js'
 import { useForm } from 'react-hook-form'
@@ -20,27 +20,27 @@ const meta: Meta<typeof DepositView> = {
     selectableAssets: [
       {
         token: tokens.USDC,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
       },
       {
         token: tokens.ETH,
-        balance: NormalizedUnitNumber(1),
+        balance: NormalizedNumber(1),
       },
     ],
     assetsFields: {
       selectedAsset: {
         token: tokens.USDC,
-        balance: NormalizedUnitNumber(50000),
+        balance: NormalizedNumber(50000),
         value: '2000',
       },
-      maxValue: NormalizedUnitNumber(5000),
+      maxValue: NormalizedNumber(5000),
       changeAsset: () => {},
     },
     objectives: [
       {
         type: 'deposit',
         token: tokens.USDC,
-        value: NormalizedUnitNumber(50000),
+        value: NormalizedNumber(50000),
       },
     ],
     pageStatus: {

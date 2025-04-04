@@ -6,14 +6,14 @@ import { testAddresses, testTokens } from '@/test/integration/constants'
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
 import { toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { mainnet } from 'viem/chains'
 import { describe, test } from 'vitest'
 import { createDowngradeActionConfig } from './downgradeAction'
 
 const account = testAddresses.alice
-const downgradeAmount = NormalizedUnitNumber(1)
+const downgradeAmount = NormalizedNumber(1)
 const dai = testTokens.DAI
 const usds = testTokens.USDS
 const chainId = mainnet.id

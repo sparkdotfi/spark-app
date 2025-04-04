@@ -1,6 +1,6 @@
 import { SavingsConverter } from '@/domain/savings-converters/types'
 import { filterDataByTimeframe } from '@/ui/charts/utils'
-import { NormalizedUnitNumber, assertNever } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, assertNever } from '@sparkdotfi/common-universal'
 import { calculatePredictions } from './calculatePredictions'
 import { MyEarningsTimeframe } from './common'
 import { MyEarningsInfoItem } from './types'
@@ -10,7 +10,7 @@ interface GetFilteredEarningsWithPredictionsParams {
   timeframe: MyEarningsTimeframe
   myEarningsInfo: MyEarningsInfoItem[]
   savingsConverter: SavingsConverter | null
-  savingsTokenBalance: NormalizedUnitNumber | undefined
+  savingsTokenBalance: NormalizedNumber | undefined
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type

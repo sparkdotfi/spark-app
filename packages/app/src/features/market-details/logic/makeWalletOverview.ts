@@ -5,7 +5,7 @@ import { MarketInfo, Reserve } from '@/domain/market-info/marketInfo'
 import { getValidateBorrowArgs, validateBorrow } from '@/domain/market-validators/validateBorrow'
 import { MarketWalletInfo } from '@/domain/wallet/useMarketWalletInfo'
 import { applyTransformers } from '@/utils/applyTransformers'
-import { assert, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { assert, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { WalletOverview } from '../types'
 
 export interface MakeWalletOverviewParams {
@@ -48,11 +48,11 @@ function makeGuestModeOverview({ reserve, walletInfo }: MakeWalletOverviewParams
     tokenBalance: walletInfo.findWalletBalanceForToken(token),
     deposit: {
       token,
-      available: NormalizedUnitNumber(0),
+      available: NormalizedNumber.ZERO,
     },
     borrow: {
       token,
-      available: NormalizedUnitNumber(0),
+      available: NormalizedNumber.ZERO,
       eligibility: reserve.borrowEligibilityStatus,
     },
   }
@@ -76,11 +76,11 @@ function makeChainMismatchOverview({
     tokenBalance: walletInfo.findWalletBalanceForToken(token),
     deposit: {
       token,
-      available: NormalizedUnitNumber(0),
+      available: NormalizedNumber.ZERO,
     },
     borrow: {
       token,
-      available: NormalizedUnitNumber(0),
+      available: NormalizedNumber.ZERO,
       eligibility: reserve.borrowEligibilityStatus,
     },
   }
@@ -105,7 +105,7 @@ function makeBaseWalletOverview({ reserve, marketInfo, walletInfo }: MakeWalletO
     },
   })
 
-  const borrowValidationArgs = getValidateBorrowArgs(NormalizedUnitNumber(0), reserve, marketInfo)
+  const borrowValidationArgs = getValidateBorrowArgs(NormalizedNumber.ZERO, reserve, marketInfo)
   const validationIssue = validateBorrow(borrowValidationArgs)
 
   const availableToBorrow = getBorrowMaxValue({
@@ -165,11 +165,9 @@ function makeWalletNativeAssetOverview({
 
   const baseOverview = makeBaseWalletOverview({ reserve, nativeAssetInfo, walletInfo, ...rest })
 
-  const tokenBalance = NormalizedUnitNumber(
-    walletInfo
-      .findWalletBalanceForToken(reserve.token)
-      .plus(walletInfo.findWalletBalanceForSymbol(nativeAssetInfo.nativeAssetSymbol)),
-  )
+  const tokenBalance = walletInfo
+    .findWalletBalanceForToken(reserve.token)
+    .plus(walletInfo.findWalletBalanceForSymbol(nativeAssetInfo.nativeAssetSymbol))
 
   const availableToDeposit = getDepositMaxValue({
     asset: {

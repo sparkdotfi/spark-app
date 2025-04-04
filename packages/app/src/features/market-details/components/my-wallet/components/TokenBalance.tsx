@@ -1,11 +1,11 @@
 import { Token } from '@/domain/types/Token'
 import { TokenIcon } from '@/ui/atoms/token-icon/TokenIcon'
 import { testIds } from '@/ui/utils/testIds'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 interface TokenBalanceProps {
   token: Token
-  balance: NormalizedUnitNumber
+  balance: NormalizedNumber
 }
 
 export function TokenBalance({ token, balance }: TokenBalanceProps) {

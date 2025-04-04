@@ -4,7 +4,7 @@ import { FieldValues, useForm } from 'react-hook-form'
 
 import { TokenWithBalance } from '@/domain/common/types'
 import { Form } from '@/ui/atoms/form/Form'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { testIds } from '@/ui/utils/testIds'
 import { expect, within } from '@storybook/test'
@@ -14,19 +14,19 @@ import { AssetInput, AssetInputProps } from './AssetInput'
 const assets: TokenWithBalance[] = [
   {
     token: tokens.ETH,
-    balance: NormalizedUnitNumber('1'),
+    balance: NormalizedNumber('1'),
   },
   {
     token: tokens.DAI,
-    balance: NormalizedUnitNumber('500'),
+    balance: NormalizedNumber('500'),
   },
   {
     token: tokens.wstETH,
-    balance: NormalizedUnitNumber('7'),
+    balance: NormalizedNumber('7'),
   },
   {
     token: tokens.USDC,
-    balance: NormalizedUnitNumber('300'),
+    balance: NormalizedNumber('300'),
   },
 ]
 
@@ -54,7 +54,7 @@ const meta: Meta<typeof AssetInputWrapper> = {
     selectorAssets: assets,
     selectedAsset: assets[0],
     setSelectedAsset: () => {},
-    maxValue: NormalizedUnitNumber('1000'),
+    maxValue: NormalizedNumber('1000'),
     fieldName: 'name',
     maxSelectedFieldName: 'isMaxSelected',
   },

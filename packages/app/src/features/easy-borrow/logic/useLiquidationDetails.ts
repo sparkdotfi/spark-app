@@ -2,7 +2,7 @@ import { TokenWithValue } from '@/domain/common/types'
 import { useConditionalFreeze } from '@/domain/hooks/useConditionalFreeze'
 import { LiquidationDetails, getLiquidationDetails } from '@/domain/market-info/getLiquidationDetails'
 import { MarketInfo } from '@/domain/market-info/marketInfo'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { Percentage } from '@sparkdotfi/common-universal'
 
 export interface UseLiquidationDetailsArgs {
   marketInfo: MarketInfo
@@ -37,7 +37,7 @@ function mergeTokensWithValues(first: TokenWithValue[], second: TokenWithValue[]
   for (const token of first) {
     const counterpart = second.find((t) => t.token.symbol === token.token.symbol)
     if (counterpart) {
-      result.push({ token: token.token, value: NormalizedUnitNumber(token.value.plus(counterpart.value)) })
+      result.push({ token: token.token, value: token.value.plus(counterpart.value) })
     } else {
       result.push(token)
     }

@@ -6,7 +6,7 @@ import { WithClassname, WithTooltipProvider, ZeroAllowanceWagmiDecorator } from 
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { bigNumberify } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { useForm } from 'react-hook-form'
 import { withRouter } from 'storybook-addon-remix-react-router'
@@ -19,11 +19,11 @@ const susds = tokens.sUSDS
 const usdc = tokens.USDC
 const mockTokenRepository = new TokenRepository(
   [
-    { token: dai, balance: NormalizedUnitNumber(100) },
-    { token: sdai, balance: NormalizedUnitNumber(100) },
-    { token: usds, balance: NormalizedUnitNumber(100) },
-    { token: susds, balance: NormalizedUnitNumber(100) },
-    { token: usdc, balance: NormalizedUnitNumber(100) },
+    { token: dai, balance: NormalizedNumber(100) },
+    { token: sdai, balance: NormalizedNumber(100) },
+    { token: usds, balance: NormalizedNumber(100) },
+    { token: susds, balance: NormalizedNumber(100) },
+    { token: usdc, balance: NormalizedNumber(100) },
   ],
   {
     DAI: dai.symbol,
@@ -54,15 +54,15 @@ const withdrawArgs: Partial<SavingsWithdrawViewProps> = {
   selectableAssets: [
     {
       token: tokens.DAI,
-      balance: NormalizedUnitNumber(2000),
+      balance: NormalizedNumber(2000),
     },
     {
       token: tokens.USDC,
-      balance: NormalizedUnitNumber(50000),
+      balance: NormalizedNumber(50000),
     },
     {
       token: tokens.USDT,
-      balance: NormalizedUnitNumber(300),
+      balance: NormalizedNumber(300),
     },
   ],
   pageStatus: {
@@ -73,17 +73,17 @@ const withdrawArgs: Partial<SavingsWithdrawViewProps> = {
   assetsFields: {
     selectedAsset: {
       token: tokens.DAI,
-      balance: NormalizedUnitNumber(50000),
+      balance: NormalizedNumber(50000),
       value: '2000',
     },
-    maxValue: NormalizedUnitNumber(5000),
+    maxValue: NormalizedNumber(5000),
     changeAsset: () => {},
   },
   objectives: [
     {
       type: 'withdrawFromSavings',
       token: tokens.DAI,
-      amount: NormalizedUnitNumber(1023),
+      amount: NormalizedNumber(1023),
       savingsToken: tokens.sDAI,
       isRedeem: false,
       mode: 'withdraw',
@@ -93,13 +93,13 @@ const withdrawArgs: Partial<SavingsWithdrawViewProps> = {
     underlyingToken: tokens.DAI,
     status: 'success',
     APY: Percentage(0.05),
-    stableEarnRate: NormalizedUnitNumber(542),
+    stableEarnRate: NormalizedNumber(542),
     route: [
-      { token: tokens.sDAI, value: NormalizedUnitNumber(925.75), usdValue: NormalizedUnitNumber(1300.74) },
-      { token: tokens.DAI, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
+      { token: tokens.sDAI, value: NormalizedNumber(925.75), usdValue: NormalizedNumber(1300.74) },
+      { token: tokens.DAI, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
     ],
     skyBadgeToken: tokens.DAI,
-    outTokenAmount: NormalizedUnitNumber(925.75),
+    outTokenAmount: NormalizedNumber(925.75),
   },
   actionsContext: { tokenRepository: mockTokenRepository, savingsAccounts: mockSavingsAccounts },
   underlyingToken: tokens.DAI,
@@ -110,7 +110,7 @@ const sendArgs: Partial<SavingsWithdrawViewProps> = {
     {
       type: 'withdrawFromSavings',
       token: tokens.DAI,
-      amount: NormalizedUnitNumber(1023),
+      amount: NormalizedNumber(1023),
       savingsToken: tokens.sDAI,
       isRedeem: false,
       receiver: testAddresses.alice,

@@ -10,14 +10,14 @@ import { getMockReserve, getMockToken, testAddresses } from '@/test/integration/
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
 import { CheckedAddress, UnixTime, toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { generatePrivateKey } from 'viem/accounts'
 import { mainnet } from 'viem/chains'
 import { describe, test } from 'vitest'
 import { createRepayActionConfig } from './repayAction'
 
-const repayValue = NormalizedUnitNumber(1)
+const repayValue = NormalizedNumber(1)
 const repayToken = getMockToken({ symbol: TokenSymbol('TEST') })
 const repayTokenReserve = getMockReserve({ token: repayToken })
 const repayValueBigInt = toBigInt(repayToken.toBaseUnit(repayValue))

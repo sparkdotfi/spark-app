@@ -1,7 +1,7 @@
 import { WithClassname } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { ClaimTransactionOverview } from './ClaimTransactionOverview'
 
@@ -13,7 +13,7 @@ const meta: Meta<typeof ClaimTransactionOverview> = {
     txOverview: {
       reward: {
         token: tokens.SKY,
-        value: NormalizedUnitNumber(500.89),
+        value: NormalizedNumber(500.89),
       },
     },
   },
@@ -30,8 +30,8 @@ export const DesktopZeroApy: Story = {
   args: {
     txOverview: {
       reward: {
-        token: tokens.SKY.clone({ unitPriceUsd: NormalizedUnitNumber(0) }),
-        value: NormalizedUnitNumber(500.89),
+        token: tokens.SKY.clone({ unitPriceUsd: NormalizedNumber.ZERO }),
+        value: NormalizedNumber(500.89),
       },
     },
   },

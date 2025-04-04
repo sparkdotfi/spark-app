@@ -7,7 +7,7 @@ import { getMockToken, testAddresses, testTokens } from '@/test/integration/cons
 import { handlers } from '@/test/integration/mockTransport'
 import { setupUseContractActionRenderer } from '@/test/integration/setupUseContractActionRenderer'
 import { toBigInt } from '@sparkdotfi/common-universal'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { waitFor } from '@testing-library/react'
 import { mainnet } from 'viem/chains'
 import { describe, test } from 'vitest'
@@ -19,13 +19,13 @@ const chainId = mainnet.id
 const usdc = getMockToken({ symbol: TokenSymbol('USDC'), decimals: 6 })
 const usds = getMockToken({ symbol: TokenSymbol('USDS') })
 const dai = getMockToken({ symbol: TokenSymbol('DAI') })
-const amount = NormalizedUnitNumber(1)
+const amount = NormalizedNumber(1)
 
 const mockTokenRepository = new TokenRepository(
   [
-    { token: usdc, balance: NormalizedUnitNumber(100) },
-    { token: dai, balance: NormalizedUnitNumber(100) },
-    { token: usds, balance: NormalizedUnitNumber(100) },
+    { token: usdc, balance: NormalizedNumber(100) },
+    { token: dai, balance: NormalizedNumber(100) },
+    { token: usds, balance: NormalizedNumber(100) },
   ],
   {
     DAI: testTokens.DAI.symbol,

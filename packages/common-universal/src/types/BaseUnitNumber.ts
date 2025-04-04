@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 
 import { assert, NumberLike } from '../index.js'
 import { bigNumberify } from '../math/bigNumber.js'
-import { NormalizedUnitNumber } from './NormalizedUnitNumber.js'
+import { NormalizedNumber } from './NormalizedNumber.js'
 import { Opaque } from './Opaque.js'
 
 /**
@@ -16,6 +16,6 @@ export function BaseUnitNumber(value: NumberLike): BaseUnitNumber {
   return result as BaseUnitNumber
 }
 
-BaseUnitNumber.toNormalizedUnit = (value: BaseUnitNumber, decimals: number): NormalizedUnitNumber => {
-  return NormalizedUnitNumber(value.shiftedBy(-decimals))
+BaseUnitNumber.toNormalizedUnit = (value: BaseUnitNumber, decimals: number): NormalizedNumber => {
+  return NormalizedNumber(value.shiftedBy(-decimals))
 }

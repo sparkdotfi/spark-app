@@ -1,5 +1,5 @@
 import { TokenWithBalance, TokenWithValue } from '@/domain/common/types'
-import { NormalizedUnitNumber, raise } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, raise } from '@sparkdotfi/common-universal'
 import { EasyBorrowFormNormalizedData } from '../types'
 import type { AssetInputSchema, EasyBorrowFormSchema } from './validation'
 
@@ -11,7 +11,7 @@ export function normalizeFormValues(
     const { token } = formAssets.find(({ token }) => token.symbol === asset.symbol) ?? raise('Asset not found')
     return {
       token,
-      value: NormalizedUnitNumber(asset.value === '' ? '0' : asset.value),
+      value: NormalizedNumber(asset.value === '' ? '0' : asset.value),
     }
   }
 

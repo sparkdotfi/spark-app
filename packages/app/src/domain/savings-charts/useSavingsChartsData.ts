@@ -1,6 +1,6 @@
 import { MyEarningsQueryOptions, SavingsRateQueryOptions } from '@/config/chain/types'
 import { useTimestamp } from '@/utils/useTimestamp'
-import { CheckedAddress, NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { CheckedAddress, NormalizedNumber } from '@sparkdotfi/common-universal'
 import { useAccount, useChainId } from 'wagmi'
 import { SavingsConverter } from '../savings-converters/types'
 import { UseMyEarningsInfoResult, useMyEarningsInfo } from './useMyEarningsInfo/useMyEarningsInfo'
@@ -16,7 +16,7 @@ const REFRESH_INTERVAL_IN_MS = 60 * 60 * 1_000 // 1 hour
 
 interface UseSavingsChartsDataParams {
   savingsConverter: SavingsConverter | null
-  savingsTokenBalance: NormalizedUnitNumber | undefined
+  savingsTokenBalance: NormalizedNumber | undefined
   myEarningsQueryOptions: MyEarningsQueryOptions | undefined
   savingsRateQueryOptions: SavingsRateQueryOptions | undefined
 }

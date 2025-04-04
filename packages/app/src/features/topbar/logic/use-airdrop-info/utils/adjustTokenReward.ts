@@ -1,10 +1,10 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 interface AdjustTokenRewardParams {
   airdropTimestampInMs: number
   currentTimestampInMs: number
-  tokenRatePerSecond: NormalizedUnitNumber
-  tokenReward: NormalizedUnitNumber
+  tokenRatePerSecond: NormalizedNumber
+  tokenReward: NormalizedNumber
 }
 
 export function adjustTokenReward({
@@ -12,8 +12,8 @@ export function adjustTokenReward({
   currentTimestampInMs,
   tokenRatePerSecond,
   tokenReward,
-}: AdjustTokenRewardParams): NormalizedUnitNumber {
+}: AdjustTokenRewardParams): NormalizedNumber {
   const timeElapsedInMs = currentTimestampInMs > airdropTimestampInMs ? currentTimestampInMs - airdropTimestampInMs : 0
-  const tokensAccumulatedSinceSnapshot = tokenRatePerSecond.multipliedBy(timeElapsedInMs / 1000)
-  return NormalizedUnitNumber(tokenReward.plus(tokensAccumulatedSinceSnapshot))
+  const tokensAccumulatedSinceSnapshot = tokenRatePerSecond.times(timeElapsedInMs / 1000)
+  return tokenReward.plus(tokensAccumulatedSinceSnapshot)
 }

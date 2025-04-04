@@ -1,7 +1,7 @@
 import { WithClassname, WithTooltipProvider } from '@sb/decorators'
 import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import { Meta, StoryObj } from '@storybook/react'
 import { TransactionOverview } from './TransactionOverview'
 
@@ -14,13 +14,13 @@ const meta: Meta<typeof TransactionOverview> = {
       underlyingToken: tokens.DAI,
       status: 'success',
       APY: Percentage(0.05),
-      stableEarnRate: NormalizedUnitNumber(542),
+      stableEarnRate: NormalizedNumber(542),
       route: [
-        { token: tokens.DAI, value: NormalizedUnitNumber(1300.74), usdValue: NormalizedUnitNumber(1300.74) },
-        { token: tokens.sDAI, value: NormalizedUnitNumber(925.75), usdValue: NormalizedUnitNumber(1300.74) },
+        { token: tokens.DAI, value: NormalizedNumber(1300.74), usdValue: NormalizedNumber(1300.74) },
+        { token: tokens.sDAI, value: NormalizedNumber(925.75), usdValue: NormalizedNumber(1300.74) },
       ],
       skyBadgeToken: tokens.DAI,
-      outTokenAmount: NormalizedUnitNumber(925.75),
+      outTokenAmount: NormalizedNumber(925.75),
     },
     showAPY: true,
   },

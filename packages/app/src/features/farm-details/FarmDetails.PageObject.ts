@@ -3,7 +3,7 @@ import { AssetsInTests, TOKENS_ON_FORK } from '@/test/e2e/constants'
 import { getTokenBalance } from '@/test/e2e/utils'
 import { testIds } from '@/ui/utils/testIds'
 import { Locator, expect } from '@playwright/test'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { Address } from 'viem'
 
 export class FarmDetailsPageObject extends BasePageObject {
@@ -59,7 +59,7 @@ export class FarmDetailsPageObject extends BasePageObject {
     address,
   }: {
     symbol: AssetsInTests
-    balance: NormalizedUnitNumber
+    balance: NormalizedNumber
     address: Address
   }): Promise<void> {
     const chainId = await this.testContext.testnetController.client.getChainId()

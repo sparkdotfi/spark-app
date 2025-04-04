@@ -4,7 +4,7 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 import { encodeFunctionResult, zeroAddress } from 'viem'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 
 import { incentiveControllerAbi } from '@/config/abis/incentiveControllerAbi'
@@ -43,7 +43,7 @@ const meta: Meta<typeof ClaimRewardsView> = {
     rewards: [
       {
         token: tokens.wstETH,
-        amount: NormalizedUnitNumber(0.00157),
+        amount: NormalizedNumber(0.00157),
       },
     ],
   },

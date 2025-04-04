@@ -1,4 +1,4 @@
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { ReserveStatus } from '../market-info/reserve-status'
 
 export type RepayValidationIssue =
@@ -9,13 +9,13 @@ export type RepayValidationIssue =
   | 'reserve-not-active'
 
 export interface ValidateRepayArgs {
-  value: NormalizedUnitNumber
+  value: NormalizedNumber
   asset: {
     status: ReserveStatus
   }
   user: {
-    debt: NormalizedUnitNumber
-    balance: NormalizedUnitNumber
+    debt: NormalizedNumber
+    balance: NormalizedNumber
   }
 }
 
@@ -24,7 +24,7 @@ export function validateRepay({
   asset: { status },
   user: { debt, balance },
 }: ValidateRepayArgs): RepayValidationIssue | undefined {
-  if (value.isLessThanOrEqualTo(0)) {
+  if (value.lte(0)) {
     return 'value-not-positive'
   }
 

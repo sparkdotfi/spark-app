@@ -1,13 +1,13 @@
 import { SavingsAccount } from '@/domain/savings-converters/types'
 import { TransferFromUserFormNormalizedData } from '@/features/dialogs/common/logic/transfer-from-user/form'
 import { TxOverviewRouteItem } from '@/features/dialogs/common/types'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { SavingsDialogTxOverview } from '../../common/types'
 
 export interface CreateTxOverviewParams {
   formValues: TransferFromUserFormNormalizedData
   savingsAccount: SavingsAccount
-  savingsTokenBalance: NormalizedUnitNumber
+  savingsTokenBalance: NormalizedNumber
 }
 export function createTxOverview({
   formValues,
@@ -32,7 +32,7 @@ export function createTxOverview({
     return { status: 'no-overview' }
   }
 
-  const savingsRate = NormalizedUnitNumber(savingsTokenInAmount.multipliedBy(converter.apy))
+  const savingsRate = savingsTokenInAmount.times(NormalizedNumber(converter.apy))
   const route = getWithdrawRoute({
     formValues,
     savingsAccount,
@@ -53,7 +53,7 @@ export function createTxOverview({
 export interface GetWithdrawRouteParams {
   formValues: TransferFromUserFormNormalizedData
   savingsAccount: SavingsAccount
-  savingsTokenInAmount: NormalizedUnitNumber
+  savingsTokenInAmount: NormalizedNumber
 }
 function getWithdrawRoute({
   formValues,

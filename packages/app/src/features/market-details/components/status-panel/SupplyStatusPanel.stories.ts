@@ -6,7 +6,7 @@ import { tokens } from '@sb/tokens'
 import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { withRouter } from 'storybook-addon-remix-react-router'
 
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { SupplyStatusPanel } from './SupplyStatusPanel'
@@ -25,8 +25,8 @@ export const CanBeSupplied: Story = {
   args: {
     status: 'yes',
     token: tokens.rETH,
-    totalSupplied: NormalizedUnitNumber(72_000),
-    supplyCap: NormalizedUnitNumber(112_000),
+    totalSupplied: NormalizedNumber(72_000),
+    supplyCap: NormalizedNumber(112_000),
     apy: Percentage(0.05),
     sparkRewards: [],
   },
@@ -40,8 +40,8 @@ export const SupplyCapReached: Story = {
   args: {
     status: 'supply-cap-reached',
     token: tokens.rETH,
-    totalSupplied: NormalizedUnitNumber(112_000),
-    supplyCap: NormalizedUnitNumber(112_000),
+    totalSupplied: NormalizedNumber(112_000),
+    supplyCap: NormalizedNumber(112_000),
     apy: Percentage(0.05),
     sparkRewards: [],
   },
@@ -52,8 +52,8 @@ export const CannotBeSupplied: Story = {
   args: {
     status: 'no',
     token: tokens.rETH,
-    totalSupplied: NormalizedUnitNumber(0),
-    supplyCap: NormalizedUnitNumber(0),
+    totalSupplied: NormalizedNumber.ZERO,
+    supplyCap: NormalizedNumber.ZERO,
     apy: Percentage(0),
     sparkRewards: [],
   },
@@ -64,12 +64,12 @@ export const WithCapAutomatorInfo: Story = {
   args: {
     status: 'yes',
     token: tokens.rETH,
-    totalSupplied: NormalizedUnitNumber(72_000),
-    supplyCap: NormalizedUnitNumber(112_000),
+    totalSupplied: NormalizedNumber(72_000),
+    supplyCap: NormalizedNumber(112_000),
     apy: Percentage(0.05),
     capAutomatorInfo: {
-      maxCap: NormalizedUnitNumber(200_000),
-      gap: NormalizedUnitNumber(0),
+      maxCap: NormalizedNumber(200_000),
+      gap: NormalizedNumber.ZERO,
       increaseCooldown: 43200,
       lastIncreaseTimestamp: Math.floor(STORYBOOK_TIMESTAMP / 1000 - 41903),
       lastUpdateBlock: 0,
@@ -88,8 +88,8 @@ export const WithOneSparkReward: Story = {
   args: {
     status: 'yes',
     token: tokens.rETH,
-    totalSupplied: NormalizedUnitNumber(72_000),
-    supplyCap: NormalizedUnitNumber(112_000),
+    totalSupplied: NormalizedNumber(72_000),
+    supplyCap: NormalizedNumber(112_000),
     apy: Percentage(0.05),
     sparkRewards: [
       {
@@ -107,8 +107,8 @@ export const WithMultipleSparkReward: Story = {
   args: {
     status: 'yes',
     token: tokens.rETH,
-    totalSupplied: NormalizedUnitNumber(72_000),
-    supplyCap: NormalizedUnitNumber(112_000),
+    totalSupplied: NormalizedNumber(72_000),
+    supplyCap: NormalizedNumber(112_000),
     apy: Percentage(0.05),
     sparkRewards: [
       {

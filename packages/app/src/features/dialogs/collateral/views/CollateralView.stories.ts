@@ -4,7 +4,7 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 import BigNumber from 'bignumber.js'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 
 import { CollateralView } from './CollateralView'
 
@@ -15,7 +15,7 @@ const meta: Meta<typeof CollateralView> = {
   args: {
     collateral: {
       token: tokens.ETH,
-      balance: NormalizedUnitNumber(10),
+      balance: NormalizedNumber(10),
     },
     pageStatus: {
       state: 'form',

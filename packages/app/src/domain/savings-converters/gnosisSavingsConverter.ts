@@ -11,7 +11,7 @@ import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { fromWad } from '@/utils/math'
 import { bigNumberify } from '@sparkdotfi/common-universal'
 
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 import BigNumber from 'bignumber.js'
 import { SavingsConverter, SavingsConverterQueryOptions, SavingsConverterQueryParams } from './types'
 
@@ -64,8 +64,8 @@ export function gnosisSavingsDaiConverterQuery({
     select: ({ vaultAPY, totalAssets, totalSupply, decimals }) => {
       return new GnosisSavingsConverter({
         vaultAPY: Percentage(fromWad(bigNumberify(vaultAPY))),
-        totalAssets: NormalizedUnitNumber(bigNumberify(totalAssets).shiftedBy(-decimals)),
-        totalSupply: NormalizedUnitNumber(bigNumberify(totalSupply).shiftedBy(-decimals)),
+        totalAssets: NormalizedNumber(totalAssets).shiftedBy(-decimals),
+        totalSupply: NormalizedNumber(totalSupply).shiftedBy(-decimals),
         currentTimestamp: timestamp,
       })
     },
@@ -74,15 +74,15 @@ export function gnosisSavingsDaiConverterQuery({
 
 export interface GnosisSavingsConverterParams {
   vaultAPY: Percentage
-  totalSupply: NormalizedUnitNumber
-  totalAssets: NormalizedUnitNumber
+  totalSupply: NormalizedNumber
+  totalAssets: NormalizedNumber
   currentTimestamp: number
 }
 
 export class GnosisSavingsConverter implements SavingsConverter {
   private vaultAPY: Percentage
-  private totalSupply: NormalizedUnitNumber
-  private totalAssets: NormalizedUnitNumber
+  private totalSupply: NormalizedNumber
+  private totalAssets: NormalizedNumber
   readonly currentTimestamp: number
 
   constructor(params: GnosisSavingsConverterParams) {
@@ -102,35 +102,29 @@ export class GnosisSavingsConverter implements SavingsConverter {
 
   private getGrowthFactor(timestamp: number): BigNumber {
     return this.vaultAPY
-      .dividedBy(365 * 24 * 60 * 60)
-      .multipliedBy(timestamp - this.currentTimestamp)
+      .div(365 * 24 * 60 * 60)
+      .times(timestamp - this.currentTimestamp)
       .plus(1)
   }
 
-  convertToShares({ assets }: { assets: NormalizedUnitNumber }): NormalizedUnitNumber {
-    return NormalizedUnitNumber(assets.multipliedBy(this.totalAssets.plus(1)).dividedBy(this.totalSupply.plus(1)))
+  convertToShares({ assets }: { assets: NormalizedNumber }): NormalizedNumber {
+    return assets.times(this.totalAssets.plus(1)).div(this.totalSupply.plus(1))
   }
 
-  convertToAssets({ shares }: { shares: NormalizedUnitNumber }): NormalizedUnitNumber {
-    return NormalizedUnitNumber(shares.multipliedBy(this.totalSupply.plus(1)).dividedBy(this.totalAssets.plus(1)))
+  convertToAssets({ shares }: { shares: NormalizedNumber }): NormalizedNumber {
+    return shares.times(this.totalSupply.plus(1)).div(this.totalAssets.plus(1))
   }
 
-  predictAssetsAmount({
-    timestamp,
-    shares,
-  }: { timestamp: number; shares: NormalizedUnitNumber }): NormalizedUnitNumber {
+  predictAssetsAmount({ timestamp, shares }: { timestamp: number; shares: NormalizedNumber }): NormalizedNumber {
     const growthFactor = this.getGrowthFactor(timestamp)
     const assets = this.convertToAssets({ shares })
-    return NormalizedUnitNumber(assets.multipliedBy(growthFactor))
+    return assets.times(NormalizedNumber(growthFactor))
   }
 
-  predictSharesAmount({
-    timestamp,
-    assets,
-  }: { timestamp: number; assets: NormalizedUnitNumber }): NormalizedUnitNumber {
+  predictSharesAmount({ timestamp, assets }: { timestamp: number; assets: NormalizedNumber }): NormalizedNumber {
     const growthFactor = this.getGrowthFactor(timestamp)
-    const predictedAssetsBuyingPower = NormalizedUnitNumber(assets.dividedBy(growthFactor))
-    return NormalizedUnitNumber(this.convertToShares({ assets: predictedAssetsBuyingPower }))
+    const predictedAssetsBuyingPower = assets.div(NormalizedNumber(growthFactor))
+    return this.convertToShares({ assets: predictedAssetsBuyingPower })
   }
 }
 

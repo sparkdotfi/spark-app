@@ -4,7 +4,7 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-remix-react-router'
 
-import { NormalizedUnitNumber, Percentage } from '@sparkdotfi/common-universal'
+import { NormalizedNumber, Percentage } from '@sparkdotfi/common-universal'
 
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { MarketsView } from './MarketsView'
@@ -24,10 +24,10 @@ type Story = StoryObj<typeof MarketsView>
 export const Desktop: Story = {
   args: {
     marketStats: {
-      totalMarketSizeUSD: NormalizedUnitNumber(2.2 * 10 ** 12),
-      totalValueLockedUSD: NormalizedUnitNumber(1.5 * 10 ** 12),
-      totalAvailableUSD: NormalizedUnitNumber(1.4 * 10 ** 12),
-      totalBorrowsUSD: NormalizedUnitNumber(828.48 * 10 ** 9),
+      totalMarketSizeUSD: NormalizedNumber(2.2 * 10 ** 12),
+      totalValueLockedUSD: NormalizedNumber(1.5 * 10 ** 12),
+      totalAvailableUSD: NormalizedNumber(1.4 * 10 ** 12),
+      totalBorrowsUSD: NormalizedNumber(828.48 * 10 ** 9),
     },
     activeAndPausedMarketEntries: [
       {
@@ -53,8 +53,8 @@ export const Desktop: Story = {
             },
           ],
         },
-        totalBorrowed: NormalizedUnitNumber(0),
-        totalSupplied: NormalizedUnitNumber(11.99),
+        totalBorrowed: NormalizedNumber.ZERO,
+        totalSupplied: NormalizedNumber(11.99),
         marketStatus: {
           supplyAvailabilityStatus: 'yes',
           collateralEligibilityStatus: 'yes',
@@ -85,8 +85,8 @@ export const Desktop: Story = {
         depositApyDetails: {
           baseApy: Percentage(0.157),
         },
-        totalBorrowed: NormalizedUnitNumber(1257),
-        totalSupplied: NormalizedUnitNumber(0),
+        totalBorrowed: NormalizedNumber(1257),
+        totalSupplied: NormalizedNumber.ZERO,
         marketStatus: {
           supplyAvailabilityStatus: 'yes',
           collateralEligibilityStatus: 'yes',
@@ -102,8 +102,8 @@ export const Desktop: Story = {
         depositApyDetails: {
           baseApy: undefined,
         },
-        totalBorrowed: NormalizedUnitNumber(1257),
-        totalSupplied: NormalizedUnitNumber(0),
+        totalBorrowed: NormalizedNumber(1257),
+        totalSupplied: NormalizedNumber.ZERO,
         marketStatus: {
           supplyAvailabilityStatus: 'no',
           collateralEligibilityStatus: 'no',
@@ -117,8 +117,8 @@ export const Desktop: Story = {
         reserveStatus: 'frozen',
         borrowApyDetails: { baseApy: Percentage(0.11) },
         depositApyDetails: { baseApy: Percentage(0.157) },
-        totalBorrowed: NormalizedUnitNumber(0),
-        totalSupplied: NormalizedUnitNumber(11.99),
+        totalBorrowed: NormalizedNumber.ZERO,
+        totalSupplied: NormalizedNumber(11.99),
         marketStatus: {
           supplyAvailabilityStatus: 'no',
           collateralEligibilityStatus: 'no',
@@ -130,8 +130,8 @@ export const Desktop: Story = {
         reserveStatus: 'frozen',
         borrowApyDetails: { baseApy: undefined },
         depositApyDetails: { baseApy: undefined },
-        totalBorrowed: NormalizedUnitNumber(1257),
-        totalSupplied: NormalizedUnitNumber(0),
+        totalBorrowed: NormalizedNumber(1257),
+        totalSupplied: NormalizedNumber.ZERO,
         marketStatus: {
           supplyAvailabilityStatus: 'no',
           collateralEligibilityStatus: 'no',

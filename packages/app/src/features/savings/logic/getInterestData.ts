@@ -1,7 +1,7 @@
 import { TokenWithBalance } from '@/domain/common/types'
 import { SavingsConverter } from '@/domain/savings-converters/types'
 import { Token } from '@/domain/types/Token'
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { AccountSparkRewardsSummary } from '../types'
 import { STEP_IN_MS, SavingsOverview, makeSavingsOverview } from './makeSavingsOverview'
 import { calculateOneYearProjection } from './projections'
@@ -10,7 +10,7 @@ import { InterestData } from './useSavings'
 export interface GetInterestDataParams {
   savingsConverter: SavingsConverter
   savingsToken: Token
-  savingsTokenBalance: NormalizedUnitNumber
+  savingsTokenBalance: NormalizedNumber
   underlyingToken: Token
   sparkRewardsSummary: AccountSparkRewardsSummary
   timestamp: number
@@ -39,9 +39,9 @@ export function getInterestData({
   })
 
   const { depositedAssets: currentUnderlyingTokenBalance } = calculateUnderlyingTokenBalance(timestamp * 1000)
-  const sparkRewardsOneYearProjection = NormalizedUnitNumber(
-    underlyingToken.toUSD(currentUnderlyingTokenBalance).times(sparkRewardsSummary.totalApy),
-  )
+  const sparkRewardsOneYearProjection = underlyingToken
+    .toUSD(currentUnderlyingTokenBalance)
+    .times(NormalizedNumber(sparkRewardsSummary.totalApy))
 
   return {
     APY: savingsConverter.apy,

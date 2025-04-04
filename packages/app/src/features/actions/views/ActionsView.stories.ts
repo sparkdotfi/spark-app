@@ -4,7 +4,7 @@ import { getMobileStory, getTabletStory } from '@sb/viewports'
 import { Meta, StoryObj } from '@storybook/react'
 import { zeroAddress } from 'viem'
 
-import { NormalizedUnitNumber } from '@sparkdotfi/common-universal'
+import { NormalizedNumber } from '@sparkdotfi/common-universal'
 import { CheckedAddress } from '@sparkdotfi/common-universal'
 
 import { ActionsView } from './ActionsView'
@@ -28,7 +28,7 @@ const meta: Meta<typeof ActionsView> = {
           type: 'approve',
           token: tokens.WETH,
           spender: CheckedAddress(zeroAddress),
-          value: NormalizedUnitNumber(1),
+          value: NormalizedNumber(1),
         },
         state: { status: 'success' },
         onAction: () => {},
@@ -37,7 +37,7 @@ const meta: Meta<typeof ActionsView> = {
         action: {
           type: 'deposit',
           token: tokens.ETH,
-          value: NormalizedUnitNumber(1),
+          value: NormalizedNumber(1),
         },
         state: { status: 'loading' },
         onAction: () => {},
@@ -47,7 +47,7 @@ const meta: Meta<typeof ActionsView> = {
           type: 'approve',
           token: tokens.wstETH,
           spender: CheckedAddress(zeroAddress),
-          value: NormalizedUnitNumber(1),
+          value: NormalizedNumber(1),
         },
         state: { status: 'error', message: 'Insufficient balance' },
         onAction: () => {},
@@ -56,7 +56,7 @@ const meta: Meta<typeof ActionsView> = {
         action: {
           type: 'deposit',
           token: tokens.wstETH,
-          value: NormalizedUnitNumber(1),
+          value: NormalizedNumber(1),
         },
         state: { status: 'ready' },
         onAction: () => {},
@@ -65,7 +65,7 @@ const meta: Meta<typeof ActionsView> = {
         action: {
           type: 'borrow',
           token: tokens.DAI,
-          value: NormalizedUnitNumber(1),
+          value: NormalizedNumber(1),
         },
         state: { status: 'ready' },
         onAction: () => {},
