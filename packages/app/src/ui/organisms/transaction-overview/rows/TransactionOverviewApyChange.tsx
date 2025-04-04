@@ -18,18 +18,22 @@ export function TransactionOverviewApyChange({ currentApy, updatedApy }: Transac
       >
         {formatPercentage(currentApy)}
       </div>
-      <MoveRightIcon className="icon-xxs icon-secondary" />
-      <div
-        data-testid={testIds.dialog.savings.transactionOverview.apyChange.after}
-        className={cn(
-          'typography-label-2',
-          currentApy.eq(updatedApy) && 'text-primary',
-          currentApy.gt(updatedApy) && 'text-system-error-primary',
-          currentApy.lt(updatedApy) && 'text-system-success-primary',
-        )}
-      >
-        {formatPercentage(updatedApy)}
-      </div>
+      {!currentApy.eq(updatedApy) && (
+        <>
+          <MoveRightIcon className="icon-xxs icon-secondary" />
+          <div
+            data-testid={testIds.dialog.savings.transactionOverview.apyChange.after}
+            className={cn(
+              'typography-label-2',
+              currentApy.eq(updatedApy) && 'text-primary',
+              currentApy.gt(updatedApy) && 'text-system-error-primary',
+              currentApy.lt(updatedApy) && 'text-system-success-primary',
+            )}
+          >
+            {formatPercentage(updatedApy)}
+          </div>
+        </>
+      )}
     </div>
   )
 }
