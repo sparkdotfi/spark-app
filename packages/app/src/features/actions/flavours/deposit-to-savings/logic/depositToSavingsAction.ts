@@ -10,6 +10,7 @@ import {
   usdcVaultAbi,
   usdsPsmActionsConfig,
 } from '@/config/contracts-generated'
+import { trackTransactionConfirmation } from '@/domain/analytics/cookie3'
 import { trackEvent } from '@/domain/analytics/mixpanel'
 import { getContractAddress } from '@/domain/hooks/useContractAddress'
 import { ensureConfigTypes } from '@/domain/hooks/useWrite'
@@ -240,6 +241,12 @@ export function createDepositToSavingsActionConfig(
         underlyingToken: action.token.symbol,
         amount: action.value.toNumber(),
         chainId,
+      })
+
+      trackTransactionConfirmation({
+        name: 'Savings_Deposit_Confirmation',
+        value: action.token.toUSD(action.value).toNumber(),
+        isInSandbox: Boolean(context.isInSandbox),
       })
     },
   }
