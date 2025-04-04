@@ -54,20 +54,21 @@ export function StakingRewardsPanel({
           My Rewards <Info className="icon-secondary">Staking rewards panel tooltip text</Info>
         </div>
         <div className="grid grid-cols-[80px_80px] gap-1">
-          <Button
-            onClick={openClaimDialog}
-            variant={stakedAmount.gt(0) && claimableRewards.gt(0) ? 'primary' : 'secondary'}
-            size="s"
-          >
-            Claim
-          </Button>
-          <Button
-            onClick={stakedAmount.gt(0) ? openUnstakeDialog : openStakeDialog}
-            variant={stakedAmount.gt(0) ? 'secondary' : 'primary'}
-            size="s"
-          >
-            {stakedAmount.gt(0) ? 'Unstake' : 'Stake'}
-          </Button>
+          {claimableRewards.gt(0) && (
+            <Button onClick={openClaimDialog} variant="primary" size="s">
+              Claim
+            </Button>
+          )}
+          {(claimableRewards.eq(0) || stakedAmount.eq(0)) && (
+            <Button onClick={openStakeDialog} variant={claimableRewards.eq(0) ? 'primary' : 'secondary'} size="s">
+              Stake
+            </Button>
+          )}
+          {stakedAmount.gt(0) && (
+            <Button onClick={openUnstakeDialog} variant="secondary" size="s">
+              Unstake
+            </Button>
+          )}
         </div>
       </div>
       <GrowingReward
