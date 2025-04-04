@@ -11,6 +11,7 @@ const meta: Meta<typeof StakeSpkCTAPanel> = {
   decorators: [withRouter(), WithClassname('max-w-7xl grid lg:grid-cols-2')],
   args: {
     apy: Percentage(0.12),
+    epochDuration: 24 * 60 * 60 * 7, // 7 days
   },
 }
 export default meta

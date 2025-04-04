@@ -24,7 +24,7 @@ type StakeSpkActionProps =
 
 export type StakeSpkCTAPanelProps = {
   apy: Percentage
-  epochDuration: UnixTime
+  epochDuration: number
   className?: string
 } & StakeSpkActionProps
 
@@ -47,7 +47,8 @@ export function StakeSpkCTAPanel({ apy, className, ...actionsProps }: StakeSpkCT
         </div>
         <div className="typography-body-3 max-w-[48ch] text-tertiary">
           Deposit Spark Token listed below and start staking SPK to earn USDS rewards. Withdrawal delay up to{' '}
-          {formatEpochDuration(actionsProps.epochDuration)}. {/* @todo: spk staking - replace with proper docs link */}
+          {formatEpochDuration(UnixTime(actionsProps.epochDuration))}.{' '}
+          {/* @todo: spk staking - replace with proper docs link */}
           <Link to={links.docs.spkStaking} className="inline-flex items-center gap-1" external>
             Learn more <ExternalLinkIcon className="icon-xxs text-farms-600" />
           </Link>

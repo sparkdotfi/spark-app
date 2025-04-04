@@ -76,7 +76,6 @@ export function useStakeDialog(): UseStakeDialogResult {
     },
   ]
 
-  const unstakingDelay = Math.max(0, Number(spkStakingData.nextEpochEnd) - Number(spkStakingData.timestamp))
   const txOverview = createTxOverview({
     apy: spkStakingData.generalStats.apr,
     usds,

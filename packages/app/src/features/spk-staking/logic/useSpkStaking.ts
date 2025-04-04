@@ -72,7 +72,7 @@ export function useSpkStaking(): UseSpkStakingResult {
           apy: spkStakingData.generalStats.apr,
           connectWallet: openConnectModal,
           tryInSandbox: openSandboxModal,
-          epochDuration: spkStakingData.epochDuration,
+          epochDuration: Number(spkStakingData.epochDuration),
         },
       } satisfies MainPanelData
     }
@@ -87,7 +87,7 @@ export function useSpkStaking(): UseSpkStakingResult {
           },
           spkBalance,
           apy: spkStakingData.generalStats.apr,
-          epochDuration: spkStakingData.epochDuration,
+          epochDuration: Number(spkStakingData.epochDuration),
         },
       } satisfies MainPanelData
     }
